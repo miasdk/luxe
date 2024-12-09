@@ -1,4 +1,4 @@
-import { pool } from '../config/database.js';
+import { pool } from './database.js';
 import './dotenv.js';
 import productData from '../data/products.js';
 
@@ -11,7 +11,7 @@ const createProductsTable = async () => {
             name VARCHAR(100) NOT NULL,
             description TEXT NOT NULL,
             price DECIMAL(10, 2) NOT NULL,
-            image_url TEXT NOT NULL
+            image TEXT NOT NULL
         )
     `
     
@@ -28,7 +28,7 @@ const seedProductsTable = async () => {
 
     productData.forEach((product) => {
         const insertQuery = {
-            text: 'INSERT INTO products (name, description, price, image_url) VALUES ($1, $2, $3, $4)',
+            text: 'INSERT INTO products (name, description, price, image) VALUES ($1, $2, $3, $4)',
         }
 
         const values = [
