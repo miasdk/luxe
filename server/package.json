@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "reset": "cd config && node --require dotenv/config reset.js",
+    "start": "npm run reset && nodemon --require dotenv/config server.js",
+    "start-no-reset": "nodemon --require dotenv/config server.js"   
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "nodemon": "^3.1.7",
+    "pg": "^8.13.1"
+  }
+}
