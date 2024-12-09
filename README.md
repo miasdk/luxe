@@ -1,1 +1,1 @@
-# eCartMVP
+# ecommerce-templata
