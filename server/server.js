@@ -1,10 +1,11 @@
 import express from 'express';
 import productsRouter from './routes/products.js';
-import './config/dotenv.js';    
+import dotenv from 'dotenv';
 import cors from 'cors';
 
 
 const app = express(); 
+dotenv.config();
 
 app.use(cors());
 app.use('/products', productsRouter); 

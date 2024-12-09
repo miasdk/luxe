@@ -1,4 +1,4 @@
-import { pool } from './database.js';
+import { pool } from '../config/database.js';
 import './dotenv.js';
 import productData from '../data/products.js';
 
