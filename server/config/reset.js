@@ -43,7 +43,7 @@ const seedProductsTable = async () => {
                 console.log('⚠️ error seeding products table', err);
                 return
             }
-            console.log(`🏬 ${product.name} added successfully`);
+            console.log(`🏬 ${product.title} added successfully`);
         })
     })
 }
