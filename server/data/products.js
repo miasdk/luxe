@@ -2,7 +2,7 @@ const productData = [
     // Dresses (1)
     {
     id: 1,
-    brand: "Brand 1",
+    brand: 6,
     title: "Floral Summer Dress",
     price: 59.99,
     category: 1, 
@@ -11,7 +11,7 @@ const productData = [
     },
     {
     id: 2,
-    brand: "Brand 2",
+    brand: 6,
     title: "Little Black Dress",
     price: 89.99,
     category: 1, 
@@ -20,7 +20,7 @@ const productData = [
     },
     {
     id: 3,
-    brand: "Brand 3",
+    brand: 4,
     title: "Maxi Dress",
     price: 79.99,
     category: 1, 
@@ -29,7 +29,7 @@ const productData = [
     },
     {
     id: 4,
-    brand: "Brand 4",
+    brand: "3",
     title: "Wrap Dress",
     price: 69.99,
     category: 1, 
@@ -38,7 +38,7 @@ const productData = [
     },
     {
     id: 5,
-    brand: "Brand 5",
+    brand: 6,
     title: "Slip Dress",
     price: 49.99,
     category: 1, 
@@ -47,7 +47,7 @@ const productData = [
     },
     {
     id: 6,
-    brand: "Brand 6",
+    brand: 3,
     title: "Sundress",
     price: 39.99,
     category: 1, 
@@ -56,7 +56,7 @@ const productData = [
     },
     {
     id: 7,
-    brand: "Brand 7",
+    brand: 2,
     title: "Shift Dress",
     price: 55.99,
     category: 1, 
@@ -65,7 +65,7 @@ const productData = [
     },
     {
     id: 8,
-    brand: "Brand 8",
+    brand: 6,
     title: "Bodycon Dress",
     price: 65.99,
     category: 1, 
@@ -74,7 +74,7 @@ const productData = [
     },
     {
     id: 9,
-    brand: "Brand 9",
+    brand: 6,
     title: "Off-Shoulder Dress",
     price: 75.99,
     category: 1, 
@@ -83,7 +83,7 @@ const productData = [
     },
     {
     id: 10,
-    brand: "Brand 10",
+    brand: 3,
     title: "Lace Dress",
     price: 99.99,
     category: 1, 
@@ -94,7 +94,7 @@ const productData = [
     // Tops (2)
     {
     id: 11,
-    brand: "Brand 11",
+    brand: 3,
     title: "T-Shirt",
     price: 19.99,
     category: 2, 
@@ -103,7 +103,7 @@ const productData = [
     },
     {
     id: 12,
-    brand: "Brand 12",
+    brand: 1,
     title: "Tank Top",
     price: 15.99,
     category: 2, 
@@ -112,7 +112,7 @@ const productData = [
     },
     {
     id: 13,
-    brand: "Brand 13",
+    brand: 3,
     title: "Blouse",
     price: 39.99,
     category: 2, 
@@ -121,7 +121,7 @@ const productData = [
     },
     {
     id: 14,
-    brand: "Brand 14",
+    brand: 5,
     title: "Sweatshirt",
     price: 49.99,
     category: 2, 
@@ -130,7 +130,7 @@ const productData = [
     },
     {
     id: 15,
-    brand: "Brand 15",
+    brand: 5,
     title: "Hoodie",
     price: 59.99,
     category: 2, 
@@ -139,7 +139,7 @@ const productData = [
     },
     {
     id: 16,
-    brand: "Brand 16",
+    brand: 3,
     title: "Crop Top",
     price: 29.99,
     category: 2, 
@@ -148,7 +148,7 @@ const productData = [
     },
     {
     id: 17,
-    brand: "Brand 17",
+    brand: 1,
     title: "Off-Shoulder Top",
     price: 35.99,
     category: 2, 
@@ -157,7 +157,7 @@ const productData = [
     },
     {
     id: 18,
-    brand: "Brand 18",
+    brand: 7,
     title: "Long-Sleeve Shirt",
     price: 39.99,
     category: 2, 
@@ -166,7 +166,7 @@ const productData = [
     },
     {
     id: 19,
-    brand: "Brand 19",
+    brand: 7,
     title: "Button-Down Shirt",
     price: 45.99,
     category: 2, 
@@ -175,7 +175,7 @@ const productData = [
     },
     {
     id: 20,
-    brand: "Brand 20",
+    brand: 3,
     title: "Camisole",
     price: 19.99,
     category: 2, 
@@ -186,7 +186,7 @@ const productData = [
     // Sweaters (3)
     {
     id: 21,
-    brand: "Brand 21",
+    brand: 3,
     title: "Cable Knit Sweater",
     price: 69.99,
     category: 3, 
@@ -195,7 +195,7 @@ const productData = [
     },
     {
     id: 22,
-    brand: "Brand 22",
+    brand: 3,
     title: "Chunky Knit Sweater",
     price: 79.99,
     category: 3, 
@@ -204,7 +204,7 @@ const productData = [
     },
     {
     id: 23,
-    brand: "Brand 23",
+    brand: 2,
     title: "Cardigan",
     price: 59.99,
     category: 3, 
@@ -213,7 +213,7 @@ const productData = [
     },
     {
     id: 24,
-    brand: "Brand 24",
+    brand: 2,
     title: "Turtleneck Sweater",
     price: 75.99,
     category: 3, 
@@ -222,7 +222,7 @@ const productData = [
     },
     {
     id: 25,
-    brand: "Brand 25",
+    brand: 3,
     title: "Crewneck Sweater",
     price: 65.99,
     category: 3, 
@@ -231,7 +231,7 @@ const productData = [
     },
     {
     id: 26,
-    brand: "Brand 26",
+    brand: 2,
     title: "V-Neck Sweater",
     price: 59.99,
     category: 3, 
@@ -240,7 +240,7 @@ const productData = [
     },
     {
     id: 27,
-    brand: "Brand 27",
+    brand: 2,
     title: "Cashmere Sweater",
     price: 99.99,
     category: 3, 
@@ -249,7 +249,7 @@ const productData = [
     },
     {
     id: 28,
-    brand: "Brand 28",
+    brand: 5,
     title: "Hooded Sweater",
     price: 69.99,
     category: 3, 
@@ -258,7 +258,7 @@ const productData = [
     },
     {
     id: 29,
-    brand: "Brand 29",
+    brand: 4,
     title: "Mock Neck Sweater",
     price: 55.99,
     category: 3,
@@ -267,7 +267,7 @@ const productData = [
     },
     {
     id: 30,
-    brand: "Brand 30",
+    brand: 6,
     title: "Sweater Dress",
     price: 69.99,
     category: 3,
@@ -278,7 +278,7 @@ const productData = [
     // Pants (5)
     {
     id: 31,
-    brand: "Brand 40",
+    brand: 4,
     title: "Skinny Jeans",
     price: 49.99,
     category: 5, 
@@ -287,7 +287,7 @@ const productData = [
     },
     {
     id: 32,
-    brand: "Brand 41",
+    brand: 4,
     title: "Boyfriend Jeans",
     price: 59.99,
     category: 5, 
@@ -296,7 +296,7 @@ const productData = [
     },
     {
     id: 33,
-    brand: "Brand 42",
+    brand: 4,
     title: "Bootcut Jeans",
     price: 55.99,
     category: 5, 
@@ -305,7 +305,7 @@ const productData = [
     },
     {
     id: 34,
-    brand: "Brand 43",
+    brand: 2,
     title: "Wide-Leg Pants",
     price: 69.99,
     category: 5, 
@@ -314,7 +314,7 @@ const productData = [
     },
     {
     id: 35,
-    brand: "Brand 44",
+    brand: 6,
     title: "Cropped Pants",
     price: 45.99,
     category: 5, 
@@ -323,7 +323,7 @@ const productData = [
     },
     {
     id: 36,
-    brand: "Brand 45",
+    brand: 1,
     title: "Leggings",
     price: 29.99,
     category: 5, 
@@ -332,7 +332,7 @@ const productData = [
     },
     {
     id: 37,
-    brand: "Brand 46",
+    brand: 3,
     title: "Cargo Pants",
     price: 59.99,
     category: 5, 
@@ -341,7 +341,7 @@ const productData = [
     },
     {
     id: 38,
-    brand: "Brand 47",
+    brand: 5,
     title: "Joggers",
     price: 39.99,
     category: 5,
@@ -350,7 +350,7 @@ const productData = [
     },
     {
     id: 39,
-    brand: "Brand 48",
+    brand: 6,
     title: "High-Waisted Pants",
     price: 49.99,
     category: 5,
@@ -359,7 +359,7 @@ const productData = [
     },
     {
     id: 40,
-    brand: "Brand 49",
+    brand: 6,
     title: "Paperbag Waist Pants",
     price: 55.99,
     category: 5,
@@ -370,7 +370,7 @@ const productData = [
     // Skirts (6)
     {
     id: 41,
-    brand: "Brand 50",
+    brand: 3,
     title: "Mini Skirt",
     price: 39.99,
     category: 6, 
@@ -379,7 +379,7 @@ const productData = [
     },
     {
     id: 42,
-    brand: "Brand 51",
+    brand: 3,
     title: "A-Line Skirt",
     price: 49.99,
     category: 6,
@@ -388,7 +388,7 @@ const productData = [
     },
     {
     id: 43,
-    brand: "Brand 52",
+    brand: 2,
     title: "Pencil Skirt",
     price: 45.99,
     category: 6,
@@ -397,7 +397,7 @@ const productData = [
     },
     {
     id: 44,
-    brand: "Brand 53",
+    brand: 4,
     title: "Midi Skirt",
     price: 55.99,
     category: 6,
@@ -406,7 +406,7 @@ const productData = [
     },
     {
     id: 45,
-    brand: "Brand 54",
+    brand: 6,
     title: "Maxi Skirt",
     price: 59.99,
     category: 6,
@@ -415,7 +415,7 @@ const productData = [
     },
     {
     id: 46,
-    brand: "Brand 55",
+    brand: 6,
     title: "Wrap Skirt",
     price: 49.99,
     category: 6,
@@ -424,7 +424,7 @@ const productData = [
     },
     {
     id: 47,
-    brand: "Brand 56",
+    brand: 6,
     title: "Denim Skirt",
     price: 39.99,
     category: 6,
@@ -433,7 +433,7 @@ const productData = [
     },
     {
     id: 48,
-    brand: "Brand 57",
+    brand: 3,
     title: "Pleated Skirt",
     price: 55.99,
     category: 6,
@@ -442,7 +442,7 @@ const productData = [
     },
     {
     id: 49,
-    brand: "Brand 58",
+    brand: 3,
     title: "Floral Skirt",
     price: 45.99,
     category: 6,
@@ -451,17 +451,17 @@ const productData = [
     },
     {
     id: 50,
-    brand: "Brand 59",
-    title: "Leather Skirt",
+    brand: 3,
+    title: "Skirt",
     price: 69.99,
     category: 6,
-    description: "Edgy leather skirt for a cool vibe.",
+    description: "Edgy skirt for a cool vibe.",
     image: "https://via.placeholder.com/150"
     },
     // Shoes (7)
     {
     id: 51,
-    brand: "Brand 60",
+    brand: 5,
     title: "Sneakers",
     price: 59.99,
     category: 7,
@@ -470,7 +470,7 @@ const productData = [
     },
     {
     id: 52,
-    brand: "Brand 61",
+    brand: 1,
     title: "Sandals",
     price: 39.99,
     category: 7,
@@ -479,7 +479,7 @@ const productData = [
     },
     {
     id: 53,
-    brand: "Brand 62",
+    brand: 1,
     title: "Flats",
     price: 49.99,
     category: 7,
@@ -488,16 +488,16 @@ const productData = [
     },
     {
     id: 54,
-    brand: "Brand 63",
-    title: "Heels",
+    brand: 5,
+    title: "Running shoes",
     price: 69.99,
     category: 7,
-    description: "Elegant heels for a sophisticated look.",
+    description: "Lightweight running shoes for a comfortable run.",
     image: "https://via.placeholder.com/150"
     },
     {
     id: 55,
-    brand: "Brand 64",
+    brand: 7,
     title: "Boots",
     price: 79.99,
     category: 7,
@@ -506,25 +506,25 @@ const productData = [
     },
     {
     id: 56,
-    brand: "Brand 65",
+    brand: 7,
     title: "Loafers",
     price: 55.99,
     category: 7,
-    description: "Classic loafers for a polished look.",
+    description: "",
     image: "https://via.placeholder.com/150"
     },
     {
     id: 57,
-    brand: "Brand 66",
-    title: "Espadrilles",
+    brand: 5,
+    title: "Sneakers",
     price: 45.99,
     category: 7,
-    description: "Casual espadrilles for a laid-back vibe.",
+    description: "Comfy sneakers for casual days.",
     image: "https://via.placeholder.com/150"
     },
     {
     id: 58,
-    brand: "Brand 67",
+    brand: 1,
     title: "Wedges",
     price: 59.99,
     category: 7,
@@ -533,22 +533,13 @@ const productData = [
     },
     {
     id: 59,
-    brand: "Brand 68",
+    brand: 7,
     title: "Oxfords",
     price: 65.99,
     category: 7,
     description: "Classic oxfords for a vintage look.",
     image: "https://via.placeholder.com/150"
     },
-    {
-    id: 60,
-    brand: "Brand 69",
-    title: "Mules",
-    price: 49.99,
-    category: 7,
-    description: "Trendy mules for a modern feel.",
-    image: "https://via.placeholder.com/150"
-    }
 ];
 
 export default productData;

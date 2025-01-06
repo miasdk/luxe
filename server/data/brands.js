@@ -1,7 +1,7 @@
 const brands = [
     {
         id: 1,
-        name: "Free People",
+        name: "Lululemon",
         image: "https://via.placeholder.com/150",
     },
     {
@@ -21,7 +21,7 @@ const brands = [
     },
     {
         id: 5,
-        name: "J.Crew",
+        name: "Nike",
         image: "https://via.placeholder.com/150",
     },
     {
@@ -29,6 +29,11 @@ const brands = [
         name: "Zara",
         image: "https://via.placeholder.com/150",
     },
+    {
+        id: 7, 
+        name: "J.Crew",
+        image: "https://via.placeholder.com/150",
+    }
 ];
 
 export default brands;
