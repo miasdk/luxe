@@ -1,0 +1,24 @@
+const cartProductsData = [
+    { id: 1, cartId: 1, productId: 1, quantity: 2 },
+    { id: 2, cartId: 1, productId: 2, quantity: 1 },
+    { id: 3, cartId: 2, productId: 3, quantity: 1 },
+    { id: 4, cartId: 2, productId: 4, quantity: 3 },
+    { id: 5, cartId: 3, productId: 5, quantity: 1 },
+    { id: 6, cartId: 3, productId: 6, quantity: 2 },
+    { id: 7, cartId: 4, productId: 7, quantity: 1 },
+    { id: 8, cartId: 4, productId: 8, quantity: 4 },
+    { id: 9, cartId: 5, productId: 9, quantity: 1 },
+    { id: 10, cartId: 5, productId: 10, quantity: 2 },
+    { id: 11, cartId: 6, productId: 11, quantity: 1 },
+    { id: 12, cartId: 6, productId: 12, quantity: 3 },
+    { id: 13, cartId: 7, productId: 13, quantity: 1 },
+    { id: 14, cartId: 7, productId: 14, quantity: 2 },
+    { id: 15, cartId: 8, productId: 15, quantity: 1 },
+    { id: 16, cartId: 8, productId: 16, quantity: 4 },
+    { id: 17, cartId: 9, productId: 17, quantity: 1 },
+    { id: 18, cartId: 9, productId: 18, quantity: 2 },
+    { id: 19, cartId: 10, productId: 19, quantity: 1 },
+    { id: 20, cartId: 10, productId: 20, quantity: 3 }
+];
+
+export default cartProductsData;

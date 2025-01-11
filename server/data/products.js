@@ -43,7 +43,7 @@ const productData = [
     price: 49.99,
     category: 1, 
     description: "Silky slip dress for a touch of elegance.",
-    image: "https://cf-assets-thredup.thredup.com/assets/648232149/retina.jpg0"
+    image: "https://cf-assets-thredup.thredup.com/assets/648232149/retina.jpg"
     },
     {
     id: 6,
@@ -70,7 +70,7 @@ const productData = [
     price: 65.99,
     category: 1, 
     description: "Figure-hugging bodycon dress for a night out.",
-    image: "https://via.placeholder.com/150"
+    image: "https://cf-assets-thredup.thredup.com/assets/655065124/retina.jpg"
     },
     {
     id: 9,
@@ -79,7 +79,7 @@ const productData = [
     price: 75.99,
     category: 1, 
     description: "Trendy off-shoulder dress for a summery feel.",
-    image: "https://cf-assets-thredup.thredup.com/assets/662881816/retina.jpg0"
+    image: "https://cf-assets-thredup.thredup.com/assets/640823262/retina.jpg"
     },
     {
     id: 10,
@@ -191,7 +191,7 @@ const productData = [
     price: 69.99,
     category: 3, 
     description: "Classic cable knit sweater for cozy warmth.",
-    image: "https://via.placeholder.com/150"
+    image: "https://cf-assets-thredup.thredup.com/assets/663065456/retina.jpg"
     },
     {
     id: 22,
@@ -236,7 +236,7 @@ const productData = [
     price: 59.99,
     category: 3, 
     description: "Classic V-neck sweater for a polished look.",
-    image: "https://cf-assets-thredup.thredup.com/assets/661392219/retina.jpg0"
+    image: "https://cf-assets-thredup.thredup.com/assets/610668983/retina.jpg"
     },
     {
     id: 27,

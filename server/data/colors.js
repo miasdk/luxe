@@ -21,7 +21,7 @@ const colors = [
     },
     {
         id: 6,
-        name: 'purple'
+        name: 'pink'
     },
     {
         id: 7,
