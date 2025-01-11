@@ -58,4 +58,4 @@ export const productConditionsData = [
     { product_id: 57, condition_id: 2 },
     { product_id: 58, condition_id: 3 },
     { product_id: 59, condition_id: 4 }
-];
+]

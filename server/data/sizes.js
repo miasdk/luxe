@@ -1,4 +1,4 @@
-const sizes = [
+export const sizeData = [
     {
         id: 1,
         name: 'XS'
@@ -25,4 +25,3 @@ const sizes = [
     }
 ]
 
-export default sizes

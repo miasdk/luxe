@@ -1,4 +1,4 @@
-const conditions = [
+export const conditionData = [
     { 
         id : 1,
         name : 'NWT', 
@@ -26,4 +26,4 @@ const conditions = [
     }
 ]
 
-export default conditions; 
+ 

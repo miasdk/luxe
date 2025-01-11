@@ -1,4 +1,4 @@
-const brands = [
+export const brands = [
     {
         id: 1,
         name: "Lululemon",
@@ -35,5 +35,3 @@ const brands = [
         image: "https://1000logos.net/wp-content/uploads/2024/12/J-Crew-Logo-768x432.png",
     }
 ];
-
-export default brands;

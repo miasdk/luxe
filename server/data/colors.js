@@ -1,4 +1,4 @@
-const colors = [
+export const colorData = [
     {
         id: 1,
         name: 'red'
@@ -32,5 +32,3 @@ const colors = [
         name: 'white'
     }
 ]
-
-export default colors

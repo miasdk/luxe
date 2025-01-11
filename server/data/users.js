@@ -1,4 +1,4 @@
-const userData = [
+export const userData = [
     {
         uid: "user1",
         email: "user1@example.com",
@@ -101,4 +101,3 @@ const userData = [
     }
 ];
 
-export default userData;

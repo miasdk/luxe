@@ -1,4 +1,4 @@
-const cartProductsData = [
+export const cartProductData = [
     { id: 1, cartId: 1, productId: 1, quantity: 2 },
     { id: 2, cartId: 1, productId: 2, quantity: 1 },
     { id: 3, cartId: 2, productId: 3, quantity: 1 },
@@ -19,6 +19,4 @@ const cartProductsData = [
     { id: 18, cartId: 9, productId: 18, quantity: 2 },
     { id: 19, cartId: 10, productId: 19, quantity: 1 },
     { id: 20, cartId: 10, productId: 20, quantity: 3 }
-];
-
-export default cartProductsData;
+]

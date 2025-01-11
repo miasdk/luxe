@@ -58,4 +58,5 @@ export const productColorsData = [
     { product_id: 57, color_id: 7 },
     { product_id: 58, color_id: 5 },
     { product_id: 59, color_id: 7 }
-];
+]
+

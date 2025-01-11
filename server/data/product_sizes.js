@@ -58,4 +58,5 @@ export const productSizesData = [
     { product_id: 57, size_id: 3 },
     { product_id: 58, size_id: 4 },
     { product_id: 59, size_id: 5 }
-];
+]
+

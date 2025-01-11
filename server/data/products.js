@@ -1,4 +1,4 @@
-const productData = [
+export const productData = [
     // Dresses (1)
     {
     id: 1,
@@ -541,5 +541,3 @@ const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/662732440/retina.jpg"
     },
 ];
-
-export default productData;
