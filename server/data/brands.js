@@ -1,4 +1,4 @@
-export const brands = [
+export const brandData = [
     {
         id: 1,
         name: "Lululemon",
