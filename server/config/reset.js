@@ -6,7 +6,7 @@ import { pool } from './database.js';
 import { userData as users } from '../data/users.js';
 import { categoryData as categories } from '../data/categories.js';
 import { productData as products } from '../data/products.js';
-import { sizeData as sizes} from '../data/sizes.js';
+import { sizeData as sizes } from '../data/sizes.js';
 import { colorData as colors } from '../data/colors.js';
 import { conditionData as conditions } from '../data/conditions.js';
 import { cartData as carts } from '../data/carts.js';
@@ -81,7 +81,7 @@ const seedCategoriesTable = async () => {
     `;
     try {
         for (const category of categories) {
-            await pool.query(query, Object.values(category));
+            await pool.query(query, [category.name, category.image]);
         }
         console.log(`Successfully added ${categories.length} categories to the categories table`);
     } catch (error) {
@@ -109,8 +109,8 @@ const createBrandsTable = async () => {
 const seedBrandsTable = async () => {
     await createBrandsTable();
     const query = `
-        INSERT INTO brands (name, image)
-        VALUES ($1, $2)
+        INSERT INTO brands (id, name, image)
+        VALUES ($1, $2, $3)
     `;
     try {
         for (const brand of brands) {
@@ -126,6 +126,7 @@ const createProductsTable = async () => {
     const insertQuery = `
         CREATE TABLE IF NOT EXISTS products (
             id SERIAL PRIMARY KEY,
+            brand_id INT NOT NULL REFERENCES brands(id) ON DELETE CASCADE,
             title VARCHAR(255) NOT NULL,
             price DECIMAL(10, 2) NOT NULL,
             description TEXT NOT NULL,
@@ -145,14 +146,15 @@ const createProductsTable = async () => {
 const seedProductsTable = async () => {
     await createProductsTable();
     const query = `
-        INSERT INTO products (title, price, description, category_id, image)
-        VALUES ($1, $2, $3, $4, $5)
+        INSERT INTO products (title, brand_id, price, description, category_id, image)
+        VALUES ($1, $2, $3, $4, $5, $6)
     `;
     try {
         for (const product of products) {
-            await pool.query(query, Object.values(product));
+            const { title, brand_id, price, description, category_id, image } = product;
+            await pool.query(query, [title, brand_id, price, description, category_id, image]);
         }
-        console.log('Products table seeded successfully');
+        console.log(`Successfully added ${products.length} products to the products table`);
     } catch (error) {
         console.error('Error seeding products table', error.stack);
     }
@@ -424,34 +426,4 @@ const seedProductsTable = async () => {
 //     })   
 // }
 
-// const seed = async () => {
-//     await createUsersTable();
-//     await createCategoriesTable();
-//     await createProductsTable();
-//     await createSizesTable();
-//     await createColorsTable();
-//     await createConditionsTable();
-//     await createCartsTable();
-//     await createCartProductsTable();
-//     await createProductSizesTable();
-//     await createProductColorsTable();
-//     await createProductConditionsTable();
-
-//     await seedUsersTable();
-//     await seedCategoriesTable();
-//     await seedProductsTable();
-//     await seedSizesTable();
-//     await seedColorsTable();
-//     await seedConditionsTable();
-//     await seedCartsTable();
-//     await seedCartProductsTable();
-//     await seedProductSizes();
-//     await seedProductColors();
-//     await seedProductConditions();
-// }
-
-// seed();
-
-seedUsersTable();
-seedCategoriesTable();
-seedBrandsTable(); 
+seedProductsTable();
