@@ -52,10 +52,10 @@ eCart aims to provide a quick and easy way to get started with building an e-com
 *   **Backend:** Node.js, Express.js
 *   **Database:** PostgreSQL
 *   **Payment Gateway:** Stripe
-*   **State Management:** (Consider using a library like Redux or Zustand)
+*   **State Management:** Redux
 
 ## 5. ERD Diagram 
-![Entity Relationship Diagram](https://github.com/user-attachments/assets/3e253b3a-52a3-4471-8149-b1c1321bc895)
+![Entity Relationship Diagram](https://github.com/user-attachments/assets/438baec4-890c-492f-98bb-f406d912a733)
 
 ## 6. System Architecture
 ![System Design  (1)](https://github.com/user-attachments/assets/e6f36a80-aacb-4f3a-b1da-44c635f38c26)
