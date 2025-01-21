@@ -6,9 +6,9 @@ This is a basic e-commerce platform built with Vite, React, and a custom Node.js
 
 1.  **Introduction**
 2.  **Features**
-3.  **Getting Started**
+3.  **Wireframes**
 4.  **Technology Stack**
-5.  **Project Structure**
+5.  **Entry Relationship Diagram**
 6.  **System Architecture** 
 7.  **Contributing**
 8.  **License**
