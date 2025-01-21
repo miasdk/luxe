@@ -44,7 +44,11 @@ eCart aims to provide a quick and easy way to get started with building an e-com
 *   **Fast Development:**
     *   Utilizes Vite for rapid development and a smooth development experience.
 
-## 3. Getting Started
+## 3. Wireframes
+<img width="806" alt="Screenshot 2025-01-21 at 9 50 25 AM" src="https://github.com/user-attachments/assets/cb807a79-91b9-416d-b7de-7912b011c884" />
+<img width="905" alt="Screenshot 2025-01-21 at 9 50 54 AM" src="https://github.com/user-attachments/assets/a85f5166-8a13-4cf4-ba96-216d39ed70e9" />
+<img width="907" alt="Screenshot 2025-01-21 at 9 51 09 AM" src="https://github.com/user-attachments/assets/8f68e632-782e-4564-a352-330a5d2b04e9" />
+
 
 ## 4. Technology Stack
 
