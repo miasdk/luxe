@@ -46,12 +46,15 @@ eCart aims to provide a quick and easy way to get started with building an e-com
 
 ## 3. Wireframes
 <img width="925" alt="Screenshot 2025-01-21 at 9 50 25 AM" src="https://github.com/user-attachments/assets/cb807a79-91b9-416d-b7de-7912b011c884" />
-<img width="925" alt="Screenshot 2025-01-21 at 9 50 54 AM" src="https://github.com/user-attachments/assets/a85f5166-8a13-4cf4-ba96-216d39ed70e9" />
-<img width="925" alt="Screenshot 2025-01-21 at 9 51 09 AM" src="https://github.com/user-attachments/assets/8f68e632-782e-4564-a352-330a5d2b04e9" />
-<img width="925" alt="Screenshot 2025-01-21 at 10 31 43 AM" src="https://github.com/user-attachments/assets/7232165e-fb14-4b76-aa21-28d087adc86d" />
-<img width="925" alt="Screenshot 2025-01-21 at 10 32 15 AM" src="https://github.com/user-attachments/assets/48845bc6-3989-42e1-834c-fe4257d482c8" />
-<img width="925" alt="Screenshot 2025-01-21 at 10 32 30 AM" src="https://github.com/user-attachments/assets/a1c01c28-53bd-4b66-a8d5-f9b697d0db66" />
-<img width="925" alt="Screenshot 2025-01-21 at 10 32 46 AM" src="https://github.com/user-attachments/assets/cfec6ab6-c63e-41b1-a3e2-85b64ee38e3a" />
+<img width="925" alt="Screenshot 2025-01-21 at 10 37 07 AM" src="https://github.com/user-attachments/assets/a6915a05-3b7c-465b-b2f3-01fbf598c715" />
+<img width="925" alt="Screenshot 2025-01-21 at 10 37 24 AM" src="https://github.com/user-attachments/assets/307a6062-e1e5-4916-afc9-8a6633f49153" />
+<img width="925" alt="Screenshot 2025-01-21 at 10 37 45 AM" src="https://github.com/user-attachments/assets/7f287181-1f97-4cbe-b5ed-0fcf9aeecc51" />
+<img width="925" alt="Screenshot 2025-01-21 at 10 38 13 AM" src="https://github.com/user-attachments/assets/ab572a97-5a5c-4070-8f93-49fdb4d43ab6" />
+<img width="925" alt="Screenshot 2025-01-21 at 10 38 29 AM" src="https://github.com/user-attachments/assets/48a0f1f5-6c43-4415-b52d-b0061a2c6264" />
+<img width="925" alt="Screenshot 2025-01-21 at 10 38 40 AM" src="https://github.com/user-attachments/assets/b42e6e9b-0d2d-444a-8d84-4a8ffb1a2506" />
+<img width="925" alt="Screenshot 2025-01-21 at 10 38 54 AM" src="https://github.com/user-attachments/assets/8f835f1e-e282-4c7e-a05e-dfa6dbdfa5df" />
+
+
 
 
 
