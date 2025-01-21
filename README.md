@@ -48,6 +48,11 @@ eCart aims to provide a quick and easy way to get started with building an e-com
 <img width="806" alt="Screenshot 2025-01-21 at 9 50 25 AM" src="https://github.com/user-attachments/assets/cb807a79-91b9-416d-b7de-7912b011c884" />
 <img width="905" alt="Screenshot 2025-01-21 at 9 50 54 AM" src="https://github.com/user-attachments/assets/a85f5166-8a13-4cf4-ba96-216d39ed70e9" />
 <img width="907" alt="Screenshot 2025-01-21 at 9 51 09 AM" src="https://github.com/user-attachments/assets/8f68e632-782e-4564-a352-330a5d2b04e9" />
+<img width="925" alt="Screenshot 2025-01-21 at 10 31 43 AM" src="https://github.com/user-attachments/assets/7232165e-fb14-4b76-aa21-28d087adc86d" />
+<img width="805" alt="Screenshot 2025-01-21 at 10 32 15 AM" src="https://github.com/user-attachments/assets/48845bc6-3989-42e1-834c-fe4257d482c8" />
+<img width="801" alt="Screenshot 2025-01-21 at 10 32 30 AM" src="https://github.com/user-attachments/assets/a1c01c28-53bd-4b66-a8d5-f9b697d0db66" />
+<img width="810" alt="Screenshot 2025-01-21 at 10 32 46 AM" src="https://github.com/user-attachments/assets/cfec6ab6-c63e-41b1-a3e2-85b64ee38e3a" />
+
 
 
 ## 4. Technology Stack
