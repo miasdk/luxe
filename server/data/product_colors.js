@@ -35,7 +35,7 @@ export const productColorsData = [
     { product_id: 34, color_id: 7 },
     { product_id: 35, color_id: 7 },
     { product_id: 36, color_id: 7 },
-    { product_id: 37, color_id1: 4 },
+    { product_id: 37, color_id: 4 },
     { product_id: 38, color_id: 7 },
     { product_id: 39, color_id: 7 },
     { product_id: 40, color_id: 1 },

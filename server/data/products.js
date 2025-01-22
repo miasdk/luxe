@@ -1,7 +1,6 @@
 export const productData = [
     // Dresses (1)
     {
-    id: 1,
     brand_id: 6,
     title: "Floral Summer Dress",
     price: 59.99,
@@ -10,7 +9,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/660386110/retina.jpg"
     },
     {
-    id: 2,
     brand_id: 6,
     title: "Little Black Dress",
     price: 89.99,
@@ -19,7 +17,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/654243459/retina.jpg"
     },
     {
-    id: 3,
     brand_id: 4,
     title: "Maxi Dress",
     price: 79.99,
@@ -28,7 +25,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/641044509/retina.jpg"
     },
     {
-    id: 4,
     brand_id: 3,
     title: "Wrap Dress",
     price: 69.99,
@@ -37,7 +33,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/627588647/retina.jpg"
     },
     {
-    id: 5,
     brand_id: 6,
     title: "Slip Dress",
     price: 49.99,
@@ -46,7 +41,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/648232149/retina.jpg"
     },
     {
-    id: 6,
     brand_id: 3,
     title: "Sundress",
     price: 39.99,
@@ -55,7 +49,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/617546679/retina.jpg"
     },
     {
-    id: 7,
     brand_id: 2,
     title: "Shift Dress",
     price: 55.99,
@@ -64,7 +57,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/658391199/retina.jpg"
     },
     {
-    id: 8,
     brand_id: 6,
     title: "Bodycon Dress",
     price: 65.99,
@@ -73,7 +65,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/655065124/retina.jpg"
     },
     {
-    id: 9,
     brand_id: 6,
     title: "Off-Shoulder Dress",
     price: 75.99,
@@ -82,7 +73,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/640823262/retina.jpg"
     },
     {
-    id: 10,
     brand_id: 2,
     title: "Lace Dress",
     price: 99.99,
@@ -102,7 +92,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/613075875/retina.jpg"
     },
     {
-    id: 12,
     brand_id: 1,
     title: "Tank Top",
     price: 15.99,
@@ -111,7 +100,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/650189184/retina.jpg"
     },
     {
-    id: 13,
     brand_id: 2,
     title: "Blouse",
     price: 39.99,
@@ -120,7 +108,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/640936167/retina.jpg"
     },
     {
-    id: 14,
     brand_id: 5,
     title: "Sweatshirt",
     price: 49.99,
@@ -129,7 +116,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/640597045/retina.jpg"
     },
     {
-    id: 15,
     brand_id: 5,
     title: "Hoodie",
     price: 59.99,
@@ -138,7 +124,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/663736236/retina.jpg"
     },
     {
-    id: 16,
     brand_id: 3,
     title: "Crop Top",
     price: 29.99,
@@ -147,7 +132,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/646464937/retina.jpg"
     },
     {
-    id: 17,
     brand_id: 1,
     title: "Off-Shoulder Top",
     price: 35.99,
@@ -156,7 +140,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/663737680/retina.jpg"
     },
     {
-    id: 18,
     brand_id: 7,
     title: "Long-Sleeve Shirt",
     price: 39.99,
@@ -165,7 +148,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/651314803/retina.jpg"
     },
     {
-    id: 19,
     brand_id: 7,
     title: "Button-Down Shirt",
     price: 45.99,
@@ -174,7 +156,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/655314777/retina.jpg"
     },
     {
-    id: 20,
     brand_id: 3,
     title: "Camisole",
     price: 19.99,
@@ -185,7 +166,6 @@ export const productData = [
   
     // Sweaters (3)
     {
-    id: 21,
     brand_id: 7,
     title: "Cable Knit Sweater",
     price: 69.99,
@@ -194,7 +174,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/663065456/retina.jpg"
     },
     {
-    id: 22,
     brand_id: 7,
     title: "Chunky Knit Sweater",
     price: 79.99,
@@ -203,7 +182,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/656480215/retina.jpg"
     },
     {
-    id: 23,
     brand_id: 2,
     title: "Cardigan",
     price: 59.99,
@@ -212,7 +190,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/660749829/retina.jpg"
     },
     {
-    id: 24,
     brand_id: 7,
     title: "Turtleneck Sweater",
     price: 75.99,
@@ -221,7 +198,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/661016808/retina.jpg"
     },
     {
-    id: 25,
     brand_id: 7,
     title: "Crewneck Sweater",
     price: 65.99,
@@ -230,7 +206,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/658974516/retina.jpg"
     },
     {
-    id: 26,
     brand_id: 2,
     title: "V-Neck Sweater",
     price: 59.99,
@@ -239,7 +214,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/610668983/retina.jpg"
     },
     {
-    id: 27,
     brand_id: 2,
     title: "Cashmere Sweater",
     price: 99.99,
@@ -248,7 +222,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/662711456/retina.jpg"
     },
     {
-    id: 28,
     brand_id: 5,
     title: "Hooded Sweater",
     price: 69.99,
@@ -257,7 +230,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/659342111/retina.jpg"
     },
     {
-    id: 29,
     brand_id: 4,
     title: "Mock Neck Sweater",
     price: 55.99,
@@ -266,7 +238,7 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/663475423/retina.jpg"
     },
     {
-    id: 30,
+
     brand_id: 6,
     title: "Sweater Dress",
     price: 69.99,
@@ -277,7 +249,6 @@ export const productData = [
 
     // Pants (5)
     {
-    id: 31,
     brand_id: 4,
     title: "Skinny Jeans",
     price: 49.99,
@@ -286,7 +257,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/632129785/retina.jpg"
     },
     {
-    id: 32,
     brand_id: 4,
     title: "Boyfriend Jeans",
     price: 59.99,
@@ -295,7 +265,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/663304926/retina.jpg"
     },
     {
-    id: 33,
     brand_id: 4,
     title: "Bootcut Jeans",
     price: 55.99,
@@ -304,7 +273,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/650183832/retina.jpg"
     },
     {
-    id: 34,
     brand_id: 2,
     title: "Wide-Leg Pants",
     price: 69.99,
@@ -313,7 +281,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/662182854/retina.jpg"
     },
     {
-    id: 35,
     brand_id: 6,
     title: "Cropped Pants",
     price: 45.99,
@@ -322,7 +289,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/650811376/retina.jpg"
     },
     {
-    id: 36,
     brand_id: 1,
     title: "Leggings",
     price: 29.99,
@@ -331,7 +297,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/655033400/retina.jpg"
     },
     {
-    id: 37,
     brand_id: 3,
     title: "Cargo Pants",
     price: 59.99,
@@ -340,7 +305,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/635802233/retina.jpg"
     },
     {
-    id: 38,
     brand_id: 5,
     title: "Joggers",
     price: 39.99,
@@ -349,7 +313,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/662154072/retina.jpg"
     },
     {
-    id: 39,
     brand_id: 6,
     title: "High-Waisted Pants",
     price: 49.99,
@@ -358,7 +321,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/655513444/retina.jpg"
     },
     {
-    id: 40,
     brand_id: 6,
     title: "Paperbag Waist Pants",
     price: 55.99,
@@ -369,7 +331,6 @@ export const productData = [
 
     // Skirts (6)
     {
-    id: 41,
     brand_id: 3,
     title: "Mini Skirt",
     price: 39.99,
@@ -378,7 +339,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/661467507/retina.jpg"
     },
     {
-    id: 42,
     brand_id: 3,
     title: "A-Line Skirt",
     price: 49.99,
@@ -387,7 +347,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/580675055/retina.jpg"
     },
     {
-    id: 43,
     brand_id: 2,
     title: "Pencil Skirt",
     price: 45.99,
@@ -396,7 +355,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/612820808/retina.jpg"
     },
     {
-    id: 44,
     brand_id: 4,
     title: "Midi Skirt",
     price: 55.99,
@@ -405,7 +363,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/661621614/retina.jpg"
     },
     {
-    id: 45,
     brand_id: 7,
     title: "Maxi Skirt",
     price: 59.99,
@@ -414,7 +371,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/663485350/retina.jpg"
     },
     {
-    id: 46,
     brand_id: 6,
     title: "Wrap Skirt",
     price: 49.99,
@@ -423,7 +379,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/652246771/retina.jpg"
     },
     {
-    id: 47,
     brand_id: 4,
     title: "Denim Skirt",
     price: 39.99,
@@ -432,7 +387,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/643767668/retina.jpg"
     },
     {
-    id: 48,
     brand_id: 5,
     title: "Pleated Skirt",
     price: 55.99,
@@ -441,7 +395,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/639206544/retina.jpg"
     },
     {
-    id: 49,
     brand_id: 3,
     title: "Floral Skirt",
     price: 45.99,
@@ -450,7 +403,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/585567773/retina.jpg"
     },
     {
-    id: 50,
     brand_id: 3,
     title: "Skirt",
     price: 69.99,
@@ -460,7 +412,6 @@ export const productData = [
     },
     // Shoes (7)
     {
-    id: 51,
     brand_id: 5,
     title: "Sneakers",
     price: 59.99,
@@ -469,7 +420,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/655280638/retina.jpg"
     },
     {
-    id: 52,
     brand_id: 1,
     title: "Sandals",
     price: 39.99,
@@ -478,7 +428,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/657353069/retina.jpg"
     },
     {
-    id: 53,
     brand_id: 1,
     title: "Flats",
     price: 49.99,
@@ -487,7 +436,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/662993498/retina.jpg"
     },
     {
-    id: 54,
     brand_id: 5,
     title: "Running shoes",
     price: 69.99,
@@ -496,7 +444,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/662690582/retina.jpg"
     },
     {
-    id: 55,
     brand_id: 7,
     title: "Boots",
     price: 79.99,
@@ -505,7 +452,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/650537115/retina.jpg"
     },
     {
-    id: 56,
     brand_id: 7,
     title: "Loafers",
     price: 55.99,
@@ -514,7 +460,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/656769970/retina.jpg"
     },
     {
-    id: 57,
     brand_id: 5,
     title: "Sneakers",
     price: 45.99,
@@ -523,7 +468,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/647204645/retina.jpg"
     },
     {
-    id: 58,
     brand_id: 1,
     title: "Wedges",
     price: 59.99,
@@ -532,7 +476,6 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/650775936/retina.jpg"
     },
     {
-    id: 59,
     brand_id: 7,
     title: "Oxfords",
     price: 65.99,
