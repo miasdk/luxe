@@ -432,6 +432,58 @@ const seedProductConditions = async () => {
     })
 }
 
+
+const createProductDetailsView = async () => {
+    const query = `
+        CREATE OR REPLACE VIEW product_details AS
+        SELECT 
+            p.id AS product_id,
+            p.title,
+            p.price,
+            p.description,
+            p.image,
+            p.created_at,
+            b.name AS brand_name,
+            c.name AS category_name,
+            co.name AS condition_name,
+            col.name AS color_name
+        FROM products p
+        JOIN brands b ON p.brand_id = b.id
+        JOIN categories c ON p.category_id = c.id
+        JOIN conditions co ON p.condition_id = co.id
+        JOIN colors col ON p.color_id = col.id;
+    `;
+    try {
+        await pool.query(query);
+        console.log('Product details view created successfully');
+    } catch (error) {
+        console.error('Error creating product details view', error.stack);
+    }
+}
+
+const createCartDetailsView = async () => {
+    const query = `
+        CREATE OR REPLACE VIEW cart_details AS
+        SELECT 
+            ca.id AS cart_id,
+            u.display_name AS user_name,
+            p.title AS product_title,
+            cp.quantity,
+            ca.created_at
+        FROM carts ca
+        JOIN users u ON ca.user_id = u.id
+        JOIN cart_products cp ON ca.id = cp.cart_id
+        JOIN products p ON cp.product_id = p.id;
+    `;
+    try {
+        await pool.query(query);
+        console.log('Cart details view created successfully');
+    } catch (error) {
+        console.error('Error creating cart details view', error.stack);
+    }
+}
+
+
 seedUsersTable();
 seedCategoriesTable();
 seedBrandsTable();
