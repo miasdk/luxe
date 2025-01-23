@@ -145,15 +145,23 @@ const createProductsTable = async () => {
 }
 
 const seedProductsTable = async () => {
-    await createProductsTable();
-    const query = `
-        INSERT INTO products (brand_id, title, price, description, category_id, image)
-        VALUES ($1, $2, $3, $4, $5, $6)
+    await createProductsTable();    
+
+    const insertQuery = `
+        INSERT INTO products (brand_id, title, price, description, category_id, image, created_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
     `;
     try {
         for (const product of products) {
-            const {brand_id, title, price, description, category_id, image } = product;
-            await pool.query(query, [brand_id, title, price, description, category_id, image]);
+            await pool.query(insertQuery, [
+                product.brand_id,
+                product.title,
+                product.price,
+                product.description,
+                product.category_id,
+                product.image,
+                product.created_at
+            ]);
         }
         console.log(`Successfully added ${products.length} products to the products table`);
     } catch (error) {
@@ -424,35 +432,15 @@ const seedProductConditions = async () => {
     })
 }
 
-// const seedDatabase = async () => {
-//     await seedUsersTable();
-//     await seedCategoriesTable();
-//     await seedBrandsTable();
-//     await seedProductsTable();
-//     await seedSizesTable();
-//     await seedColorsTable();
-//     await seedConditionsTable();
-//     await seedCartsTable();
-//     await seedProductSizes();
-//     await seedProductColors();
-//     await seedProductConditions();
-// }
+seedUsersTable();
+seedCategoriesTable();
+seedBrandsTable();
+seedProductsTable();
+seedSizesTable();
+seedColorsTable();
+seedConditionsTable();
+seedCartsTable();
 
-// seedDatabase().then(() => {
-//     console.log('Database seeded successfully');
-//     pool.end();
-// }).catch((error) => {
-//     console.error('Error seeding database', error.stack);
-//     pool.end();
-// });
-seedUsersTable()
-seedCategoriesTable()
-seedBrandsTable()
-seedProductsTable()
-seedSizesTable()
-seedColorsTable()
-seedConditionsTable()
-seedCartsTable()
-seedProductSizes()
-seedProductColors()
-seedProductConditions()
+
+
+

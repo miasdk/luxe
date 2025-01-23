@@ -247,12 +247,12 @@ export const productData = [
     image: "https://cf-assets-thredup.thredup.com/assets/621447973/retina.jpg"
     },
 
-    // Pants (5)
+    // Pants (4)
     {
     brand_id: 4,
     title: "Skinny Jeans",
     price: 49.99,
-    category_id: 5, 
+    category_id: 4, 
     description: "Classic skinny jeans for a flattering fit.",
     image: "https://cf-assets-thredup.thredup.com/assets/632129785/retina.jpg"
     },
@@ -260,7 +260,7 @@ export const productData = [
     brand_id: 4,
     title: "Boyfriend Jeans",
     price: 59.99,
-    category_id: 5, 
+    category_id: 4, 
     description: "Relaxed boyfriend jeans for a casual look.",
     image: "https://cf-assets-thredup.thredup.com/assets/663304926/retina.jpg"
     },
@@ -268,7 +268,7 @@ export const productData = [
     brand_id: 4,
     title: "Bootcut Jeans",
     price: 55.99,
-    category_id: 5, 
+    category_id: 4, 
     description: "Flared bootcut jeans for a retro vibe.",
     image: "https://cf-assets-thredup.thredup.com/assets/650183832/retina.jpg"
     },
@@ -276,7 +276,7 @@ export const productData = [
     brand_id: 2,
     title: "Wide-Leg Pants",
     price: 69.99,
-    category_id: 5, 
+    category_id: 4, 
     description: "Flowing wide-leg pants for a chic look.",
     image: "https://cf-assets-thredup.thredup.com/assets/662182854/retina.jpg"
     },
@@ -284,7 +284,7 @@ export const productData = [
     brand_id: 6,
     title: "Cropped Pants",
     price: 45.99,
-    category_id: 5, 
+    category_id: 4, 
     description: "Stylish cropped pants for a modern feel.",
     image: "https://cf-assets-thredup.thredup.com/assets/650811376/retina.jpg"
     },
@@ -292,7 +292,7 @@ export const productData = [
     brand_id: 1,
     title: "Leggings",
     price: 29.99,
-    category_id: 5, 
+    category_id: 4, 
     description: "Comfortable leggings for everyday wear.",
     image: "https://cf-assets-thredup.thredup.com/assets/655033400/retina.jpg"
     },
@@ -300,7 +300,7 @@ export const productData = [
     brand_id: 3,
     title: "Cargo Pants",
     price: 59.99,
-    category_id: 5, 
+    category_id: 4, 
     description: "Functional cargo pants for a utilitarian look.",
     image: "https://cf-assets-thredup.thredup.com/assets/635802233/retina.jpg"
     },
@@ -308,7 +308,7 @@ export const productData = [
     brand_id: 5,
     title: "Joggers",
     price: 39.99,
-    category_id: 5,
+    category_id: 4,
     description: "Comfy joggers for a casual vibe.",
     image: "https://cf-assets-thredup.thredup.com/assets/662154072/retina.jpg"
     },
@@ -316,7 +316,7 @@ export const productData = [
     brand_id: 6,
     title: "High-Waisted Pants",
     price: 49.99,
-    category_id: 5,
+    category_id: 4,
     description: "Flattering high-waisted pants for a retro look.",
     image: "https://cf-assets-thredup.thredup.com/assets/655513444/retina.jpg"
     },
@@ -324,17 +324,17 @@ export const productData = [
     brand_id: 6,
     title: "Paperbag Waist Pants",
     price: 55.99,
-    category_id: 5,
+    category_id: 4,
     description: "Stylish paperbag waist pants for a modern feel.",
     image: "https://cf-assets-thredup.thredup.com/assets/636375802/retina.jpg"
     },
 
-    // Skirts (6)
+    // Skirts (5)
     {
     brand_id: 3,
     title: "Mini Skirt",
     price: 39.99,
-    category_id: 6, 
+    category_id: 5, 
     description: "Flirty mini skirt for a fun and playful look.",
     image: "https://cf-assets-thredup.thredup.com/assets/661467507/retina.jpg"
     },
@@ -342,7 +342,7 @@ export const productData = [
     brand_id: 3,
     title: "A-Line Skirt",
     price: 49.99,
-    category_id: 6,
+    category_id: 5,
     description: "Classic A-line skirt for a timeless look.",
     image: "https://cf-assets-thredup.thredup.com/assets/580675055/retina.jpg"
     },
@@ -350,7 +350,7 @@ export const productData = [
     brand_id: 2,
     title: "Pencil Skirt",
     price: 45.99,
-    category_id: 6,
+    category_id: 5,
     description: "Sleek pencil skirt for a polished look.",
     image: "https://cf-assets-thredup.thredup.com/assets/612820808/retina.jpg"
     },
@@ -358,7 +358,7 @@ export const productData = [
     brand_id: 4,
     title: "Midi Skirt",
     price: 55.99,
-    category_id: 6,
+    category_id: 5,
     description: "Versatile midi skirt for any occasion.",
     image: "https://cf-assets-thredup.thredup.com/assets/661621614/retina.jpg"
     },
@@ -366,7 +366,7 @@ export const productData = [
     brand_id: 7,
     title: "Maxi Skirt",
     price: 59.99,
-    category_id: 6,
+    category_id: 5,
     description: "Flowing maxi skirt for a bohemian vibe.",
     image: "https://cf-assets-thredup.thredup.com/assets/663485350/retina.jpg"
     },
@@ -374,7 +374,7 @@ export const productData = [
     brand_id: 6,
     title: "Wrap Skirt",
     price: 49.99,
-    category_id: 6,
+    category_id: 5,
     description: "Flattering wrap skirt with adjustable waist.",
     image: "https://cf-assets-thredup.thredup.com/assets/652246771/retina.jpg"
     },
@@ -382,7 +382,7 @@ export const productData = [
     brand_id: 4,
     title: "Denim Skirt",
     price: 39.99,
-    category_id: 6,
+    category_id: 5,
     description: "Casual denim skirt for a laid-back look.",
     image: "https://cf-assets-thredup.thredup.com/assets/643767668/retina.jpg"
     },
@@ -390,7 +390,7 @@ export const productData = [
     brand_id: 5,
     title: "Pleated Skirt",
     price: 55.99,
-    category_id: 6,
+    category_id: 5,
     description: "Elegant pleated skirt for a feminine touch.",
     image: "https://cf-assets-thredup.thredup.com/assets/639206544/retina.jpg"
     },
@@ -398,7 +398,7 @@ export const productData = [
     brand_id: 3,
     title: "Floral Skirt",
     price: 45.99,
-    category_id: 6,
+    category_id: 5,
     description: "Pretty floral skirt for a romantic look.",
     image: "https://cf-assets-thredup.thredup.com/assets/585567773/retina.jpg"
     },
@@ -406,16 +406,16 @@ export const productData = [
     brand_id: 3,
     title: "Skirt",
     price: 69.99,
-    category_id: 6,
+    category_id: 5,
     description: "Edgy skirt for a cool vibe.",
     image: "https://cf-assets-thredup.thredup.com/assets/651944052/retina.jpg"
     },
-    // Shoes (7)
+    // Shoes (6)
     {
     brand_id: 5,
     title: "Sneakers",
     price: 59.99,
-    category_id: 7,
+    category_id: 6,
     description: "Classic sneakers for everyday wear.",
     image: "https://cf-assets-thredup.thredup.com/assets/655280638/retina.jpg"
     },
@@ -423,7 +423,7 @@ export const productData = [
     brand_id: 1,
     title: "Sandals",
     price: 39.99,
-    category_id: 7,
+    category_id: 6,
     description: "Comfortable sandals for warm weather.",
     image: "https://cf-assets-thredup.thredup.com/assets/657353069/retina.jpg"
     },
@@ -431,7 +431,7 @@ export const productData = [
     brand_id: 1,
     title: "Flats",
     price: 49.99,
-    category_id: 7,
+    category_id: 6,
     description: "Versatile flats for any occasion.",
     image: "https://cf-assets-thredup.thredup.com/assets/662993498/retina.jpg"
     },
@@ -439,7 +439,7 @@ export const productData = [
     brand_id: 5,
     title: "Running shoes",
     price: 69.99,
-    category_id: 7,
+    category_id: 6,
     description: "Lightweight running shoes for a comfortable run.",
     image: "https://cf-assets-thredup.thredup.com/assets/662690582/retina.jpg"
     },
@@ -447,7 +447,7 @@ export const productData = [
     brand_id: 7,
     title: "Boots",
     price: 79.99,
-    category_id: 7,
+    category_id: 6,
     description: "Stylish boots for a trendy look.",
     image: "https://cf-assets-thredup.thredup.com/assets/650537115/retina.jpg"
     },
@@ -455,15 +455,15 @@ export const productData = [
     brand_id: 7,
     title: "Loafers",
     price: 55.99,
-    category_id: 7,
-    description: "",
+    category_id: 6,
+    description: "Classic loafers for a polished look.",
     image: "https://cf-assets-thredup.thredup.com/assets/656769970/retina.jpg"
     },
     {
     brand_id: 5,
     title: "Sneakers",
     price: 45.99,
-    category_id: 7,
+    category_id: 6,
     description: "Comfy sneakers for casual days.",
     image: "https://cf-assets-thredup.thredup.com/assets/647204645/retina.jpg"
     },
@@ -471,7 +471,7 @@ export const productData = [
     brand_id: 1,
     title: "Wedges",
     price: 59.99,
-    category_id: 7,
+    category_id: 6,
     description: "Stylish wedges for a summery feel.",
     image: "https://cf-assets-thredup.thredup.com/assets/650775936/retina.jpg"
     },
@@ -479,7 +479,7 @@ export const productData = [
     brand_id: 7,
     title: "Oxfords",
     price: 65.99,
-    category_id: 7,
+    category_id: 6,
     description: "Classic oxfords for a vintage look.",
     image: "https://cf-assets-thredup.thredup.com/assets/662732440/retina.jpg"
     },
