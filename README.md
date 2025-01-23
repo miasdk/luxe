@@ -48,7 +48,8 @@ eCart aims to provide a quick and easy way to get started with building an e-com
 <img width="925" alt="Screenshot 2025-01-21 at 9 50 25 AM" src="https://github.com/user-attachments/assets/cb807a79-91b9-416d-b7de-7912b011c884" />
 <img width="925" alt="Screenshot 2025-01-21 at 10 37 07 AM" src="https://github.com/user-attachments/assets/a6915a05-3b7c-465b-b2f3-01fbf598c715" />
 <img width="925" alt="Screenshot 2025-01-21 at 10 37 24 AM" src="https://github.com/user-attachments/assets/307a6062-e1e5-4916-afc9-8a6633f49153" />
-![Screenshot 2025-01-23 at 8 03 29 AM](https://github.com/user-attachments/assets/7cd376ba-950e-49a6-a57c-11d0c31e9d5d)
+![Screenshot 2025-01-23 at 8 03 29 AM](https://github.com/user-attachments/assets/fb83b32c-e191-4cef-92b5-cd6958d24b67)
+
 <img width="925" alt="Screenshot 2025-01-21 at 10 38 13 AM" src="https://github.com/user-attachments/assets/ab572a97-5a5c-4070-8f93-49fdb4d43ab6" />
 <img width="925" alt="Screenshot 2025-01-21 at 10 38 29 AM" src="https://github.com/user-attachments/assets/48a0f1f5-6c43-4415-b52d-b0061a2c6264" />
 <img width="925" alt="Screenshot 2025-01-21 at 10 38 40 AM" src="https://github.com/user-attachments/assets/b42e6e9b-0d2d-444a-8d84-4a8ffb1a2506" />
