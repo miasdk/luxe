@@ -162,6 +162,8 @@ const seedProductsTable = async () => {
                 product.image,
                 product.created_at
             ]);
+
+            console.log(`Successfully added product ${product.title} to the products table`);
         }
         console.log(`Successfully added ${products.length} products to the products table`);
     } catch (error) {
@@ -444,14 +446,11 @@ const createProductDetailsView = async () => {
             p.image,
             p.created_at,
             b.name AS brand_name,
-            c.name AS category_name,
-            co.name AS condition_name,
-            col.name AS color_name
-        FROM products p
+            c.name AS category_name
+        FROM products p                 
         JOIN brands b ON p.brand_id = b.id
         JOIN categories c ON p.category_id = c.id
-        JOIN conditions co ON p.condition_id = co.id
-        JOIN colors col ON p.color_id = col.id;
+
     `;
     try {
         await pool.query(query);
@@ -495,6 +494,9 @@ seedCartsTable();
 seedProductSizes();
 seedProductColors();
 seedProductConditions();
+
+createProductDetailsView();
+createCartDetailsView();
 
 
 
