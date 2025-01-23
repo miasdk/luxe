@@ -440,6 +440,9 @@ seedSizesTable();
 seedColorsTable();
 seedConditionsTable();
 seedCartsTable();
+seedProductSizes();
+seedProductColors();
+seedProductConditions();
 
 
 
