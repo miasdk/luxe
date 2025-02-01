@@ -1,4 +1,4 @@
-# eCart: Shop Clothes!
+# Vite Ecommerce Template
 
 This is a basic e-commerce platform built with Vite, React, and a custom Node.js/PostgreSQL backend. It provides a solid foundation for building your own online store.
 
