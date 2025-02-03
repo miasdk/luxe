@@ -446,11 +446,20 @@ const createProductDetailsView = async () => {
             p.image,
             p.created_at,
             b.name AS brand_name,
-            c.name AS category_name
-        FROM products p                 
-        JOIN brands b ON p.brand_id = b.id
-        JOIN categories c ON p.category_id = c.id
-
+            c.name AS category_name,
+            array_remove(array_agg(DISTINCT s.name), NULL) AS sizes,
+            array_remove(array_agg(DISTINCT cl.name), NULL) AS colors,
+            array_remove(array_agg(DISTINCT co.name), NULL) AS conditions
+        FROM products p
+        LEFT JOIN brands b ON p.brand_id = b.id
+        LEFT JOIN categories c ON p.category_id = c.id
+        LEFT JOIN product_sizes ps ON p.id = ps.product_id
+        LEFT JOIN sizes s ON ps.size_id = s.size_id
+        LEFT JOIN product_colors pc ON p.id = pc.product_id
+        LEFT JOIN colors cl ON pc.color_id = cl.color_id
+        LEFT JOIN product_conditions pc2 ON p.id = pc2.product_id
+        LEFT JOIN conditions co ON pc2.condition_id = co.conditions_id
+        GROUP BY p.id, b.name, c.name;
     `;
     try {
         await pool.query(query);
@@ -483,20 +492,20 @@ const createCartDetailsView = async () => {
 }
 
 
-seedUsersTable();
-seedCategoriesTable();
-seedBrandsTable();
-seedProductsTable();
-seedSizesTable();
-seedColorsTable();
-seedConditionsTable();
-seedCartsTable();
-seedProductSizes();
-seedProductColors();
-seedProductConditions();
+// seedUsersTable();
+// seedCategoriesTable();
+// seedBrandsTable();
+// seedProductsTable();
+// seedSizesTable();
+// seedColorsTable();
+// seedConditionsTable();
+// seedCartsTable();
+// seedProductSizes();
+// seedProductColors();
+// seedProductConditions();
 
 createProductDetailsView();
-createCartDetailsView();
+// createCartDetailsView();
 
 
 
