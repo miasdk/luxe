@@ -15,7 +15,8 @@ import { productSizesData } from '../data/product_sizes.js';
 import { productColorsData } from '../data/product_colors.js';
 import { productConditionsData } from '../data/product_conditions.js';
 import { brandData as brands } from '../data/brands.js';
-
+import { ordersData } from '../data/orders.js';
+import { orderItemsData } from '../data/order_items.js';
 import './dotenv.js';
 import fetch from 'node-fetch';
 
@@ -434,6 +435,92 @@ const seedProductConditions = async () => {
     })
 }
 
+// Create Orders Table
+const createOrdersTable = async () => {
+    const query = `
+        CREATE TABLE IF NOT EXISTS orders (
+            id SERIAL PRIMARY KEY,
+            user_id INT REFERENCES users(id) ON DELETE SET NULL,
+            total_price DECIMAL(10,2) NOT NULL,
+            status VARCHAR(50) CHECK (status IN ('pending', 'paid', 'shipped', 'delivered', 'canceled')) DEFAULT 'pending',
+            stripe_payment_id TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    `;
+    try {
+        await pool.query(query);
+        console.log('Orders table created successfully');
+    } catch (error) {
+        console.error('Error creating orders table', error.stack);
+    }
+}
+
+// Seed Orders Table
+const seedOrdersTable = async () => {
+    await createOrdersTable();
+    const insertQuery = `
+        INSERT INTO orders (user_id, total_price, status, stripe_payment_id, created_at, updated_at)
+        VALUES ($1, $2, $3, $4, $5, $6)
+    `;
+    try {
+        for (const order of ordersData) {
+            await pool.query(insertQuery, [
+                order.user_id,
+                order.total_price,
+                order.status,
+                order.stripe_payment_id,
+                order.created_at,
+                order.updated_at
+            ]);
+        }
+        console.log(`Successfully added ${ordersData.length} orders to the orders table`);
+    } catch (error) {
+        console.error('Error seeding orders table', error.stack);
+    }
+}
+
+// Create Order Items Table
+const createOrderItemsTable = async () => {
+    const query = `
+        CREATE TABLE IF NOT EXISTS order_items (
+            id SERIAL PRIMARY KEY,
+            order_id INT REFERENCES orders(id) ON DELETE CASCADE,
+            product_id INT REFERENCES products(id) ON DELETE CASCADE,
+            quantity INT NOT NULL CHECK (quantity > 0),
+            unit_price DECIMAL(10,2) NOT NULL
+        );
+    `;
+    try {
+        await pool.query(query);
+        console.log('Order items table created successfully');
+    } catch (error) {
+        console.error('Error creating order items table', error.stack);
+    }
+}
+
+// Seed Order Items Table
+const seedOrderItemsTable = async () => {
+    await createOrderItemsTable();
+    const insertQuery = `
+        INSERT INTO order_items (order_id, product_id, quantity, unit_price)
+        VALUES ($1, $2, $3, $4)
+    `;
+    try {
+        for (const item of orderItemsData) {
+            await pool.query(insertQuery, [
+                item.order_id,
+                item.product_id,
+                item.quantity,
+                item.unit_price
+            ]);
+        }
+        console.log('Successfully seeded order items table');
+    } catch (error) {
+        console.error('Error seeding order items table', error.stack);
+    }
+}
+
 
 const createProductDetailsView = async () => {
     const query = `
@@ -492,20 +579,21 @@ const createCartDetailsView = async () => {
 }
 
 
-// seedUsersTable();
-// seedCategoriesTable();
-// seedBrandsTable();
-// seedProductsTable();
-// seedSizesTable();
-// seedColorsTable();
-// seedConditionsTable();
-// seedCartsTable();
-// seedProductSizes();
-// seedProductColors();
-// seedProductConditions();
-
+seedUsersTable();
+seedCategoriesTable();
+seedBrandsTable();
+seedProductsTable();
+seedSizesTable();
+seedColorsTable();
+seedConditionsTable();
+seedCartsTable();
+seedProductSizes();
+seedProductColors();
+seedProductConditions();
+seedOrdersTable();
+seedOrderItemsTable();
 createProductDetailsView();
-// createCartDetailsView();
+createCartDetailsView();
 
 
 
