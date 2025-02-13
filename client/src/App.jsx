@@ -101,6 +101,7 @@ function App() {
           <button class="mt-4 w-full rounded-lg bg-blue-600 px-4 py-2 font-semibold hover:bg-blue-700 transition duration-200">
             Add to Cart
           </button>
+          
         </div>
       </div>
 
