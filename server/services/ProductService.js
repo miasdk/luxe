@@ -1,12 +1,12 @@
 const ProductModel = require('../models/ProductModel'); // Or import if using modules
 
 class ProductService {
-    async getAllProducts() { // Corrected method name
+    async getAllProducts() { 
         try {
             return await ProductModel.getAllProducts(); 
         } catch (error) {
             console.error('ProductService.getAllProducts(): Error:', error.message);
-            throw error; // No need to wrap in a new Error unless you want to add info
+            throw error; 
         }
     }
 
@@ -19,7 +19,7 @@ class ProductService {
         }
     }
 
-    async getProductsByCategory(category) { // Added missing method
+    async getProductsByCategory(category) { 
         try {
             return await ProductModel.getProductsByCategory(category);
         } catch (error) {
@@ -28,7 +28,7 @@ class ProductService {
         }
     }
 
-    async getProductsByFilters(filters, sortBy, sortOrder) { // Added missing method
+    async getProductsByFilters(filters, sortBy, sortOrder) { 
         try {
             return await ProductModel.getProductsByFilters(filters, sortBy, sortOrder);
         } catch (error) {
@@ -37,7 +37,7 @@ class ProductService {
         }
     }
 
-    async getProductByTitle(title) { // Added missing method
+    async getProductByTitle(title) { 
         try {
             return await ProductModel.getProductByTitle(title);
         } catch (error) {
@@ -48,7 +48,6 @@ class ProductService {
 
     async addProduct(product) {
         try {
-            // Validation can go here
             return await ProductModel.addProduct(product);
         } catch (error) {
             console.error('ProductService.addProduct(): Error:', error.message);
@@ -58,7 +57,6 @@ class ProductService {
 
     async updateProduct(productId, product) {
         try {
-            // Validation can go here
             return await ProductModel.updateProduct(productId, product);
         } catch (error) {
             console.error('ProductService.updateProduct(): Error:', error.message);
