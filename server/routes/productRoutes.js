@@ -1,5 +1,5 @@
 import express from 'express';
-import ProductController from '../controllers/ProductController.js'; // Ensure `.js` is included for ES Modules
+import ProductController from '../controllers/ProductController.js';
 
 const router = express.Router();
 

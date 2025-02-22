@@ -41,7 +41,7 @@ class ProductService {
         try {
             return await ProductModel.searchProductsByTitle(keyword);
         } catch (error) {
-            console.error('ProductService.getProductByTitle(): Error:', error.message);
+            console.error('ProductService.searchProductsByTitle(): Error:', error.message);
             throw error;
         }
     }

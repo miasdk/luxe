@@ -40,7 +40,7 @@ class ProductController {
     static async getProductsByFilters(req, res) {
         const productService = new ProductService();
         const filters = req.query;
-        const { sortBy = "name", sortOrder = "ASC" } = req.query;
+        const { sortBy = "title", sortOrder = "ASC" } = req.query;
         try {
             const products = await productService.getProductsByFilters(filters, sortBy, sortOrder);
             res.status(200).json(products);
@@ -50,17 +50,18 @@ class ProductController {
         }
     }
 
-    async searchProductsByTitle(req, res) {
-        const { keyword } = req.query; // Using query params for flexible search
+    static async searchProductsByTitle(req, res) {
+        const productService = new ProductService();
+        const { keyword } = req.query;
         try {
-            const products = await ProductService.searchProductsByTitle(keyword);
+            const products = await productService.searchProductsByTitle(keyword);
             res.status(200).json(products);
         } catch (error) {
+            console.error("Error searching products by title:", error);
             res.status(500).json({ error: error.message });
         }
     }
     
-
     static async addProduct(req, res) {
         const productService = new ProductService();
         try {

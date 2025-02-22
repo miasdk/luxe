@@ -55,7 +55,7 @@ class ProductModel {
      * @returns {Promise<Array>} - A list of products that match the filters.
      * @throws {Error} - Throws an error if the database query fails.
      */
-    static async getProductsByFilters(filters, sortBy = 'name', sortOrder = 'ASC') {
+    static async getProductsByFilters(filters, sortBy = 'title', sortOrder = 'ASC') {
         const { category, size, color, condition } = filters; 
     
         let selectQuery = `
@@ -94,7 +94,7 @@ class ProductModel {
             const results = await pool.query(selectQuery, queryParams);
             return results.rows;
         } catch (error) {
-            console.error("Error fetching products with filters:", error);
+            console.error("Error fetching products with filters:", error.message);
             throw new Error("Database query failed.");
         }
     }
