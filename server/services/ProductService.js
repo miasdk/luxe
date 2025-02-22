@@ -48,7 +48,7 @@ class ProductService {
 
     async addProduct(product) {
         try {
-            return await ProductModel.createProduct(product);
+            return await ProductModel.addProduct(product);
         } catch (error) {
             console.error('ProductService.addProduct(): Error:', error.message);
             throw error;

@@ -190,7 +190,7 @@ class ProductModel {
             // Step 1: Update product
             const updateProductQuery = `
                 UPDATE products
-                SET brand_id = $1, title = $2, price = $3, description = $4, category_id = $5, image = $6, updated_at = NOW()
+                SET brand_id = $1, title = $2, price = $3, description = $4, category_id = $5, image = $6
                 WHERE id = $7
                 RETURNING *;
             `;
