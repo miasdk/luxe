@@ -4,11 +4,11 @@ import ProductController from '../controllers/ProductController.js'; // Ensure `
 const router = express.Router();
 
 // Routes for Fetching Products
-router.get('/', ProductController.getAllProducts);
-router.get('/:id', ProductController.getProductById);
-router.get('/category/:category', ProductController.getProductsByCategory);
+router.get('/category/:category', ProductController.getProductsByCategory); // More specific routes first
+router.get('/search', ProductController.searchProductsByTitle);
 router.get('/filter', ProductController.getProductsByFilters);
-router.get('/title/:title', ProductController.getProductByTitle);
+router.get('/:id', ProductController.getProductById);
+router.get('/', ProductController.getAllProducts);
 
 // Routes for Managing Products
 router.post('/', ProductController.addProduct);

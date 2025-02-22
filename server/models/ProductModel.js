@@ -31,14 +31,13 @@ class ProductModel {
         const selectQuery = `
             SELECT * 
             FROM product_details
-            WHERE category = $1
+            WHERE category_name ILIKE $1
             ORDER BY title, price;
         `;
-
-        const results = await pool.query(selectQuery, [category]);
+    
+        const results = await pool.query(selectQuery, [category.trim()]);
         return results.rows;
     }
-
     /**
      * Retrieves products that match the provided filters (category, size, color, condition)
      * and sorts them based on the specified criteria.
@@ -100,16 +99,24 @@ class ProductModel {
         }
     }
     
-    static async getProductByTitle(title) {
-        const selectQuery = `
+    //Revised method to fetch products by title using full-text search
+    static async searchProductsByTitle(keyword) {
+        const searchQuery = `
             SELECT * 
             FROM product_details
-            WHERE title = $1;
+            WHERE to_tsvector('english', title) @@ plainto_tsquery($1)
+            ORDER BY ts_rank(to_tsvector('english', title), plainto_tsquery($1)) DESC;
         `;
-
-        const results = await pool.query(selectQuery, [title]);
-        return results.rows[0];
+    
+        try {
+            const results = await pool.query(searchQuery, [keyword]);
+            return results.rows;
+        } catch (error) {
+            console.error("Error searching products by title:", error);
+            throw new Error("Database query failed.");
+        }
     }
+    
 
     static async addProduct({ brand_id, title, price, description, category_id, image, color_ids = [], size_ids = [], condition_ids = [] }) { 
         const client = await pool.connect(); // Get a connection from the pool

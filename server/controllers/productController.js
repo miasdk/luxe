@@ -1,11 +1,10 @@
 import ProductService from "../services/ProductService.js";
 
 class ProductController {
-    
-    // Get all products
     static async getAllProducts(req, res) {
+        const productService = new ProductService();
         try {
-            const products = await ProductService.getAllProducts();
+            const products = await productService.getAllProducts();
             res.status(200).json(products);
         } catch (error) {
             console.error("Error fetching all products:", error);
@@ -13,11 +12,11 @@ class ProductController {
         }
     }
 
-    // Get product by ID
     static async getProductById(req, res) {
+        const productService = new ProductService();
         const { id } = req.params;
         try {
-            const product = await ProductService.getProductById(id);
+            const product = await productService.getProductById(id);
             if (!product) return res.status(404).json({ message: "Product not found" });
             res.status(200).json(product);
         } catch (error) {
@@ -26,11 +25,11 @@ class ProductController {
         }
     }
 
-    //  Get products by category
     static async getProductsByCategory(req, res) {
+        const productService = new ProductService();
         const { category } = req.params;
         try {
-            const products = await ProductService.getProductsByCategory(category);
+            const products = await productService.getProductsByCategory(category);
             res.status(200).json(products);
         } catch (error) {
             console.error("Error fetching products by category:", error);
@@ -38,12 +37,12 @@ class ProductController {
         }
     }
 
-    // Get products by filters (Category, Size, Color, Condition)
     static async getProductsByFilters(req, res) {
-        const filters = req.query; // Fix: Filters should come from `req.query`, not `req.body`
-        const { sortBy = "name", sortOrder = "ASC" } = req.query; // Default sorting parameters
+        const productService = new ProductService();
+        const filters = req.query;
+        const { sortBy = "name", sortOrder = "ASC" } = req.query;
         try {
-            const products = await ProductService.getProductsByFilters(filters, sortBy, sortOrder);
+            const products = await productService.getProductsByFilters(filters, sortBy, sortOrder);
             res.status(200).json(products);
         } catch (error) {
             console.error("Error filtering products:", error);
@@ -51,23 +50,21 @@ class ProductController {
         }
     }
 
-    // Get product by title
-    static async getProductByTitle(req, res) {
-        const { title } = req.params;
+    async searchProductsByTitle(req, res) {
+        const { keyword } = req.query; // Using query params for flexible search
         try {
-            const product = await ProductService.getProductByTitle(title);
-            if (!product) return res.status(404).json({ message: "Product not found" });
-            res.status(200).json(product);
+            const products = await ProductService.searchProductsByTitle(keyword);
+            res.status(200).json(products);
         } catch (error) {
-            console.error("Error fetching product by title:", error);
-            res.status(500).json({ message: "Failed to retrieve product" });
+            res.status(500).json({ error: error.message });
         }
     }
+    
 
-    // ✅ Add a new product
     static async addProduct(req, res) {
+        const productService = new ProductService();
         try {
-            const newProduct = await ProductService.addProduct(req.body);
+            const newProduct = await productService.addProduct(req.body);
             res.status(201).json(newProduct);
         } catch (error) {
             console.error("Error adding product:", error);
@@ -75,11 +72,11 @@ class ProductController {
         }
     }
 
-    // ✅ Update product
     static async updateProduct(req, res) {
+        const productService = new ProductService();
         const { id } = req.params;
         try {
-            const updatedProduct = await ProductService.updateProduct(id, req.body);
+            const updatedProduct = await productService.updateProduct(id, req.body);
             res.status(200).json(updatedProduct);
         } catch (error) {
             console.error("Error updating product:", error);
@@ -87,11 +84,11 @@ class ProductController {
         }
     }
 
-    // ✅ Delete product
     static async deleteProduct(req, res) {
+        const productService = new ProductService();
         const { id } = req.params;
         try {
-            const deletedProduct = await ProductService.deleteProduct(id);
+            const deletedProduct = await productService.deleteProduct(id);
             if (!deletedProduct) return res.status(404).json({ message: "Product not found" });
             res.status(200).json({ message: "Product deleted successfully" });
         } catch (error) {

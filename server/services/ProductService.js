@@ -1,4 +1,4 @@
-const ProductModel = require('../models/ProductModel'); // Or import if using modules
+import ProductModel from '../models/ProductModel.js';
 
 class ProductService {
     async getAllProducts() { 
@@ -19,7 +19,7 @@ class ProductService {
         }
     }
 
-    async getProductsByCategory(category) { 
+    async getProductsByCategory(category) {
         try {
             return await ProductModel.getProductsByCategory(category);
         } catch (error) {
@@ -37,9 +37,9 @@ class ProductService {
         }
     }
 
-    async getProductByTitle(title) { 
+    async searchProductsByTitle(keyword) { 
         try {
-            return await ProductModel.getProductByTitle(title);
+            return await ProductModel.searchProductsByTitle(keyword);
         } catch (error) {
             console.error('ProductService.getProductByTitle(): Error:', error.message);
             throw error;
@@ -48,7 +48,7 @@ class ProductService {
 
     async addProduct(product) {
         try {
-            return await ProductModel.addProduct(product);
+            return await ProductModel.createProduct(product);
         } catch (error) {
             console.error('ProductService.addProduct(): Error:', error.message);
             throw error;
@@ -74,4 +74,4 @@ class ProductService {
     }
 }
 
-module.exports = new ProductService();
+export default ProductService;
