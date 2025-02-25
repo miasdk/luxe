@@ -599,12 +599,14 @@ const createProductDetailsView = async () => {
 // 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createCartDetailsView = async () => {
     const query = `
-        CREATE OR REPLACE VIEW cart_details AS
+        DROP VIEW IF EXISTS cart_details;
+
+        CREATE VIEW cart_details AS
         SELECT 
             ca.id AS cart_id,
             u.display_name AS user_name,
-            p.id AS product_id,
             p.title AS product_title,
+            p.id AS product_id,
             p.image AS product_image,
             p.price AS product_price,
             cp.quantity,
@@ -688,12 +690,12 @@ const implementFullTextSearch = async () => {
 // seedSizesTable();
 // seedColorsTable();
 // seedConditionsTable();
-seedCartsTable();
+// seedCartsTable();
 // seedProductSizes();
 // seedProductColors();
 // seedProductConditions();
 // seedOrdersTable();
 // seedOrderItemsTable();
 // createProductDetailsView();
-// createCartDetailsView();
+createCartDetailsView();
 
