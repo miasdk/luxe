@@ -304,7 +304,8 @@ const createCartsTable = async () => {
          CREATE TABLE IF NOT EXISTS cart_products (
             cart_id INT NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
             product_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
-            quantity INT NOT NULL
+            quantity INT NOT NULL CHECK (quantity > 0),
+            PRIMARY KEY (cart_id, product_id)
         );
     `;
     try {
@@ -602,8 +603,12 @@ const createCartDetailsView = async () => {
         SELECT 
             ca.id AS cart_id,
             u.display_name AS user_name,
+            p.id AS product_id,
             p.title AS product_title,
+            p.image AS product_image,
+            p.price AS product_price,
             cp.quantity,
+            (p.price * cp.quantity) AS total_price,
             ca.created_at
         FROM carts ca
         JOIN users u ON ca.user_id = u.id
@@ -675,20 +680,20 @@ const implementFullTextSearch = async () => {
     await createSearchIndex();
 };
 
-implementFullTextSearch();
-seedUsersTable();
-seedCategoriesTable();
-seedBrandsTable();
-seedProductsTable();
-seedSizesTable();
-seedColorsTable();
-seedConditionsTable();
+// implementFullTextSearch();
+// seedUsersTable();
+// seedCategoriesTable();
+// seedBrandsTable();
+// seedProductsTable();
+// seedSizesTable();
+// seedColorsTable();
+// seedConditionsTable();
 seedCartsTable();
-seedProductSizes();
-seedProductColors();
-seedProductConditions();
-seedOrdersTable();
-seedOrderItemsTable();
-createProductDetailsView();
-createCartDetailsView();
+// seedProductSizes();
+// seedProductColors();
+// seedProductConditions();
+// seedOrdersTable();
+// seedOrderItemsTable();
+// createProductDetailsView();
+// createCartDetailsView();
 
