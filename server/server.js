@@ -1,22 +1,16 @@
 import express from 'express';
+import productsRouter from './routes/products.js';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import productsRouter from './routes/ProductRoutes.js';
-import categoriesRouter from './routes/CategoryRoutes.js';
-import cartRouter from './routes/cartRoutes.js';
 
-dotenv.config();
+
 const app = express(); 
+dotenv.config();
 
-app.use(express.json());
 app.use(cors());
+app.use('/products', productsRouter); 
 
-// API Routes 
-app.use('/api/products', productsRouter);
-app.use('/api/categories', categoriesRouter);
-app.use('/api/cart', cartRouter);
-
-;;app.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).send('<h1 style="text-align: center; margin-top: 50px;">eCart API</h1>')
 })
 
