@@ -20,6 +20,9 @@ import { orderItemsData } from '../data/order_items.js';
 import './dotenv.js';
 import fetch from 'node-fetch';
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Users Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createUsersTable = async () => {
     const insertQuery = `
         CREATE TABLE IF NOT EXISTS users (
@@ -59,6 +62,9 @@ const seedUsersTable = async () => {
     }
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Categories Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createCategoriesTable = async () => {
     const insertQuery = `
         CREATE TABLE IF NOT EXISTS categories (
@@ -91,6 +97,9 @@ const seedCategoriesTable = async () => {
     }
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Brands Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createBrandsTable = async () => {
     const insertQuery = `
         CREATE TABLE IF NOT EXISTS brands (
@@ -124,6 +133,9 @@ const seedBrandsTable = async () => {
     }
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Products Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createProductsTable = async () => {
     const insertQuery = `
         CREATE TABLE IF NOT EXISTS products (
@@ -172,6 +184,9 @@ const seedProductsTable = async () => {
     }
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Sizes Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createSizesTable = async () => {
     const query = `
         CREATE TABLE IF NOT EXISTS sizes (
@@ -205,6 +220,9 @@ const seedSizesTable = async () => {
     }
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Colors Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createColorsTable = async () => {
     const insertQuery = `
         CREATE TABLE IF NOT EXISTS colors (
@@ -237,6 +255,9 @@ const seedColorsTable = async () => {
     }
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Conditions Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createConditionsTable = async () => {
     const query = `
         CREATE TABLE IF NOT EXISTS conditions (
@@ -269,6 +290,9 @@ const seedConditionsTable = async () => {
     }
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Carts Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createCartsTable = async () => {
     const insertQuery = `
         CREATE TABLE IF NOT EXISTS carts (
@@ -276,11 +300,13 @@ const createCartsTable = async () => {
             user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
+        DROP TABLE IF EXISTS cart_products CASCADE;
 
-         CREATE TABLE IF NOT EXISTS cart_products (
+        CREATE TABLE IF NOT EXISTS cart_products (
             cart_id INT NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
             product_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
-            quantity INT NOT NULL
+            quantity INT NOT NULL CHECK (quantity > 0),
+            PRIMARY KEY (cart_id, product_id)
         );
     `;
     try {
@@ -323,6 +349,9 @@ const seedCartsTable = async () => {
     }
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Product Sizes Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createProductSizesTable = async () => {
     const createQuery = `
         DROP TABLE IF EXISTS product_sizes CASCADE;
@@ -361,6 +390,9 @@ const seedProductSizes = async () => {
     })   
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Product Colors Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createProductColorsTable = async () => {
     const createQuery = `
         DROP TABLE IF EXISTS product_colors CASCADE;
@@ -398,6 +430,9 @@ const seedProductColors = async () => {
     })
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Product Conditions Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createProductConditionsTable = async () => {
     const createQuery = `
         DROP TABLE IF EXISTS product_conditions CASCADE;
@@ -435,7 +470,9 @@ const seedProductConditions = async () => {
     })
 }
 
-// Create Orders Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Orders Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createOrdersTable = async () => {
     const query = `
         CREATE TABLE IF NOT EXISTS orders (
@@ -456,7 +493,6 @@ const createOrdersTable = async () => {
     }
 }
 
-// Seed Orders Table
 const seedOrdersTable = async () => {
     await createOrdersTable();
     const insertQuery = `
@@ -480,7 +516,9 @@ const seedOrdersTable = async () => {
     }
 }
 
-// Create Order Items Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Order Items Table
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createOrderItemsTable = async () => {
     const query = `
         CREATE TABLE IF NOT EXISTS order_items (
@@ -499,7 +537,6 @@ const createOrderItemsTable = async () => {
     }
 }
 
-// Seed Order Items Table
 const seedOrderItemsTable = async () => {
     await createOrderItemsTable();
     const insertQuery = `
@@ -521,7 +558,9 @@ const seedOrderItemsTable = async () => {
     }
 }
 
-
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Product Details View
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createProductDetailsView = async () => {
     const query = `
         CREATE OR REPLACE VIEW product_details AS
@@ -556,14 +595,23 @@ const createProductDetailsView = async () => {
     }
 }
 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Cart Details View
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createCartDetailsView = async () => {
     const query = `
-        CREATE OR REPLACE VIEW cart_details AS
+        DROP VIEW IF EXISTS cart_details;
+
+        CREATE VIEW cart_details AS
         SELECT 
             ca.id AS cart_id,
             u.display_name AS user_name,
             p.title AS product_title,
+            p.id AS product_id,
+            p.image AS product_image,
+            p.price AS product_price,
             cp.quantity,
+            (p.price * cp.quantity) AS total_price,
             ca.created_at
         FROM carts ca
         JOIN users u ON ca.user_id = u.id
@@ -577,24 +625,78 @@ const createCartDetailsView = async () => {
         console.error('Error creating cart details view', error.stack);
     }
 }
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Full-text search modifications: 
+// 🌟 
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+/**
+ * This function adds a search_vector column to the products table to enable full-text search on the title and description columns
+ */
+const addSearchVectorColumn = async () => {
+    const query = `
+        ALTER TABLE products 
+        ADD COLUMN IF NOT EXISTS search_vector tsvector;
+    `;
+    try {
+        await pool.query(query);
+        console.log('Added search_vector column to products table.');
+    } catch (error) {
+        console.error('Error adding search_vector column:', error.stack);
+    }
+};
 
+/**
+ * This function populates the search_vector column with the concatenated title and description columns
+ */
+const updateSearchVector = async () => {
+    const query = `
+        UPDATE products 
+        SET search_vector = to_tsvector('english', title || ' ' || description);
+    `;
+    try {
+        await pool.query(query);
+        console.log('Populated search_vector for existing products.');
+    } catch (error) {
+        console.error('Error updating search_vector:', error.stack);
+    }
+};
 
-seedUsersTable();
-seedCategoriesTable();
-seedBrandsTable();
-seedProductsTable();
-seedSizesTable();
-seedColorsTable();
-seedConditionsTable();
-seedCartsTable();
-seedProductSizes();
-seedProductColors();
-seedProductConditions();
-seedOrdersTable();
-seedOrderItemsTable();
-createProductDetailsView();
+/**
+ * This function creates a GIN index on the search_vector column for faster full-text search queries
+ */
+const createSearchIndex = async () => {
+    const query = `
+        CREATE INDEX IF NOT EXISTS product_search_idx 
+        ON products USING GIN (search_vector);
+    `;
+    try {
+        await pool.query(query);
+        console.log('Created GIN index on search_vector column.');
+    } catch (error) {
+        console.error('Error creating GIN index:', error.stack);
+    }
+};
+
+const implementFullTextSearch = async () => {
+    await addSearchVectorColumn();
+    await updateSearchVector();
+    await createSearchIndex();
+};
+
+// implementFullTextSearch();
+// seedUsersTable();
+// seedCategoriesTable();
+// seedBrandsTable();
+// seedProductsTable();
+// seedSizesTable();
+// seedColorsTable();
+// seedConditionsTable();
+// seedCartsTable();
+// seedProductSizes();
+// seedProductColors();
+// seedProductConditions();
+// seedOrdersTable();
+// seedOrderItemsTable();
+// createProductDetailsView();
 createCartDetailsView();
-
-
-
 
