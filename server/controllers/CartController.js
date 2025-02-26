@@ -1,9 +1,8 @@
-import CartService from "../services/CartService";
+import cartService from "../services/CartService.js";
 
 class CartController {
-    // get user's cart details
+    // Get user's cart details
     static async getCartDetails(req, res) {
-        const cartService = new CartService();
         const { cartId } = req.params;
         try {
             const cartDetails = await cartService.getCartDetails(cartId);
@@ -14,9 +13,8 @@ class CartController {
         }
     }
 
-    // add item to cart
+    // Add item to cart
     static async addItemToCart(req, res) {
-        const cartService = new CartService();
         const { cartId, productId, quantity } = req.body;
         try {
             const cartItem = await cartService.addItemToCart(cartId, productId, quantity);
@@ -27,9 +25,8 @@ class CartController {
         }
     }
 
-    // update cart item quantity
+    // Update cart item quantity
     static async updateCartItem(req, res) {
-        const cartService = new CartService();
         const { cartId, productId, quantity } = req.body;
         try {
             const updatedItem = await cartService.updateCartItem(cartId, productId, quantity);
@@ -40,9 +37,8 @@ class CartController {
         }
     }
 
-    // remove item from cart
+    // Remove item from cart
     static async removeCartItem(req, res) {
-        const cartService = new CartService();
         const { cartId, productId } = req.body;
         try {
             const removedItem = await cartService.removeCartItem(cartId, productId);
@@ -53,9 +49,8 @@ class CartController {
         }
     }
 
-    // clear the entire cart
+    // Clear the entire cart
     static async clearCart(req, res) {
-        const cartService = new CartService();
         const { cartId } = req.body;
         try {
             await cartService.clearCart(cartId);
@@ -66,9 +61,8 @@ class CartController {
         }
     }
 
-    // create a cart for a user
+    // Create a cart for a user
     static async createCart(req, res) {
-        const cartService = new CartService();
         const { userId } = req.body;
         try {
             const newCart = await cartService.createCart(userId);
@@ -79,16 +73,26 @@ class CartController {
         }
     }
 
-    //get cart by user id
+    // Get cart by user ID
     static async getCartByUserId(req, res) {
-        const cartService = new CartService();
         const { userId } = req.params;
         try {
             const cart = await cartService.getCartByUserId(userId);
             res.status(200).json(cart);
         } catch (error) {
-            console.error("Error fetching cart by user id:", error);
+            console.error("Error fetching cart by user ID:", error);
             res.status(500).json({ message: "Failed to retrieve cart" });
+        }
+    }
+
+    // Get all carts (admin only)
+    static async getAllCarts(req, res) {
+        try {
+            const carts = await cartService.getAllCarts();
+            res.status(200).json(carts);
+        } catch (error) {
+            console.error("Error fetching all carts:", error);
+            res.status(500).json({ message: "Failed to retrieve carts" });
         }
     }
 }

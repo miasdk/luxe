@@ -1,4 +1,4 @@
-import CartModel from "../models/CartModel";
+import CartModel from "../models/CartModel.js";
 
 class CartService {
     //Get a user's cart details
@@ -68,6 +68,16 @@ class CartService {
         } catch (error) {
             console.error("CartService.createCart(): Error:", error.message);
             throw new Error("Failed to create cart");
+        }
+    }
+
+    // Get all carts (admin only)
+    async getAllCarts() {
+        try {
+            return await CartModel.getAllCarts();
+        } catch (error) {
+            console.error("CartService.getAllCarts(): Error:", error.message);
+            throw new Error("Failed to retrieve carts");
         }
     }
 }

@@ -5,7 +5,6 @@ import productsRouter from './routes/ProductRoutes.js';
 import categoriesRouter from './routes/CategoryRoutes.js';
 import cartRouter from './routes/cartRoutes.js';
 
-
 dotenv.config();
 const app = express(); 
 

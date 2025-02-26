@@ -300,8 +300,9 @@ const createCartsTable = async () => {
             user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
+        DROP TABLE IF EXISTS cart_products CASCADE;
 
-         CREATE TABLE IF NOT EXISTS cart_products (
+        CREATE TABLE IF NOT EXISTS cart_products (
             cart_id INT NOT NULL REFERENCES carts(id) ON DELETE CASCADE,
             product_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
             quantity INT NOT NULL CHECK (quantity > 0),
