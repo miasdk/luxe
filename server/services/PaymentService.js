@@ -15,24 +15,23 @@ class PaymentService{
      * @param {string} paymentMethodId - The ID of the payment method from the frontend 
      * @returns {Promise<Object>} - Stripe PaymentIntent object
      */
-    static async processPayment (totalPrice, paymentMethodId) {
+    static async processPayment(totalPrice) {
         try {
             const paymentIntent = await stripe.paymentIntents.create({
                 amount: Math.round(totalPrice * 100), // Convert to cents
                 currency: 'usd',
-                payment_method: paymentMethodId,
-                confirm: true,
+                automatic_payment_methods: {
+                    enabled: true,  
+                    allow_redirects: "never" 
+                }
             });
-
-            if (paymentIntent.status !== 'succeeded') {
-                throw new Error('Payment failed');
-            }
-
-            return paymentIntent;
+    
+            return { clientSecret: paymentIntent.client_secret, paymentIntentId: paymentIntent.id };
         } catch (error) {
             console.error("PaymentService.processPayment(): Error:", error.message);
             throw new Error("Payment processing failed: " + error.message);
         }
     }
+    
 }
 export default PaymentService; 

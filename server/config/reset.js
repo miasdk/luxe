@@ -625,6 +625,40 @@ const createCartDetailsView = async () => {
         console.error('Error creating cart details view', error.stack);
     }
 }
+
+
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+// 📌 Section: Order Details View
+// 🌟────────────────────────────────────────────────────────────────────────────────🌟
+const createOrderDetailsView = async () => {
+    const query = `
+        CREATE OR REPLACE VIEW order_details AS
+        SELECT 
+            o.id AS order_id,
+            o.user_id,
+            u.display_name AS customer_name,
+            o.total_price,
+            o.status,
+            o.created_at,
+            p.title AS product_title,
+            oi.quantity,
+            oi.unit_price,
+            (oi.quantity * oi.unit_price) AS order_total_price
+            FROM orders o
+            JOIN users u ON o.user_id = u.id
+            JOIN order_items oi ON o.id = oi.order_id
+            JOIN products p ON oi.product_id = p.id;
+        `;
+    try {
+        await pool.query(query);
+        console.log('Order details view created successfully');
+    }
+    catch (error) {
+        console.error('Error creating order details view', error.stack);
+    }
+}
+
+
 // 🌟────────────────────────────────────────────────────────────────────────────────🌟
 // 📌 Section: Full-text search modifications: 
 // 🌟 
@@ -698,5 +732,6 @@ const implementFullTextSearch = async () => {
 // seedOrdersTable();
 // seedOrderItemsTable();
 // createProductDetailsView();
-createCartDetailsView();
+// createCartDetailsView();
+createOrderDetailsView();
 
