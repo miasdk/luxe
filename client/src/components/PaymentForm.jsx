@@ -15,7 +15,7 @@ const PaymentForm = () => {
         setErrorMessage("");
     
         try {
-            // Request the client secret from the backend
+            // Step 1: Create an order and get clientSecret
             const response = await fetch("http://localhost:3001/api/orders", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -24,42 +24,37 @@ const PaymentForm = () => {
                     orderItems: [
                         { productId: 101, quantity: 1, unitPrice: 349.99 },
                         { productId: 102, quantity: 2, unitPrice: 99.99 },
-                    ],
+                    ]
                 }),
             });
     
-            const { clientSecret } = await response.json();
+            const { order, clientSecret } = await response.json();
     
-            if (!clientSecret) throw new Error("Failed to get client secret.");
-    
-            // Confirm payment using Stripe
+            // Step 2: Confirm payment with Stripe
             const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-                payment_method: {
-                    card: elements.getElement(CardElement),
-                },
+                payment_method: { card: elements.getElement(CardElement) },
             });
     
             if (error) {
-                console.error("Stripe Payment Error:", error);
-                setErrorMessage(error.message);
-                setLoading(false);
-                return;
+                throw new Error(error.message);
             }
     
-            if (paymentIntent.status === "succeeded") {
-                alert("Payment Successful & Order Created!");
-            } else {
-                setErrorMessage("Payment failed. Please try again.");
-            }
+            // Step 3: Send stripePaymentId to backend to update order status
+            await fetch(`http://localhost:3001/api/orders/${order.id}/update-payment`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ stripePaymentId: paymentIntent.id }),
+            });
+    
+            alert("✅ Payment Successful & Order Created!");
         } catch (error) {
-            console.error("Error:", error);
             setErrorMessage(error.message);
         } finally {
             setLoading(false);
         }
     };
     
-
+    
     return (
         <form onSubmit={handleSubmit} className="max-w-md mt-5 mx-auto p-6 bg-white shadow-md rounded-lg">
             <div className="mb-4 mx-auto w-64">
