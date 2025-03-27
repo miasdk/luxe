@@ -1,8 +1,8 @@
 import { pool } from '../config/database.js';
 
 class OrderModel {
-    // Create a new order
-    static async createOrder(userId, totalPrice, status = 'pending', stripePaymentId = null) {
+    // Create a new order (initially 'pending')
+    static async createOrder(userId, totalPrice, status = "pending", stripePaymentId = null) {
         const query = `
             INSERT INTO orders (user_id, total_price, status, stripe_payment_id, created_at, updated_at)
             VALUES ($1, $2, $3, $4, NOW(), NOW())
@@ -10,20 +10,42 @@ class OrderModel {
         `;
         const values = [userId, totalPrice, status, stripePaymentId];
         const result = await pool.query(query, values);
-        return result.rows[0]; // Return the newly created order
+        return result.rows[0];
     }
 
+    // Update order with Stripe payment ID & set status to "paid"
+    static async updateOrderPayment(orderId, stripePaymentId, status) {
+        const query = `
+            UPDATE orders
+            SET stripe_payment_id = $1, status = $2, updated_at = NOW()
+            WHERE id = $3
+            RETURNING *;
+        `;
+        const result = await pool.query(query, [stripePaymentId, status, orderId]);
+        return result.rows[0];
+    }
     // Add items to an order
     static async addOrderItems(orderId, orderItems) {
         const query = `
             INSERT INTO order_items (order_id, product_id, quantity, unit_price)
-            VALUES ${orderItems.map((_, i) => `($1, $${i * 3 + 2}, $${i * 3 + 3}, $${i * 3 + 4})`).join(', ')}
+            VALUES ($1, $2, $3, $4)
             RETURNING *;
         `;
-        const values = orderItems.flatMap(item => [orderId, item.productId, item.quantity, item.unitPrice]);
-        const result = await pool.query(query, values);
-        return result.rows;
-    }
+    
+        try {
+            const insertedItems = [];
+            for (const item of orderItems) {
+                const values = [orderId, item.productId, item.quantity, item.unitPrice];
+                const result = await pool.query(query, values);
+                insertedItems.push(result.rows[0]);
+            }
+            console.log("✅ Inserted Order Items:", insertedItems);
+            return insertedItems;
+        } catch (error) {
+            console.error("❌ Failed to insert order items:", error.message);
+            throw new Error("Failed to insert order items: " + error.message);
+        }
+    }    
 
     // Retrieve an order by ID
     static async getOrderById(orderId) {

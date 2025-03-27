@@ -10,11 +10,15 @@ const router = express.Router();
 // Route to create a new order
 router.post('/', OrderController.createOrder);
 
+// Confirm payment and update order status
+router.put("/:orderId/update-payment", OrderController.updatePaymentId);
+
 // Route to update the status of an order
 router.put('/:orderId/status', OrderController.updateOrderStatus);
 
 // Route to delete an order
 router.delete('/:orderId', OrderController.deleteOrder);
+
 
 // 🌟────────────────────────────────────────────────────────────────────────────────🌟
 // 📌 Section: Routes for Fetching Order Data (GET Requests)

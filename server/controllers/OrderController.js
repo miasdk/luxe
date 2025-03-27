@@ -1,14 +1,27 @@
 import OrderService from "../services/OrderService.js";
 class OrderController {
-    // Create a new order
-    static async createOrder(req, res) {
-        try { 
-            const { userId, orderItems, totalPrice, paymentMethodId } = req.body;
-            const order = await OrderService.createOrder(userId, orderItems, totalPrice, paymentMethodId);
+     // Create a new order and get PaymentIntent
+     static async createOrder(req, res) {
+        try {
+            const { userId, orderItems } = req.body;
+            const order = await OrderService.createOrder(userId, orderItems);
             res.status(201).json(order);
         } catch (error) {
             console.log("OrderController.createOrder(): Error:", error.message);
             res.status(500).json({ error: error.message });
+        }
+    }
+
+    // Update order with Stripe payment ID & confirm payment
+    static async updatePaymentId(req, res) {
+        try {
+            const { orderId } = req.params;
+            const { stripePaymentId } = req.body;
+            const updatedOrder = await OrderService.confirmPayment(orderId, stripePaymentId);
+            res.status(200).json(updatedOrder);
+        } catch (error) {
+            console.error("Error updating order payment:", error.message);
+            res.status(500).json({ message: "Failed to update order payment" });
         }
     }
 
