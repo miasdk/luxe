@@ -3,10 +3,6 @@ import CartController from '../controllers/CartController.js';
 
 const router = express.Router();
 
-// 🌟────────────────────────────────────────────────────────────────────────────────🌟
-// 📌 Section: Routes for Managing Carts (POST, PUT, DELETE)
-// 🌟────────────────────────────────────────────────────────────────────────────────🌟
-
 // Route to create a cart for a user (should come first since it's essential for other operations)
 router.post('/create', CartController.createCart);
 
@@ -21,10 +17,6 @@ router.delete('/remove-item', CartController.removeCartItem);
 
 // Route to clear the entire cart
 router.post('/clear', CartController.clearCart);
-
-// 🌟────────────────────────────────────────────────────────────────────────────────🌟
-// 📌 Section: Routes for Fetching Cart Data (GET Requests)
-// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 
 // Route to get cart by user ID (placed before the dynamic `/:cartId` to prevent conflicts)
 router.get('/user/:userId', CartController.getCartByUserId);

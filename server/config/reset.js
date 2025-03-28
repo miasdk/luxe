@@ -25,16 +25,17 @@ import fetch from 'node-fetch';
 // 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createUsersTable = async () => {
     const insertQuery = `
-        CREATE TABLE IF NOT EXISTS users (
-            id SERIAL PRIMARY KEY,
-            uid VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            display_name VARCHAR(255) NOT NULL,
-            phone_number VARCHAR(255),
-            photo_url VARCHAR(255),
-            email_verified BOOLEAN NOT NULL,
-            disabled BOOLEAN NOT NULL
+        DROP TABLE IF EXISTS users CASCADE; 
+
+        CREATE TABLE users (
+            uid TEXT PRIMARY KEY, 
+            email VARCHAR(255) UNIQUE NOT NULL, 
+            display_name VARCHAR(255) NOT NULL, 
+            phone_number VARCHAR(20), 
+            photo_url TEXT, 
+            email_verified BOOLEAN DEFAULT FALSE, 
+            disabled BOOLEAN DEFAULT FALSE, 
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     `;
     try {
@@ -48,19 +49,34 @@ const createUsersTable = async () => {
 const seedUsersTable = async () => {
     await createUsersTable();
 
+    const users = [
+        {
+            uid: "user_123",
+            email: "test@example.com",
+            display_name: "Test User",
+            phone_number: "1234567890",
+            photo_url: "https://example.com/photo.jpg",
+            email_verified: true,
+            disabled: false
+        }
+    ];
+
     const insertQuery = `   
-        INSERT INTO users (uid, email, password, display_name, phone_number, photo_url, email_verified, disabled)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        INSERT INTO users (uid, email, display_name, phone_number, photo_url, email_verified, disabled)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        ON CONFLICT (uid) DO NOTHING;
     `;
+
     try {
         for (const user of users) {
             await pool.query(insertQuery, Object.values(user));
         }
-        console.log(`Successfully added ${users.length} users to the users table`); 
+        console.log(`✅ Successfully added ${users.length} users to the users table`); 
     } catch (error) {
-        console.error('Error seeding users table', error.stack);
+        console.error('❌ Error seeding users table:', error.stack);
     }
-}
+};
+
 
 // 🌟────────────────────────────────────────────────────────────────────────────────🌟
 // 📌 Section: Categories Table
@@ -718,7 +734,7 @@ const implementFullTextSearch = async () => {
 };
 
 // implementFullTextSearch();
-// seedUsersTable();
+seedUsersTable();
 // seedCategoriesTable();
 // seedBrandsTable();
 // seedProductsTable();
@@ -733,5 +749,5 @@ const implementFullTextSearch = async () => {
 // seedOrderItemsTable();
 // createProductDetailsView();
 // createCartDetailsView();
-createOrderDetailsView();
+// createOrderDetailsView();
 
