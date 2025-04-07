@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Navbar */}
+      
       <nav className="bg-white shadow-lg">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-3xl font-bold text-gray-800 tracking-wider">My E-commerce</h1>
@@ -17,7 +17,6 @@ const HomePage = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-24 md:py-32">
         <div className="max-w-7xl mx-auto text-center px-4">
           <h2 className="text-5xl font-extrabold mb-4 leading-tight">
@@ -35,13 +34,6 @@ const HomePage = () => {
         </div>
       </div>
 
-    
-      {/* Footer */}
-      <footer className="bg-white shadow-md mt-16">
-        <div className="max-w-7xl mx-auto px-6 py-8 text-center">
-          <p className="text-gray-600 text-sm">&copy; 2023 My E-commerce. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 };

@@ -1,19 +1,19 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage"; // ✅ Import HomePage
-import ProductPage from "./pages/ProductPage"; // ✅ Import ProductPage
-import PaymentForm from "./components/PaymentForm"; // ✅ Import PaymentForm
-
+import HomePage from "./pages/HomePage"; 
+import ProductPage from "./pages/ProductPage"; 
+import PaymentForm from "./components/PaymentForm";
+import LoginPage from "./pages/LoginPage";
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} /> 
-      <Route path="/products" element={<ProductPage />} /> {/* ✅ Route for ProductPage */}
-      <Route path="/payment" element={<PaymentFormWrapper />} /> {/* ✅ Route for PaymentForm */}
+      <Route path="/products" element={<ProductPage />} /> 
+      <Route path="/payment" element={<PaymentFormWrapper />} /> 
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 }
 
-// ✅ Wrap PaymentForm inside Elements
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
