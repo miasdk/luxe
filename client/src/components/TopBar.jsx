@@ -5,7 +5,7 @@ import { FaShoppingCart, FaRegUserCircle, FaShoppingBag, FaRegHeart, FaChevronDo
 import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 
-export default function Navbar({ user, loading }) {
+export default function TopBar({ user, loading }) {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     const navigate = useNavigate();
@@ -40,7 +40,7 @@ export default function Navbar({ user, loading }) {
     if (loading) return null;
 
     return (
-        <nav className="bg-gray-800 text-white p-4">
+        <nav className="bg-gray-100 border-solid p-3">
             <div className="container mx-auto flex justify-between items-center">
                 { user ? (
                      <div className="relative" ref={dropdownRef}>
@@ -64,6 +64,13 @@ export default function Navbar({ user, loading }) {
                              >
                                  Your Profile
                              </Link>
+                                <Link
+                                    to="/orders"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    Your Orders
+                                </Link>
                              <button
                                  onClick={handleLogout}
                                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -91,8 +98,6 @@ export default function Navbar({ user, loading }) {
                             <Link to="/cart" className="py-2 hover:underline">
                                 <FaShoppingCart className="text-lg" />
                             </Link>
-                            
-                            {/* User dropdown */}
                         </>
                     ) : (
                         <>
