@@ -44,7 +44,6 @@ const ProductPage = () => {
       <section className="flex-1 ml-6">
         <h2 className="mb-6 text-center text-3xl font-bold">Our Products</h2>
 
-        {/* Search Bar */}
         <div className="mb-6 w-full flex justify-between items-center">
           <input
             type="text"
@@ -75,10 +74,15 @@ const ProductPage = () => {
           </div>
         </div>
 
-        {/* Product Grid */}
+    
         <div
           id="productGrid"
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+          className="grid gap-6"
+          style={{
+            gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+            alignItems: "stretch",
+          }}
+
         >
           <div
             className="product rounded-lg bg-white p-4 shadow-lg transition duration-300 hover:shadow-xl border border-gray-200"
