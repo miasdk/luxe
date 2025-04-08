@@ -15,26 +15,27 @@ export const registerUser = async (email, password, displayName) => {
             password
         );
 
-        const response = await fetch('/api/users/register', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/users/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
                 uid: userCredential.user.uid,
-                email,
+                email: email,
                 display_name: displayName,
                 photo_url: null,
             }),
         });
 
-        if (!response.ok) throw new Error(await response.text());
-
-        await sendEmailVerification(userCredential.user);
-
-        return userCredential.user;
-    } catch (error) {
-        throw transformAuthError(error);
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Registration failed');
+        }
+      
+          return await response.json();  // Always parse the JSON response
+        } catch (error) {
+          throw new Error(error.message || 'Registration failed');
     }
 };
 

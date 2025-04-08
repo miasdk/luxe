@@ -12,12 +12,12 @@ export default function RegisterForm() {
 
     const  handleSubmit = async (e) => {
         e.preventDefault(); 
-        setLoading(true);n 
+        setLoading(true); 
         setError('');
         
         try {
             await registerUser(email, password, displayName);
-            navigate('/login');
+            navigate('/'); // Redirect to home page after successful registration
         } catch (error) {
             setError(error.message);
         } finally {

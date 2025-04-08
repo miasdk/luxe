@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import RegisterForm from "../components/RegisterForm";
+import {FaGoogle, FaGithub} from 'react-icons/fa';
 
 export default function RegisterPage() {
     const { user } = useAuth();
@@ -26,7 +27,7 @@ export default function RegisterPage() {
                 </p>
             </div>
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+                <div className=" py-8 px-4  sm:rounded-lg sm:px-10">
                     <RegisterForm />
     
                     <div className="mt-6">
@@ -40,17 +41,13 @@ export default function RegisterPage() {
                                 </span>
                             </div>
                         </div>
-
-                                //Social logins 
                         <div className="mt-6 grid grid-cols-2 gap-3">
                             <button
                                 type="button"
                                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                                 disabled
                             >
-                                <svg className="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
-                                </svg>
+                                <FaGoogle className="w-5 h-5 mr-2" />
                                 Google
                             </button>
                             <button
@@ -58,7 +55,8 @@ export default function RegisterPage() {
                                 className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                                 disabled
                             >
-                                Github (Coming Soon)
+                                <FaGithub className="w-5 h-5 mr-2" />
+                                GitHub 
                             </button>
                         </div>
                     </div>

@@ -27,12 +27,10 @@ const createUsersTable = async () => {
         CREATE TABLE users (
             uid TEXT PRIMARY KEY, 
             email VARCHAR(255) UNIQUE NOT NULL, 
-            display_name VARCHAR(255) NOT NULL, 
-            phone_number VARCHAR(20), 
+            display_name VARCHAR(255), 
             photo_url TEXT, 
-            email_verified BOOLEAN DEFAULT FALSE, 
-            disabled BOOLEAN DEFAULT FALSE, 
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     `;
     try {
@@ -51,16 +49,13 @@ const seedUsersTable = async () => {
             uid: "user_123",
             email: "test@example.com",
             display_name: "Test User",
-            phone_number: "1234567890",
             photo_url: "https://example.com/photo.jpg",
-            email_verified: true,
-            disabled: false
         }
     ];
 
     const insertQuery = `   
-        INSERT INTO users (uid, email, display_name, phone_number, photo_url, email_verified, disabled)
-        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        INSERT INTO users (uid, email, display_name, photo_url)
+        VALUES ($1, $2, $3, $4)
         ON CONFLICT (uid) DO NOTHING;
     `;
 
@@ -139,9 +134,6 @@ const seedBrandsTable = async () => {
     }
 }
 
-// 🌟────────────────────────────────────────────────────────────────────────────────🌟
-// 📌 Section: Products Table
-// 🌟────────────────────────────────────────────────────────────────────────────────🌟
 const createProductsTable = async () => {
     const insertQuery = `
         CREATE TABLE IF NOT EXISTS products (
