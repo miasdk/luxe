@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 export default function MainBar() {
     return (
         <nav className="bg-gray-800 text-white p-4">
@@ -6,6 +7,7 @@ export default function MainBar() {
                 <h1 className="text-4xl font-bold">
                     <Link to="/">ecart</Link>
                 </h1>
+                
                 <ul className="flex space-x-4">
                     <li>
                         <Link to="/" className="hover:text-gray-300">Home</Link>
