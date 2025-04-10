@@ -136,7 +136,9 @@ const seedBrandsTable = async () => {
 
 const createProductsTable = async () => {
     const insertQuery = `
-        CREATE TABLE IF NOT EXISTS products (
+        DROP TABLE IF EXISTS products CASCADE;
+
+        CREATE TABLE products (
             id SERIAL PRIMARY KEY,
             brand_id INT NOT NULL REFERENCES brands(id) ON DELETE CASCADE,
             title VARCHAR(255) NOT NULL,
@@ -665,7 +667,7 @@ const implementFullTextSearch = async () => {
 };
 
 // implementFullTextSearch();
-seedUsersTable();
+// seedUsersTable();
 // seedCategoriesTable();
 // seedBrandsTable();
 // seedProductsTable();
@@ -678,7 +680,7 @@ seedUsersTable();
 // seedProductConditions();
 // seedOrdersTable();
 // seedOrderItemsTable();
-// createProductDetailsView();
+createProductDetailsView();
 // createCartDetailsView();
 // createOrderDetailsView();
 
