@@ -5,7 +5,7 @@ import { FaShoppingCart, FaRegUserCircle, FaShoppingBag, FaRegHeart, FaChevronDo
 import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 
-export default function ToNavBar({ user, loading }) {
+export default function TopNavBar({ user, loading }) {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     const navigate = useNavigate();

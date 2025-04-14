@@ -19,7 +19,7 @@ const SearchBar = ({ className= "" }) => {
           type="text"
           onInput={handleInputChange}
           placeholder="Search for products..."
-          className="p-3 bg-gray-100 text-black border-2 border-solid rounded-full w-full"
+          className="p-2 bg-gray-100 text-black border-2 border-solid rounded-full w-full lg:2/4"
         />
         <button onClick={handleSearch} className="ml-3 p-2 bg-blue-500 w-50 text-white rounded-full text-bold">
           Search
