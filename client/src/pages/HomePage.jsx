@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import ProductCarousel from "../components/ProductCarousel";
 
 
 
@@ -8,9 +9,9 @@ const HomePage = () => {
   const { user } = useAuthContext();
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen ">
       
-      <div className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-24 md:py-32">
+      <div className="bg-gradient-to-r from-blue-500 to-indigo-900 text-white py-24 md:py-32">
         <div className="max-w-7xl mx-auto text-center px-4">
           <h2 className="text-5xl font-extrabold mb-4 leading-tight">
             Your Favorite Products, Now at Unbeatable Prices
@@ -37,6 +38,10 @@ const HomePage = () => {
         </div>
       </div>
 
+      <div className="max-w-6xl mx-auto py-12 px-4">
+        <ProductCarousel />
+      </div>
+
       {user ? (
         <div className="max-w-7xl mx-auto py-16 px-4 text-center">
           <h2 className="text-xl">Hello, {user.displayName || user.email} !</h2>
@@ -46,7 +51,7 @@ const HomePage = () => {
         </div>
       ) : (
         <>
-          <div className="max-w-7xl min-h-screen mx-auto py-16 px-4 text-center">
+          <div className="max-w-7xl  mx-auto px-4 text-center">
             <h2 className="text-xl">Welcome to Our Store!</h2>
             <p className="mt-4">
               Sign up or log in to access exclusive deals and personalized recommendations.
@@ -58,7 +63,7 @@ const HomePage = () => {
               Login to get started
             </Link>
           </div>
-          <div className="max-w-full mx-auto text-center">
+          <div className="max-w-full py-12 mx-auto text-center">
             <img 
               src="https://images.unsplash.com/photo-1732257119998-b66cda63dcfc?q=80&w=1330&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Placeholder"
@@ -66,9 +71,7 @@ const HomePage = () => {
             />
           </div>
         </>
-      
       )}
-
     </div>
   );
 };

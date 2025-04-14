@@ -14,14 +14,14 @@ const SearchBar = ({ className= "" }) => {
     };
   
     return (
-      <div className={`search-bar ${className}`}>
+      <div className="ms-5 w-full flex items-center justify-between">
         <input
           type="text"
           onInput={handleInputChange}
-          placeholder="Type to search..."
-          className="p-2 border border-gray-300 rounded-md"
+          placeholder="Search for products..."
+          className="p-3 bg-gray-100 text-black border-2 border-solid rounded-full w-full"
         />
-        <button onClick={handleSearch} className="ml-2 p-2 bg-blue-500 text-white rounded-md">
+        <button onClick={handleSearch} className="ml-3 p-2 bg-blue-500 w-50 text-white rounded-full text-bold">
           Search
         </button>
       </div>

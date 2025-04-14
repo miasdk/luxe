@@ -23,7 +23,7 @@ export default function LoginForm({ onSuccess }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className='max-w-md mt-5 mx-auto p-6 rounded-lg'>
+        <form onSubmit={handleSubmit} className='max-w-md mx-auto p-6 rounded-lg'>
             <h2 className='text-2xl font-bold mb-4 text-center'>Login</h2>
 
             <div className='mb-4'>

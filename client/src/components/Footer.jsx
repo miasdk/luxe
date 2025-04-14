@@ -1,7 +1,7 @@
 import { FaGithub } from "react-icons/fa";
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-4">
+    <footer className="border border-black/10 text-black py-4">
       <div className="container mx-auto text-center">
         <p className="text-sm">
           &copy; {new Date().getFullYear()} eCart. All rights reserved.
@@ -14,7 +14,7 @@ export default function Footer() {
       </div>
 
         <div className="flex justify-center mt-4">  
-            <FaGithub className="text-gray-400 hover:text-white mx-2" size={24} />
+            <FaGithub className="text-gray-800 hover:text-white mx-2" size={24} />
         </div>
     </footer>
   );

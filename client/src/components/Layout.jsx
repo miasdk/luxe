@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import TopBar from "./TopBar";
-import MainBar from "./MainBar";
+import TopNavBar from "./TopNavBar";
+import TopSearchBar from "./TopSearchBar";
 import Footer from "./Footer";
 import { useAuthContext } from "../context/AuthContext";
 
@@ -11,8 +11,8 @@ export default function Layout() {
 
     return (
         <div className="flex flex-col min-h-screen">
-            <TopBar user={user} loading={loading} />
-            <MainBar />
+            <TopNavBar user={user} loading={loading} />
+            <TopSearchBar />
             <main className="flex-grow">
                 <Outlet />
             </main>

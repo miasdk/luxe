@@ -1,2 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap');
+
 @import "tailwindcss";
 
+.licorice-regular {
+    font-family: "Licorice", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.brand-logo {
+    font-family: "Licorice", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5rem;
+  
+}
