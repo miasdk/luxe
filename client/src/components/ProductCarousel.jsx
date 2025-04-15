@@ -31,7 +31,6 @@ export default function ProductCarousel() {
 
     return (
         <div className="px-5 py-10 mx-auto">
-            <h2 className="text-2xl font-bold mb-6 text-center">Featured Products</h2>
             <Swiper
                 modules={[Navigation, Pagination, Autoplay, Scrollbar]}
                 spaceBetween={20}
