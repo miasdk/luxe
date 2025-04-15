@@ -45,7 +45,7 @@ export default function CategoryCarousel() {
             >
                 {categories.map((category) => (
                     <SwiperSlide key={category.id}>
-                        <div className="h-full p-2">
+                        <div className="h-full p-2 border-b border-gray-200">
                             <CategoryCard category={category} />
                         </div>
                     </SwiperSlide>
