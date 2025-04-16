@@ -20,6 +20,31 @@ class ProductService {
             throw error;
         }
     }
+
+     /**
+     * Creates a new product on the server.
+     */
+    async createProduct(product) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/products/`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(product),
+            });
+
+            if (!response.ok) {
+                throw new Error("HTTP error: " + response.status);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error creating product:", error);
+            throw error;
+        }
+    }    
 }
 
 const productsService = new ProductService();

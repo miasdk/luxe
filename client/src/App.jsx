@@ -6,6 +6,7 @@ import ProductPage from "./pages/ProductPage";
 import PaymentForm from "./components/PaymentForm";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import CreateListing from "./pages/CreateListing";
 function App() {
   return (
     <AuthProvider>
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductPage />} />
           <Route path="/payment" element={<PaymentFormWrapper />} />
+          <Route path="/create-listing" element={<CreateListing />} />
 \        </Route> 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

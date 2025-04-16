@@ -89,7 +89,7 @@ export default function TopNavBar({ user, loading }) {
                 <div className="flex items-center space-x-4">
                     {user ? (
                         <>
-                            <Link to="/products" className="py-2 hover:underline">
+                            <Link to="/create-listing" className="py-2 hover:underline">
                                 <span className="text-xs">Sell</span>
                             </Link>
                             <Link to="/wishlist" className="py-2 hover:underline">

@@ -49,7 +49,7 @@ const HomePage = () => {
         <Link to="/products" className="bg-black text-white hover:bg-gray-800 transition-colors px-6 py-3 rounded-none font-medium flex items-center justify-center">
           SHOP COLLECTION <ArrowRight size={18} className="ml-2" />
         </Link>
-        <Link to="/sell" className="border border-black text-black hover:bg-black hover:text-white transition-colors px-6 py-3 rounded-none font-medium">
+        <Link to="/create-listing" className="border border-black text-black hover:bg-black hover:text-white transition-colors px-6 py-3 rounded-none font-medium">
           HAVE SOMETHING TO SELL? 
         </Link>
       </div>
