@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage"; 
 import ProductPage from "./pages/ProductPage"; 
@@ -10,16 +11,18 @@ import CreateListing from "./pages/CreateListing";
 function App() {
   return (
     <AuthProvider>
+      <CartProvider>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductPage />} />
           <Route path="/payment" element={<PaymentFormWrapper />} />
           <Route path="/create-listing" element={<CreateListing />} />
-\        </Route> 
+        </Route> 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
+      </CartProvider>
     </AuthProvider>
 
   );

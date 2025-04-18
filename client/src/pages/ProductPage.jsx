@@ -34,7 +34,6 @@ const ProductPage = () => {
 
 
             <div>
-                <CategoryCarousel />
             </div>
             <div className="flex flex-col md:flex-row">
                 <FilterSideBar />

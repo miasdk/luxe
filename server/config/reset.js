@@ -18,7 +18,6 @@ import { brandData as brands } from '../data/brands.js';
 import { ordersData } from '../data/orders.js';
 import { orderItemsData } from '../data/order_items.js';
 import './dotenv.js';
-import fetch from 'node-fetch';
 
 const createUsersTable = async () => {
     const insertQuery = `
@@ -43,16 +42,6 @@ const createUsersTable = async () => {
 
 const seedUsersTable = async () => {
     await createUsersTable();
-
-    const users = [
-        {
-            uid: "user_123",
-            email: "test@example.com",
-            display_name: "Test User",
-            photo_url: "https://example.com/photo.jpg",
-        }
-    ];
-
     const insertQuery = `   
         INSERT INTO users (uid, email, display_name, photo_url)
         VALUES ($1, $2, $3, $4)
@@ -284,9 +273,11 @@ const seedConditionsTable = async () => {
 
 const createCartsTable = async () => {
     const insertQuery = `
-        CREATE TABLE IF NOT EXISTS carts (
+        DROP TABLE IF EXISTS carts CASCADE;
+
+        CREATE TABLE carts (
             id SERIAL PRIMARY KEY,
-            user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+            user_id TEXT NOT NULL REFERENCES users(uid) ON DELETE CASCADE,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         DROP TABLE IF EXISTS cart_products CASCADE;
@@ -582,7 +573,7 @@ const createCartDetailsView = async () => {
             (p.price * cp.quantity) AS total_price,
             ca.created_at
         FROM carts ca
-        JOIN users u ON ca.user_id = u.id
+        JOIN users u ON ca.user_id = u.uid
         JOIN cart_products cp ON ca.id = cp.cart_id
         JOIN products p ON cp.product_id = p.id;
     `;
@@ -668,20 +659,18 @@ const implementFullTextSearch = async () => {
 };
 
 // implementFullTextSearch();
-// seedUsersTable();
 // seedCategoriesTable();
 // seedBrandsTable();
 // seedProductsTable();
 // seedSizesTable();
 // seedColorsTable();
 // seedConditionsTable();
-// seedCartsTable();
 // seedProductSizes();
 // seedProductColors();
 // seedProductConditions();
 // seedOrdersTable();
 // seedOrderItemsTable();
- createProductDetailsView();
-// createCartDetailsView();
+// createProductDetailsView();
+createCartDetailsView();
 // createOrderDetailsView();
 

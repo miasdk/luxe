@@ -44,4 +44,21 @@ export function CartProvider({ children }) {
     const toggleCart = () => {
         setIsOpen((prev) => !prev);
     }
+
+    return ( 
+        <CartContext.Provider 
+            value={{
+                cart,
+                addToCart,
+                removeFromCart,
+                clearCart,
+                toggleCart,
+                isOpen,
+            }}
+        >
+            {children}
+        </CartContext.Provider>
+    )
+
+
 }

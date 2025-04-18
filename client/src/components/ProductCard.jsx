@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
 
       <div className="relative">
         <img
-          src={product.image}
+          src={product.image} 
           alt={product.name}
           className="w-full bg-gray-100 h-48 object-contain flex-shrink-0"
         />
