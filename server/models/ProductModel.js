@@ -46,7 +46,7 @@ class ProductModel {
      * and `ANY` for multi-value comparisons to optimize performance.
      * 
      * @param {Object} filters - An object containing filter criteria.
-     * @param {string} [filters.category] - The category to filter by (optional).
+     * @param {string} [filters.category_name] - The category to filter by (optional).
      * @param {string} [filters.size] - The size to filter by (optional).
      * @param {string} [filters.color] - The color to filter by (optional).
      * @param {string} [filters.condition] - The condition to filter by (optional).
@@ -56,19 +56,20 @@ class ProductModel {
      * @throws {Error} - Throws an error if the database query fails.
      */
     static async getProductsByFilters(filters, sortBy = 'title', sortOrder = 'ASC') {
-        const { category, size, color, condition } = filters; 
-    
+        const { category, size, color, condition } = filters;
+        
         let selectQuery = `
             SELECT * 
             FROM product_details
             WHERE 1=1
         `;
-    
+        
         const queryParams = []; // Array to store query parameters
         let paramIndex = 1;
-    
+        
         if (category) {
-            selectQuery += ` AND category = $${paramIndex}`;
+            // Change 'category' to 'category_name'
+            selectQuery += ` AND category_name = $${paramIndex}`;
             queryParams.push(category);
             paramIndex++;
         }
@@ -87,9 +88,9 @@ class ProductModel {
             queryParams.push(condition);
             paramIndex++;
         }
-    
+        
         selectQuery += ` ORDER BY ${sortBy} ${sortOrder}`;
-    
+        
         try {
             const results = await pool.query(selectQuery, queryParams);
             return results.rows;

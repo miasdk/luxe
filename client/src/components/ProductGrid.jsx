@@ -1,12 +1,35 @@
+// components/ProductGrid.js
+import React from 'react';
 import ProductCard from "./ProductCard";
-const ProductGrid = ({ products }) => {
+import { useProductContext } from "../context/ProductContext";
+
+const ProductGrid = () => {
+    // Get products, loading, and error state from context
+    const { products, loading, error } = useProductContext();
+
+    if (loading) {
+        return <div className="w-full text-center py-10">Loading products...</div>;
+    }
+
+    if (error) {
+        return <div className="w-full text-center py-10 text-red-500">Error: {error}</div>;
+    }
+
+    if (products.length === 0) {
+        return (
+            <div className="w-full text-center py-10">
+                No products found matching your criteria.
+            </div>
+        );
+    }
+
     return (
         <div className="grid gap-6 w-full mt-5" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
             {products.map((product) => (
-                <ProductCard 
-                    key={product.id} 
-                    product={product} 
-                    className="h-full" // Ensure cards take full grid height
+                <ProductCard
+                    key={product.product_id}
+                    product={product}
+                    className="h-full"
                 />
             ))}
         </div>

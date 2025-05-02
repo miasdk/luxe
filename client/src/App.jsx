@@ -1,6 +1,8 @@
+// App.jsx
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
+import { ProductProvider } from "./context/ProductContext"; // Import ProductProvider
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage"; 
 import ProductPage from "./pages/ProductPage"; 
@@ -12,26 +14,29 @@ import CreateListing from "./pages/CreateListing";
 import ProfilePage from "./pages/ProfilePage";
 import OrdersPage from "./pages/OrdersPage";
 import NotFound from "./pages/404NotFound";
+
 function App() {
   return (
     <AuthProvider>
       <CartProvider>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products" element={<ProductPage />} />
-          <Route path="/products/:productId" element={<ProductDetailPage />} />
-          <Route path="/payment" element={<PaymentFormWrapper />} />
-          <Route path="/create-listing" element={<CreateListing />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/orders" element={<OrdersPage />} />
-        </Route> 
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-      </Routes>
+        <ProductProvider> {/* Add ProductProvider here */}
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/products" element={<ProductPage />} />
+              <Route path="/products/:productId" element={<ProductDetailPage />} />
+              <Route path="/payment" element={<PaymentFormWrapper />} />
+              <Route path="/create-listing" element={<CreateListing />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/orders" element={<OrdersPage />} />
+            </Route>
+            
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Routes>
+        </ProductProvider>
       </CartProvider>
     </AuthProvider>
-
   );
 }
 

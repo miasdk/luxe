@@ -297,7 +297,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Featured product - Elegant version */}
       <div className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -353,7 +352,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* New Arrivals with elegant styling */}
       <div className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-10">
@@ -367,8 +365,6 @@ const HomePage = () => {
         </div>
       </div>
 
-
-      {/* Join section for non-logged in users - Elegant version */}
       {!user && (
         <div className="bg-gray-900 text-white py-16">
           <div className="container mx-auto px-4 text-center max-w-3xl">
@@ -440,15 +436,14 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Brands section - Elegant version */}
       <div className="bg-gray-50 py-16 border-t border-gray-100">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-light text-gray-900 mb-10 text-center">Featured Brands</h2>
+          <h2 className="text-2xl font-light text-gray-900 mb-10 text-center">Our Brands</h2>
           <div className="grid grid-cols-2 md:grid-cols-6 gap-8 items-center">
             {brands.slice(0, 6).map((brand) => (
               <div
                 key={brand.id}
-                className="flex items-center justify-center bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+                className="flex items-center justify-center transition-all duration-300"
               >
                 <img
                   src={brand.image || "/placeholder.svg"}

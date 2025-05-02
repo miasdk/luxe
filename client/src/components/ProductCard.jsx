@@ -47,7 +47,7 @@ const ProductCard = ({ product }) => {
           <span className="text-sm text-gray-500 truncate">{product.brand_name}</span>
         </div>
 
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-gray-500 truncate">
           {product.conditions} | Sz. {product.sizes}
         </span>
         <p className="text-xl font-bold">${product.price}</p>

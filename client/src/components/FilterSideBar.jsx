@@ -1,28 +1,40 @@
-import React, { useState } from "react";
-import { FaThermometerFull } from "react-icons/fa";
+// components/FilterSideBar.js
+import React, { useState, useEffect } from "react";
 import categoryService from "../services/categoryService";
 import brandService from "../services/brandService";
+import { useProductContext } from "../context/ProductContext";
 
 export default function FilterSideBar() {
-    const [isOpen, setIsOpen] = useState(); // State to track mobile dropdown visibility
+    // Local state
+    const [isOpen, setIsOpen] = useState(false);
     const [openCategories, setOpenCategories] = useState({
         category: true,
         brands: true,
         sizes: true,
         conditions: true,
         colors: true,
-        price: FaThermometerFull
+        price: true
     });
     const [categories, setCategories] = useState([]);
     const [brands, setBrands] = useState([]);
+    const [currentPriceMax, setCurrentPriceMax] = useState(1000);
 
-    console.log(categories);
-    console.log(brands);
+    // Get filter context
+    const { 
+        filters, 
+        priceRange,
+        updateFilter, 
+        updatePriceRange,
+        resetFilters, 
+        applyFilters 
+    } = useProductContext();
 
+    // Toggle mobile dropdown
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
+    // Toggle filter sections
     const toggleCategory = (category) => {
         setOpenCategories(prev => ({
             ...prev,
@@ -30,31 +42,37 @@ export default function FilterSideBar() {
         }));
     };
 
-    //fetch categories and brands
-    const fetchCategories = async () => {
-        try {
-            const data = await categoryService.fetchAllCategories();
-            setCategories(data);
-        } catch (error) {
-            console.error('Error fetching categories:', error);
-        }
+    // Handle price range change
+    const handlePriceChange = (e) => {
+        const value = parseInt(e.target.value);
+        setCurrentPriceMax(value);
     };
 
-    const fetchBrands = async () => {
-        try {
-            const data = await brandService.fetchAllBrands();
-            setBrands(data);
-        } catch (error) {
-            console.error('Error fetching brands:', error);
-        }
-    }
+    // Apply price range when slider stops
+    const applyPriceRange = () => {
+        updatePriceRange(0, currentPriceMax);
+    };
 
-    // Call fetch functions when the component mounts
-    React.useEffect(() => {
-        fetchCategories();
-        fetchBrands();
+    // Fetch categories and brands
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const categoriesData = await categoryService.fetchAllCategories();
+                const brandsData = await brandService.fetchAllBrands();
+                setCategories(categoriesData);
+                setBrands(brandsData);
+            } catch (error) {
+                console.error('Error fetching filter data:', error);
+            }
+        };
+        
+        fetchData();
     }, []);
-    
+
+    // Initialize price slider with context value
+    useEffect(() => {
+        setCurrentPriceMax(priceRange.max);
+    }, [priceRange.max]);
 
     return (
         <div className="w-full md:w-60 p-3 border-black/10 text-xs">
@@ -66,8 +84,17 @@ export default function FilterSideBar() {
             </button>
 
             <div className={`${isOpen ? "block" : "hidden"} md:block flex flex-col`}>
-                <h2 className="text-xs font-semibold mb-4">FILTERS</h2>
+                <div className="flex justify-between items-center mb-4">
+                    <h2 className="text-xs font-semibold">FILTERS</h2>
+                    <button 
+                        onClick={resetFilters}
+                        className="text-blue-500 text-xs hover:underline"
+                    >
+                        Reset All
+                    </button>
+                </div>
 
+                {/* Category Filter */}
                 <div className="mb-4 border-b border-gray-200 pb-2">
                     <button 
                         onClick={() => toggleCategory('category')}
@@ -78,17 +105,37 @@ export default function FilterSideBar() {
                     </button>
                     {openCategories.category && (
                         <ul className="mt-2">
+                            <li className="flex items-center mb-2">
+                                <input 
+                                    type="radio" 
+                                    id="category-all" 
+                                    name="category"
+                                    value=""
+                                    className="w-3 h-3"
+                                    checked={filters.category === ''}
+                                    onChange={(e) => updateFilter('category', e.target.value)}
+                                />
+                                <label htmlFor="category-all" className="ml-2">All Categories</label>
+                            </li>
                             {categories.map((category) => (
                                 <li key={category.name} className="flex items-center mb-2">
-                                <input type="checkbox" id={category.name} className="w-3 h-3" />
-                                <label htmlFor={category.name} className="ml-2">{category.name}</label>
+                                    <input 
+                                        type="radio" 
+                                        id={`category-${category.name}`} 
+                                        name="category"
+                                        value={category.name}
+                                        className="w-3 h-3"
+                                        checked={filters.category === category.name}
+                                        onChange={(e) => updateFilter('category', e.target.value)}
+                                    />
+                                    <label htmlFor={`category-${category.name}`} className="ml-2">{category.name}</label>
                                 </li>
                             ))}
-                            
                         </ul>
                     )}
                 </div>
 
+                {/* Brands Filter */}
                 <div className="mb-4 border-b border-gray-200 pb-2">
                     <button 
                         onClick={() => toggleCategory('brands')}
@@ -99,17 +146,37 @@ export default function FilterSideBar() {
                     </button>
                     {openCategories.brands && (
                         <ul className="mt-2">
+                            <li className="flex items-center mb-2">
+                                <input 
+                                    type="radio" 
+                                    id="brand-all" 
+                                    name="brand"
+                                    value=""
+                                    className="w-3 h-3"
+                                    checked={filters.brand === ''}
+                                    onChange={(e) => updateFilter('brand', e.target.value)}
+                                />
+                                <label htmlFor="brand-all" className="ml-2">All Brands</label>
+                            </li>
                             {brands.map((brand) => (
                                 <li key={brand.name} className="flex items-center mb-2">
-                                    <input type="checkbox" id={brand.name} className="w-3 h-3" />
-                                    <label htmlFor={brand.name} className="ml-2">{brand.name}</label>
-
+                                    <input 
+                                        type="radio" 
+                                        id={`brand-${brand.name}`}
+                                        name="brand" 
+                                        value={brand.name}
+                                        className="w-3 h-3"
+                                        checked={filters.brand === brand.name}
+                                        onChange={(e) => updateFilter('brand', e.target.value)}
+                                    />
+                                    <label htmlFor={`brand-${brand.name}`} className="ml-2">{brand.name}</label>
                                 </li>
                             ))}
                         </ul>
                     )}
                 </div>
 
+                {/* Sizes Filter */}
                 <div className="mb-4 border-b border-gray-200 pb-2">
                     <button 
                         onClick={() => toggleCategory('sizes')}
@@ -121,25 +188,36 @@ export default function FilterSideBar() {
                     {openCategories.sizes && (
                         <ul className="mt-2">
                             <li className="flex items-center mb-2">
-                                <input type="checkbox" id="small" className="w-3 h-3" />
-                                <label htmlFor="small" className="ml-2">Small</label>
+                                <input 
+                                    type="radio" 
+                                    id="size-all" 
+                                    name="size"
+                                    value=""
+                                    className="w-3 h-3"
+                                    checked={filters.size === ''}
+                                    onChange={(e) => updateFilter('size', e.target.value)}
+                                />
+                                <label htmlFor="size-all" className="ml-2">All Sizes</label>
                             </li>
-                            <li className="flex items-center mb-2">
-                                <input type="checkbox" id="medium" className="w-3 h-3" />
-                                <label htmlFor="medium" className="ml-2">Medium</label>
-                            </li>
-                            <li className="flex items-center mb-2">
-                                <input type="checkbox" id="large" className="w-3 h-3" />
-                                <label htmlFor="large" className="ml-2">Large</label>
-                            </li>
-                            <li className="flex items-center mb-2">
-                                <input type="checkbox" id="xl" className="w-3 h-3" />
-                                <label htmlFor="xl" className="ml-2">XL</label>
-                            </li>
+                            {['Small', 'Medium', 'Large', 'XL'].map((size) => (
+                                <li key={size} className="flex items-center mb-2">
+                                    <input 
+                                        type="radio" 
+                                        id={`size-${size}`} 
+                                        name="size"
+                                        value={size}
+                                        className="w-3 h-3"
+                                        checked={filters.size === size}
+                                        onChange={(e) => updateFilter('size', e.target.value)}
+                                    />
+                                    <label htmlFor={`size-${size}`} className="ml-2">{size}</label>
+                                </li>
+                            ))}
                         </ul>
                     )}
                 </div>
 
+                {/* Conditions Filter */}
                 <div className="mb-4 border-b border-gray-200 pb-2">
                     <button 
                         onClick={() => toggleCategory('conditions')}
@@ -151,29 +229,36 @@ export default function FilterSideBar() {
                     {openCategories.conditions && (
                         <ul className="mt-2">
                             <li className="flex items-center mb-2">
-                                <input type="checkbox" id="new" className="w-3 h-3" />
-                                <label htmlFor="new" className="ml-2">NWT</label>
+                                <input 
+                                    type="radio" 
+                                    id="condition-all" 
+                                    name="condition"
+                                    value=""
+                                    className="w-3 h-3"
+                                    checked={filters.condition === ''}
+                                    onChange={(e) => updateFilter('condition', e.target.value)}
+                                />
+                                <label htmlFor="condition-all" className="ml-2">All Conditions</label>
                             </li>
-                            <li className="flex items-center mb-2">
-                                <input type="checkbox" id="used" className="w-3 h-3" />
-                                <label htmlFor="used" className="ml-2">NWOT</label>
-                            </li>
-                            <li className="flex items-center mb-2">
-                                <input type="checkbox" id="refurbished" className="w-3 h-3" />
-                                <label htmlFor="refurbished" className="ml-2">Good</label>
-                            </li>
-                            <li className="flex items-center mb-2">
-                                <input type="checkbox" id="refurbished" className="w-3 h-3" />
-                                <label htmlFor="refurbished" className="ml-2">Gently Used</label>
-                            </li>
-                            <li className="flex items-center mb-2">
-                                <input type="checkbox" id="refurbished" className="w-3 h-3" />
-                                <label htmlFor="refurbished" className="ml-2">Fair</label>
-                            </li>
+                            {['NWT', 'NWOT', 'Good', 'Gently Used', 'Fair'].map((condition) => (
+                                <li key={condition} className="flex items-center mb-2">
+                                    <input 
+                                        type="radio" 
+                                        id={`condition-${condition}`} 
+                                        name="condition"
+                                        value={condition}
+                                        className="w-3 h-3"
+                                        checked={filters.condition === condition}
+                                        onChange={(e) => updateFilter('condition', e.target.value)}
+                                    />
+                                    <label htmlFor={`condition-${condition}`} className="ml-2">{condition}</label>
+                                </li>
+                            ))}
                         </ul>
                     )}
                 </div>
 
+                {/* Colors Filter */}
                 <div className="mb-4 border-b border-gray-200 pb-2">
                     <button 
                         onClick={() => toggleCategory('colors')}
@@ -185,19 +270,31 @@ export default function FilterSideBar() {
                     {openCategories.colors && (
                         <div className="mt-2">
                             <ul className="flex flex-wrap gap-1"> 
-                                <li className="w-5 h-5 bg-red-500 rounded-full cursor-pointer"></li>
-                                <li className="w-5 h-5 bg-green-500 rounded-full cursor-pointer"></li>
-                                <li className="w-5 h-5 bg-blue-500 rounded-full cursor-pointer"></li>
-                                <li className="w-5 h-5 bg-yellow-500 rounded-full cursor-pointer"></li>
-                                <li className="w-5 h-5 bg-purple-500 rounded-full cursor-pointer"></li>
-                                <li className="w-5 h-5 bg-pink-500 rounded-full cursor-pointer"></li>
-                                <li className="w-5 h-5 bg-black rounded-full cursor-pointer"></li>
-                                <li className="w-5 h-5 bg-white rounded-full border border-black/15 cursor-pointer"></li>
+                                {[
+                                    { name: 'Red', class: 'bg-red-500' },
+                                    { name: 'Green', class: 'bg-green-500' },
+                                    { name: 'Blue', class: 'bg-blue-500' },
+                                    { name: 'Yellow', class: 'bg-yellow-500' },
+                                    { name: 'Purple', class: 'bg-purple-500' },
+                                    { name: 'Pink', class: 'bg-pink-500' },
+                                    { name: 'Black', class: 'bg-black' },
+                                    { name: 'White', class: 'bg-white border border-black/15' }
+                                ].map((color) => (
+                                    <li 
+                                        key={color.name}
+                                        className={`w-5 h-5 rounded-full cursor-pointer ${color.class} ${
+                                            filters.color === color.name ? 'ring-2 ring-offset-1 ring-blue-500' : ''
+                                        }`}
+                                        onClick={() => updateFilter('color', filters.color === color.name ? '' : color.name)}
+                                        title={color.name}
+                                    ></li>
+                                ))}
                             </ul>
                         </div>
                     )}
                 </div>
 
+                {/* Price Range Filter */}
                 <div className="mb-4 border-b border-gray-200 pb-2">
                     <button 
                         onClick={() => toggleCategory('price')}
@@ -209,15 +306,28 @@ export default function FilterSideBar() {
                     {openCategories.price && (
                         <div className="mt-2">
                             <div className="justify-between flex items-center mb-2">
-                                <span>$</span>
-                                <span>$$$</span>
+                                <span>$0</span>
+                                <span>${currentPriceMax}</span>
                             </div>
-                            <input type="range" min="0" max="1000" className="w-full" />
+                            <input 
+                                type="range" 
+                                min="0" 
+                                max="1000" 
+                                value={currentPriceMax}
+                                onChange={handlePriceChange}
+                                onMouseUp={applyPriceRange}
+                                onTouchEnd={applyPriceRange}
+                                className="w-full" 
+                            />
                         </div>
                     )}
                 </div>
 
-                <button className="bg-blue-500 text-white px-4 py-2 rounded text-xs">
+                {/* Apply Filters button */}
+                <button 
+                    onClick={applyFilters}
+                    className="bg-blue-500 text-white px-4 py-2 rounded text-xs"
+                >
                     Apply Filters
                 </button>
             </div>

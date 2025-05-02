@@ -100,6 +100,26 @@ class ProductService {
             throw error;
         }
     }
+
+    /**
+     * Fetches products by category from the server.
+     * @param {string} category - The category to filter by
+     * @returns {Promise<Array>} A promise that resolves to an array of products
+     */
+    async fetchProductsByCategory(category) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/products/category/${encodeURIComponent(category)}`);
+            if (!response.ok) {
+                throw new Error("HTTP error: " + response.status);
+            }
+            
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error fetching products by category:", error);
+            throw error;
+        }
+    }
     
     
 }

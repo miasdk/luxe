@@ -81,7 +81,7 @@ export default function CategoryCarousel() {
         modules={[Navigation, Pagination, Autoplay]}
         spaceBetween={20}
         slidesPerView={1}
-        loop={false}
+        loop={true}
         navigation={{
           prevEl: prevRef.current,
           nextEl: nextRef.current,

@@ -95,6 +95,10 @@ export const ProductProvider = ({ children }) => {
         fetchProducts();
     }, []);
 
+    useEffect(() => {
+        fetchProducts();
+    }, [sortBy, sortOrder]); // This will trigger a re-fetch whenever sorting changes
+
     return (
         <ProductContext.Provider
             value={{
