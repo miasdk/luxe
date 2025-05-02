@@ -21,6 +21,9 @@ class ProductService {
         }
     }
 
+    /**
+     * Fetches products based on filter criteria
+
      /**
      * Creates a new product on the server.
      */
