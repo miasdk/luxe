@@ -5,7 +5,7 @@ export const brandData = [
     },
     {
         name: "Banana Republic",
-        image: "https://1000logos.net/wp-content/uploads/2021/05/Banana-Republic-logo-768x432.png",
+        image: "https://1000logos.net/wp-content/uploads/2025/02/Banana-Republic-Logo.png",
     },
     {
         name: "H&M",

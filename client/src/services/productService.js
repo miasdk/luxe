@@ -18,7 +18,7 @@ class ProductService {
         } catch (error) {
             console.error("Error fetching products:", error);
             throw error;
-        }
+        } 
     }
 
     /**
@@ -78,7 +78,30 @@ class ProductService {
             console.error("Error creating product:", error);
             throw error;
         }
-    }    
+    }
+
+    /**
+     * Fetches a product by its ID from the server.
+     * @param {string} productId - The ID of the product to fetch.
+     * @returns {Promise<Object>} A promise that resolves to the product object
+     * or rejects with an error.
+     */
+    async fetchProductById(productId) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/products/${productId}`);
+            if (!response.ok) {
+                throw new Error("HTTP error: " + response.status);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error fetching product:", error);
+            throw error;
+        }
+    }
+    
+    
 }
 
 const productsService = new ProductService();

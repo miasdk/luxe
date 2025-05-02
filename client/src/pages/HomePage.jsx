@@ -8,7 +8,8 @@ import CategoryCarousel from "../components/CategoryCarousel"
 import { Truck, RotateCcw, ArrowRight, ChevronDown, Search, Heart, Shield, Star } from "lucide-react"
 import editorialImage1 from "../assets/images/editorial1.jpg"
 import editorialImage2 from "../assets/images/editorial2.jpg"
-
+import brandService from "../services/brandService"
+import { use } from "react"
 const HomePage = () => {
   const { user, loading } = useAuthContext()
   const [isScrolled, setIsScrolled] = useState(false)
@@ -62,7 +63,7 @@ const HomePage = () => {
       reviews: 29,
     },
   ]
-
+  
   const fetchBrands = async () => {
     try {
       const data = await brandService.fetchAllBrands()
@@ -75,7 +76,8 @@ const HomePage = () => {
   useEffect(() => {
     fetchBrands()
   }, [])
-
+  
+  console.log("Brands:", brands)
   // Add scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -452,15 +454,14 @@ const HomePage = () => {
                   src={brand.image || "/placeholder.svg"}
                   alt={brand.name}
                   className="h-12 object-contain opacity-80 hover:opacity-100 transition-opacity"
-                />
+                 />
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Newsletter section - Elegant version */}
-      <div className="bg-gray-900 text-white py-16">
+      <div className="bg-black text-white py-20">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-2xl font-light mb-4">Subscribe to Our Newsletter</h2>
           <p className="text-gray-300 mb-8 max-w-xl mx-auto">
