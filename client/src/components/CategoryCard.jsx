@@ -1,11 +1,40 @@
+import { ArrowRight } from "lucide-react"
+import { Link } from "react-router-dom"
+
 const CategoryCard = ({ category }) => {
-    return (
-        <div className="rounded-lg hover:shadow-lg transition-shadow duration-300 ease-in-out">
-            <img src={category.image} alt={category.name} className="w-full h-full object-cover rounded-md" />
-            <h2 className="text-sm font-semibold mt-2">{category.name}</h2>
-            <p className="text-gray-600">{category.description}</p>
+  return (
+    <div className="group relative overflow-hidden rounded-xl bg-white transition-all duration-300 hover:shadow-md">
+      <div className="aspect-[4/5] overflow-hidden">
+        <img
+          src={category.image || "/placeholder.svg"}
+          alt={category.name}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-70"></div>
+
+      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+        <div className="transform transition-transform duration-300 group-hover:translate-y-[-4px]">
+          <div className="mb-1 inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-medium backdrop-blur-sm">
+            {category.itemCount || "Collection"}
+          </div>
+          <h2 className="mb-2 font-light text-2xl tracking-wide">{category.name}</h2>
+          <p className="mb-4 text-sm text-white/80">{category.description}</p>
+          <Link
+            to={`/categories/${category.slug || category.id}`}
+            className="inline-flex items-center text-sm font-medium text-white"
+          >
+            Explore Collection
+            <ArrowRight size={14} className="ml-1.5 transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
         </div>
-    );
+      </div>
+
+      {/* Subtle border overlay */}
+      <div className="absolute inset-0 rounded-xl border border-white/10 pointer-events-none"></div>
+    </div>
+  )
 }
 
-export default CategoryCard;
+export default CategoryCard

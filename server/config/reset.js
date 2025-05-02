@@ -61,10 +61,12 @@ const seedUsersTable = async () => {
 const createCategoriesTable = async () => {
     const insertQuery = `
         DROP TABLE IF EXISTS categories CASCADE;
+
         CREATE TABLE categories (
             id SERIAL PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
-            image VARCHAR(255) NOT NULL
+            image VARCHAR(255) NOT NULL,
+            description TEXT 
         );
     `;
     try {
@@ -78,12 +80,12 @@ const createCategoriesTable = async () => {
 const seedCategoriesTable = async () => {
     await createCategoriesTable();
     const query = `
-        INSERT INTO categories (name, image)
-        VALUES ($1, $2)
+        INSERT INTO categories (name, image, description)
+        VALUES ($1, $2, $3)
     `;
     try {
         for (const category of categories) {
-            await pool.query(query, [category.name, category.image]);
+            await pool.query(query, [category.name, category.image, category.description]);
         }
         console.log(`Successfully added ${categories.length} categories to the categories table`);
     } catch (error) {
@@ -670,7 +672,7 @@ const implementFullTextSearch = async () => {
 // seedProductConditions();
 // seedOrdersTable();
 // seedOrderItemsTable();
-// createProductDetailsView();
-createCartDetailsView();
+createProductDetailsView();
+// createCartDetailsView();
 // createOrderDetailsView();
 

@@ -237,6 +237,8 @@ const HomePage = () => {
       </div>
 
       {/* Trending Items - Elegant Grid */}
+      {/* }
+
       <div className="container mx-auto px-4 py-16">
         <div className="flex justify-between items-center mb-10">
           <h2 className="text-2xl font-light text-gray-900">Trending Now</h2>
@@ -283,18 +285,13 @@ const HomePage = () => {
           ))}
         </div>
       </div>
+      */}
 
-      {/* New Arrivals with elegant styling */}
-      <div className="py-16">
+      {/* Categories section - Elegant version */}
+      <div className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center mb-10">
-            <h2 className="text-2xl font-light text-gray-900">New Arrivals</h2>
-            <Link to="/products" className="text-gray-700 font-medium flex items-center group">
-              View All
-              <ArrowRight size={16} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </div>
-          <ProductCarousel />
+          <h2 className="text-2xl font-light text-gray-900 mb-10 text-center">Shop by Category</h2>
+          <CategoryCarousel />
         </div>
       </div>
 
@@ -354,13 +351,20 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Categories section - Elegant version */}
-      <div className="py-16 bg-gray-50">
+      {/* New Arrivals with elegant styling */}
+      <div className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-light text-gray-900 mb-10 text-center">Shop by Category</h2>
-          <CategoryCarousel />
+          <div className="flex justify-between items-center mb-10">
+            <h2 className="text-2xl font-light text-gray-900">New Arrivals</h2>
+            <Link to="/products" className="text-gray-700 font-medium flex items-center group">
+              View All
+              <ArrowRight size={16} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
+          <ProductCarousel />
         </div>
       </div>
+
 
       {/* Join section for non-logged in users - Elegant version */}
       {!user && (
