@@ -21,6 +21,40 @@ class ProductService {
         } 
     }
 
+    /**
+     * Fetches products based on filter criteria
+    */
+
+    async fetchFilteredProducts(filters = {}, sortBy = 'title', sortOrder = 'ASC') {
+        try { 
+            // Build query parameters 
+            const params = new URLSearchParams(); 
+
+            //If filter has values, add them to the params
+            Object.entries(filters).forEach(([key, value]) => {
+                if (value !== undefined && value !== null && value !== '') {
+                    params.append(key, value); 
+                }
+            })
+
+            //Implement sorting parameters 
+            params.append('sort_by', sortBy);
+            params.append('sortOrder', sortOrder);
+
+            //API request 
+            const response = await fetch(`${API_BASE_URL}/api/products/filter?${params.toString()}`);
+
+            if (!response.ok) {
+                throw new Error("HTTP error: " + response.status);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error fetching filtered products:", error);
+            throw error;
+        }
+    }
+    
      /**
      * Creates a new product on the server.
      */
