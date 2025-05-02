@@ -55,14 +55,45 @@ class CartModel {
     }
 
     // Remove an item from the cart
-    static async removeCartItem(cartId, productId) {
-        const query = `
-            DELETE FROM cart_products WHERE cart_id = $1 AND product_id = $2 RETURNING *;
+    static async removeCartItem(cartId, productId, quantity = 1) {
+        console.log("Removing item from cart:", { cartId, productId, quantity });
+        
+        // First check current quantity
+        const checkQuery = `
+            SELECT quantity FROM cart_products
+            WHERE cart_id = $1 AND product_id = $2;
         `;
-        const result = await pool.query(query, [cartId, productId]);
-        return result.rows[0];
+        const checkResult = await pool.query(checkQuery, [cartId, productId]);
+        
+        if (checkResult.rows.length === 0) {
+            // Item doesn't exist in cart
+            return null;
+        }
+        
+        const currentQuantity = checkResult.rows[0].quantity;
+        
+        // If removing all or more than what's in cart, delete the item
+        if (quantity >= currentQuantity) {
+            const deleteQuery = `
+                DELETE FROM cart_products 
+                WHERE cart_id = $1 AND product_id = $2
+                RETURNING *;
+            `;
+            await pool.query(deleteQuery, [cartId, productId]);
+            return null; // Item completely removed
+        } 
+        // Otherwise, just decrement the quantity
+        else {
+            const updateQuery = `
+                UPDATE cart_products
+                SET quantity = quantity - $3
+                WHERE cart_id = $1 AND product_id = $2
+                RETURNING *;
+            `;
+            const result = await pool.query(updateQuery, [cartId, productId, quantity]);
+            return result.rows[0]; // Return updated item
+        }
     }
-
     // Clear the entire cart
     static async clearCart(cartId) {
         const query = `
@@ -71,10 +102,22 @@ class CartModel {
         await pool.query(query, [cartId]);
     }
 
-    // Get cart details including products (Uses cart_details view)
+    // Get cart details including products
     static async getCartDetails(cartId) {
+        // Use a direct join query instead of relying on a view
         const query = `
-            SELECT * FROM cart_details WHERE cart_id = $1;
+            SELECT 
+                cp.cart_id,
+                cp.product_id,
+                cp.quantity,
+                p.id,
+                p.title,
+                p.price,
+                p.description,
+                p.image
+            FROM cart_products cp
+            JOIN products p ON cp.product_id = p.id
+            WHERE cp.cart_id = $1;
         `;
         const result = await pool.query(query, [cartId]);
         return result.rows;

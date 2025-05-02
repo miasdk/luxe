@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import productsRouter from './routes/ProductRoutes.js';
 import categoriesRouter from './routes/categoryRoutes.js';
+import brandsRouter from './routes/brandRoutes.js';
 import cartRouter from './routes/cartRoutes.js';
 import ordersRouter from './routes/orderRoutes.js';
 import userRouter from './routes/userRoutes.js';
@@ -18,6 +19,7 @@ app.use('/api/categories', categoriesRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/users', userRouter);
+app.use('/api/brands', brandsRouter);
 
 app.get('/', (req, res) => {
     res.status(200).send('<h1 style="text-align: center; margin-top: 50px;">eCart API</h1>')

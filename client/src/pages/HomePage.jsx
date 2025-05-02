@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, {useState} from "react"
 import { Link } from "react-router-dom"
 import { useAuthContext } from "../context/AuthContext"
 import ProductCarousel from "../components/ProductCarousel"
@@ -9,11 +9,26 @@ import { Truck, RotateCcw, Clock, ArrowRight, ChevronDown } from "lucide-react"
 import heroImage from "../assets/images/hero.jpg"
 import editorialImage1 from "../assets/images/editorial1.jpg"
 import editorialImage2 from "../assets/images/editorial2.jpg"
-
+import brandService from "../services/brandService"
+import { use } from "react"
 const HomePage = () => {
   const { user, loading } = useAuthContext()
   const [isScrolled, setIsScrolled] = React.useState(false)
+  const [brands, setBrands] = useState([])
+  const fetchBrands = async () => {
+    try {
+      const data = await brandService.fetchAllBrands()
+      setBrands(data)
+    } catch (error) {
+      console.error("Error fetching brands:", error)
+    }
+  }
+  React.useEffect(() => {
+    fetchBrands()
+  }, [])
+  // Fetch brands from the server
 
+  console.log("Brands:", brands)
   // Add scroll effect
   React.useEffect(() => {
     const handleScroll = () => {
@@ -220,6 +235,26 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
+      <div className="bg-gray-50 py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-10 text-center tracking-wide">
+            OUR BRANDS
+          </h2>
+          <div className="grid grid-cols-3 gap-6">
+            {brands.slice(0, 6).map((brand) => (
+              <div key={brand.id} className="flex items-center justify-center">
+                <img
+                  src={brand.image || "/placeholder.svg"}
+                  alt={brand.name}
+                  className="h-16 object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
 
       <div className="bg-black text-white py-20">
         <div className="container mx-auto px-4 max-w-4xl text-center">

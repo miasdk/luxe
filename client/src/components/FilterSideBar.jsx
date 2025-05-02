@@ -1,15 +1,23 @@
 import React, { useState } from "react";
+import { FaThermometerFull } from "react-icons/fa";
+import categoryService from "../services/categoryService";
+import brandService from "../services/brandService";
 
 export default function FilterSideBar() {
     const [isOpen, setIsOpen] = useState(); // State to track mobile dropdown visibility
     const [openCategories, setOpenCategories] = useState({
-        category: false,
-        brands: false,
-        sizes: false,
-        conditions: false,
-        colors: false,
-        price: false
+        category: true,
+        brands: true,
+        sizes: true,
+        conditions: true,
+        colors: true,
+        price: FaThermometerFull
     });
+    const [categories, setCategories] = useState([]);
+    const [brands, setBrands] = useState([]);
+
+    console.log(categories);
+    console.log(brands);
 
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
@@ -21,6 +29,32 @@ export default function FilterSideBar() {
             [category]: !prev[category]
         }));
     };
+
+    //fetch categories and brands
+    const fetchCategories = async () => {
+        try {
+            const data = await categoryService.fetchAllCategories();
+            setCategories(data);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        }
+    };
+
+    const fetchBrands = async () => {
+        try {
+            const data = await brandService.fetchAllBrands();
+            setBrands(data);
+        } catch (error) {
+            console.error('Error fetching brands:', error);
+        }
+    }
+
+    // Call fetch functions when the component mounts
+    React.useEffect(() => {
+        fetchCategories();
+        fetchBrands();
+    }, []);
+    
 
     return (
         <div className="w-full md:w-60 p-3 border-black/10 text-xs">
@@ -44,16 +78,13 @@ export default function FilterSideBar() {
                     </button>
                     {openCategories.category && (
                         <ul className="mt-2">
-                            {categoryData.map((category) => (
+                            {categories.map((category) => (
                                 <li key={category.name} className="flex items-center mb-2">
-                                    <img
-                                        src={category.image}
-                                        alt={category.name}
-                                        className="w-6 h-6 mr-2 rounded"
-                                    />
-                                    <span>{category.name}</span>
+                                <input type="checkbox" id={category.name} className="w-3 h-3" />
+                                <label htmlFor={category.name} className="ml-2">{category.name}</label>
                                 </li>
                             ))}
+                            
                         </ul>
                     )}
                 </div>
@@ -68,14 +99,11 @@ export default function FilterSideBar() {
                     </button>
                     {openCategories.brands && (
                         <ul className="mt-2">
-                            {brandData.map((brand) => (
+                            {brands.map((brand) => (
                                 <li key={brand.name} className="flex items-center mb-2">
-                                    <img
-                                        src={brand.image}
-                                        alt={brand.name}
-                                        className="w-8 h-6 mr-2 rounded"
-                                    />
-                                    <span>{brand.name}</span>
+                                    <input type="checkbox" id={brand.name} className="w-3 h-3" />
+                                    <label htmlFor={brand.name} className="ml-2">{brand.name}</label>
+
                                 </li>
                             ))}
                         </ul>
@@ -196,25 +224,3 @@ export default function FilterSideBar() {
         </div>
     );
 }
-
-export const categoryData = [
-    {
-        name: "Dresses",
-        image: "https://media.thereformation.com/image/upload/f_auto,q_auto,dpr_2.0/PRD-SFCC/1317091/NAVY/1317091.1.NAVY?_s=RAABAB0",
-    },
-    {
-        name: "Tops",
-        image: "https://media.thereformation.com/image/upload/f_auto,q_auto,dpr_2.0/PRD-SFCC/1309586/BABYGIRL/1309586.1.BABYGIRL?_s=RAABAB0",
-    },
-];
-
-export const brandData = [
-    {
-        name: "Lululemon",
-        image: "https://1000logos.net/wp-content/uploads/2017/08/Lululemon-Logo-768x636.png",
-    },
-    {
-        name: "Nike",
-        image: "https://1000logos.net/wp-content/uploads/2021/11/Nike-Logo-768x432.png",
-    },
-];

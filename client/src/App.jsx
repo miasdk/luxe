@@ -4,6 +4,7 @@ import { CartProvider } from "./context/CartContext";
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage"; 
 import ProductPage from "./pages/ProductPage"; 
+import ProductDetailPage from "./pages/ProductDetailPage";
 import PaymentForm from "./components/PaymentForm";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -19,6 +20,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<ProductPage />} />
+          <Route path="/products/:productId" element={<ProductDetailPage />} />
           <Route path="/payment" element={<PaymentFormWrapper />} />
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/profile" element={<ProfilePage />} />

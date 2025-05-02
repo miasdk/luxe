@@ -39,12 +39,13 @@ class CartController {
 
     // Remove item from cart
     static async removeCartItem(req, res) {
-        const { cartId, productId } = req.body;
+        // Ensure this extracts quantity from the request body
+        const { cartId, productId, quantity = 1 } = req.body;
         try {
-            const removedItem = await cartService.removeCartItem(cartId, productId);
-            res.status(200).json(removedItem);
+            await cartService.removeCartItem(cartId, productId, quantity);
+            res.status(204).end();
         } catch (error) {
-            console.error("Error removing item from cart:", error);
+            console.error("Error removing cart item:", error);
             res.status(500).json({ message: "Failed to remove item from cart" });
         }
     }
@@ -77,8 +78,19 @@ class CartController {
     static async getCartByUserId(req, res) {
         const { userId } = req.params;
         try {
+            // Get the cart record
             const cart = await cartService.getCartByUserId(userId);
-            res.status(200).json(cart);
+            
+            // Now also get the cart products with their details
+            const cartProducts = await cartService.getCartDetails(cart.id);
+            
+            // Return a combined response
+            res.status(200).json({
+                id: cart.id,
+                user_id: cart.user_id,
+                created_at: cart.created_at,
+                products: cartProducts // Include the products array
+            });
         } catch (error) {
             console.error("Error fetching cart by user ID:", error);
             res.status(500).json({ message: "Failed to retrieve cart" });

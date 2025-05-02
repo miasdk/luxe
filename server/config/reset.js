@@ -93,7 +93,8 @@ const seedCategoriesTable = async () => {
 
 const createBrandsTable = async () => {
     const insertQuery = `
-        CREATE TABLE IF NOT EXISTS brands (
+        DROP TABLE IF EXISTS brands CASCADE;
+        CREATE TABLE brands (
             id SERIAL PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
             image VARCHAR(255) NOT NULL
@@ -670,7 +671,7 @@ const implementFullTextSearch = async () => {
 // seedProductConditions();
 // seedOrdersTable();
 // seedOrderItemsTable();
-// createProductDetailsView();
-createCartDetailsView();
+createProductDetailsView();
+// createCartDetailsView();
 // createOrderDetailsView();
 
