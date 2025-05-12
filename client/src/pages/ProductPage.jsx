@@ -14,7 +14,7 @@ const ProductPage = () => {
     if (error) return <p className="text-center text-red-500">Error: {error}</p>;
 
     return (
-        <div className="mx-auto px-8 max-w-7xl">
+        <div className="mx-auto px-12 max-w-8xl">
             <h1 className="text-4xl font-bold mb-5 text-left mt-5">All Products</h1>
             <div>
                 {/* Keep CategoryCarousel if you use it */}

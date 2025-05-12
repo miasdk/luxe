@@ -297,7 +297,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      <div className="py-16 bg-white">
+      <div className="py-16 bg-white max-w-7xl mx-auto">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div className="order-2 md:order-1">
@@ -391,7 +391,7 @@ const HomePage = () => {
         </div>
       )}
 
-      {/* Editorial section - Elegant version */}
+      {/* Editorial section - Elegant version
       <div className="container mx-auto px-4 py-16">
         <h2 className="text-2xl font-light text-gray-900 mb-10 text-center">Editorial</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -434,7 +434,7 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="bg-gray-50 py-16 border-t border-gray-100">
         <div className="container mx-auto px-4">
