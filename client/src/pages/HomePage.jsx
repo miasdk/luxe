@@ -104,14 +104,13 @@ const HomePage = () => {
       </div>
     )
   }
-
+//Sections commented out to be added later
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Main navigation categories - Elegant style */}
       <div
         className={`bg-white border-b border-gray-200 sticky top-0 z-30 transition-shadow ${isScrolled ? "shadow-sm" : ""}`}
       >
-        <div className="container mx-auto px-4">
+        {/* <div className="container mx-auto px-4">
           <div className="flex overflow-x-auto py-3 gap-8 scrollbar-hide">
             {categories.map((category) => (
               <button
@@ -131,10 +130,9 @@ const HomePage = () => {
               More <ChevronDown size={14} className="ml-1" />
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
 
-      {/* Refined Hero section */}
       <div className="relative bg-gradient-to-r from-gray-50 to-gray-100 overflow-hidden">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -148,7 +146,7 @@ const HomePage = () => {
                 </p>
               </div>
 
-              <form onSubmit={handleSearch} className="relative max-w-md">
+              {/* <form onSubmit={handleSearch} className="relative max-w-md">
                 <input
                   type="text"
                   placeholder="Search for anything..."
@@ -164,7 +162,7 @@ const HomePage = () => {
                 >
                   <Search size={20} />
                 </button>
-              </form>
+              </form> */}
 
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -198,12 +196,10 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Decorative elements */}
         <div className="absolute top-1/4 right-0 w-64 h-64 bg-gray-200 rounded-full opacity-20 -mr-32"></div>
         <div className="absolute bottom-0 left-0 w-40 h-40 bg-gray-200 rounded-full opacity-20 -ml-20 -mb-20"></div>
       </div>
 
-      {/* Elegant benefits bar */}
       <div className="bg-white py-8 border-b border-gray-100">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

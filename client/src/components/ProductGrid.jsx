@@ -24,7 +24,7 @@ const ProductGrid = () => {
     }
 
     return (
-        <div className="grid gap-6 w-full mt-5" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
+        <div className="grid gap-6 w-full mt-5" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))' }}>
             {products.map((product) => (
                 <ProductCard
                     key={product.product_id}

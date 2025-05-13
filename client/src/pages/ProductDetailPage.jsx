@@ -16,6 +16,7 @@ import {
   Shield,
   ChevronDown,
   ChevronUp,
+  Notebook,
 } from "lucide-react"
 import productsService from "../services/productService"
 import { useShoppingCart } from "../context/CartContext"
@@ -183,10 +184,8 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Product Detail */}
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col lg:flex-row gap-12">
-          {/* Product Images */}
           <div className="lg:w-1/2">
             <div className="mb-4 aspect-square overflow-hidden rounded-xl bg-gray-50">
               <img
@@ -214,7 +213,6 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
-          {/* Product Info */}
           <div className="lg:w-1/2">
             <div className="mb-6">
               <div className="flex items-start justify-between">
@@ -372,7 +370,6 @@ export default function ProductDetailPage() {
               )}
             </div>
 
-            {/* Shipping & Returns */}
             <div className="border-t border-gray-200 pt-6 space-y-4">
               <div className="flex items-start gap-3">
                 <div className="p-2 bg-gray-100 rounded-full">

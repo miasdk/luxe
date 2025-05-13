@@ -11,6 +11,7 @@ import PaymentForm from "./components/PaymentForm";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import CreateListing from "./pages/CreateListing";
+import UpdateListing from "./pages/UpdateListing";
 import ProfilePage from "./pages/ProfilePage";
 import OrdersPage from "./pages/OrdersPage";
 import NotFound from "./pages/404NotFound";
@@ -27,6 +28,7 @@ function App() {
               <Route path="/products/:productId" element={<ProductDetailPage />} />
               <Route path="/payment" element={<PaymentFormWrapper />} />
               <Route path="/create-listing" element={<CreateListing />} />
+              <Route path="/update-listing/:id" element={<UpdateListing />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/orders" element={<OrdersPage />} />
             </Route>
