@@ -104,6 +104,29 @@ class ProductController {
             res.status(500).json({ message: "Failed to delete product" });
         }
     }
+
+    static async getFilterOptions(req, res) {
+    const productService = new ProductService();
+    const { category } = req.query;
+    try {
+        const filterOptions = await productService.getFilterOptions(category);
+        res.status(200).json(filterOptions);
+    } catch (error) {
+        console.error("Error fetching filter options:", error);
+        res.status(500).json({ message: "Failed to retrieve filter options" });
+    }
+    }
+
+    static async getCategoriesWithCount(req, res) {
+        const productService = new ProductService();
+        try {
+            const categories = await productService.getCategoriesWithCount();
+            res.status(200).json(categories);
+        } catch (error) {
+            console.error("Error fetching categories with count:", error);
+            res.status(500).json({ message: "Failed to retrieve categories" });
+        }
+    }
 }
 
 export default ProductController;

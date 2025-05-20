@@ -6,12 +6,12 @@ export default function LoginForm({ onSuccess }) {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
-
+        
         try {
             await loginUser(email, password);
             onSuccess(); // Call the success callback
@@ -21,55 +21,62 @@ export default function LoginForm({ onSuccess }) {
             setLoading(false);
         }
     };
-
+    
     return (
-        <form onSubmit={handleSubmit} className='max-w-md mx-auto p-6 rounded-lg'>
-            <h2 className='text-2xl font-bold mb-4 text-center'>Login</h2>
-
-            <div className='mb-4'>
-                <label htmlFor='email' className='block text-gray-700'>Email</label>
+        <form onSubmit={handleSubmit} className='max-w-md mx-auto p-8 rounded-lg bg-white'>
+            <h2 className='text-2xl font-semibold mb-6 text-center text-gray-800'>Welcome</h2>
+            
+            <div className='mb-5'>
+                <label htmlFor='email' className='block text-gray-700 text-sm font-medium mb-1'>Email Address</label>
                 <input
                     type='email'
                     id='email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className='w-full p-2 border rounded-lg'
+                    placeholder="you@example.com"
+                    className='w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors'
                 />
             </div>
-
-            <div className='mb-4'>
-                <label htmlFor='password' className='block text-gray-700'>Password</label>
+            
+            <div className='mb-6'>
+                <div className="flex justify-between items-center mb-1">
+                    <label htmlFor='password' className='block text-gray-700 text-sm font-medium'>Password</label>
+                    <a href='/forgot-password' className='text-sm text-blue-600 hover:text-blue-800 transition-colors'>
+                        Forgot Password?
+                    </a>
+                </div>
                 <input
                     type='password'
                     id='password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className='w-full p-2 border rounded-lg'
+                    placeholder="Enter your password"
+                    className='w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors'
                 />
             </div>
-
+            
             {error && (
-                <div className="text-center mb-4 p-2 bg-red-100 text-red-700 rounded">
+                <div className="text-center mb-6 p-3 bg-red-50 text-red-700 rounded-lg border border-red-100">
                     {error}
                 </div>
             )}
-
+            
             <button
                 type='submit'
                 disabled={loading}
-                className={`w-full py-2 px-4 bg-blue-600 text-white rounded-lg ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'}`}
+                className={`w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium transition-colors ${loading ? 'opacity-70 cursor-not-allowed' : 'hover:bg-blue-700'}`}
             >
-                {loading ? 'Logging in...' : 'Login'}
+                {loading ? 'Signing in...' : 'Sign In'}
             </button>
-
-            <div className="mt-4 text-center space-y-2">
-                <p>
-                    Don't have an account? <a href='/register' className='text-blue-600 hover:underline'>Register</a>
-                </p>
-                <p>
-                    <a href='/forgot-password' className='text-blue-600 hover:underline'>Forgot Password?</a>
+            
+            <div className="mt-6 text-center">
+                <p className="text-gray-600">
+                    Don't have an account?{' '}
+                    <a href='/register' className='text-blue-600 hover:text-blue-800 font-medium transition-colors'>
+                        Sign up
+                    </a>
                 </p>
             </div>
         </form>

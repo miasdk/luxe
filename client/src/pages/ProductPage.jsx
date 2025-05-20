@@ -1,34 +1,38 @@
-import React from "react";
-import ProductGrid from "../components/ProductGrid";
-import FilterSideBar from "../components/FilterSideBar";
-import FilterTopBar from "../components/FilterTopBar";
-import CategoryCarousel from "../components/CategoryCarousel";
-import ActiveFilters from "../components/ActiveFilters"; // Import the ActiveFilters component
-import { useProductContext } from "../context/ProductContext"; // Import the context hook
+// ProductPage.jsx
+import React, { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import FilterSideBar from '../components/FilterSideBar';
+import FilterTopBar from '../components/FilterTopBar';
+import ActiveFilters from '../components/ActiveFilters';
+import ProductGrid from '../components/ProductGrid';
+import { useProductContext } from '../context/ProductContext';
 
 const ProductPage = () => {
-    // Replace local state with context
-    const { loading, error } = useProductContext();
+  const [searchParams] = useSearchParams();
+  const { updateCategory, selectedCategory } = useProductContext();
+  
+  // Read URL parameters only once on initial render
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get('category');
+    if (categoryFromUrl && categoryFromUrl !== selectedCategory) {
+      console.log(`Setting category from URL: ${categoryFromUrl}`);
+      updateCategory(categoryFromUrl);
+    }
+  }, []);  // Empty dependency array - only run on mount
 
-    if (loading) return <p className="text-center text-gray-500">Loading products...</p>;
-    if (error) return <p className="text-center text-red-500">Error: {error}</p>;
-
-    return (
-        <div className="mx-auto px-12 max-w-8xl">
-            <h1 className="text-4xl font-bold mb-5 text-left mt-5">All Products</h1>
-            <div>
-                {/* Keep CategoryCarousel if you use it */}
-            </div>
-            <div className="flex flex-col md:flex-row">
-                <FilterSideBar />
-                <div className="flex-grow">
-                    <FilterTopBar />
-                    <ActiveFilters /> {/* Add ActiveFilters component */}
-                    <ProductGrid /> {/* Remove products prop - it now gets data from context */}
-                </div>
-            </div>
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col md:flex-row gap-6">
+        <FilterSideBar />
+        
+        <div className="flex-1">
+          <FilterTopBar />
+          <ActiveFilters />
+          <ProductGrid />
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default ProductPage;

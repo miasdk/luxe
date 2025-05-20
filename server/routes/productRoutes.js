@@ -3,28 +3,22 @@ import ProductController from '../controllers/ProductController.js';
 
 const router = express.Router();
 
-// Route to get products by category
+// Specific fixed-path routes should come FIRST
+router.get('/categories-with-count', ProductController.getCategoriesWithCount);
+router.get('/filter-options', ProductController.getFilterOptions);
 router.get('/category/:category', ProductController.getProductsByCategory);
-
-// Route to search products by title
 router.get('/search', ProductController.searchProductsByTitle);
-
-// Route to filter products by criteria
 router.get('/filter', ProductController.getProductsByFilters);
 
-// Route to get a product by ID
-router.get('/:id', ProductController.getProductById);
-
-// Route to get all products
+// Root route
 router.get('/', ProductController.getAllProducts);
 
-// Route to add a new product
+// Parameter routes should come LAST
+router.get('/:id', ProductController.getProductById);
+
+// Other methods
 router.post('/', ProductController.addProduct);
-
-// Route to update a product by ID
 router.put('/:id', ProductController.updateProduct);
-
-// Route to delete a product by ID
 router.delete('/:id', ProductController.deleteProduct);
 
 export default router;

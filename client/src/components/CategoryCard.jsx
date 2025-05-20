@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 const CategoryCard = ({ category }) => {
   return (
     <div className="group relative overflow-hidden rounded-xl bg-white transition-all duration-300 hover:shadow-md">
+      {/* Image section - THIS WAS MISSING */}
       <div className="aspect-[4/5] overflow-hidden">
         <img
           src={category.image || "/placeholder.svg"}
@@ -21,8 +22,9 @@ const CategoryCard = ({ category }) => {
           </div>
           <h2 className="mb-2 font-light text-2xl tracking-wide">{category.name}</h2>
           <p className="mb-4 text-sm text-white/80">{category.description}</p>
+          
           <Link
-            to={`/categories/${category.slug || category.id}`}
+            to={`/products?category=${encodeURIComponent(category.name)}`}
             className="inline-flex items-center text-sm font-medium text-white"
           >
             Explore Collection
@@ -31,7 +33,6 @@ const CategoryCard = ({ category }) => {
         </div>
       </div>
 
-      {/* Subtle border overlay */}
       <div className="absolute inset-0 rounded-xl border border-white/10 pointer-events-none"></div>
     </div>
   )

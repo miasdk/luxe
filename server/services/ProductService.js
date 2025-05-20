@@ -28,6 +28,24 @@ class ProductService {
         }
     }
 
+    async getFilterOptions(category) {
+    try {
+        return await ProductModel.getFilterOptions(category);
+    } catch (error) {
+        console.error('ProductService.getFilterOptions(): Error:', error.message);
+        throw error;
+    }
+    }
+
+    async getCategoriesWithCount() {
+        try {
+            return await ProductModel.getCategoriesWithCount();
+        } catch (error) {
+            console.error('ProductService.getCategoriesWithCount(): Error:', error.message);
+            throw error;
+        }
+    }
+
     async getProductsByFilters(filters, sortBy, sortOrder) { 
         try {
             return await ProductModel.getProductsByFilters(filters, sortBy, sortOrder);

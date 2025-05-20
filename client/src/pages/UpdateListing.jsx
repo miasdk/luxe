@@ -8,6 +8,8 @@ import {
   AlertCircle
 } from "lucide-react";
 import productsService from "../services/productService";
+import brandService from "../services/brandService";
+import categoryService from "../services/categoryService";
 import { colorData } from "../data/colors";
 import { conditionData } from "../data/conditions";
 import { sizeData } from "../data/sizes";
@@ -43,6 +45,8 @@ export default function UpdateListing() {
   };
 
   const getColorIdsByNames = (colorNames) => {
+    if (!colorNames || !Array.isArray(colorNames)) return [];
+    
     return colorNames.map(name => {
       const color = colorData.find(c => c.name.toLowerCase() === name.toLowerCase());
       return color ? color.id : null;
@@ -50,6 +54,8 @@ export default function UpdateListing() {
   };
 
   const getSizeIdsByNames = (sizeNames) => {
+    if (!sizeNames || !Array.isArray(sizeNames)) return [];
+    
     return sizeNames.map(name => {
       const size = sizeData.find(s => s.name.toLowerCase() === name.toLowerCase());
       return size ? size.id : null;
@@ -57,6 +63,8 @@ export default function UpdateListing() {
   };
 
   const getConditionIdsByNames = (conditionNames) => {
+    if (!conditionNames || !Array.isArray(conditionNames)) return [];
+    
     return conditionNames.map(name => {
       const condition = conditionData.find(c => c.name === name);
       return condition ? condition.id : null;
@@ -66,33 +74,69 @@ export default function UpdateListing() {
   // Fetch reference data and product
   useEffect(() => {
     const fetchAllData = async () => {
+      setLoading(true);
+      setError(null);
+      
       try {
-        setLoading(true);
+        // Fetch reference data first (brands and categories)
+        let brandsData, categoriesData;
         
-        // Fetch brands and categories first
-        const [brandsData, categoriesData] = await Promise.all([
-          productsService.fetchBrands(),
-          productsService.fetchCategories()
-        ]);
+        try {
+          // Use separate variables to make error handling clearer
+          const brandsPromise = brandService.fetchAllBrands();
+          const categoriesPromise = categoryService.fetchAllCategories();
+          
+          // Await both promises
+          [brandsData, categoriesData] = await Promise.all([
+            brandsPromise,
+            categoriesPromise
+          ]);
+          
+          // Verify we got data
+          if (!brandsData || !Array.isArray(brandsData)) {
+            throw new Error("Invalid brands data received");
+          }
+          
+          if (!categoriesData || !Array.isArray(categoriesData)) {
+            throw new Error("Invalid categories data received");
+          }
+          
+        } catch (refError) {
+          console.error("Error fetching reference data:", refError);
+          throw new Error(`Failed to load reference data: ${refError.message}`);
+        }
         
+        // Set brands and categories with the fetched data
         setBrands(brandsData);
         setCategories(categoriesData);
         
-        // Then fetch the product
-        const productData = await productsService.fetchProductById(id);
-        console.log("Product data from API:", productData);
-        setProduct(productData);
+        // Now fetch the product details
+        try {
+          const productData = await productsService.fetchProductById(id);
+          
+          if (!productData) {
+            throw new Error("Product not found");
+          }
+          
+          console.log("Product data from API:", productData);
+          setProduct(productData);
+          
+          // Set form data from product
+          setFormData({
+            title: productData.title || "",
+            price: productData.price || "",
+            description: productData.description || "",
+            image: productData.image || ""
+          });
+          
+        } catch (productError) {
+          console.error("Error fetching product:", productError);
+          throw new Error(`Failed to load product: ${productError.message}`);
+        }
         
-        // Set form data
-        setFormData({
-          title: productData.title || "",
-          price: productData.price || "",
-          description: productData.description || "",
-          image: productData.image || ""
-        });
       } catch (err) {
-        console.error("Error fetching data:", err);
-        setError(err.message || "Failed to load product data");
+        console.error("Error in fetchAllData:", err);
+        setError(err.message || "Failed to load data");
       } finally {
         setLoading(false);
       }
@@ -165,7 +209,7 @@ export default function UpdateListing() {
       
       console.log("Sending to backend:", updatedProduct);
       
-      // Note: Use product_id from the product object (not the id param)
+      // Use product_id from the product object
       await productsService.updateProduct(product.product_id, updatedProduct);
       
       navigate(`/products/${product.product_id}`, { 
@@ -182,7 +226,7 @@ export default function UpdateListing() {
 
   const handleDelete = async () => {
     try {
-      // Note: Use product_id from the product object
+      // Use product_id from the product object
       await productsService.deleteProduct(product.product_id);
       navigate("/products", { state: { message: "Product deleted successfully" } });
     } catch (err) {

@@ -6,6 +6,8 @@ import {
   Upload
 } from "lucide-react";
 import productsService from "../services/productService";
+import brandService from "../services/brandService";
+import categoryService from "../services/categoryService";
 // Import hardcoded data
 import { colorData } from "../data/colors";
 import { conditionData } from "../data/conditions";
@@ -41,13 +43,16 @@ export default function CreateListing() {
   useEffect(() => {
     const fetchReferenceData = async () => {
       try {
-        // Only fetch brands and categories from backend
-        const brandsData = await productsService.fetchBrands();
-        const categoriesData = await productsService.fetchCategories();
+        // Use the correct service methods for fetching brands and categories
+        const [brandsData, categoriesData] = await Promise.all([
+          brandService.fetchAllBrands(),  // Changed from productsService.fetchBrands
+          categoryService.fetchAllCategories()  // Changed from productsService.fetchCategories
+        ]);
         
         setBrands(brandsData);
         setCategories(categoriesData);
       } catch (error) {
+        console.error("Error fetching reference data:", error);
         setError("Failed to load reference data: " + error.message);
       }
     };
@@ -103,11 +108,13 @@ export default function CreateListing() {
         price: parseFloat(formData.price)
       };
 
-      const createdProduct = await productsService.createProduct(productToCreate);
+      // Use addProduct from ProductService
+      const createdProduct = await productsService.addProduct(productToCreate);
       navigate(`/products/${createdProduct.id}`, { 
         state: { message: "Product created successfully" }
       });
     } catch (err) {
+      console.error("Error creating product:", err);
       setError(err.message || "Failed to create product");
       window.scrollTo(0, 0);
     } finally {

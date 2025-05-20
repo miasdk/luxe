@@ -38,25 +38,110 @@ class ProductModel {
         const results = await pool.query(selectQuery, [category.trim()]);
         return results.rows;
     }
-    /**
-     * Retrieves products that match the provided filters (category, size, color, condition)
-     * and sorts them based on the specified criteria.
-     * 
-     * This method dynamically constructs an SQL query using conditional filtering 
-     * and `ANY` for multi-value comparisons to optimize performance.
-     * 
-     * @param {Object} filters - An object containing filter criteria.
-     * @param {string} [filters.category_name] - The category to filter by (optional).
-     * @param {string} [filters.size] - The size to filter by (optional).
-     * @param {string} [filters.color] - The color to filter by (optional).
-     * @param {string} [filters.condition] - The condition to filter by (optional).
-     * @param {string} [sortBy='name'] - The column to sort results by (default: 'name').
-     * @param {string} [sortOrder='ASC'] - The sorting order (default: 'ASC').
-     * @returns {Promise<Array>} - A list of products that match the filters.
-     * @throws {Error} - Throws an error if the database query fails.
-     */
+
+    static async getFilterOptions(categoryName = null) {
+        try {
+            // Base query to get all available filter options with counts
+            let query = `
+                SELECT 
+                    'size' as filter_type,
+                    s AS filter_value,
+                    COUNT(DISTINCT product_id) as product_count
+                FROM (
+                    SELECT product_id, unnest(sizes) as s
+                    FROM product_details
+                    WHERE 1=1
+                    ${categoryName ? "AND category_name = $1" : ""}
+                ) as sizes_expanded
+                GROUP BY s
+                
+                UNION ALL
+                
+                SELECT 
+                    'color' as filter_type,
+                    c AS filter_value,
+                    COUNT(DISTINCT product_id) as product_count
+                FROM (
+                    SELECT product_id, unnest(colors) as c
+                    FROM product_details
+                    WHERE 1=1
+                    ${categoryName ? "AND category_name = $1" : ""}
+                ) as colors_expanded
+                GROUP BY c
+                
+                UNION ALL
+                
+                SELECT 
+                    'condition' as filter_type,
+                    c AS filter_value,
+                    COUNT(DISTINCT product_id) as product_count
+                FROM (
+                    SELECT product_id, unnest(conditions) as c
+                    FROM product_details
+                    WHERE 1=1
+                    ${categoryName ? "AND category_name = $1" : ""}
+                ) as conditions_expanded
+                GROUP BY c
+                
+                ORDER BY filter_type, filter_value;
+            `;
+            
+            const params = categoryName ? [categoryName] : [];
+            const result = await pool.query(query, params);
+            
+            // Transform into a structured object
+            const filterOptions = {
+                sizes: [],
+                colors: [],
+                conditions: []
+            };
+            
+            result.rows.forEach(row => {
+                if (row.filter_type === 'size') {
+                    filterOptions.sizes.push({
+                        name: row.filter_value,
+                        count: parseInt(row.product_count)
+                    });
+                } else if (row.filter_type === 'color') {
+                    filterOptions.colors.push({
+                        name: row.filter_value,
+                        count: parseInt(row.product_count)
+                    });
+                } else if (row.filter_type === 'condition') {
+                    filterOptions.conditions.push({
+                        name: row.filter_value,
+                        count: parseInt(row.product_count)
+                    });
+                }
+            });
+            
+            return filterOptions;
+        } catch (error) {
+            console.error("Error fetching filter options:", error.message);
+            throw new Error("Failed to retrieve filter options");
+        }
+    }
+
+    static async getCategoriesWithCount() {
+        try {
+            const query = `
+                SELECT 
+                    category_name, 
+                    COUNT(DISTINCT product_id) as product_count
+                FROM product_details
+                GROUP BY category_name
+                ORDER BY category_name;
+            `;
+            
+            const result = await pool.query(query);
+            return result.rows;
+        } catch (error) {
+            console.error("Error fetching categories with count:", error.message);
+            throw new Error("Failed to retrieve categories");
+        }
+    }
     static async getProductsByFilters(filters, sortBy = 'title', sortOrder = 'ASC') {
-        const { category, size, color, condition } = filters;
+        const { category, size, color, condition, brand } = filters;
         
         let selectQuery = `
             SELECT * 
@@ -64,15 +149,23 @@ class ProductModel {
             WHERE 1=1
         `;
         
-        const queryParams = []; // Array to store query parameters
+        const queryParams = [];
         let paramIndex = 1;
         
+        // Primary filter: Category or brand
         if (category) {
-            // Change 'category' to 'category_name'
             selectQuery += ` AND category_name = $${paramIndex}`;
             queryParams.push(category);
             paramIndex++;
         }
+        
+        if (brand) {
+            selectQuery += ` AND brand_name = $${paramIndex}`;
+            queryParams.push(brand);
+            paramIndex++;
+        }
+        
+        // Secondary filters: Apply only if a value is selected
         if (size) { 
             selectQuery += ` AND $${paramIndex} = ANY (sizes)`;
             queryParams.push(size);
@@ -89,6 +182,13 @@ class ProductModel {
             paramIndex++;
         }
         
+        // Add price range if specified
+        if (filters.minPrice !== undefined && filters.maxPrice !== undefined) {
+            selectQuery += ` AND price >= $${paramIndex} AND price <= $${paramIndex + 1}`;
+            queryParams.push(filters.minPrice, filters.maxPrice);
+            paramIndex += 2;
+        }
+        
         selectQuery += ` ORDER BY ${sortBy} ${sortOrder}`;
         
         try {
@@ -100,7 +200,6 @@ class ProductModel {
         }
     }
     
-    //Revised method to fetch products by title using full-text search
     static async searchProductsByTitle(keyword) {
         const searchQuery = `
             SELECT * 
