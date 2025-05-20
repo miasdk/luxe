@@ -18,6 +18,7 @@ import CreateListing from "./pages/CreateListing";
 import UpdateListing from "./pages/UpdateListing";
 import ProfilePage from "./pages/ProfilePage";
 import OrdersPage from "./pages/OrdersPage";
+import SearchResultsPage from "./pages/SearchResultsPage";
 import NotFound from "./pages/404NotFound";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/update-listing/:id" element={<UpdateListing />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/orders" element={<OrdersPage />} />
+                <Route path="/search" element={<SearchResultsPage />} />
               </Route>
               
               <Route path="/login" element={<LoginPage />} />

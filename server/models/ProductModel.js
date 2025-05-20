@@ -253,6 +253,40 @@ class ProductModel {
             client.release();
         }
     } 
+
+    /**
+     * Search for products by text
+     * 
+     * @param {string} query - Search query
+     * @returns {Promise<Array>} - Array of matching products
+     */
+    static async searchProducts(query) {
+        // Using the search_vector column created in reset.js
+        const searchQuery = `
+            SELECT * FROM product_details
+            WHERE search_vector @@ plainto_tsquery('english', $1)
+            OR title ILIKE $2
+            OR description ILIKE $2
+            OR brand_name ILIKE $2
+            OR category_name ILIKE $2
+            ORDER BY 
+                CASE WHEN title ILIKE $2 THEN 1
+                    WHEN brand_name ILIKE $2 THEN 2
+                    WHEN category_name ILIKE $2 THEN 3
+                    ELSE 4
+                END,
+                created_at DESC
+            LIMIT 20;
+        `;
+        
+        try {
+            const result = await pool.query(searchQuery, [query, `%${query}%`]);
+            return result.rows;
+        } catch (error) {
+            console.error('Error executing search query:', error.message);
+            throw new Error('Database error: Failed to search products');
+        }
+    }
 }
 
 export default ProductModel;

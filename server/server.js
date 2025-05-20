@@ -8,6 +8,7 @@ import cartRouter from './routes/cartRoutes.js';
 import ordersRouter from './routes/orderRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import wishlistRouter from './routes/wishlistRoutes.js';
+import searchRouter from './routes/searchRoutes.js';
 dotenv.config();
 const app = express(); 
 
@@ -22,6 +23,7 @@ app.use('/api/orders', ordersRouter);
 app.use('/api/users', userRouter);
 app.use('/api/brands', brandsRouter);
 app.use('/api/wishlist', wishlistRouter);
+app.use('/api/search', searchRouter);
 
 app.get('/', (req, res) => {
     res.status(200).send('<h1 style="text-align: center; margin-top: 50px;">eCart API</h1>')
