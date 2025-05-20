@@ -1,14 +1,10 @@
-import React, { useState } from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import React from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import WishlistButton from "./WishlistButton";
 
 const ProductCard = ({ product }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
   const { addToCart, removeFromCart, cartItems } = useCart();
-
-  const toggleFavorite = () => setIsFavorite(!isFavorite);
-
   const isInCart = cartItems && cartItems.find(item => item.product_id === product.product_id);
   const quantity = isInCart ? isInCart.quantity : 0;
 
@@ -22,13 +18,12 @@ const ProductCard = ({ product }) => {
 
   return (
     <article className="bg-white group h-full overflow-hidden relative rounded-sm">
-      <button onClick={toggleFavorite} className="absolute top-2 right-2 z-10 p-2">
-        {isFavorite ? (
-          <FaHeart className="text-red-500" />
-        ) : (
-          <FaRegHeart className="text-gray-500" />
-        )}
-      </button>
+      <div className="absolute top-2 right-2 z-10 p-2">
+        <WishlistButton
+          productId={product.product_id}
+          size={18}
+        />
+      </div>
 
       <div className="relative">
         <img

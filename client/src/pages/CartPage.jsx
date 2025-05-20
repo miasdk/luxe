@@ -94,7 +94,7 @@ const CartPage = () => {
                 </div>
                 
                 <div>
-                    <div className="bg-white shadow-md rounded-lg p-6">
+                    <div className="bg-white  rounded-lg p-6">
                         <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
                         
                         <div className="space-y-3">
@@ -118,8 +118,9 @@ const CartPage = () => {
                             onClick={proceedToCheckout}
                             className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
                         >
-                            Proceed to Checkout
+                            Checkout
                         </button>
+                     
                         
                         <div className="mt-4 text-center">
                             <Link to="/" className="text-blue-500 hover:underline">

@@ -73,16 +73,23 @@ class ProductController {
         }
     }
 
-    static async updateProduct(req, res) {
-        const productService = new ProductService();
-        const { id } = req.params;
-        try {
-            const updatedProduct = await productService.updateProduct(id, req.body);
-            res.status(200).json(updatedProduct);
-        } catch (error) {
-            console.error("Error updating product:", error);
-            res.status(500).json({ message: "Failed to update product" });
-        }
+   static async updateProduct(req, res) {
+    const productService = new ProductService();
+    const { id } = req.params;
+    
+    try {
+        console.log("Update request for product ID:", id);
+        console.log("Request body:", req.body);
+        
+        const updatedProduct = await productService.updateProduct(id, req.body);
+        res.status(200).json(updatedProduct);
+    } catch (error) {
+        console.error("Error updating product:", error);
+        res.status(500).json({ 
+        message: "Failed to update product",
+        error: error.message 
+        });
+    }
     }
 
     static async deleteProduct(req, res) {

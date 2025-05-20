@@ -21,6 +21,7 @@ import {
 import productsService from "../services/productService"
 import { useCart } from "../context/CartContext"
 import ProductCarousel from "../components/ProductCarousel"
+import WishlistButton from '../components/WishlistButton';
 
 export default function ProductDetailPage() {
   const { productId } = useParams()
@@ -222,17 +223,11 @@ export default function ProductDetailPage() {
                   <p className="text-gray-500">{product.brand_name}</p>
                 </div>
                 <div className="flex gap-2">
-                  <button
-                    onClick={toggleFavorite}
-                    className={`p-2 rounded-full border ${
-                      isFavorite
-                        ? "bg-red-50 border-red-200 text-red-500"
-                        : "bg-gray-50 border-gray-200 text-gray-500 hover:bg-gray-100"
-                    }`}
-                    aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-                  >
-                    <Heart size={20} className={isFavorite ? "fill-red-500" : ""} />
-                  </button>
+                  <WishlistButton 
+                      productId={product.product_id} 
+                      className="p-2 rounded-full border bg-gray-50 border-gray-200 hover:bg-gray-100"
+                      showText={false}
+                  />
                   <Link
                   to={`/update-listing/${product.product_id}`}
                   className="p-2 rounded-full bg-gray-50 border border-gray-200 text-gray-500 hover:bg-gray-100"

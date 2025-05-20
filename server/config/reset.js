@@ -650,6 +650,28 @@ const createCartDetailsView = async () => {
     }
 }
 
+//wishlist 
+const createWishlistTable = async () => {
+    const query = `
+        DROP TABLE IF EXISTS wishlists CASCADE;
+
+        CREATE TABLE IF NOT EXISTS wishlists (
+        id SERIAL PRIMARY KEY,
+        user_id TEXT NOT NULL REFERENCES users(uid) ON DELETE CASCADE,
+        product_id INT NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        UNIQUE(user_id, product_id)
+);
+    `;
+    try {
+        await pool.query(query);
+        console.log('Wishlists table created successfully');
+    } catch (error) {
+        console.error('Error creating wishlist table', error.stack);
+    }
+}
+
+
 const addSearchVectorColumn = async () => {
     const query = `
         ALTER TABLE products 
@@ -715,6 +737,8 @@ const dropOrderRelatedTables = async () => {
   }
 };
 
+
+
 // Then call this function before creating the tables again
 // await dropOrderRelatedTables();
 
@@ -736,9 +760,11 @@ const dropOrderRelatedTables = async () => {
 // seedOrdersTable();
 // seedOrderItemsTable();
 // createShippingInfoTable();
-createOrderDetailsView();
+// createOrderDetailsView();
 // createProductDetailsView();
 // createCartDetailsView();
 
 
 
+
+createWishlistTable();

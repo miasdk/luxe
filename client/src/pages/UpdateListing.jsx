@@ -1,106 +1,195 @@
 // UpdateListing.jsx
-import { useState, useEffect } from "react"
-import { useParams, useNavigate, Link } from "react-router-dom"
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   ArrowLeft,
   Save,
   Trash,
   AlertCircle
-} from "lucide-react"
-import productsService from "../services/productService"
+} from "lucide-react";
+import productsService from "../services/productService";
 import { colorData } from "../data/colors";
 import { conditionData } from "../data/conditions";
 import { sizeData } from "../data/sizes";
 
 export default function UpdateListing() {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const [product, setProduct] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     price: "",
-    original_price: "",
     description: "",
-    stock: "",
-    conditions: "",
-    brand_name: "",
-    category_name: "",
-    sizes: ""
-  })
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
-  const colors = colorData;
-  const conditions = conditionData;
-  const sizes = sizeData;
+    image: ""
+  });
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  
+  // State for brands and categories
+  const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-  const fetchProduct = async () => {
-    try {
-      setLoading(true);
-      const productData = await productsService.fetchProductById(id);
-      
-      setProduct(productData);
-      
-      setFormData({
-        title: productData.title || "",
-        price: productData.price || "",
-        original_price: productData.original_price || "",
-        description: productData.description || "",
-        stock: productData.stock || 1,
-        conditions: productData.conditions || "",       // If backend returns conditions string
-        brand_name: productData.brand_name || "",       // If backend returns brand_name
-        category_name: productData.category_name || "", // If backend returns category_name
-        sizes: productData.sizes || "",                 // If backend returns sizes string
-        image: productData.image || ""
-      });
-    } catch (err) {
-      console.error("Error fetching product:", err);
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+  // Helper functions to map names to IDs
+  const getBrandIdByName = (brandName) => {
+    const brand = brands.find(b => b.name === brandName);
+    return brand ? brand.id : null;
   };
 
-  fetchProduct();
-}, [id]);
+  const getCategoryIdByName = (categoryName) => {
+    const category = categories.find(c => c.name === categoryName);
+    return category ? category.id : null;
+  };
+
+  const getColorIdsByNames = (colorNames) => {
+    return colorNames.map(name => {
+      const color = colorData.find(c => c.name.toLowerCase() === name.toLowerCase());
+      return color ? color.id : null;
+    }).filter(id => id !== null);
+  };
+
+  const getSizeIdsByNames = (sizeNames) => {
+    return sizeNames.map(name => {
+      const size = sizeData.find(s => s.name.toLowerCase() === name.toLowerCase());
+      return size ? size.id : null;
+    }).filter(id => id !== null);
+  };
+
+  const getConditionIdsByNames = (conditionNames) => {
+    return conditionNames.map(name => {
+      const condition = conditionData.find(c => c.name === name);
+      return condition ? condition.id : null;
+    }).filter(id => id !== null);
+  };
+
+  // Fetch reference data and product
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        setLoading(true);
+        
+        // Fetch brands and categories first
+        const [brandsData, categoriesData] = await Promise.all([
+          productsService.fetchBrands(),
+          productsService.fetchCategories()
+        ]);
+        
+        setBrands(brandsData);
+        setCategories(categoriesData);
+        
+        // Then fetch the product
+        const productData = await productsService.fetchProductById(id);
+        console.log("Product data from API:", productData);
+        setProduct(productData);
+        
+        // Set form data
+        setFormData({
+          title: productData.title || "",
+          price: productData.price || "",
+          description: productData.description || "",
+          image: productData.image || ""
+        });
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError(err.message || "Failed to load product data");
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchAllData();
+  }, [id]);
+
+  // Debug log when product or reference data changes
+  useEffect(() => {
+    if (product && brands.length > 0 && categories.length > 0) {
+      console.log("Data ready for update:");
+      console.log("- Product:", product);
+      console.log("- Brand ID for", product.brand_name, "=", getBrandIdByName(product.brand_name));
+      console.log("- Category ID for", product.category_name, "=", getCategoryIdByName(product.category_name));
+    }
+  }, [product, brands, categories]);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value
-    })
-  }
+    });
+  };
 
   const handleUpdate = async (e) => {
-    e.preventDefault()
-    try {
-      // Convert price and original_price to numbers
-      const updatedProduct = {
-        ...formData,
-        price: parseFloat(formData.price),
-        original_price: formData.original_price ? parseFloat(formData.original_price) : null,
-        stock: parseInt(formData.stock)
-      }
-
-      await productsService.updateProduct(id, updatedProduct)
-      navigate(`/products/${id}`, { state: { message: "Product updated successfully" } })
-    } catch (err) {
-      setError(err.message)
-      window.scrollTo(0, 0)
+    e.preventDefault();
+    
+    // Validate required fields
+    if (!formData.title || !formData.price || !formData.description) {
+      setError("Title, price, and description are required");
+      return;
     }
-  }
+    
+    setIsSubmitting(true);
+    setError(null);
+    
+    try {
+      // Get IDs from names
+      const brandId = getBrandIdByName(product.brand_name);
+      const categoryId = getCategoryIdByName(product.category_name);
+      
+      // Map string arrays to ID arrays
+      const colorIds = getColorIdsByNames(product.colors || []);
+      const sizeIds = getSizeIdsByNames(product.sizes || []);
+      const conditionIds = getConditionIdsByNames(product.conditions || []);
+      
+      // Validate required IDs
+      if (!brandId) {
+        throw new Error(`Could not find brand ID for "${product.brand_name}"`);
+      }
+      
+      if (!categoryId) {
+        throw new Error(`Could not find category ID for "${product.category_name}"`);
+      }
+      
+      // Create the update object with the exact fields backend expects
+      const updatedProduct = {
+        title: formData.title,
+        price: parseFloat(formData.price),
+        description: formData.description,
+        image: formData.image,
+        brand_id: brandId,
+        category_id: categoryId,
+        color_ids: colorIds,
+        size_ids: sizeIds,
+        condition_ids: conditionIds
+      };
+      
+      console.log("Sending to backend:", updatedProduct);
+      
+      // Note: Use product_id from the product object (not the id param)
+      await productsService.updateProduct(product.product_id, updatedProduct);
+      
+      navigate(`/products/${product.product_id}`, { 
+        state: { message: "Product updated successfully" } 
+      });
+    } catch (err) {
+      console.error("Update error:", err);
+      setError(err.message || "Failed to update product");
+      window.scrollTo(0, 0);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleDelete = async () => {
     try {
-      await productsService.deleteProduct(id)
-      navigate("/products", { state: { message: "Product deleted successfully" } })
+      // Note: Use product_id from the product object
+      await productsService.deleteProduct(product.product_id);
+      navigate("/products", { state: { message: "Product deleted successfully" } });
     } catch (err) {
-      setError(err.message)
-      window.scrollTo(0, 0)
+      setError(err.message || "Failed to delete product");
+      window.scrollTo(0, 0);
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -123,7 +212,7 @@ export default function UpdateListing() {
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (error) {
@@ -144,7 +233,7 @@ export default function UpdateListing() {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   if (!product) {
@@ -162,7 +251,7 @@ export default function UpdateListing() {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -209,6 +298,16 @@ export default function UpdateListing() {
           </div>
         </div>
 
+        {/* Error Alert */}
+        {error && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md flex items-start">
+            <AlertCircle size={20} className="text-red-500 mt-0.5 mr-3 flex-shrink-0" />
+            <div>
+              <p className="text-red-700">{error}</p>
+            </div>
+          </div>
+        )}
+
         {/* Delete Confirmation Modal */}
         {showDeleteConfirm && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -243,54 +342,45 @@ export default function UpdateListing() {
               <h2 className="text-xl font-medium text-gray-900 mb-4">Product Image</h2>
               <div className="aspect-square overflow-hidden rounded-xl bg-gray-50 border border-gray-200">
                 <img
-                  src={product.image}
-                  alt={product.title}
+                  src={formData.image}
+                  alt={formData.title}
                   className="h-full w-full object-contain"
                 />
               </div>
-              <p className="text-sm text-gray-500 mt-2">
-                Image upload functionality will be available soon
-              </p>
+              <div className="mt-3">
+                <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">
+                  Image URL
+                </label>
+                <input
+                  type="text"
+                  id="image"
+                  name="image"
+                  value={formData.image}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                />
+              </div>
             </div>
 
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-medium text-gray-900 mb-4">Product Categories</h2>
-                <div className="space-y-4">
-                    <div>
-                    <label htmlFor="category_name" className="block text-sm font-medium text-gray-700 mb-1">
-                        Category
-                    </label>
-                    <select
-                        id="category_name"
-                        name="category_name"
-                        value={formData.category_name}
-                        onChange={handleInputChange}
-                        className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                    >
-                        <option value="">Select a category</option>
-                        <option value="Dresses">Dresses</option>
-                        <option value="Tops">Tops</option>
-                        <option value="Sweaters">Sweaters</option>
-                        <option value="Pants">Pants</option>
-                        <option value="Skirts">Skirts</option>
-                        <option value="Shoes">Shoes</option>
-                    </select>
-                    </div>
-                  <div>
-                    <label htmlFor="brand_name" className="block text-sm font-medium text-gray-700 mb-1">
-                      Brand
-                    </label>
-                    <input
-                      type="text"
-                      id="brand_name"
-                      name="brand_name"
-                      value={formData.brand_name}
-                      onChange={handleInputChange}
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                    />
-                  </div>
+                <h2 className="text-xl font-medium text-gray-900 mb-4">Product Information</h2>
+                <div className="space-y-2">
+                  <p><strong>Brand:</strong> {product.brand_name || "Unknown"}</p>
+                  <p><strong>Category:</strong> {product.category_name || "Uncategorized"}</p>
+                  <p><strong>Condition:</strong> {product.conditions && product.conditions.length > 0 
+                    ? product.conditions.join(", ") 
+                    : "Not specified"}</p>
+                  <p><strong>Sizes:</strong> {product.sizes && product.sizes.length > 0 
+                    ? product.sizes.join(", ") 
+                    : "Not specified"}</p>
+                  <p><strong>Colors:</strong> {product.colors && product.colors.length > 0 
+                    ? product.colors.join(", ") 
+                    : "Not specified"}</p>
                 </div>
+                <p className="mt-4 text-sm text-gray-500">
+                  Brand, category, conditions, sizes, and colors cannot be modified directly in this version.
+                </p>
               </div>
             </div>
           </div>
@@ -330,96 +420,21 @@ export default function UpdateListing() {
                   ></textarea>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
-                      Price ($)
-                    </label>
-                    <input
-                      type="number"
-                      id="price"
-                      name="price"
-                      value={formData.price}
-                      onChange={handleInputChange}
-                      required
-                      min="0"
-                      step="0.01"
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="original_price" className="block text-sm font-medium text-gray-700 mb-1">
-                      Original Price ($) (optional)
-                    </label>
-                    <input
-                      type="number"
-                      id="original_price"
-                      name="original_price"
-                      value={formData.original_price}
-                      onChange={handleInputChange}
-                      min="0"
-                      step="0.01"
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="stock" className="block text-sm font-medium text-gray-700 mb-1">
-                      Stock
-                    </label>
-                    <input
-                      type="number"
-                      id="stock"
-                      name="stock"
-                      value={formData.stock}
-                      onChange={handleInputChange}
-                      required
-                      min="0"
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="conditions" className="block text-sm font-medium text-gray-700 mb-1">
-                      Condition
-                    </label>
-                    <select
-                      id="conditions"
-                      name="conditions"
-                      value={formData.conditions}
-                      onChange={handleInputChange}
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                    >
-                      <option value="">Select condition</option>
-                      <option value="New with tags">New with tags</option>
-                      <option value="New without tags">New without tags</option>
-                      <option value="Like new">Like new</option>
-                      <option value="Good">Good</option>
-                      <option value="Fair">Fair</option>
-                      <option value="Poor">Poor</option>
-                    </select>
-                  </div>
-                </div>
-
                 <div>
-                  <label htmlFor="sizes" className="block text-sm font-medium text-gray-700 mb-1">
-                    Sizes (comma separated if multiple)
+                  <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
+                    Price ($)
                   </label>
                   <input
-                    type="text"
-                    id="sizes"
-                    name="sizes"
-                    value={formData.sizes}
+                    type="number"
+                    id="price"
+                    name="price"
+                    value={formData.price}
                     onChange={handleInputChange}
-                    placeholder="e.g. S,M,L,XL"
+                    required
+                    min="0"
+                    step="0.01"
                     className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Leave empty if not applicable or enter sizes separated by commas (S,M,L,XL)
-                  </p>
                 </div>
               </div>
             </div>
@@ -427,15 +442,18 @@ export default function UpdateListing() {
             <div className="pt-6 border-t border-gray-200">
               <button
                 type="submit"
-                className="w-full px-6 py-3 bg-gray-900 text-white rounded-md font-medium hover:bg-gray-800 transition-colors flex items-center justify-center"
+                disabled={isSubmitting}
+                className={`w-full px-6 py-3 bg-gray-900 text-white rounded-md font-medium transition-colors flex items-center justify-center ${
+                  isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:bg-gray-800"
+                }`}
               >
                 <Save size={18} className="mr-2" />
-                Save Changes
+                {isSubmitting ? "Saving..." : "Save Changes"}
               </button>
             </div>
           </div>
         </form>
       </div>
     </div>
-  )
+  );
 }

@@ -86,26 +86,33 @@ class ProductService {
      * @param {Object} updatedProduct - The updated product data
      * @returns {Promise<Object>} A promise that resolves to the updated product
      */
-    async updateProduct(productId, updatedProduct) {
-        try {
-            const response = await fetch(`${API_BASE_URL}/api/products/${productId}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(updatedProduct),
-            });
-
-            if (!response.ok) {
-                throw new Error("HTTP error: " + response.status);
-            }
-
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error("Error updating product:", error);
-            throw error;
+   async updateProduct(productId, updatedProduct) {
+    console.log(`Starting update for product ID: ${productId}`);
+    console.log("Data to send:", JSON.stringify(updatedProduct));
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/products/${productId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedProduct),
+        });
+        
+        if (!response.ok) {
+        // Try to get more details about the error
+        const errorText = await response.text();
+        console.error("Server returned error:", response.status, errorText);
+        throw new Error(`HTTP error: ${response.status}. Details: ${errorText}`);
         }
+        
+        const data = await response.json();
+        console.log("Update successful, received:", data);
+        return data;
+    } catch (error) {
+        console.error("Error updating product:", error);
+        throw error;
+    }
     }
 
     /**
