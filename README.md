@@ -1,6 +1,4 @@
-Here’s a regenerated README for your Vite Ecommerce Template, featuring a clean, clickable Table of Contents with anchor links for all major sections.
 
----
 
 # Vite Ecommerce Template
 
@@ -20,8 +18,7 @@ This is a basic e-commerce platform built with Vite, React, and a custom Node.js
 7. [Technology Stack](#technology-stack)
 8. [ERD Diagram](#erd-diagram)
 9. [System Architecture](#system-architecture)
-10. [Contributing](#contributing)
-11. [License](#license)
+10. [License](#license)
 
 ---
 
@@ -140,13 +137,6 @@ eCart aims to provide a quick and easy way to get started with building an e-com
 
 ![System Design](https://github.com/user-attachments/assets/e6f36a80-aacb-4f3a-b1da-44c635f38c26)
 
----
-
-## Contributing
-
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
-
----
 
 ## License
 
