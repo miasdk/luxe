@@ -119,22 +119,25 @@ eCart aims to provide a quick and easy way to get started with building an e-com
 
 ## Technology Stack
 
-Frontend
-Languages: Javascript
-Frameworks: React (w/ Vite)
-UI components: ShadCN UI, TailwindCSS
-Icons: Lucide Icons
-Data fetching/caching: React Query, Axios
-Form validation: React Hook Form, Zod
-Notifications/toasts: React Hot Toast
-Backend:
-Languages: Node.js, Express.js
-Authentication: Firebase Auth
-Payment processing: Stripe
-API Specification (UI): OpenAPI (Swagger) (*In Progress*)
-Database: PostgreSQL
-Hosting: Railway
-Design: Figma
+### Frontend
+- **Languages:** JavaScript
+- **Frameworks:** React (with Vite)
+- **UI Components:** ShadCN UI, TailwindCSS
+- **Icons:** Lucide Icons
+- **Data Fetching/Caching:** React Query, Axios
+- **Form Validation:** React Hook Form, Zod
+- **Notifications/Toasts:** React Hot Toast
+
+### Backend
+- **Languages:** Node.js, Express.js
+- **Authentication:** Firebase Auth
+- **Payment Processing:** Stripe
+- **API Specification (UI):** OpenAPI (Swagger) (*In Progress*)
+- **Database:** PostgreSQL
+
+### Infrastructure & Design
+- **Hosting:** Railway
+- **Design:** Figma
 
 ---
 
