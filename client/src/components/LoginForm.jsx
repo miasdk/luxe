@@ -24,7 +24,7 @@ export default function LoginForm({ onSuccess }) {
     
     return (
         <form onSubmit={handleSubmit} className='max-w-md mx-auto p-8 rounded-lg bg-white'>
-            <h2 className='text-2xl font-semibold mb-6 text-center text-gray-800'>Welcome</h2>
+            <h2 className='mb-10 text-center text-3xl font-extrabold text-gray-900'>Welcome</h2>
             
             <div className='mb-5'>
                 <label htmlFor='email' className='block text-gray-700 text-sm font-medium mb-1'>Email Address</label>

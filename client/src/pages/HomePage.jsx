@@ -342,7 +342,7 @@ const HomePage = () => {
               </div>
             </div>
             <div className="order-1 md:order-2 relative">
-              <div className="aspect-[4/5] overflow-hidden rounded-xl shadow-lg">
+              <div className="aspect-[4/5] overflow-hidden rounded-xl ">
                 <img
                   src="https://product-images.therealreal.com/WCINQ86972_1_enlarged.jpg?width=1500"
                   alt="Essential Blazer"
