@@ -255,11 +255,6 @@ CREATE TABLE wishlists (
 - Email notifications for price drops
 - "Move to cart" batch operations
 
----
-
-## Thank You
-### Questions?
-
 ## 3. Wireframes
 <img width="925" alt="Screenshot 2025-01-21 at 9 50 25 AM" src="https://github.com/user-attachments/assets/cb807a79-91b9-416d-b7de-7912b011c884" />
 <img width="925" alt="Screenshot 2025-01-21 at 10 37 07 AM" src="https://github.com/user-attachments/assets/a6915a05-3b7c-465b-b2f3-01fbf598c715" />
