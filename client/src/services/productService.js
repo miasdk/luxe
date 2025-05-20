@@ -81,6 +81,56 @@ class ProductService {
     }
 
     /**
+     * Updates an existing product on the server.
+     * @param {string} productId - The ID of the product to update
+     * @param {Object} updatedProduct - The updated product data
+     * @returns {Promise<Object>} A promise that resolves to the updated product
+     */
+    async updateProduct(productId, updatedProduct) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/products/${productId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(updatedProduct),
+            });
+
+            if (!response.ok) {
+                throw new Error("HTTP error: " + response.status);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error updating product:", error);
+            throw error;
+        }
+    }
+
+    /**
+     * Deletes a product from the server.
+     * @param {string} productId - The ID of the product to delete
+     * @returns {Promise<boolean>} A promise that resolves to true if deletion was successful
+     */
+    async deleteProduct(productId) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/products/${productId}`, {
+                method: "DELETE",
+            });
+
+            if (!response.ok) {
+                throw new Error("HTTP error: " + response.status);
+            }
+
+            return true;
+        } catch (error) {
+            console.error("Error deleting product:", error);
+            throw error;
+        }
+    }
+
+    /**
      * Fetches a product by its ID from the server.
      * @param {string} productId - The ID of the product to fetch.
      * @returns {Promise<Object>} A promise that resolves to the product object
@@ -120,8 +170,32 @@ class ProductService {
             throw error;
         }
     }
-    
-    
+
+    async fetchBrands() {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/brands`);
+            if (!response.ok) {
+                throw new Error("HTTP error: " + response.status);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error("Error fetching brands:", error);
+            throw error;
+        }
+    }
+
+    async fetchCategories() {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/categories`);
+            if (!response.ok) {
+                throw new Error("HTTP error: " + response.status);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error("Error fetching categories:", error);
+            throw error;
+        }
+    }
 }
 
 const productsService = new ProductService();

@@ -446,9 +446,10 @@ const seedProductConditions = async () => {
 
 const createOrdersTable = async () => {
     const query = `
-        CREATE TABLE IF NOT EXISTS orders (
+        DROP TABLE IF EXISTS orders CASCADE;
+        CREATE TABLE orders (
             id SERIAL PRIMARY KEY,
-            user_id INT REFERENCES users(id) ON DELETE SET NULL,
+            user_id TEXT REFERENCES users(uid) ON DELETE SET NULL,
             total_price DECIMAL(10,2) NOT NULL,
             status VARCHAR(50) CHECK (status IN ('pending', 'paid', 'shipped', 'delivered', 'canceled')) DEFAULT 'pending',
             stripe_payment_id TEXT,
@@ -526,6 +527,67 @@ const seedOrderItemsTable = async () => {
     }
 }
 
+// New function to create shipping info table
+const createShippingInfoTable = async () => {
+    const query = `
+        CREATE TABLE IF NOT EXISTS shipping_info (
+            id SERIAL PRIMARY KEY,
+            order_id INT NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
+            user_id TEXT NOT NULL REFERENCES users(uid),
+            name VARCHAR(255) NOT NULL,
+            address TEXT NOT NULL,
+            city VARCHAR(255) NOT NULL,
+            state VARCHAR(255) NOT NULL,
+            zip VARCHAR(20) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    `;
+    try {
+        await pool.query(query);
+        console.log('Shipping info table created successfully');
+    } catch (error) {
+        console.error('Error creating shipping info table', error.stack);
+    }
+}
+
+// Updated function for order details view
+const createOrderDetailsView = async () => {
+    const query = `
+        CREATE OR REPLACE VIEW order_details AS
+        SELECT 
+            o.id AS order_id,
+            o.user_id,
+            u.display_name AS customer_name,
+            o.total_price,
+            o.status,
+            o.created_at,
+            p.title AS product_title,
+            oi.quantity,
+            oi.unit_price,
+            (oi.quantity * oi.unit_price) AS order_total_price,
+            si.name AS shipping_name,
+            si.address AS shipping_address,
+            si.city AS shipping_city,
+            si.state AS shipping_state,
+            si.zip AS shipping_zip,
+            si.email AS shipping_email
+        FROM orders o
+        JOIN users u ON o.user_id = u.uid
+        JOIN order_items oi ON o.id = oi.order_id
+        JOIN products p ON oi.product_id = p.id
+        LEFT JOIN shipping_info si ON o.id = si.order_id;
+    `;
+    try {
+        await pool.query(query);
+        console.log('Order details view created successfully');
+    }
+    catch (error) {
+        console.error('Error creating order details view', error.stack);
+    }
+}
+
+
 const createProductDetailsView = async () => {
     const query = `
         CREATE OR REPLACE VIEW product_details AS
@@ -588,34 +650,6 @@ const createCartDetailsView = async () => {
     }
 }
 
-const createOrderDetailsView = async () => {
-    const query = `
-        CREATE OR REPLACE VIEW order_details AS
-        SELECT 
-            o.id AS order_id,
-            o.user_id,
-            u.display_name AS customer_name,
-            o.total_price,
-            o.status,
-            o.created_at,
-            p.title AS product_title,
-            oi.quantity,
-            oi.unit_price,
-            (oi.quantity * oi.unit_price) AS order_total_price
-            FROM orders o
-            JOIN users u ON o.user_id = u.id
-            JOIN order_items oi ON o.id = oi.order_id
-            JOIN products p ON oi.product_id = p.id;
-        `;
-    try {
-        await pool.query(query);
-        console.log('Order details view created successfully');
-    }
-    catch (error) {
-        console.error('Error creating order details view', error.stack);
-    }
-}
-
 const addSearchVectorColumn = async () => {
     const query = `
         ALTER TABLE products 
@@ -661,6 +695,30 @@ const implementFullTextSearch = async () => {
     await createSearchIndex();
 };
 
+// Add this function to your reset.js file
+const dropOrderRelatedTables = async () => {
+  const query = `
+    -- Drop views first (to avoid dependency issues)
+    DROP VIEW IF EXISTS order_details CASCADE;
+    
+    -- Drop tables in reverse order of dependencies
+    DROP TABLE IF EXISTS shipping_info CASCADE;
+    DROP TABLE IF EXISTS order_items CASCADE;
+    DROP TABLE IF EXISTS orders CASCADE;
+  `;
+  
+  try {
+    await pool.query(query);
+    console.log('Successfully dropped order-related tables and views');
+  } catch (error) {
+    console.error('Error dropping order-related tables:', error.stack);
+  }
+};
+
+// Then call this function before creating the tables again
+// await dropOrderRelatedTables();
+
+// Continue with the rest of your table creation
 // implementFullTextSearch();
 // seedCategoriesTable();
 // seedBrandsTable();
@@ -671,9 +729,16 @@ const implementFullTextSearch = async () => {
 // seedProductSizes();
 // seedProductColors();
 // seedProductConditions();
-// seedOrdersTable();
-// seedOrderItemsTable();
-createProductDetailsView();
+// createProductDetailsView();
 // createCartDetailsView();
 // createOrderDetailsView();
+
+// seedOrdersTable();
+// seedOrderItemsTable();
+// createShippingInfoTable();
+createOrderDetailsView();
+// createProductDetailsView();
+// createCartDetailsView();
+
+
 

@@ -1,10 +1,16 @@
 import OrderService from "../services/OrderService.js";
 class OrderController {
-     // Create a new order and get PaymentIntent
-     static async createOrder(req, res) {
+     // controllers/OrderController.js
+    static async createOrder(req, res) {
         try {
-            const { userId, orderItems } = req.body;
-            const order = await OrderService.createOrder(userId, orderItems);
+            const { userId, orderItems, shippingInfo } = req.body;
+            
+            // Validate input
+            if (!userId || !orderItems || orderItems.length === 0) {
+                return res.status(400).json({ error: 'Invalid order data' });
+            }
+            
+            const order = await OrderService.createOrder(userId, orderItems, shippingInfo);
             res.status(201).json(order);
         } catch (error) {
             console.log("OrderController.createOrder(): Error:", error.message);

@@ -16,10 +16,10 @@ import {
   Shield,
   ChevronDown,
   ChevronUp,
-  Notebook,
+  Pencil,
 } from "lucide-react"
 import productsService from "../services/productService"
-import { useShoppingCart } from "../context/CartContext"
+import { useCart } from "../context/CartContext"
 import ProductCarousel from "../components/ProductCarousel"
 
 export default function ProductDetailPage() {
@@ -31,7 +31,7 @@ export default function ProductDetailPage() {
   const [isFavorite, setIsFavorite] = useState(false)
   const [activeTab, setActiveTab] = useState("description")
   const [openAccordion, setOpenAccordion] = useState("description")
-  const { addToCart, removeFromCart, cart } = useShoppingCart()
+  const { addToCart, removeFromCart, cartItems } = useCart()
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -41,7 +41,7 @@ export default function ProductDetailPage() {
         setProduct(data)
 
         // Check if product is in cart and set initial quantity
-        const cartItem = cart.find((item) => item.product_id === data.product_id)
+        const cartItem = cartItems.find((item) => item.product_id === data.product_id)
         if (cartItem) {
           setQuantity(cartItem.quantity)
         }
@@ -55,7 +55,7 @@ export default function ProductDetailPage() {
     fetchProduct()
     // Scroll to top when component mounts
     window.scrollTo(0, 0)
-  }, [productId, cart])
+  }, [productId, cartItems])
 
   const handleAddToCart = () => {
     if (product) {
@@ -110,6 +110,7 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
+      // Loading Skeleton
       <div className="container mx-auto px-4 py-16">
         <div className="animate-pulse">
           <div className="flex flex-col md:flex-row gap-12">
@@ -158,7 +159,7 @@ export default function ProductDetailPage() {
   }
 
   const galleryImages = generateGalleryImages(product)
-  const isInCart = cart.find((item) => item.product_id === product.product_id)
+  const isInCart = cartItems.find((item) => item.product_id === product.product_id)
   const cartQuantity = isInCart ? isInCart.quantity : 0
 
   return (
@@ -194,7 +195,7 @@ export default function ProductDetailPage() {
                 className="h-full w-full object-contain"
               />
             </div>
-            <div className="grid grid-cols-4 gap-2">
+            {/* <div className="grid grid-cols-4 gap-2">
               {galleryImages.map((image, index) => (
                 <button
                   key={index}
@@ -210,7 +211,7 @@ export default function ProductDetailPage() {
                   />
                 </button>
               ))}
-            </div>
+            </div> */}
           </div>
 
           <div className="lg:w-1/2">
@@ -232,12 +233,13 @@ export default function ProductDetailPage() {
                   >
                     <Heart size={20} className={isFavorite ? "fill-red-500" : ""} />
                   </button>
-                  <button
-                    className="p-2 rounded-full bg-gray-50 border border-gray-200 text-gray-500 hover:bg-gray-100"
-                    aria-label="Share product"
-                  >
-                    <Share2 size={20} />
-                  </button>
+                  <Link
+                  to={`/update-listing/${product.product_id}`}
+                  className="p-2 rounded-full bg-gray-50 border border-gray-200 text-gray-500 hover:bg-gray-100"
+                  aria-label="Edit product"
+                >
+                  <Pencil size={20} />
+                </Link>
                 </div>
               </div>
 
@@ -504,7 +506,7 @@ export default function ProductDetailPage() {
                 </div>
 
                 <div className="space-y-6">
-                  {/* Sample reviews - would be replaced with actual reviews from API */}
+                  {/* Sample reviews - will be replaced with actual reviews from API when available */}
                   <div className="border-b border-gray-200 pb-6">
                     <div className="flex items-center mb-2">
                       <div className="flex mr-2">

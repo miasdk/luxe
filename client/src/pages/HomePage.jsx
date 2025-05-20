@@ -9,26 +9,17 @@ import { Truck, RotateCcw, ArrowRight, ChevronDown, Search, Heart, Shield, Star 
 import editorialImage1 from "../assets/images/editorial1.jpg"
 import editorialImage2 from "../assets/images/editorial2.jpg"
 import brandService from "../services/brandService"
+import categoryService from "../services/categoryService"
 import { use } from "react"
 const HomePage = () => {
   const { user, loading } = useAuthContext()
   const [isScrolled, setIsScrolled] = useState(false)
   const [brands, setBrands] = useState([])
+  const [categories, setCategories] = useState([])
   const [activeCategory, setActiveCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
 
-  const categories = [
-    "All",
-    "Fashion",
-    "Electronics",
-    "Home",
-    "Sports",
-    "Collectibles",
-    "Jewelry",
-    "Toys",
-    "Automotive",
-  ]
-
+  
   const trendingItems = [
     {
       id: 1,
@@ -73,11 +64,22 @@ const HomePage = () => {
     }
   }
 
+  const fetchCategories = async () => {
+    try {
+      const data = await categoryService.fetchAllCategories()
+      setCategories(data)
+    } catch (error) {
+      console.error("Error fetching categories:", error)
+    }
+  }
+
   useEffect(() => {
     fetchBrands()
+    fetchCategories()
   }, [])
   
   console.log("Brands:", brands)
+  console.log("Categories:", categories)
   // Add scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -107,31 +109,38 @@ const HomePage = () => {
 //Sections commented out to be added later
   return (
     <div className="min-h-screen bg-gray-50">
-      <div
+      {/* <div
         className={`bg-white border-b border-gray-200 sticky top-0 z-30 transition-shadow ${isScrolled ? "shadow-sm" : ""}`}
       >
-        {/* <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4">
           <div className="flex overflow-x-auto py-3 gap-8 scrollbar-hide">
             {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`whitespace-nowrap px-2 py-1 text-sm font-medium transition-all ${
-                  activeCategory === category
-                    ? "text-gray-900 border-b border-gray-900"
-                    : "text-gray-500 hover:text-gray-900"
+              <Link
+                key={category.id}
+                to={`/products?category=${category.name}`}
+                className={`text-sm font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap ${
+                  activeCategory === category.name ? "text-gray-900" : "text-gray-500"
                 }`}
-                aria-current={activeCategory === category ? "page" : undefined}
+                onClick={() => setActiveCategory(category.name)}
               >
-                {category}
-              </button>
+                {category.name}
+              </Link>
             ))}
+            <Link
+              to="/products"
+              className={`text-sm font-medium text-gray-700 hover:text-gray-900 whitespace-nowrap ${
+                activeCategory === "All" ? "text-gray-900" : "text-gray-500"
+              }`}
+              onClick={() => setActiveCategory("All")}
+            >
+              All 
+            </Link>
             <button className="whitespace-nowrap px-2 py-1 text-sm font-medium text-gray-500 hover:text-gray-900 flex items-center">
               More <ChevronDown size={14} className="ml-1" />
             </button>
           </div>
-        </div> */}
-      </div>
+        </div>
+      </div> */}
 
       <div className="relative bg-gradient-to-r from-gray-50 to-gray-100 overflow-hidden">
         <div className="container mx-auto px-4 py-16 md:py-24">
@@ -172,7 +181,7 @@ const HomePage = () => {
                   Explore Collection
                 </Link>
                 <Link
-                  to="/sell"
+                  to="/create-listing"
                   className="inline-flex items-center px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors"
                 >
                   Start Selling
@@ -183,7 +192,7 @@ const HomePage = () => {
             <div className="relative">
               <div className="aspect-square max-w-md mx-auto overflow-hidden rounded-2xl shadow-xl">
                 <img
-                  src={editorialImage2 || "/placeholder.svg"}
+                  src={"https://www.fashiongonerogue.com/wp-content/uploads/2025/02/Bottega-Veneta-Summer-2025-Campaign01-768x960.jpg" || "/placeholder.svg"}
                   alt="Featured product"
                   className="object-cover w-full h-full"
                 />
@@ -234,7 +243,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Trending Items - Elegant Grid */}
+      {/* Trending Items - Future Implementation */}
       {/* }
 
       <div className="container mx-auto px-4 py-16">
@@ -321,7 +330,7 @@ const HomePage = () => {
               </div>
               <div className="flex gap-4">
                 <Link
-                  to="/products/essential-blazer"
+                  to="/products/"
                   className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 px-6 py-3 rounded-md font-medium"
                 >
                   Shop Now

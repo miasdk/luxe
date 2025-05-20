@@ -5,7 +5,8 @@ import { pool } from '../config/database.js';
 class OrderService {
     // Create a new order with Stripe payment processing 
     // Create a new order and generate a PaymentIntent
-    async createOrder(userId, orderItems) {
+      // Create a new order and generate a PaymentIntent
+    async createOrder(userId, orderItems, shippingInfo) {
         const client = await pool.connect();
         try {
             await client.query("BEGIN");
@@ -23,6 +24,11 @@ class OrderService {
             // Step 4: Add items to the order
             await OrderModel.addOrderItems(orderId, orderItems);
 
+            // Step 5: Store shipping information
+            if (shippingInfo) {
+                await this.saveShippingInfo(orderId, userId, shippingInfo);
+            }
+
             await client.query("COMMIT");
             return { order, clientSecret }; // Send clientSecret to frontend
         } catch (error) {
@@ -31,6 +37,34 @@ class OrderService {
             throw new Error("Order creation failed: " + error.message);
         } finally {
             client.release();
+        }
+    }
+
+    // Save shipping information
+    async saveShippingInfo(orderId, userId, shippingInfo) {
+        const query = `
+            INSERT INTO shipping_info (order_id, user_id, name, address, city, state, zip, email)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+            RETURNING *;
+        `;
+        
+        const values = [
+            orderId, 
+            userId, 
+            shippingInfo.name,
+            shippingInfo.address,
+            shippingInfo.city,
+            shippingInfo.state,
+            shippingInfo.zip,
+            shippingInfo.email
+        ];
+        
+        try {
+            const result = await pool.query(query, values);
+            return result.rows[0];
+        } catch (error) {
+            console.error("Error saving shipping info:", error.message);
+            throw new Error("Failed to save shipping information");
         }
     }
 

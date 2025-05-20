@@ -4,7 +4,7 @@ import { signOut } from 'firebase/auth';
 import { FaShoppingCart, FaRegUserCircle, FaShoppingBag, FaRegHeart, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
-import { useShoppingCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext';
 import Badge from '@mui/material/Badge';
 
 export default function TopNavBar({ user, loading }) {
@@ -12,7 +12,8 @@ export default function TopNavBar({ user, loading }) {
     const dropdownRef = useRef(null);
     const navigate = useNavigate();
 
-    const { cart, toggleCart } = useShoppingCart();
+    // Change this line to destructure cartItems instead of cart
+    const { cartItems } = useCart();
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -99,11 +100,12 @@ export default function TopNavBar({ user, loading }) {
                     <Link to="/wishlist" className="py-2 hover:underline">
                         <FaRegHeart className="text-md" />
                     </Link>
-                    <button onClick={toggleCart} className="relative">
-                        <Badge badgeContent={cart.length} color="primary">
+                    {/* Replace the toggleCart function with navigation to cart */}
+                    <Link to="/cart" className="relative">
+                        <Badge badgeContent={cartItems ? cartItems.length : 0} color="primary">
                             <FaShoppingCart className="text-md" />
                         </Badge>
-                    </button>
+                    </Link>
                 </>
             ) : (
                 <>

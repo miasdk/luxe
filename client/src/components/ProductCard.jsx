@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { useShoppingCart } from "../context/CartContext";
+import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const { addToCart, removeFromCart, cart } = useShoppingCart();
+  const { addToCart, removeFromCart, cartItems } = useCart();
 
   const toggleFavorite = () => setIsFavorite(!isFavorite);
 
-  // Use `product.product_id` consistently
-  const isInCart = cart.find(item => item.product_id === product.product_id);
+  const isInCart = cartItems && cartItems.find(item => item.product_id === product.product_id);
   const quantity = isInCart ? isInCart.quantity : 0;
 
   const handleAddToCart = () => {
