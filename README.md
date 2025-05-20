@@ -38,7 +38,7 @@ eCart aims to provide a quick and easy way to get started with building an e-com
     *   Track order status.
 *   **Responsive Design:**
     *   Works seamlessly on desktops, tablets, and mobile devices.
-*   **Robust Backend:**
+*   **Scalable Backend:**
     *   Built with Node.js and Express.js for efficient and scalable backend operations.
     *   Leverages PostgreSQL for reliable and efficient data storage.
 *   **Fast Development:**
