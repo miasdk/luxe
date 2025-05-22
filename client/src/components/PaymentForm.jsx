@@ -17,7 +17,6 @@ const PaymentForm = ({ userId, orderItems, shippingInfo, onPaymentSuccess }) => 
             return;
         }
         
-        // Validate shipping info
         for (const [key, value] of Object.entries(shippingInfo)) {
             if (!value) {
                 setErrorMessage(`Please fill in your ${key.replace(/([A-Z])/g, ' $1').toLowerCase()}`);

@@ -23,7 +23,7 @@ const ActiveFilters = () => {
                           (priceRange.min > 0 || priceRange.max < 1000);
 
   if (!hasActiveFilters) {
-    return null; // Don't render anything if no filters are active
+    return null; 
   }
 
   return (

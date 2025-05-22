@@ -10,9 +10,7 @@ export default function FilterSideBar() {
         resetFilters
     } = useProductContext();
 
-    // Function to handle category selection
     useEffect(() => {
-    // Check if the category is in the URL when the component mounts
     const urlParams = new URLSearchParams(window.location.search);
     const categoryParam = urlParams.get('category');
     
@@ -23,7 +21,7 @@ export default function FilterSideBar() {
         
 
     return (
-        <div className="w-full md:w-60 p-3 border-r border-black/10">
+        <div className="w-full md:w-45 p-3">
             <div className="flex justify-between items-center mb-4">
                 <h2 className="text-sm font-semibold">CATEGORIES</h2>
                 <button 

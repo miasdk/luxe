@@ -17,7 +17,6 @@ const FilterTopBar = () => {
         updateSorting(sortBy, sortOrder.toUpperCase());
     };
 
-    // Only render filter dropdowns if they have options
     const hasColorOptions = filterOptions.colors.length > 0;
     const hasSizeOptions = filterOptions.sizes.length > 0;
     const hasConditionOptions = filterOptions.conditions.length > 0;
@@ -30,7 +29,6 @@ const FilterTopBar = () => {
                 </div>
                 
                 <div className="flex flex-wrap items-center gap-3">
-                    {/* Size Filter */}
                     {hasSizeOptions && (
                         <div className="flex items-center">
                             <label htmlFor="size-filter" className="mr-2 text-sm">Size:</label>
@@ -50,7 +48,6 @@ const FilterTopBar = () => {
                         </div>
                     )}
                     
-                    {/* Color Filter */}
                     {hasColorOptions && (
                         <div className="flex items-center">
                             <label htmlFor="color-filter" className="mr-2 text-sm">Color:</label>
@@ -70,7 +67,6 @@ const FilterTopBar = () => {
                         </div>
                     )}
                     
-                    {/* Condition Filter */}
                     {hasConditionOptions && (
                         <div className="flex items-center">
                             <label htmlFor="condition-filter" className="mr-2 text-sm">Condition:</label>
@@ -90,7 +86,6 @@ const FilterTopBar = () => {
                         </div>
                     )}
                     
-                    {/* Sort By */}
                     <div className="flex items-center">
                         <label htmlFor="sort" className="mr-2 text-sm">Sort:</label>
                         <select

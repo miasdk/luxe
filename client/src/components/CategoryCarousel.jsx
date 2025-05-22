@@ -135,10 +135,8 @@ export default function CategoryCarousel() {
         ))}
       </Swiper>
 
-      {/* Custom Pagination */}
       <div className="swiper-pagination mt-6 flex justify-center space-x-2"></div>
 
-      {/* Custom Progress Bar */}
       <div className="mt-8 mx-auto max-w-xs">
         <div className="h-[2px] w-full bg-gray-200 rounded-full overflow-hidden">
           <div

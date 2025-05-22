@@ -96,7 +96,6 @@ const ProductGrid = () => {
                 // List View
                 <div className="bg-white rounded-md">
                     {products.map((product, index) => {
-                        // Safely extract properties
                         const productId = getProperty(product, 'product_id');
                         const title = getProperty(product, 'title');
                         const imageUrl = getProperty(product, 'image');
@@ -105,11 +104,9 @@ const ProductGrid = () => {
                         const brand = getProperty(product, 'brand_name');
                         const description = getProperty(product, 'description');
                         
-                        // Handle conditions array (if it exists)
                         const conditions = getProperty(product, 'conditions', []);
                         const firstCondition = Array.isArray(conditions) ? conditions[0] : conditions;
                         
-                        // Check if product is in wishlist
                         const inWishlist = isInWishlist(productId);
                         
                         return (

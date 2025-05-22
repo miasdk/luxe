@@ -17,7 +17,6 @@ export default function TopNavBar({ user, loading }) {
     const { cartItems } = useCart();
     const { wishlistItems } = useWishlist();
 
-    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {

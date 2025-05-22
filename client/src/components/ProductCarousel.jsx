@@ -75,7 +75,6 @@ export default function ProductCarousel({ category, title = "Products" }) {
 
   return (
     <div className="relative mx-auto">
-      {/* Custom Navigation Buttons */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10 -ml-4 md:-ml-6">
         <button
           ref={prevRef}
@@ -119,7 +118,6 @@ export default function ProductCarousel({ category, title = "Products" }) {
           bulletClass: "swiper-pagination-bullet",
         }}
         onBeforeInit={(swiper) => {
-          // Assign navigation elements on init
           if (swiper.params.navigation) {
             swiper.params.navigation.prevEl = prevRef.current
             swiper.params.navigation.nextEl = nextRef.current
@@ -156,10 +154,8 @@ export default function ProductCarousel({ category, title = "Products" }) {
         ))}
       </Swiper>
 
-      {/* Custom Pagination */}
       <div className="swiper-pagination mt-6 flex justify-center space-x-2"></div>
 
-      {/* Custom Progress Bar */}
       <div className="mt-8 mx-auto max-w-xs">
         <div className="h-[2px] w-full bg-gray-200 rounded-full overflow-hidden">
           <div

@@ -14,7 +14,7 @@ export default function LoginForm({ onSuccess }) {
         
         try {
             await loginUser(email, password);
-            onSuccess(); // Call the success callback
+            onSuccess();
         } catch (error) {
             setError(error.message);
         } finally {

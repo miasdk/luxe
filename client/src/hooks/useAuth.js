@@ -10,11 +10,11 @@ export function useAuth() {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setUser(user); // User is signed in
+                setUser(user);
             } else {
-                setUser(null); // No user is signed in
+                setUser(null); 
             }
-            setLoading(false); //
+            setLoading(false); 
         });
 
         return () => unsubscribe();

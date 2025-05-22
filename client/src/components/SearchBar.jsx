@@ -13,7 +13,6 @@ const SearchBar = ({ className = '' }) => {
     const inputRef = useRef(null);
     const suggestionsRef = useRef(null);
     
-    // API base URL from environment
     const API_BASE_URL = import.meta.env.VITE_API_URL;
     
     const handleSubmit = (e) => {
@@ -55,7 +54,6 @@ const SearchBar = ({ className = '' }) => {
         }
     };
     
-    // Debounce function to limit API calls
     useEffect(() => {
         const handler = setTimeout(() => {
             if (query.trim()) {
@@ -70,7 +68,6 @@ const SearchBar = ({ className = '' }) => {
         };
     }, [query]);
     
-    // Close suggestions when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (suggestionsRef.current && !suggestionsRef.current.contains(event.target)) {
@@ -90,7 +87,6 @@ const SearchBar = ({ className = '' }) => {
                 onSubmit={handleSubmit} 
                 className="flex items-stretch w-full"
             >
-                {/* Input container with icon */}
                 <div className="relative flex-1">
                     <div className={`absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none transition-all duration-300 ${
                         focused ? 'text-gray-700' : 'text-gray-400'
@@ -143,7 +139,6 @@ const SearchBar = ({ className = '' }) => {
                     )}
                 </div>
                 
-                {/* External Blue Search Button */}
                 <button
                     type="submit"
                     disabled={!query.trim()}
@@ -158,7 +153,6 @@ const SearchBar = ({ className = '' }) => {
                 </button>
             </form>
             
-            {/* Suggestions dropdown */}
             {showSuggestions && (
                 <div 
                     className={`absolute z-50 w-full mt-2 bg-white rounded-xl border border-gray-200 shadow-xl overflow-hidden transition-all duration-300 transform origin-top ${
@@ -254,7 +248,6 @@ const SearchBar = ({ className = '' }) => {
                 </div>
             )}
             
-            {/* Custom CSS Animation */}
             <style jsx>{`
                 @keyframes dropdownFade {
                     from { opacity: 0; transform: translateY(-8px); }
