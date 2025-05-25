@@ -143,7 +143,7 @@ export default function ProductCarousel({ category, title = "Products" }) {
             spaceBetween: 24,
           },
         }}
-        className="product-swiper !overflow-visible"
+        className="carousel-swiper product-carousel !overflow-visible"
       >
         {products.map((product) => (
           <SwiperSlide key={product.product_id}>

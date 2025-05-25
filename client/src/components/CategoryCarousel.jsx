@@ -79,9 +79,9 @@ export default function CategoryCarousel() {
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
-        spaceBetween={20}
+        spaceBetween={24}
         slidesPerView={1}
-        loop={true}
+        loop={false}
         navigation={{
           prevEl: prevRef.current,
           nextEl: nextRef.current,
@@ -124,7 +124,7 @@ export default function CategoryCarousel() {
             spaceBetween: 30,
           },
         }}
-        className="category-swiper !overflow-visible"
+        className="carousel-swiper category-carousel !overflow-visible"
       >
         {categories.map((category) => (
           <SwiperSlide key={category.id}>

@@ -1,29 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap');
-
 @import "tailwindcss";
 
 .licorice-regular {
-    font-family: "Licorice", cursive;
-    font-weight: 400;
-    font-style: normal;
-  }
+  font-family: "Licorice", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
 
 .brand-logo {
-    font-family: "Licorice", cursive;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 2.5rem;
-  
+  font-family: "Licorice", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.5rem;
 }
 
-/* Custom styles for the category carousel */
-.category-swiper .swiper-pagination {
+/* Unified carousel base styles */
+.carousel-swiper {
+  padding: 0.5rem 0.25rem 1.5rem;
+  margin: -0.5rem -0.25rem -1.5rem;
+}
+
+/* Unified pagination styles */
+.carousel-swiper .swiper-pagination {
   position: relative;
   bottom: 0;
   margin-top: 1rem;
 }
 
-.category-swiper .swiper-pagination-bullet {
+.carousel-swiper .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
   background-color: #e5e7eb;
@@ -31,58 +35,29 @@
   transition: all 0.3s ease;
 }
 
-.category-swiper .swiper-pagination-bullet-active {
+.carousel-swiper .swiper-pagination-bullet-active {
   background-color: #111827;
   width: 24px;
   border-radius: 4px;
 }
 
-/* Ensure proper overflow handling */
-.category-swiper {
-  padding: 0.5rem 0.25rem 1.5rem;
-  margin: -0.5rem -0.25rem -1.5rem;
-}
-
-/* Add hover effect to navigation buttons */
-.category-swiper .swiper-button-disabled {
+/* Unified navigation button disabled state */
+.carousel-swiper .swiper-button-disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
 
-/* Custom styles for the product carousel */
-.product-swiper .swiper-pagination {
-  position: relative;
-  bottom: 0;
-  margin-top: 1rem;
-}
-
-.product-swiper .swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  background-color: #e5e7eb;
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.product-swiper .swiper-pagination-bullet-active {
-  background-color: #111827;
-  width: 24px;
-  border-radius: 4px;
-}
-
-/* Ensure proper overflow handling */
-.product-swiper {
-  padding: 0.5rem 0.25rem 1.5rem;
-  margin: -0.5rem -0.25rem -1.5rem;
-}
-
-/* Add hover effect to navigation buttons */
-.product-swiper .swiper-button-disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-/* Ensure proper spacing for product cards */
-.product-swiper .swiper-slide {
+/* Ensure proper slide height */
+.carousel-swiper .swiper-slide {
   height: auto;
+}
+
+/* Category-specific styles (if needed for unique styling) */
+.category-carousel {
+  /* Add any category-specific overrides here */
+}
+
+/* Product-specific styles (if needed for unique styling) */
+.product-carousel {
+  /* Add any product-specific overrides here */
 }

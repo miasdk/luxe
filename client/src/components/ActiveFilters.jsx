@@ -27,7 +27,7 @@ const ActiveFilters = () => {
   }
 
   return (
-    <div className="mb-4 bg-white border border-gray-200 rounded-md p-3">
+    <div className="mb-4 bg-white border-t border-b border-gray-200 rounded-md p-3">
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-sm font-medium text-gray-700">Active Filters</h3>
         <button 
