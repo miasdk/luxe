@@ -240,7 +240,9 @@ This isn't just a class project for me - I built eCart as something I'd actually
 ## Application Screenshots
 
 ### Home Page
-![Homepage showing product showcase and navigation](https://github.com/user-attachments/assets/cb807a79-91b9-416d-b7de-7912b011c884)
+![Homepage showing product showcase and navigation](https://github.com/user-attachments/assets/0b0761b4-fb96-4dbd-9438-1bce80778a9a)
+![homepage2](https://github.com/user-attachments/assets/3a961aec-bab9-4128-a335-71dca5ee2f2e)
+![homepage3](https://github.com/user-attachments/assets/d4a0f375-66e9-4fea-be00-7fcf6939fd2c)
 
 *Main landing page featuring product categories and promotional banners*
 
