@@ -255,7 +255,7 @@ This isn't just a class project for me - I built eCart as something I'd actually
 *Detailed product view with images, specifications, and add-to-cart functionality*
 
 ### Shopping Cart
-![Shopping cart interface with item management](https://github.com/user-attachments/assets/121231e1-3672-4349-9f9c-1fa9c9cef3aa)
+![Shopping cart interface with item management](https://github.com/user-attachments/assets/ee6b8097-ba03-44ec-8555-27a509d5e8d6)
 *Shopping cart with quantity controls and price calculations*
 
 ### Checkout Process
