@@ -264,11 +264,9 @@ This isn't just a class project for me - I built eCart as something I'd actually
 *Checkout page with secure payment processing via Stripe*
 
 ### User Dashboard
-![User account management and order history](https://github.com/user-attachments/assets/b42e6e9b-0d2d-444a-8d84-4a8ffb1a2506)
-*User profile and order history management*
 ![User account management and order history](https://github.com/user-attachments/assets/1138a257-9a26-4074-971d-bd8d27201977)
 ![order_history](https://github.com/user-attachments/assets/09578a18-213c-4dbc-8364-448bbdca8307)
-
+*User profile and order history management*
 
 ### Mobile Responsive Design
 ![Mobile-optimized interface](https://github.com/user-attachments/assets/c36990fb-f6e9-4990-9820-51f5f8ee2b87)
