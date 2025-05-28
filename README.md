@@ -177,7 +177,7 @@ This setup gives me the best of both worlds - Vercel's incredible frontend optim
 
 ---
 
-## Project Title
+## Vite Ecommerce Template
 **eCart - Vite Ecommerce Template**
 
 ## Group Members
@@ -279,8 +279,8 @@ user
 
 ### **What I Built - Core Features**
 
-**Product Management That Actually Works:**
-I spent a lot of time getting the product system right. Users can browse through a comprehensive catalog with real categories and detailed product information. The search functionality was probably the most challenging part - I implemented PostgreSQL full-text search using `tsvector` and `plainto_tsquery()` which gives much better results than basic string matching. The filtering and sorting system supports hierarchical categories and multiple product attributes, so users can actually find what they're looking for.
+**Product Management:**
+Users can browse through a comprehensive catalog with real categories and detailed product information. The search functionality was probably the most challenging part - I implemented PostgreSQL full-text search using `tsvector` and `plainto_tsquery()` which gives much better results than basic string matching. The filtering and sorting system supports hierarchical categories and multiple product attributes, so users can actually find what they're looking for.
 
 **Authentication & User Management:**
 I integrated Firebase Auth because I wanted to use something production-ready rather than rolling my own authentication. Users can register, log in, and maintain their profiles securely. I implemented protected routes and role-based access, plus all the expected features like password reset and session persistence.
