@@ -3,7 +3,11 @@ import { useNavigate, Link } from "react-router-dom";
 import {
   ArrowLeft,
   Save,
-  Upload
+  Upload,
+  X,
+  Check,
+  AlertCircle,
+  Image as ImageIcon
 } from "lucide-react";
 import productsService from "../services/productService";
 import brandService from "../services/brandService";
@@ -17,11 +21,11 @@ export default function CreateListing() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [step, setStep] = useState(1);
   
   // Reference data for lookups
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
-  // No need to fetch these - they're hardcoded now
   const colors = colorData;
   const conditions = conditionData;
   const sizes = sizeData;
@@ -31,22 +35,21 @@ export default function CreateListing() {
     title: "",
     price: "",
     description: "",
-    brand_id: "",       // ID not name
-    category_id: "",    // ID not name
-    condition_ids: [],  // Array of IDs
-    size_ids: [],       // Array of IDs
-    color_ids: [],      // Array of IDs
-    image: "https://placehold.co/500x500/e5e7eb/a3a3a3?text=Product+Image"
+    brand_id: "",
+    category_id: "",
+    condition_ids: [],
+    size_ids: [],
+    color_ids: [],
+    image: ""
   });
 
   // Load brands and categories on component mount
   useEffect(() => {
     const fetchReferenceData = async () => {
       try {
-        // Use the correct service methods for fetching brands and categories
         const [brandsData, categoriesData] = await Promise.all([
-          brandService.fetchAllBrands(),  // Changed from productsService.fetchBrands
-          categoryService.fetchAllCategories()  // Changed from productsService.fetchCategories
+          brandService.fetchAllBrands(),
+          categoryService.fetchAllCategories()
         ]);
         
         setBrands(brandsData);
@@ -68,18 +71,15 @@ export default function CreateListing() {
     });
   };
   
-  // Special handler for checkbox groups (sizes, colors)
   const handleCheckboxChange = (field, id) => {
     setFormData(prev => {
       const currentIds = prev[field] || [];
       if (currentIds.includes(id)) {
-        // Remove if already selected
         return {
           ...prev,
           [field]: currentIds.filter(itemId => itemId !== id)
         };
       } else {
-        // Add if not selected
         return {
           ...prev,
           [field]: [...currentIds, id]
@@ -88,11 +88,10 @@ export default function CreateListing() {
     });
   };
   
-  // Special handler for condition (choose one)
   const handleConditionChange = (conditionId) => {
     setFormData({
       ...formData,
-      condition_ids: [conditionId] // Array with single condition ID
+      condition_ids: [conditionId]
     });
   };
 
@@ -102,13 +101,11 @@ export default function CreateListing() {
     setError(null);
 
     try {
-      // Backend expects price as a number, not string
       const productToCreate = {
         ...formData,
         price: parseFloat(formData.price)
       };
 
-      // Use addProduct from ProductService
       const createdProduct = await productsService.addProduct(productToCreate);
       navigate(`/products/${createdProduct.id}`, { 
         state: { message: "Product created successfully" }
@@ -122,176 +119,121 @@ export default function CreateListing() {
     }
   };
 
+  // Form validation
+  const isStepComplete = (stepNum) => {
+    switch(stepNum) {
+      case 1:
+        return formData.title && formData.description && formData.price;
+      case 2:
+        return formData.brand_id && formData.category_id && formData.condition_ids.length > 0;
+      case 3:
+        return true; // Image and attributes are optional
+      default:
+        return false;
+    }
+  };
+
+  const getSelectedBrandName = () => {
+    const brand = brands.find(b => b.id == formData.brand_id);
+    return brand ? brand.name : '';
+  };
+
+  const getSelectedCategoryName = () => {
+    const category = categories.find(c => c.id == formData.category_id);
+    return category ? category.name : '';
+  };
+
+  const getSelectedConditionName = () => {
+    const condition = conditions.find(c => c.id === formData.condition_ids[0]);
+    return condition ? condition.name : '';
+  };
+
   return (
-    <div className="bg-white">
-      {/* Breadcrumb */}
-      <div className="bg-gray-50 py-4 border-b border-gray-100">
-        <div className="container mx-auto px-4">
-          <nav className="flex text-sm">
-            <Link to="/" className="text-gray-500 hover:text-gray-700">
-              Home
+    <div className="bg-gray-50 min-h-screen">
+      {/* Header */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="container mx-auto px-4 py-6 max-w-4xl">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-light text-gray-900 mb-1">Create Listing</h1>
+              <p className="text-gray-600">Share your exceptional pieces with the community</p>
+            </div>
+            <Link
+              to="/products"
+              className="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-50 transition-colors"
+            >
+              <ArrowLeft size={16} className="mr-2" />
+              Cancel
             </Link>
-            <span className="mx-2 text-gray-400">/</span>
-            <Link to="/products" className="text-gray-500 hover:text-gray-700">
-              Products
-            </Link>
-            <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-900 font-medium">Create Listing</span>
-          </nav>
+          </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-light text-gray-900">Create New Listing</h1>
-          <Link
-            to="/products"
-            className="px-4 py-2 border border-gray-300 rounded-md text-gray-600 hover:bg-gray-50 transition-colors flex items-center"
-          >
-            <ArrowLeft size={16} className="mr-2" />
-            Cancel
-          </Link>
+      <div className="container mx-auto px-4 py-12 max-w-4xl">
+        {/* Progress Steps */}
+        <div className="mb-12">
+          <div className="flex items-center justify-center space-x-8">
+            {[
+              { num: 1, title: "Details", desc: "Basic information" },
+              { num: 2, title: "Category", desc: "Brand & condition" },
+              { num: 3, title: "Attributes", desc: "Image & features" }
+            ].map((stepItem, index) => (
+              <div key={stepItem.num} className="flex items-center">
+                <div className="flex flex-col items-center">
+                  <div
+                    className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors ${
+                      step === stepItem.num
+                        ? 'bg-gray-900 border-gray-900 text-white'
+                        : isStepComplete(stepItem.num)
+                        ? 'bg-green-100 border-green-500 text-green-600'
+                        : 'bg-white border-gray-300 text-gray-400'
+                    }`}
+                  >
+                    {isStepComplete(stepItem.num) && step !== stepItem.num ? (
+                      <Check size={16} />
+                    ) : (
+                      stepItem.num
+                    )}
+                  </div>
+                  <div className="mt-2 text-center">
+                    <p className={`text-sm font-medium ${step === stepItem.num ? 'text-gray-900' : 'text-gray-500'}`}>
+                      {stepItem.title}
+                    </p>
+                    <p className="text-xs text-gray-400">{stepItem.desc}</p>
+                  </div>
+                </div>
+                {index < 2 && (
+                  <div className={`w-16 h-0.5 mx-4 ${isStepComplete(stepItem.num) ? 'bg-green-500' : 'bg-gray-300'}`} />
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Error Display */}
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md">
-            <p className="text-red-700">{error}</p>
+          <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+            <AlertCircle size={20} className="text-red-500 mt-0.5 flex-shrink-0" />
+            <div>
+              <h3 className="text-red-800 font-medium mb-1">Error creating listing</h3>
+              <p className="text-red-700 text-sm">{error}</p>
+            </div>
           </div>
         )}
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left Column - Product Image */}
-          <div>
-            <div className="mb-6">
-              <h2 className="text-xl font-medium text-gray-900 mb-4">Product Image</h2>
-              <div className="aspect-square overflow-hidden rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-center">
-                {formData.image ? (
-                  <img
-                    src={formData.image}
-                    alt="Product preview"
-                    className="h-full w-full object-contain"
-                  />
-                ) : (
-                  <div className="text-center p-6">
-                    <Upload size={40} className="mx-auto text-gray-400 mb-2" />
-                    <p className="text-sm text-gray-500">No image selected</p>
-                  </div>
-                )}
+        <form onSubmit={handleSubmit}>
+          {/* Step 1: Basic Details */}
+          {step === 1 && (
+            <div className="bg-white rounded-2xl p-8 shadow-sm">
+              <div className="mb-8">
+                <h2 className="text-2xl font-light text-gray-900 mb-2">Product Details</h2>
+                <p className="text-gray-600">Tell us about your item</p>
               </div>
-              <div className="mt-3">
-                <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">
-                  Image URL
-                </label>
-                <input
-                  type="text"
-                  id="image"
-                  name="image"
-                  value={formData.image}
-                  onChange={handleInputChange}
-                  placeholder="https://example.com/image.jpg"
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                />
-              </div>
-            </div>
 
-            <div className="space-y-6">
-              <div>
-                <h2 className="text-xl font-medium text-gray-900 mb-4">Product Categories</h2>
-                <div className="space-y-4">
-                  {/* Category Dropdown - Uses ID not Name */}
-                  <div>
-                    <label htmlFor="category_id" className="block text-sm font-medium text-gray-700 mb-1">
-                      Category
-                    </label>
-                    <select
-                      id="category_id"
-                      name="category_id"
-                      value={formData.category_id}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                    >
-                      <option value="">Select a category</option>
-                      {categories.map(category => (
-                        <option key={category.id} value={category.id}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  {/* Brand Dropdown - Uses ID not Name */}
-                  <div>
-                    <label htmlFor="brand_id" className="block text-sm font-medium text-gray-700 mb-1">
-                      Brand
-                    </label>
-                    <select
-                      id="brand_id"
-                      name="brand_id"
-                      value={formData.brand_id}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                    >
-                      <option value="">Select a brand</option>
-                      {brands.map(brand => (
-                        <option key={brand.id} value={brand.id}>
-                          {brand.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Colors - Multi-select checkboxes */}
-              <div>
-                <h2 className="text-xl font-medium text-gray-900 mb-4">Colors</h2>
-                <div className="grid grid-cols-2 gap-2">
-                  {colors.map(color => (
-                    <label key={color.id} className="flex items-center space-x-2">
-                      <input
-                        type="checkbox"
-                        checked={formData.color_ids.includes(color.id)}
-                        onChange={() => handleCheckboxChange('color_ids', color.id)}
-                        className="rounded border-gray-300"
-                      />
-                      <span>{color.name}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-              
-              {/* Sizes - Multi-select checkboxes */}
-              <div>
-                <h2 className="text-xl font-medium text-gray-900 mb-4">Sizes</h2>
-                <div className="grid grid-cols-2 gap-2">
-                  {sizes.map(size => (
-                    <label key={size.id} className="flex items-center space-x-2">
-                      <input
-                        type="checkbox"
-                        checked={formData.size_ids.includes(size.id)}
-                        onChange={() => handleCheckboxChange('size_ids', size.id)}
-                        className="rounded border-gray-300"
-                      />
-                      <span>{size.name}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Product Details */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-xl font-medium text-gray-900 mb-4">Product Details</h2>
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <div>
-                  <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-                    Title
+                  <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+                    Product Title
                   </label>
                   <input
                     type="text"
@@ -299,13 +241,13 @@ export default function CreateListing() {
                     name="title"
                     value={formData.title}
                     onChange={handleInputChange}
-                    required
-                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                    placeholder="e.g., Vintage Leather Handbag"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
                     Description
                   </label>
                   <textarea
@@ -313,63 +255,356 @@ export default function CreateListing() {
                     name="description"
                     value={formData.description}
                     onChange={handleInputChange}
-                    required
-                    rows="5"
-                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
-                  ></textarea>
-                </div>
-
-                <div>
-                  <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
-                    Price ($)
-                  </label>
-                  <input
-                    type="number"
-                    id="price"
-                    name="price"
-                    value={formData.price}
-                    onChange={handleInputChange}
-                    required
-                    min="0"
-                    step="0.01"
-                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+                    placeholder="Describe your item's condition, features, and any special details..."
+                    rows="6"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors resize-none"
                   />
                 </div>
 
-                {/* Condition - Radio buttons (one selection only) */}
                 <div>
-                  <h3 className="text-sm font-medium text-gray-700 mb-2">Condition</h3>
-                  <div className="space-y-2">
-                    {conditions.map(condition => (
-                      <label key={condition.id} className="flex items-center space-x-2">
-                        <input
-                          type="radio"
-                          name="condition"
-                          checked={formData.condition_ids[0] === condition.id}
-                          onChange={() => handleConditionChange(condition.id)}
-                          className="rounded-full border-gray-300"
-                        />
-                        <span>{condition.name}</span>
-                      </label>
-                    ))}
+                  <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-2">
+                    Price
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                    <input
+                      type="number"
+                      id="price"
+                      name="price"
+                      value={formData.price}
+                      onChange={handleInputChange}
+                      placeholder="0.00"
+                      min="0"
+                      step="0.01"
+                      className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
+                    />
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="pt-6 border-t border-gray-200">
-              <button
-                type="submit"
-                disabled={loading}
-                className={`w-full px-6 py-3 bg-gray-900 text-white rounded-md font-medium transition-colors flex items-center justify-center ${
-                  loading ? "opacity-70 cursor-not-allowed" : "hover:bg-gray-800"
-                }`}
-              >
-                <Save size={18} className="mr-2" />
-                {loading ? "Creating..." : "Create Listing"}
-              </button>
+              <div className="flex justify-end mt-8">
+                <button
+                  type="button"
+                  onClick={() => setStep(2)}
+                  disabled={!isStepComplete(1)}
+                  className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                    isStepComplete(1)
+                      ? 'bg-gray-900 text-white hover:bg-gray-800'
+                      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                  }`}
+                >
+                  Continue
+                </button>
+              </div>
             </div>
-          </div>
+          )}
+
+          {/* Step 2: Category & Brand */}
+          {step === 2 && (
+            <div className="bg-white rounded-2xl p-8 shadow-sm">
+              <div className="mb-8">
+                <h2 className="text-2xl font-light text-gray-900 mb-2">Category & Brand</h2>
+                <p className="text-gray-600">Help buyers find your item</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="category_id" className="block text-sm font-medium text-gray-700 mb-2">
+                    Category
+                  </label>
+                  <select
+                    id="category_id"
+                    name="category_id"
+                    value={formData.category_id}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
+                  >
+                    <option value="">Select category</option>
+                    {categories.map(category => (
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="brand_id" className="block text-sm font-medium text-gray-700 mb-2">
+                    Brand
+                  </label>
+                  <select
+                    id="brand_id"
+                    name="brand_id"
+                    value={formData.brand_id}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
+                  >
+                    <option value="">Select brand</option>
+                    {brands.map(brand => (
+                      <option key={brand.id} value={brand.id}>
+                        {brand.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <h3 className="text-sm font-medium text-gray-700 mb-3">Condition</h3>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {conditions.map(condition => (
+                    <label
+                      key={condition.id}
+                      className={`flex items-center p-4 border rounded-lg cursor-pointer transition-colors ${
+                        formData.condition_ids[0] === condition.id
+                          ? 'border-gray-900 bg-gray-50'
+                          : 'border-gray-200 hover:border-gray-300'
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="condition"
+                        checked={formData.condition_ids[0] === condition.id}
+                        onChange={() => handleConditionChange(condition.id)}
+                        className="sr-only"
+                      />
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <span className="font-medium text-gray-900">{condition.name}</span>
+                          {formData.condition_ids[0] === condition.id && (
+                            <Check size={16} className="text-gray-900" />
+                          )}
+                        </div>
+                        <p className="text-sm text-gray-600 mt-1">{condition.description}</p>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex justify-between mt-8">
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Back
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setStep(3)}
+                  disabled={!isStepComplete(2)}
+                  className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                    isStepComplete(2)
+                      ? 'bg-gray-900 text-white hover:bg-gray-800'
+                      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                  }`}
+                >
+                  Continue
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Step 3: Image & Attributes */}
+          {step === 3 && (
+            <div className="space-y-8">
+              {/* Image Upload */}
+              <div className="bg-white rounded-2xl p-8 shadow-sm">
+                <div className="mb-6">
+                  <h2 className="text-2xl font-light text-gray-900 mb-2">Product Image</h2>
+                  <p className="text-gray-600">Add a photo to showcase your item</p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <div className="aspect-square bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center overflow-hidden">
+                      {formData.image ? (
+                        <img
+                          src={formData.image}
+                          alt="Product preview"
+                          className="w-full h-full object-contain"
+                        />
+                      ) : (
+                        <div className="text-center p-6">
+                          <ImageIcon size={40} className="mx-auto text-gray-400 mb-3" />
+                          <p className="text-sm text-gray-500 mb-1">No image selected</p>
+                          <p className="text-xs text-gray-400">Add an image URL below</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-2">
+                      Image URL
+                    </label>
+                    <input
+                      type="url"
+                      id="image"
+                      name="image"
+                      value={formData.image}
+                      onChange={handleInputChange}
+                      placeholder="https://example.com/image.jpg"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
+                    />
+                    <p className="text-xs text-gray-500 mt-2">
+                      Paste a link to your product image
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Attributes */}
+              <div className="bg-white rounded-2xl p-8 shadow-sm">
+                <div className="mb-6">
+                  <h2 className="text-2xl font-light text-gray-900 mb-2">Attributes</h2>
+                  <p className="text-gray-600">Optional details to help buyers (you can skip this)</p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Colors */}
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-700 mb-3">Available Colors</h3>
+                    <div className="space-y-2 max-h-48 overflow-y-auto">
+                      {colors.map(color => (
+                        <label
+                          key={color.id}
+                          className={`flex items-center p-3 border rounded-lg cursor-pointer transition-all ${
+                            formData.color_ids.includes(color.id)
+                              ? 'border-gray-900 bg-gray-50'
+                              : 'border-gray-200 hover:border-gray-300'
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={formData.color_ids.includes(color.id)}
+                            onChange={() => handleCheckboxChange('color_ids', color.id)}
+                            className="sr-only"
+                          />
+                          <span className="flex-1 text-gray-900">{color.name}</span>
+                          {formData.color_ids.includes(color.id) && (
+                            <Check size={16} className="text-gray-900" />
+                          )}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Sizes */}
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-700 mb-3">Available Sizes</h3>
+                    <div className="space-y-2 max-h-48 overflow-y-auto">
+                      {sizes.map(size => (
+                        <label
+                          key={size.id}
+                          className={`flex items-center p-3 border rounded-lg cursor-pointer transition-all ${
+                            formData.size_ids.includes(size.id)
+                              ? 'border-gray-900 bg-gray-50'
+                              : 'border-gray-200 hover:border-gray-300'
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={formData.size_ids.includes(size.id)}
+                            onChange={() => handleCheckboxChange('size_ids', size.id)}
+                            className="sr-only"
+                          />
+                          <span className="flex-1 text-gray-900">{size.name}</span>
+                          {formData.size_ids.includes(size.id) && (
+                            <Check size={16} className="text-gray-900" />
+                          )}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Summary & Submit */}
+              <div className="bg-white rounded-2xl p-8 shadow-sm">
+                <div className="mb-6">
+                  <h2 className="text-2xl font-light text-gray-900 mb-2">Review & Submit</h2>
+                  <p className="text-gray-600">Double-check your listing details</p>
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-6 mb-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="font-medium text-gray-900 mb-3">Product Details</h3>
+                      <dl className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <dt className="text-gray-600">Title:</dt>
+                          <dd className="text-gray-900 font-medium">{formData.title || 'Not set'}</dd>
+                        </div>
+                        <div className="flex justify-between">
+                          <dt className="text-gray-600">Price:</dt>
+                          <dd className="text-gray-900 font-medium">${formData.price || '0.00'}</dd>
+                        </div>
+                        <div className="flex justify-between">
+                          <dt className="text-gray-600">Brand:</dt>
+                          <dd className="text-gray-900 font-medium">{getSelectedBrandName() || 'Not set'}</dd>
+                        </div>
+                        <div className="flex justify-between">
+                          <dt className="text-gray-600">Category:</dt>
+                          <dd className="text-gray-900 font-medium">{getSelectedCategoryName() || 'Not set'}</dd>
+                        </div>
+                        <div className="flex justify-between">
+                          <dt className="text-gray-600">Condition:</dt>
+                          <dd className="text-gray-900 font-medium">{getSelectedConditionName() || 'Not set'}</dd>
+                        </div>
+                      </dl>
+                    </div>
+                    <div>
+                      <h3 className="font-medium text-gray-900 mb-3">Attributes</h3>
+                      <dl className="space-y-2 text-sm">
+                        <div>
+                          <dt className="text-gray-600 mb-1">Colors:</dt>
+                          <dd className="text-gray-900">
+                            {formData.color_ids.length > 0 
+                              ? colors.filter(c => formData.color_ids.includes(c.id)).map(c => c.name).join(', ')
+                              : 'None selected'
+                            }
+                          </dd>
+                        </div>
+                        <div>
+                          <dt className="text-gray-600 mb-1">Sizes:</dt>
+                          <dd className="text-gray-900">
+                            {formData.size_ids.length > 0 
+                              ? sizes.filter(s => formData.size_ids.includes(s.id)).map(s => s.name).join(', ')
+                              : 'None selected'
+                            }
+                          </dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-between">
+                  <button
+                    type="button"
+                    onClick={() => setStep(2)}
+                    className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={loading || !isStepComplete(1) || !isStepComplete(2)}
+                    className={`px-8 py-3 rounded-lg font-medium transition-colors flex items-center ${
+                      loading
+                        ? "bg-gray-400 text-white cursor-not-allowed"
+                        : "bg-gray-900 text-white hover:bg-gray-800"
+                    }`}
+                  >
+                    <Save size={18} className="mr-2" />
+                    {loading ? "Creating Listing..." : "Create Listing"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </form>
       </div>
     </div>
