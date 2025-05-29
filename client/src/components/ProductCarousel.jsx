@@ -26,11 +26,9 @@ export default function ProductCarousel({ category, title = "Products" }) {
         setLoading(true)
         let data
 
-        // If a category is specified, fetch products by category
         if (category) {
           data = await productService.fetchProductsByCategory(category)
         } else {
-          // Otherwise, fetch all products
           data = await productService.fetchAllProducts()
         }
 

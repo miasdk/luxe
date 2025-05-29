@@ -294,7 +294,6 @@ export default function UpdateListing() {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="container mx-auto px-4 py-6 max-w-4xl">
           <div className="flex items-center justify-between">
@@ -323,7 +322,6 @@ export default function UpdateListing() {
       </div>
 
       <div className="container mx-auto px-4 py-12 max-w-4xl">
-        {/* Error Display */}
         {error && (
           <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
             <AlertCircle size={20} className="text-red-500 mt-0.5 flex-shrink-0" />
@@ -375,7 +373,6 @@ export default function UpdateListing() {
               </div>
             </div>
 
-            {/* Product Information */}
             <div className="bg-white rounded-2xl p-6 shadow-sm">
               <h2 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
                 <Info size={20} className="mr-2" />
@@ -439,7 +436,6 @@ export default function UpdateListing() {
             </div>
           </div>
 
-          {/* Right Column - Edit Form */}
           <div className="lg:col-span-2">
             <form onSubmit={handleUpdate} className="bg-white rounded-2xl p-8 shadow-sm">
               <div className="mb-8">
@@ -523,7 +519,6 @@ export default function UpdateListing() {
           </div>
         </div>
 
-        {/* Delete Confirmation Modal */}
         {showDeleteConfirm && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
             <div className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl">

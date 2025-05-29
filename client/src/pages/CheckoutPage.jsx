@@ -75,7 +75,6 @@ const CheckoutPage = () => {
             <h1 className="text-2xl font-bold mb-6">Checkout</h1>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Left Column - Cart Summary */}
                 <div>
                     <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
                     <div className="bg-gray-50 p-4 rounded-lg">
@@ -97,7 +96,6 @@ const CheckoutPage = () => {
                         </div>
                     </div>
                     
-                    {/* Shipping Info Form */}
                     <div className="mt-6">
                         <h2 className="text-xl font-semibold mb-4">Shipping Information</h2>
                         <div className="space-y-3">
@@ -173,7 +171,6 @@ const CheckoutPage = () => {
                     </div>
                 </div>
                 
-                {/* Right Column - Payment */}
                 <div>
                     <h2 className="text-xl font-semibold mb-4">Payment</h2>
                     <div className="bg-gray-50 p-4 rounded-lg">

@@ -8,11 +8,10 @@ export const useProductContext = () => useContext(ProductContext);
 export const ProductProvider = ({ children }) => {
     // State variables 
     const [products, setProducts] = useState([]);
+    const [allProducts, setAllProducts] = useState([]); // Store all products for pagination
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
-    // Flag to prevent URL update loops
-    const [isUpdatingFromUrl, setIsUpdatingFromUrl] = useState(false);
+        const [isUpdatingFromUrl, setIsUpdatingFromUrl] = useState(false);
     
     // Primary filters (sidebar)
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -37,6 +36,10 @@ export const ProductProvider = ({ children }) => {
     const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 }); 
     const [sortBy, setSortBy] = useState('title');
     const [sortOrder, setSortOrder] = useState('ASC');
+
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage] = useState(12);
 
     // Fetch categories with counts
     const fetchCategoriesWithCount = async () => {
@@ -75,7 +78,13 @@ export const ProductProvider = ({ children }) => {
                 sortBy,
                 sortOrder
             ); 
-            setProducts(data);
+            
+            setAllProducts(data);
+            const totalPages = Math.ceil(data.length / itemsPerPage);
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const paginatedProducts = data.slice(startIndex, startIndex + itemsPerPage);
+            setProducts(paginatedProducts);
+            
             setError(null);
         } catch (err) {
             setError(err.message);
@@ -93,6 +102,7 @@ export const ProductProvider = ({ children }) => {
             color: '',
             condition: '',
         });
+        setCurrentPage(1); // Reset to first page - ADDED
     };
 
     // Update brand and reset secondary filters
@@ -103,6 +113,7 @@ export const ProductProvider = ({ children }) => {
             color: '',
             condition: '',
         });
+        setCurrentPage(1); // Reset to first page - ADDED
     };
 
     // Update secondary filters
@@ -111,6 +122,7 @@ export const ProductProvider = ({ children }) => {
             ...prev,
             [filterName]: value,
         }));
+        setCurrentPage(1); // Reset to first page - ADDED
     };
 
     // Reset all filters
@@ -123,17 +135,25 @@ export const ProductProvider = ({ children }) => {
             condition: '',
         });
         setPriceRange({ min: 0, max: 1000 });
+        setCurrentPage(1); // Reset to first page - ADDED
     };
 
     // Update price range 
     const updatePriceRange = (min, max) => {
         setPriceRange({ min, max });
+        setCurrentPage(1); // Reset to first page - ADDED
     };
 
     // Update sorting 
     const updateSorting = (field, order) => {
         setSortBy(field);
         setSortOrder(order);
+        setCurrentPage(1); // Reset to first page - ADDED
+    };
+
+    // Handle page change - ADDED
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
     };
 
     // Read URL parameters on initial component mount
@@ -183,9 +203,7 @@ export const ProductProvider = ({ children }) => {
             shouldFetchProducts = true;
         }
         
-        // We'll fetch products and categories in the next useEffect
-        // This is just to initialize state from URL
-    }, []); // Empty dependency array means this runs once on mount
+    }, []); 
 
     // Initialize data when component mounts
     useEffect(() => {
@@ -201,11 +219,9 @@ export const ProductProvider = ({ children }) => {
     // Fetch products whenever filters change
     useEffect(() => {
         fetchProducts();
-    }, [selectedCategory, selectedBrand, secondaryFilters, priceRange, sortBy, sortOrder]);
+    }, [selectedCategory, selectedBrand, secondaryFilters, priceRange, sortBy, sortOrder, currentPage]);
 
-    // Update URL when filters change
     useEffect(() => {
-        // Skip URL update if triggered by a URL change
         if (isUpdatingFromUrl) {
             setIsUpdatingFromUrl(false);
             return;
@@ -247,6 +263,10 @@ export const ProductProvider = ({ children }) => {
                 priceRange,
                 sortBy,
                 sortOrder,
+                currentPage,
+                totalPages: Math.ceil(allProducts.length / itemsPerPage),
+                totalItems: allProducts.length,
+                handlePageChange,
                 updateCategory,
                 updateBrand,
                 updateSecondaryFilter,

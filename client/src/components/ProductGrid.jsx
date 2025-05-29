@@ -1,12 +1,12 @@
-// ProductGrid.jsx - Enhanced with minimalist design
-import React, { useState } from 'react';
+// ProductGrid.jsx - Updated to work with enhanced ActiveFilters
+import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from "./ProductCard";
 import { useProductContext } from "../context/ProductContext";
 import { useWishlist } from "../context/WishlistContext";
-import { Grid3X3, List, Heart, ShoppingBag, AlertCircle, Package } from 'lucide-react';
+import { Heart, ShoppingBag, AlertCircle, Package } from 'lucide-react';
 
-const ProductGrid = () => {
+const ProductGrid = ({ viewMode }) => {
   const { products, loading, error } = useProductContext();
   const { 
     wishlistItems,   
@@ -15,7 +15,6 @@ const ProductGrid = () => {
     isInWishlist,
     toggleWishlistItem  
   } = useWishlist();
-  const [viewMode, setViewMode] = useState('grid');
 
   if (loading) {
     return (
@@ -67,39 +66,10 @@ const ProductGrid = () => {
   };
 
   return (
-    <div className="space-y-6">
-      {/* View Toggle */}
-      <div className="flex justify-between items-center">
-        <div></div> {/* Spacer */}
-        <div className="flex bg-white rounded-lg border border-gray-200 p-1">
-          <button 
-            onClick={() => setViewMode('grid')} 
-            className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors ${
-              viewMode === 'grid' 
-                ? 'bg-gray-900 text-white' 
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
-          >
-            <Grid3X3 size={16} />
-            Grid
-          </button>
-          <button 
-            onClick={() => setViewMode('list')} 
-            className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-colors ${
-              viewMode === 'list' 
-                ? 'bg-gray-900 text-white' 
-                : 'text-gray-600 hover:text-gray-900'
-            }`}
-          >
-            <List size={16} />
-            List
-          </button>
-        </div>
-      </div>
-
+    <div>
       {viewMode === 'grid' ? (
         // Grid View
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
           {products.map((product) => (
             <ProductCard
               key={product.product_id}
@@ -110,7 +80,7 @@ const ProductGrid = () => {
         </div>
       ) : (
         // List View
-        <div className="bg-white rounded-2xl overflow-hidden">
+        <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
           {products.map((product, index) => {
             const productId = getProperty(product, 'product_id');
             const title = getProperty(product, 'title');
@@ -119,6 +89,7 @@ const ProductGrid = () => {
             const category = getProperty(product, 'category_name');
             const brand = getProperty(product, 'brand_name');
             const description = getProperty(product, 'description');
+            const sizes = getProperty(product, 'sizes');
             
             const conditions = getProperty(product, 'conditions', []);
             const firstCondition = Array.isArray(conditions) ? conditions[0] : conditions;
@@ -132,53 +103,58 @@ const ProductGrid = () => {
                   index !== products.length - 1 ? 'border-b border-gray-100' : ''
                 }`}
               >
-                {/* Product Image */}
-                <div className="w-40 h-40 flex-shrink-0 bg-gray-50 rounded-lg overflow-hidden">
+                <div className="w-32 h-32 flex-shrink-0 bg-gray-50 rounded-lg overflow-hidden">
                   <Link to={`/products/${productId}`}>
                     <img 
                       src={imageUrl} 
                       alt={title} 
-                      className="w-full h-full object-contain hover:scale-105 transition-transform"
+                      className="w-full h-full object-contain hover:scale-105 transition-transform duration-200"
                     />
                   </Link>
                 </div>
                 
-                {/* Product Info */}
                 <div className="ml-6 flex-1 min-w-0">
                   <div className="flex items-start justify-between">
                     <div className="flex-1 min-w-0">
                       <Link 
                         to={`/products/${productId}`}
-                        className="text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors block truncate"
+                        className="text-lg font-semibold text-gray-900 hover:text-gray-700 hover:underline transition-colors block"
                       >
-                        {title}
+                        <h3 className="truncate">{title}</h3>
                       </Link>
                       
-                      <div className="flex items-center gap-3 mt-1">
+                      <div className="flex items-center gap-3 mt-2 mb-2">
                         {brand && (
-                          <span className="text-sm text-gray-500">{brand}</span>
+                          <span className="text-sm text-gray-600 font-medium">{brand}</span>
                         )}
                         {category && (
                           <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
                             {category}
                           </span>
                         )}
+                      </div>
+
+                      <div className="flex items-center gap-3 mb-3">
                         {firstCondition && (
-                          <span className="text-xs text-gray-500">{firstCondition}</span>
+                          <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                            {firstCondition}
+                          </span>
+                        )}
+                        {sizes && (
+                          <span className="text-xs text-gray-500">Size: {sizes}</span>
                         )}
                       </div>
                       
                       {description && (
-                        <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+                        <p className="text-sm text-gray-600 line-clamp-2 leading-relaxed">
                           {description}
                         </p>
                       )}
                     </div>
                     
-                    {/* Price and Actions */}
                     <div className="flex items-center gap-4 ml-6">
                       <div className="text-right">
-                        <p className="text-xl font-medium text-gray-900">${price.toFixed(2)}</p>
+                        <p className="text-2xl font-bold text-gray-900">${price.toFixed(2)}</p>
                       </div>
                       
                       <div className="flex items-center gap-2">
@@ -189,8 +165,9 @@ const ProductGrid = () => {
                               ? 'text-red-500 bg-red-50 hover:bg-red-100' 
                               : 'text-gray-400 hover:text-red-500 hover:bg-gray-50'
                           }`}
+                          title={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
                         >
-                          <Heart size={16} className={inWishlist ? 'fill-current' : ''} />
+                          <Heart size={18} className={inWishlist ? 'fill-current' : ''} />
                         </button>
                         
                         <Link 
@@ -198,7 +175,7 @@ const ProductGrid = () => {
                           className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
                         >
                           <ShoppingBag size={14} />
-                          View
+                          View Details
                         </Link>
                       </div>
                     </div>

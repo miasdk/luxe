@@ -12,7 +12,6 @@ import {
 import productsService from "../services/productService";
 import brandService from "../services/brandService";
 import categoryService from "../services/categoryService";
-// Import hardcoded data
 import { colorData } from "../data/colors";
 import { conditionData } from "../data/conditions";
 import { sizeData } from "../data/sizes";
@@ -22,8 +21,6 @@ export default function CreateListing() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [step, setStep] = useState(1);
-  
-  // Reference data for lookups
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
   const colors = colorData;
@@ -43,7 +40,6 @@ export default function CreateListing() {
     image: ""
   });
 
-  // Load brands and categories on component mount
   useEffect(() => {
     const fetchReferenceData = async () => {
       try {
@@ -119,7 +115,6 @@ export default function CreateListing() {
     }
   };
 
-  // Form validation
   const isStepComplete = (stepNum) => {
     switch(stepNum) {
       case 1:
@@ -127,7 +122,7 @@ export default function CreateListing() {
       case 2:
         return formData.brand_id && formData.category_id && formData.condition_ids.length > 0;
       case 3:
-        return true; // Image and attributes are optional
+        return true; 
       default:
         return false;
     }
@@ -210,7 +205,6 @@ export default function CreateListing() {
           </div>
         </div>
 
-        {/* Error Display */}
         {error && (
           <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
             <AlertCircle size={20} className="text-red-500 mt-0.5 flex-shrink-0" />
@@ -222,7 +216,6 @@ export default function CreateListing() {
         )}
 
         <form onSubmit={handleSubmit}>
-          {/* Step 1: Basic Details */}
           {step === 1 && (
             <div className="bg-white rounded-2xl p-8 shadow-sm">
               <div className="mb-8">
@@ -299,7 +292,6 @@ export default function CreateListing() {
             </div>
           )}
 
-          {/* Step 2: Category & Brand */}
           {step === 2 && (
             <div className="bg-white rounded-2xl p-8 shadow-sm">
               <div className="mb-8">
@@ -406,10 +398,8 @@ export default function CreateListing() {
             </div>
           )}
 
-          {/* Step 3: Image & Attributes */}
           {step === 3 && (
             <div className="space-y-8">
-              {/* Image Upload */}
               <div className="bg-white rounded-2xl p-8 shadow-sm">
                 <div className="mb-6">
                   <h2 className="text-2xl font-light text-gray-900 mb-2">Product Image</h2>
@@ -455,7 +445,6 @@ export default function CreateListing() {
                 </div>
               </div>
 
-              {/* Attributes */}
               <div className="bg-white rounded-2xl p-8 shadow-sm">
                 <div className="mb-6">
                   <h2 className="text-2xl font-light text-gray-900 mb-2">Attributes</h2>
@@ -463,7 +452,6 @@ export default function CreateListing() {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8">
-                  {/* Colors */}
                   <div>
                     <h3 className="text-sm font-medium text-gray-700 mb-3">Available Colors</h3>
                     <div className="space-y-2 max-h-48 overflow-y-auto">
@@ -491,7 +479,6 @@ export default function CreateListing() {
                     </div>
                   </div>
 
-                  {/* Sizes */}
                   <div>
                     <h3 className="text-sm font-medium text-gray-700 mb-3">Available Sizes</h3>
                     <div className="space-y-2 max-h-48 overflow-y-auto">

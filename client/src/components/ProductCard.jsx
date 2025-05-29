@@ -13,11 +13,11 @@ const ProductCard = ({ product }) => {
   };
 
   const handleRemoveFromCart = () => {
-    removeFromCart(product.product_id); 
+    removeFromCart(product.product_id);
   };
 
   return (
-    <article className="bg-white group h-full overflow-hidden relative rounded-sm">
+    <article className="bg-white group h-full overflow-hidden relative rounded-lg">
       <div className="absolute top-2 right-2 z-10 p-2">
         <WishlistButton
           productId={product.product_id}
@@ -26,11 +26,13 @@ const ProductCard = ({ product }) => {
       </div>
 
       <div className="relative">
-        <img
-          src={product.image}
-          alt={product.title}
-          className="w-full bg-gray-100 h-48 object-contain"
-        />
+        <Link to={`/products/${product.product_id}`}>
+          <img
+            src={product.image}
+            alt={product.title}
+            className="w-full bg-gray-100 h-48 object-contain hover:scale-105 transition-transform"
+          />
+        </Link>
       </div>
 
       <div className="p-4">
@@ -65,7 +67,7 @@ const ProductCard = ({ product }) => {
               </button>
             </div>
             <button
-              className="border border-red-500 text-red-500 px-2 py-1 rounded-full mt-2 hover:bg-red-500 hover:text-white"
+              className="border border-red-500 text-red-500 px-2 py-1 rounded-full mt-2 hover:bg-red-500 hover:text-white text-sm"
               onClick={handleRemoveFromCart}
             >
               Remove
@@ -73,7 +75,7 @@ const ProductCard = ({ product }) => {
           </div>
         ) : (
           <button
-            className="w-full bottom-0 sticky mt-5 px-4 py-2 border border-gray-500 hover:bg-gray-800 hover:text-white"
+            className="w-full mt-5 px-4 py-2 border border-gray-500 hover:bg-gray-800 hover:text-white rounded transition-colors"
             onClick={handleAddToCart}
           >
             Add to Cart

@@ -56,7 +56,6 @@ export default function FormInput({
   );
 }
 
-// components/FormButton.jsx
 export default function FormButton({ 
   type = 'button', 
   onClick, 
@@ -78,7 +77,6 @@ export default function FormButton({
   );
 }
 
-// components/FormError.jsx
 import { AlertCircle } from 'lucide-react';
 
 export default function FormError({ message }) {
@@ -92,7 +90,6 @@ export default function FormError({ message }) {
   );
 }
 
-// components/SocialButtons.jsx
 import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 export default function SocialButtons() {

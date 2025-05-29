@@ -1,5 +1,4 @@
 "use client"
-
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
@@ -41,7 +40,6 @@ export default function ProductDetailPage() {
         const data = await productsService.fetchProductById(productId)
         setProduct(data)
 
-        // Check if product is in cart and set initial quantity
         const cartItem = cartItems.find((item) => item.product_id === data.product_id)
         if (cartItem) {
           setQuantity(cartItem.quantity)
@@ -54,13 +52,11 @@ export default function ProductDetailPage() {
     }
 
     fetchProduct()
-    // Scroll to top when component mounts
     window.scrollTo(0, 0)
   }, [productId, cartItems])
 
   const handleAddToCart = () => {
     if (product) {
-      // Create a modified product with the selected quantity
       const productToAdd = {
         ...product,
         quantityToAdd: quantity,
@@ -96,22 +92,18 @@ export default function ProductDetailPage() {
     setOpenAccordion(openAccordion === section ? null : section)
   }
 
-  // Generate dummy images for the gallery if product only has one image
   const generateGalleryImages = (product) => {
     if (!product) return []
 
-    // If product has multiple images, use those
     if (product.gallery && product.gallery.length > 0) {
       return product.gallery
     }
 
-    // Otherwise, just duplicate the main image for demonstration
     return [product.image, product.image, product.image, product.image]
   }
 
   if (loading) {
     return (
-      // Loading Skeleton
       <div className="container mx-auto px-4 py-16">
         <div className="animate-pulse">
           <div className="flex flex-col md:flex-row gap-12">
@@ -165,7 +157,6 @@ export default function ProductDetailPage() {
 
   return (
     <div className="bg-white">
-      {/* Breadcrumb */}
       <div className="bg-gray-50 py-4 border-b border-gray-100">
         <div className="container mx-auto px-4">
           <nav className="flex text-sm">
@@ -196,23 +187,6 @@ export default function ProductDetailPage() {
                 className="h-full w-full object-contain"
               />
             </div>
-            {/* <div className="grid grid-cols-4 gap-2">
-              {galleryImages.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveImage(index)}
-                  className={`aspect-square overflow-hidden rounded-lg border-2 ${
-                    activeImage === index ? "border-gray-900" : "border-transparent"
-                  }`}
-                >
-                  <img
-                    src={image || "/placeholder.svg"}
-                    alt={`${product.title} - View ${index + 1}`}
-                    className="h-full w-full object-cover"
-                  />
-                </button>
-              ))}
-            </div> */}
           </div>
 
           <div className="lg:w-1/2">
@@ -278,22 +252,6 @@ export default function ProductDetailPage() {
             </div>
 
             <div className="mb-8 space-y-4">
-              {/* Size */}
-              {/* <div>
-                <h3 className="text-sm font-medium text-gray-900 mb-2">Size</h3>
-                <div className="flex flex-wrap gap-2">
-                  {(product.sizes || "S,M,L,XL").split(",").map((size) => (
-                    <button
-                      key={size}
-                      className="min-w-[3rem] px-3 py-2 border border-gray-300 rounded-md text-sm font-medium hover:border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-1"
-                    >
-                      {size.trim()}
-                    </button>
-                  ))}
-                </div>
-              </div> */}
-
-              {/* Condition */}
               <div>
                 <h3 className="text-sm font-medium text-gray-900 mb-2">Condition</h3>
                 <div className="inline-block px-3 py-1 bg-gray-100 rounded-full text-sm font-medium text-gray-800">
@@ -302,7 +260,6 @@ export default function ProductDetailPage() {
               </div>
             </div>
 
-            {/* Add to Cart */}
             <div className="mb-8">
               {product.stock > 0 ? (
                 <>
@@ -400,7 +357,6 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Product Details Tabs (Desktop) */}
       <div className="hidden md:block border-t border-gray-200">
         <div className="container mx-auto px-4">
           <div className="flex border-b border-gray-200">
@@ -501,7 +457,6 @@ export default function ProductDetailPage() {
                 </div>
 
                 <div className="space-y-6">
-                  {/* Sample reviews - will be replaced with actual reviews from API when available */}
                   <div className="border-b border-gray-200 pb-6">
                     <div className="flex items-center mb-2">
                       <div className="flex mr-2">
@@ -550,7 +505,6 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Product Details Accordion (Mobile) */}
       <div className="md:hidden border-t border-gray-200">
         <div className="container mx-auto px-4">
           <div className="divide-y divide-gray-200">
@@ -669,7 +623,6 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Related Products */}
       <div className="bg-gray-50 py-16">
         <div className="container mx-auto px-4">
           <div className="mb-10">

@@ -22,7 +22,6 @@ const OrdersPage = () => {
                 
                 const data = await response.json();
                 
-                // Group by order_id
                 const groupedOrders = data.reduce((acc, item) => {
                     if (!acc[item.order_id]) {
                         acc[item.order_id] = {

@@ -12,7 +12,6 @@ const HomePage = () => {
   const [brands, setBrands] = useState([])
   const [categories, setCategories] = useState([])
 
-  // Fetch data on mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,7 +42,6 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section - Improved for XL screens */}
       <section className="relative bg-gradient-to-r from-gray-50 to-gray-100 overflow-hidden">
         <div className="container mx-auto px-4 xl:px-8 2xl:px-12 py-16 md:py-24 xl:py-32 max-w-7xl 2xl:max-w-8xl">
           <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-12 xl:gap-16 items-center">
@@ -88,13 +86,10 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-
-        {/* Enhanced decorative elements for XL */}
         <div className="absolute top-1/4 right-0 w-64 xl:w-96 2xl:w-[32rem] h-64 xl:h-96 2xl:h-[32rem] bg-gray-200 rounded-full opacity-20 -mr-32 xl:-mr-48 2xl:-mr-64" />
         <div className="absolute bottom-0 left-0 w-40 xl:w-60 2xl:w-80 h-40 xl:h-60 2xl:h-80 bg-gray-200 rounded-full opacity-20 -ml-20 xl:-ml-30 2xl:-ml-40 -mb-20 xl:-mb-30 2xl:-mb-40" />
       </section>
 
-      {/* Trust Badges - Enhanced spacing for XL */}
       <section className="bg-white py-8 xl:py-12 border-b border-gray-100">
         <div className="container mx-auto px-4 xl:px-8 2xl:px-12 max-w-7xl 2xl:max-w-8xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 xl:gap-16">
@@ -117,7 +112,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Categories - Improved spacing */}
       <section className="py-16 xl:py-24 bg-gray-50">
         <div className="container mx-auto px-4 xl:px-8 2xl:px-12 max-w-7xl 2xl:max-w-8xl">
           <h2 className="text-2xl xl:text-3xl 2xl:text-4xl font-light text-gray-900 mb-10 xl:mb-16 text-center">Shop by Category</h2>
@@ -125,7 +119,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Featured Product - Enhanced for XL screens */}
       <section className="py-16 xl:py-24 bg-white">
         <div className="container mx-auto px-4 xl:px-8 2xl:px-12 max-w-7xl 2xl:max-w-8xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-5 gap-16 xl:gap-20 items-center">
@@ -181,7 +174,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* New Arrivals - Enhanced spacing */}
       <section className="py-16 xl:py-24 bg-white">
         <div className="container mx-auto px-4 xl:px-8 2xl:px-12 max-w-7xl 2xl:max-w-8xl">
           <div className="flex justify-between items-center mb-10 xl:mb-16">
@@ -195,7 +187,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Sign Up CTA - Enhanced for XL */}
       {!user && (
         <section className="bg-gray-900 text-white py-16 xl:py-24">
           <div className="container mx-auto px-4 xl:px-8 2xl:px-12 text-center max-w-4xl xl:max-w-5xl 2xl:max-w-6xl">
@@ -222,28 +213,26 @@ const HomePage = () => {
         </section>
       )}
 
-      {/* Brands - Enhanced grid for XL */}
-      <section className="bg-gray-50 py-16 xl:py-24 border-t border-gray-100">
-        <div className="container mx-auto px-4 xl:px-8 2xl:px-12 max-w-7xl 2xl:max-w-8xl">
-          <h2 className="text-2xl xl:text-3xl 2xl:text-4xl font-light text-gray-900 mb-10 xl:mb-16 text-center">Our Brands</h2>
-          <div className="grid grid-cols-2 md:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-8 xl:gap-12 items-center">
-            {brands.slice(0, 10).map((brand) => (
-              <div
-                key={brand.id}
-                className="flex items-center justify-center transition-all duration-300 hover:scale-105"
-              >
-                <img
-                  src={brand.image || "/placeholder.svg"}
-                  alt={brand.name}
-                  className="h-12 xl:h-16 2xl:h-20 object-contain opacity-80 hover:opacity-100 transition-opacity"
-                />
-              </div>
-            ))}
-          </div>
+   <section className="bg-gray-50 py-16 xl:py-24 border-t border-gray-100">
+      <div className="container mx-auto px-4 xl:px-8 2xl:px-12 max-w-7xl 2xl:max-w-8xl">
+        <h2 className="text-2xl xl:text-3xl 2xl:text-4xl font-light text-gray-900 mb-10 xl:mb-16 text-center">Our Brands</h2>
+        <div className="grid grid-cols-3 gap-8 xl:gap-12 items-center justify-center">
+          {brands.slice(0, 6).map((brand) => (
+            <div
+              key={brand.id}
+              className="flex items-center justify-center transition-all duration-300 hover:scale-105"
+            >
+              <img
+                src={brand.image || "/placeholder.svg"}
+                alt={brand.name}
+                className="h-12 xl:h-16 2xl:h-20 object-contain opacity-80 hover:opacity-100 transition-opacity"
+              />
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Newsletter - Enhanced for XL */}
       <section className="bg-black text-white py-20 xl:py-32">
         <div className="container mx-auto px-4 xl:px-8 2xl:px-12 max-w-4xl xl:max-w-5xl 2xl:max-w-6xl text-center">
           <h2 className="text-2xl xl:text-3xl 2xl:text-4xl font-light mb-4 xl:mb-6">Subscribe to Our Newsletter</h2>
@@ -257,7 +246,6 @@ const HomePage = () => {
   )
 }
 
-// Enhanced TrustBadge component for XL screens
 const TrustBadge = ({ icon, title, description }) => (
   <div className="flex items-center gap-4 xl:gap-6 group">
     <div className="p-3 xl:p-4 rounded-full bg-gray-100 group-hover:bg-gray-200 transition-all duration-300 text-gray-700">
@@ -270,13 +258,11 @@ const TrustBadge = ({ icon, title, description }) => (
   </div>
 )
 
-// Enhanced NewsletterForm for XL screens
 const NewsletterForm = () => {
   const [email, setEmail] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // TODO: Implement newsletter subscription
     console.log("Newsletter subscription for:", email)
     setEmail("")
   }

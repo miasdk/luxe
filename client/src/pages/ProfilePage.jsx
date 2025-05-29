@@ -20,10 +20,12 @@ import {
     List,
     Filter,
     Share2,
-    Wrench,
+    Construction,
     Clock,
     AlertCircle,
-    ArrowLeft
+    ArrowLeft,
+    Hammer,
+    HardHat
 } from 'lucide-react';
 
 export default function ProfilePage() {
@@ -83,271 +85,122 @@ export default function ProfilePage() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            {/* In Progress Header */}
-            <div className="bg-amber-50 border-b border-amber-200">
-                <div className="container mx-auto px-4 py-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center">
-                                <Wrench size={20} className="text-amber-600" />
-                            </div>
-                            <div>
-                                <h3 className="text-lg font-medium text-amber-900">Profile Page - In Development</h3>
-                                <p className="text-sm text-amber-700">This page is a preview of upcoming features</p>
-                            </div>
+        <div className="min-h-screen bg-white">
+            {/* Main Under Construction Section */}
+            <div className="container mx-auto px-4 py-16">
+                <div className="max-w-2xl mx-auto text-center">
+                    {/* Construction Icon Animation */}
+                    <div className="relative mb-8">
+                        <div className="w-32 h-32 mx-auto bg-orange-100 rounded-full flex items-center justify-center">
+                            <Construction size={64} className="text-orange-600" />
                         </div>
-                        
-                        <div className="flex items-center gap-4">
-                            <div className="hidden sm:flex items-center gap-2 text-sm text-amber-700">
-                                <Clock size={16} />
-                                <span>Expected: Next Update</span>
-                            </div>
-                            <Link
-                                to="/"
-                                className="inline-flex items-center gap-2 px-4 py-2 bg-amber-100 text-amber-800 rounded-lg hover:bg-amber-200 transition-colors text-sm font-medium"
-                            >
-                                <ArrowLeft size={16} />
-                                <span className="hidden sm:inline">Back to Shopping</span>
-                                <span className="sm:hidden">Back</span>
-                            </Link>
+                        {/* Animated hard hat */}
+                        <div className="absolute -top-2 -right-2 w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center animate-bounce">
+                            <HardHat size={24} className="text-yellow-600" />
+                        </div>
+                        {/* Animated hammer */}
+                        <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center animate-pulse">
+                            <Hammer size={20} className="text-gray-600" />
                         </div>
                     </div>
-                </div>
-            </div>
 
-            {/* Feature Preview Notice */}
-            <div className="bg-blue-50 border-b border-blue-200">
-                <div className="container mx-auto px-4 py-3">
-                    <div className="flex items-start gap-3">
-                        <AlertCircle size={18} className="text-blue-600 mt-0.5 flex-shrink-0" />
-                        <div className="text-sm">
-                            <p className="text-blue-900 font-medium mb-1">Coming Soon: Full Profile Management</p>
-                            <div className="text-blue-700 space-x-4">
-                                <span>• Edit profile & upload photos</span>
-                                <span>• Seller dashboard with analytics</span>
-                                <span>• Listing management tools</span>
-                                <span>• Customer reviews & ratings</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <h1 className="text-4xl font-bold text-gray-900 mb-4">
+                        Profile Page Under Construction
+                    </h1>
+                    
+                    <p className="text-xl text-gray-600 mb-8">
+                        We're building something awesome! This page will be ready soon.
+                    </p>
 
-            {/* Original Profile Content with Overlay Effects */}
-            <div className="relative">
-                {/* Subtle overlay to indicate non-functional state */}
-                <div className="absolute inset-0 bg-white/5 pointer-events-none z-10"></div>
-                
-                {/* Cover Photo */}
-                <div className="relative h-48 lg:h-64 bg-gradient-to-r from-purple-500 to-pink-500 opacity-90">
-                    <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-                    <button className="absolute top-4 right-4 p-2 bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-colors cursor-not-allowed opacity-75">
-                        <Camera size={18} />
-                    </button>
-                </div>
-
-                <div className="container mx-auto px-4 -mt-16 relative z-10">
-                    {/* Profile Header */}
-                    <div className="bg-white rounded-2xl shadow-lg p-6 mb-6 relative">
-                        {/* Non-functional overlay for interactive elements */}
-                        <div className="absolute inset-0 bg-transparent cursor-not-allowed rounded-2xl z-20"></div>
+                    {/* Features Coming Soon */}
+                    <div className="bg-gray-50 rounded-xl p-6 mb-8">
+                        <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center justify-center gap-2">
+                            <Settings size={20} />
+                            Coming Soon Features
+                        </h2>
                         
-                        <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                            {/* Profile Picture */}
-                            <div className="relative">
-                                <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full border-4 border-white shadow-lg bg-gray-200 flex items-center justify-center">
-                                    <User size={32} className="text-gray-400" />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                            <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
+                                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <User size={16} className="text-blue-600" />
                                 </div>
-                                <button className="absolute bottom-0 right-0 p-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors opacity-75 cursor-not-allowed">
-                                    <Camera size={14} />
-                                </button>
+                                <span className="text-gray-700">Profile Management</span>
                             </div>
-
-                            {/* Profile Info */}
-                            <div className="flex-1">
-                                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
-                                    <div>
-                                        <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-1">
-                                            {user.displayName || user.email.split('@')[0]}
-                                        </h1>
-                                        <div className="flex items-center gap-2 text-gray-600 mb-2">
-                                            <MapPin size={16} />
-                                            <span className="text-sm text-gray-400">Add your location</span>
-                                            <Calendar size={16} className="ml-2" />
-                                            <span className="text-sm">Joined {profileData.joinDate}</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="flex gap-2">
-                                        <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors opacity-75 cursor-not-allowed">
-                                            <Edit3 size={16} />
-                                            Edit Profile
-                                        </button>
-                                        <button className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-xl hover:bg-gray-800 transition-colors opacity-75 cursor-not-allowed">
-                                            <Share2 size={16} />
-                                            Share
-                                        </button>
-                                    </div>
+                            
+                            <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
+                                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <Camera size={16} className="text-green-600" />
                                 </div>
-
-                                <p className="text-gray-400 mb-4 leading-relaxed italic">Tell us about yourself...</p>
-
-                                {/* Stats */}
-                                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                                    <div className="text-center p-3 bg-gray-50 rounded-xl">
-                                        <p className="text-2xl font-bold text-gray-900">{profileData.followers.toLocaleString()}</p>
-                                        <p className="text-sm text-gray-600">Followers</p>
-                                    </div>
-                                    <div className="text-center p-3 bg-gray-50 rounded-xl">
-                                        <p className="text-2xl font-bold text-gray-900">{profileData.following.toLocaleString()}</p>
-                                        <p className="text-sm text-gray-600">Following</p>
-                                    </div>
-                                    <div className="text-center p-3 bg-gray-50 rounded-xl">
-                                        <p className="text-2xl font-bold text-gray-900">{profileData.totalSales}</p>
-                                        <p className="text-sm text-gray-600">Sales</p>
-                                    </div>
-                                    <div className="text-center p-3 bg-gray-50 rounded-xl">
-                                        <div className="flex items-center justify-center gap-1">
-                                            <Star size={16} className="text-gray-300" />
-                                            <p className="text-2xl font-bold text-gray-900">{profileData.rating}</p>
-                                        </div>
-                                        <p className="text-sm text-gray-600">Rating</p>
-                                    </div>
+                                <span className="text-gray-700">Photo Upload</span>
+                            </div>
+                            
+                            <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
+                                <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                    <TrendingUp size={16} className="text-purple-600" />
                                 </div>
+                                <span className="text-gray-700">Seller Dashboard</span>
+                            </div>
+                            
+                            <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
+                                <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
+                                    <Star size={16} className="text-red-600" />
+                                </div>
+                                <span className="text-gray-700">Reviews & Ratings</span>
+                            </div>
+                            
+                            <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
+                                <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                    <Package size={16} className="text-yellow-600" />
+                                </div>
+                                <span className="text-gray-700">Listing Management</span>
+                            </div>
+                            
+                            <div className="flex items-center gap-3 p-3 bg-white rounded-lg">
+                                <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+                                    <DollarSign size={16} className="text-indigo-600" />
+                                </div>
+                                <span className="text-gray-700">Sales Analytics</span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Seller Dashboard Stats */}
-                    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-6">
-                        <div className="bg-white rounded-xl p-4 shadow-sm opacity-90">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                    <DollarSign size={20} className="text-green-600" />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-600">This Month</p>
-                                    <p className="text-xl font-bold text-gray-900">${salesStats.thisMonth.revenue.toLocaleString()}</p>
-                                </div>
-                            </div>
+                    {/* Timeline */}
+                    <div className="bg-blue-50 rounded-xl p-6 mb-8">
+                        <div className="flex items-center justify-center gap-2 mb-3">
+                            <Clock size={20} className="text-blue-600" />
+                            <h3 className="text-lg font-medium text-blue-900">Expected Timeline</h3>
                         </div>
-                        
-                        <div className="bg-white rounded-xl p-4 shadow-sm opacity-90">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                    <TrendingUp size={20} className="text-blue-600" />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-600">Total Revenue</p>
-                                    <p className="text-xl font-bold text-gray-900">${salesStats.totalRevenue.toLocaleString()}</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div className="bg-white rounded-xl p-4 shadow-sm opacity-90">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                                    <Package size={20} className="text-purple-600" />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-600">Avg Sale</p>
-                                    <p className="text-xl font-bold text-gray-900">${salesStats.avgSalePrice}</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div className="bg-white rounded-xl p-4 shadow-sm opacity-90">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                                    <Users size={20} className="text-orange-600" />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-600">Repeat Buyers</p>
-                                    <p className="text-xl font-bold text-gray-900">{salesStats.repeatCustomers}</p>
-                                </div>
-                            </div>
-                        </div>
+                        <p className="text-blue-700 text-lg font-medium">July 2025</p>
+                        <p className="text-blue-600 text-sm mt-1">Stay tuned for updates!</p>
                     </div>
 
-                    {/* Tabs */}
-                    <div className="bg-white rounded-2xl shadow-lg overflow-hidden relative">
-                        {/* Non-functional overlay for tabs */}
-                        <div className="absolute inset-0 bg-transparent cursor-not-allowed z-20"></div>
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link
+                            to="/products"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-colors"
+                        >
+                            <ShoppingBag size={20} />
+                            Continue Shopping
+                        </Link>
                         
-                        <div className="border-b border-gray-200">
-                            <div className="flex items-center justify-between p-4">
-                                <nav className="flex space-x-8">
-                                    {[
-                                        { id: 'listings', label: 'My Listings', icon: Package },
-                                        { id: 'sold', label: 'Sold Items', icon: Badge },
-                                        { id: 'likes', label: 'Liked Items', icon: Heart },
-                                        { id: 'reviews', label: 'Reviews', icon: Star }
-                                    ].map(tab => (
-                                        <button
-                                            key={tab.id}
-                                            onClick={() => setActiveTab(tab.id)}
-                                            className={`flex items-center gap-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors opacity-75 ${
-                                                activeTab === tab.id
-                                                    ? 'border-black text-black'
-                                                    : 'border-transparent text-gray-500 hover:text-gray-700'
-                                            }`}
-                                        >
-                                            <tab.icon size={16} />
-                                            {tab.label}
-                                        </button>
-                                    ))}
-                                </nav>
-                                
-                                <div className="flex items-center gap-2">
-                                    <button
-                                        onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')}
-                                        className="p-2 text-gray-400 hover:text-gray-600 transition-colors opacity-75"
-                                    >
-                                        {viewMode === 'grid' ? <List size={18} /> : <Grid3X3 size={18} />}
-                                    </button>
-                                    <button className="p-2 text-gray-400 hover:text-gray-600 transition-colors opacity-75">
-                                        <Filter size={18} />
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <Link
+                            to="/wishlist"
+                            className="inline-flex items-center gap-2 px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
+                        >
+                            <Heart size={20} />
+                            View Wishlist
+                        </Link>
+                    </div>
 
-                        {/* Tab Content */}
-                        <div className="p-6">
-                            {(activeTab === 'listings' || activeTab === 'sold') && getFilteredListings().length === 0 && (
-                                <div className="text-center py-12">
-                                    <Package size={48} className="mx-auto text-gray-300 mb-4" />
-                                    <h3 className="text-lg font-medium text-gray-900 mb-2">
-                                        {activeTab === 'listings' ? 'No listings yet' : 'No sold items'}
-                                    </h3>
-                                    <p className="text-gray-600 mb-6">
-                                        {activeTab === 'listings' ? 'Start selling by creating your first listing' : 'Your sold items will appear here'}
-                                    </p>
-                                    {activeTab === 'listings' && (
-                                        <button className="inline-flex items-center px-6 py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition-colors opacity-75 cursor-not-allowed">
-                                            <Package size={16} className="mr-2" />
-                                            Create Listing
-                                        </button>
-                                    )}
-                                </div>
-                            )}
-
-                            {activeTab === 'likes' && (
-                                <div className="text-center py-12">
-                                    <Heart size={48} className="mx-auto text-gray-300 mb-4" />
-                                    <h3 className="text-lg font-medium text-gray-900 mb-2">No liked items yet</h3>
-                                    <p className="text-gray-600">Items you like will appear here</p>
-                                </div>
-                            )}
-
-                            {activeTab === 'reviews' && (
-                                <div className="text-center py-12">
-                                    <Star size={48} className="mx-auto text-gray-300 mb-4" />
-                                    <h3 className="text-lg font-medium text-gray-900 mb-2">No reviews yet</h3>
-                                    <p className="text-gray-600">Customer reviews will appear here</p>
-                                </div>
-                            )}
+                    {/* Fun Construction Divider */}
+                    <div className="mt-12 pt-8 border-t border-gray-200">
+                        <div className="flex items-center justify-center gap-2 text-gray-500">
+                            <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+                            <span className="text-sm">Building in progress</span>
+                            <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse delay-150"></div>
+                            <span className="text-sm">Please check back soon</span>
+                            <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse delay-300"></div>
                         </div>
                     </div>
                 </div>

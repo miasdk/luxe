@@ -1,7 +1,7 @@
-// FilterSideBar.jsx - eBay-style accordion sidebar
+// FilterSideBar.jsx 
 import React, { useState, useEffect } from "react";
 import { useProductContext } from "../context/ProductContext";
-import { ChevronDown, ChevronUp, X } from "lucide-react";
+import { ChevronDown, ChevronUp, Filter, X } from "lucide-react";
 
 export default function FilterSideBar() {
   const {
@@ -11,16 +11,14 @@ export default function FilterSideBar() {
     resetFilters
   } = useProductContext();
 
-  // Mobile-first: accordion closed by default
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check screen size
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+      setIsMobile(window.innerWidth < 1024); 
       if (window.innerWidth >= 1024) {
-        setIsOpen(true); // Always open on desktop
+        setIsOpen(true); 
       }
     };
 
@@ -29,11 +27,10 @@ export default function FilterSideBar() {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
-  // Handle URL parameters
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const categoryParam = urlParams.get('category');
-    
+        
     if (categoryParam && categoryParam !== selectedCategory) {
       updateCategory(categoryParam);
     }
@@ -46,66 +43,77 @@ export default function FilterSideBar() {
   };
 
   return (
-    <div className="rounded">
-      {/* Header - Always visible, clickable on mobile */}
+    <div className={`bg-white ${isMobile ? 'border-b border-gray-200' : ''}`}>
       <div 
-        className={`flex items-center justify-between p-4 ${isMobile ? 'cursor-pointer' : ''}`}
+        className={`flex items-center justify-between p-4 ${
+          isMobile ? 'cursor-pointer hover:bg-gray-50 transition-colors' : ''
+        }`}
         onClick={isMobile ? toggleAccordion : undefined}
       >
-        <h2 className="text-base font-semibold text-gray-900">Category</h2>
         <div className="flex items-center gap-2">
+          <Filter size={18} className="text-gray-600" />
+          <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+        </div>
+        
+        <div className="flex items-center gap-3">
           {selectedCategory && (
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 resetFilters();
               }}
-              className="text-blue-600 hover:text-blue-800 text-sm"
+              className="flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors"
             >
-              Clear
+              <X size={14} />
+              Clear all
             </button>
           )}
           {isMobile && (
-            <button className="text-gray-500">
-              {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </button>
+            <div className="text-gray-400">
+              {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+            </div>
           )}
         </div>
       </div>
 
-      {/* Content - Collapsible on mobile, always visible on desktop */}
-      <div className={`${isMobile && !isOpen ? 'hidden' : 'block'}`}>
-        <div className="p-4">
-          {/* All Categories Option */}
-          <button
-            className={`w-full text-left py-2 px-3 rounded text-sm transition-colors ${
-              selectedCategory === '' 
-                ? 'bg-blue-50 text-blue-700 font-medium' 
-                : 'text-gray-700 hover:bg-gray-50'
-            }`}
-            onClick={() => updateCategory('')}
-          >
-            All Categories
-          </button>
+      <div className={`transition-all duration-300 ease-in-out ${
+        isMobile && !isOpen 
+          ? 'max-h-0 opacity-0 overflow-hidden' 
+          : 'max-h-none opacity-100'
+      }`}>
+        <div className="px-4 pb-4">
+          <div>
+            <h3 className="text-sm font-medium text-gray-700 mb-3">Category</h3>
+            
+            <button
+              className={`w-full text-left py-2 px-3 rounded text-sm transition-colors ${
+                selectedCategory === ''
+                  ? 'bg-gray-100 text-gray-900 font-medium'
+                  : 'text-gray-700 hover:bg-gray-50'
+              }`}
+              onClick={() => updateCategory('')}
+            >
+              All Categories
+            </button>
 
-          {/* Category List */}
-          <div className="mt-2 space-y-1">
-            {categoriesWithCount.map((category) => (
-              <button
-                key={category.category_name}
-                className={`w-full flex items-center justify-between py-2 px-3 rounded text-sm transition-colors ${
-                  selectedCategory === category.category_name
-                    ? 'bg-blue-50 text-blue-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-                onClick={() => updateCategory(category.category_name)}
-              >
-                <span>{category.category_name}</span>
-                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                  {category.product_count}
-                </span>
-              </button>
-            ))}
+            <div className="mt-1 space-y-1">
+              {categoriesWithCount.map((category) => (
+                <button
+                  key={category.category_name}
+                  className={`w-full flex items-center justify-between py-2 px-3 rounded text-sm transition-colors ${
+                    selectedCategory === category.category_name
+                      ? 'bg-gray-100 text-gray-900 font-medium'
+                      : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+                  onClick={() => updateCategory(category.category_name)}
+                >
+                  <span className="truncate pr-2">{category.category_name}</span>
+                  <span className="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded-full flex-shrink-0">
+                    {category.product_count}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
