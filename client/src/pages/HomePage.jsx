@@ -160,7 +160,7 @@ const HomePage = () => {
             
             <div className="order-1 lg:order-2 xl:col-span-2 relative">
               <div className="grid grid-cols-2 gap-6 max-w-6xl xl:max-w-none mx-auto">
-                <div className="aspect-[4/5] xl:aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
+                <div className="aspect-[4/5] xl:aspect-[3/4] overflow-hidden rounded-lg shadow-xl">
                   <img
                     src="https://www.net-a-porter.com/variants/images/1647597326342291/in/w2000_q80.jpg"
                     alt="Essential Blazer - Front View"
@@ -168,7 +168,7 @@ const HomePage = () => {
                   />
                 </div>
                 
-                <div className="aspect-[4/5] xl:aspect-[3/4] overflow-hidden rounded-2xl shadow-xl">
+                <div className="aspect-[4/5] xl:aspect-[3/4] overflow-hidden rounded-lg shadow-xl">
                   <img
                     src="https://www.net-a-porter.com/variants/images/1647597326342291/ou/w2000_q80.jpg"
                     alt="Essential Blazer - Detail View"

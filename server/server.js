@@ -1,6 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+
+// Import routes
 import productsRouter from './routes/productRoutes.js';
 import categoriesRouter from './routes/categoryRoutes.js';
 import brandsRouter from './routes/brandRoutes.js';
@@ -9,13 +11,24 @@ import ordersRouter from './routes/orderRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import wishlistRouter from './routes/wishlistRoutes.js';
 import searchRouter from './routes/searchRoutes.js';
-dotenv.config();
-const app = express(); 
 
+// Import Swagger
+import { specs, swaggerUi, customCss } from './swagger.js';
+
+dotenv.config();
+const app = express();
+
+// Middleware
 app.use(express.json());
 app.use(cors());
 
-// API Routes 
+// Swagger Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {
+  customCss,
+  customSiteTitle: 'eCart API Documentation'
+}));
+
+// API Routes
 app.use('/api/products', productsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/cart', cartRouter);
@@ -25,13 +38,14 @@ app.use('/api/brands', brandsRouter);
 app.use('/api/wishlist', wishlistRouter);
 app.use('/api/search', searchRouter);
 
+// Home route
 app.get('/', (req, res) => {
-    res.status(200).send('<h1 style="text-align: center; margin-top: 50px;">eCart API</h1>')
-})
+    res.redirect('/api-docs');
+});
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
-})
-
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`📚 API Docs: http://localhost:${PORT}/api-docs`);
+});
