@@ -196,7 +196,7 @@ const WishlistPage = () => {
 
                         <div className="space-y-3">
                             {wishlistItems.map((item) => (
-                                <div key={item.product_id} className="border border-gray-200 rounded hover:shadow-sm transition-shadow">
+                                <div key={item.product_id} className="rounded hover:shadow-sm transition-shadow">
                                     <div className="p-4 flex items-start gap-4">
                                         <input
                                             type="checkbox"

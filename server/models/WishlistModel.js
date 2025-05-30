@@ -107,7 +107,6 @@ class WishlistModel {
 
     /**
      * Clear all items from user's wishlist
-     * 
      * @param {string} userId - The user's ID
      * @returns {Promise<boolean>} - True if cleared successfully
      */

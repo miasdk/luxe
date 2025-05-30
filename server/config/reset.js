@@ -1,6 +1,5 @@
 /**
  * This script is used to reset the database and seed it with initial data.
- * Initial seed from fakestoreapi.com to seed the products table, this will be replaced with the actual products from the client
  */
 import { pool } from './database.js';
 import { userData as users } from '../data/users.js';
@@ -527,7 +526,6 @@ const seedOrderItemsTable = async () => {
     }
 }
 
-// New function to create shipping info table
 const createShippingInfoTable = async () => {
     const query = `
         CREATE TABLE IF NOT EXISTS shipping_info (
@@ -551,7 +549,6 @@ const createShippingInfoTable = async () => {
     }
 }
 
-// Updated function for order details view
 const createOrderDetailsView = async () => {
     const query = `
         CREATE OR REPLACE VIEW order_details AS
@@ -650,7 +647,6 @@ const createCartDetailsView = async () => {
     }
 }
 
-//wishlist 
 const createWishlistTable = async () => {
     const query = `
         DROP TABLE IF EXISTS wishlists CASCADE;
@@ -717,7 +713,6 @@ const implementFullTextSearch = async () => {
     await createSearchIndex();
 };
 
-// Add this function to your reset.js file
 const dropOrderRelatedTables = async () => {
   const query = `
     -- Drop views first (to avoid dependency issues)
