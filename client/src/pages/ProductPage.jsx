@@ -1,4 +1,4 @@
-// ProductPage.jsx - Simple pagination implementation
+// ProductPage.jsx - Updated with matching breakpoint
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
@@ -39,18 +39,16 @@ const ProductPage = () => {
     { label: 'Products', href: '/products' }
   ];
 
-  // Add category to breadcrumb if selected
   if (selectedCategory) {
     breadcrumbItems.push({
       label: selectedCategory,
-      href: null // Current page, no link
+      href: null 
     });
   }
 
   return (
     <div className="bg-white min-h-screen">
       <div className="container mx-auto px-4 py-6 max-w-7xl">
-        {/* Clean Header */}
         <div className="mb-6">
           <Breadcrumb items={breadcrumbItems} />
           
@@ -64,8 +62,8 @@ const ProductPage = () => {
           </div>
         </div>
         
-        <div className="flex flex-col lg:flex-row gap-6">
-          <div className="lg:w-64 flex-shrink-0">
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="md:w-64 flex-shrink-0">
             <FilterSideBar />
           </div>
           

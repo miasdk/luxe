@@ -1,4 +1,4 @@
-// FilterSideBar.jsx 
+// FilterSideBar.jsx - Updated with lower mobile breakpoint
 import React, { useState, useEffect } from "react";
 import { useProductContext } from "../context/ProductContext";
 import { ChevronDown, ChevronUp, Filter, X } from "lucide-react";
@@ -16,8 +16,8 @@ export default function FilterSideBar() {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 1024); 
-      if (window.innerWidth >= 1024) {
+      setIsMobile(window.innerWidth < 768); 
+      if (window.innerWidth >= 768) {
         setIsOpen(true); 
       }
     };

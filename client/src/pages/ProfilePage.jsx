@@ -33,7 +33,6 @@ export default function ProfilePage() {
     const [activeTab, setActiveTab] = useState('listings');
     const [viewMode, setViewMode] = useState('grid');
 
-    // Static demo data - all empty
     const profileData = {
         bio: "",
         location: "",
@@ -86,19 +85,15 @@ export default function ProfilePage() {
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Main Under Construction Section */}
             <div className="container mx-auto px-4 py-16">
                 <div className="max-w-2xl mx-auto text-center">
-                    {/* Construction Icon Animation */}
                     <div className="relative mb-8">
                         <div className="w-32 h-32 mx-auto bg-orange-100 rounded-full flex items-center justify-center">
                             <Construction size={64} className="text-orange-600" />
                         </div>
-                        {/* Animated hard hat */}
                         <div className="absolute -top-2 -right-2 w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center animate-bounce">
                             <HardHat size={24} className="text-yellow-600" />
                         </div>
-                        {/* Animated hammer */}
                         <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center animate-pulse">
                             <Hammer size={20} className="text-gray-600" />
                         </div>
@@ -109,14 +104,13 @@ export default function ProfilePage() {
                     </h1>
                     
                     <p className="text-xl text-gray-600 mb-8">
-                        We're building something awesome! This page will be ready soon.
+                            This page will be ready soon.
                     </p>
 
-                    {/* Features Coming Soon */}
                     <div className="bg-gray-50 rounded-xl p-6 mb-8">
                         <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center justify-center gap-2">
                             <Settings size={20} />
-                            Coming Soon Features
+                            Coming Soon
                         </h2>
                         
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
@@ -164,7 +158,6 @@ export default function ProfilePage() {
                         </div>
                     </div>
 
-                    {/* Timeline */}
                     <div className="bg-blue-50 rounded-xl p-6 mb-8">
                         <div className="flex items-center justify-center gap-2 mb-3">
                             <Clock size={20} className="text-blue-600" />
@@ -174,7 +167,6 @@ export default function ProfilePage() {
                         <p className="text-blue-600 text-sm mt-1">Stay tuned for updates!</p>
                     </div>
 
-                    {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             to="/products"
@@ -193,7 +185,6 @@ export default function ProfilePage() {
                         </Link>
                     </div>
 
-                    {/* Fun Construction Divider */}
                     <div className="mt-12 pt-8 border-t border-gray-200">
                         <div className="flex items-center justify-center gap-2 text-gray-500">
                             <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
