@@ -585,7 +585,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **GitHub**: [@miasdk](https://github.com/miasdk)
 - **Email**: miatapiaswe@gmail.com
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/miaelena/)
+- **LinkedIn**: [Mia Elena](https://www.linkedin.com/in/miaelena/)
 - **Project Repository**: [GitHub Repository](https://github.com/yourusername/ecart)
 
 ---
