@@ -528,10 +528,8 @@ Planned improvements and features for future development:
 ## About This Project
 
 **Developer**: Mia Tapia  
-**Student ID**: 23672664  
-**Institution**: [Your Institution Name]  
-**Course**: Advanced Full-Stack Web Development  
-**Semester**: [Current Semester/Year]
+**Institution**: CUNY Hunter College 
+**Semester**: Upper Junior
 
 ### Technical Achievements
 
@@ -585,9 +583,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
+- **GitHub**: [@miasdk](https://github.com/miasdk)
+- **Email**: miatapiaswe@gmail.com
+- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/miaelena/)
 - **Project Repository**: [GitHub Repository](https://github.com/yourusername/ecart)
 
 ---
@@ -596,6 +594,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Star this repository if you found it helpful!**
 
-Built with dedication by [Mia Tapia](https://github.com/yourusername)
+Built with dedication by [Mia Tapia](https://github.com/miasdk)
 
 </div>
