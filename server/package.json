@@ -1,17 +1,33 @@
 {
-  "name": "server",
+  "name": "ecart-server",
   "version": "1.0.0",
+  "description": "eCart e-commerce platform backend API",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "reset": "cd config && node --require dotenv/config reset.js",
-    "start": "npm run reset && nodemon --require dotenv/config server.js",
-    "start-no-reset": "nodemon --require dotenv/config server.js"
+    "start": "node --require dotenv/config server.js",
+    "start:dev": "npm run db:reset && nodemon --require dotenv/config server.js",
+    "start:dev-no-reset": "nodemon --require dotenv/config server.js",
+    "start:prod-with-reset": "npm run db:reset && node --require dotenv/config server.js",
+    "db:reset": "cd config && node --require dotenv/config reset.js",
+    "db:seed": "cd config && node --require dotenv/config seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"Linting not configured\" && exit 0"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "ecommerce",
+    "nodejs",
+    "express",
+    "postgresql",
+    "stripe",
+    "firebase"
+  ],
+  "author": "Mia Tapia",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
@@ -19,7 +35,6 @@
     "firebase": "^11.5.0",
     "firebase-admin": "^13.2.0",
     "node-fetch": "^3.3.2",
-    "nodemon": "^3.1.7",
     "pg": "^8.13.1",
     "stripe": "^17.7.0",
     "swagger-jsdoc": "^6.2.8",
@@ -27,6 +42,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "nodemon": "^3.1.7",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.2",
     "tailwindcss": "^4.0.6"
