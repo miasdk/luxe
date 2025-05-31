@@ -88,3 +88,5 @@ router.put('/:id', ProductController.updateProduct);
 router.delete('/:id', ProductController.deleteProduct);
 
 export default router;
+
+//update the ProductController.js file to include the new method
