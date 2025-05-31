@@ -4,14 +4,13 @@ import cors from 'cors';
 
 // Import routes
 import productsRouter from './routes/productRoutes.js';
-import categoriesRouter from './routes/categoryRoutes.js';
 import brandsRouter from './routes/brandRoutes.js';
 import cartRouter from './routes/cartRoutes.js';
 import ordersRouter from './routes/orderRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import wishlistRouter from './routes/wishlistRoutes.js';
 import searchRouter from './routes/searchRoutes.js';
-
+import categoriesRouter from './routes/categoryRoutes.js';
 // Import Swagger
 import { specs, swaggerUi, customCss } from './swagger.js';
 
