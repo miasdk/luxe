@@ -10,7 +10,8 @@ import ordersRouter from './routes/orderRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import wishlistRouter from './routes/wishlistRoutes.js';
 import searchRouter from './routes/searchRoutes.js';
-import categoriesRouter from './routes/categoryRoutes.js';
+// import categoriesRouter from './routes/categoryRoutes.js'; // TEMPORARILY COMMENTED
+
 // Import Swagger
 import { specs, swaggerUi, customCss } from './swagger.js';
 
@@ -29,7 +30,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {
 
 // API Routes
 app.use('/api/products', productsRouter);
-app.use('/api/categories', categoriesRouter);
+// app.use('/api/categories', categoriesRouter); // TEMPORARILY COMMENTED
 app.use('/api/cart', cartRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/users', userRouter);
@@ -48,5 +49,3 @@ app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
     console.log(`📚 API Docs: http://localhost:${PORT}/api-docs`);
 });
-
-// Export the app for testing
