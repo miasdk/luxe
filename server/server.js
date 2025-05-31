@@ -49,3 +49,5 @@ app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
     console.log(`📚 API Docs: http://localhost:${PORT}/api-docs`);
 });
+
+// Export the app for testing
