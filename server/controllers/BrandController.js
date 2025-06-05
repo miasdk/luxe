@@ -33,6 +33,17 @@ class BrandController {
             res.status(500).json({ message: "Failed to retrieve brand" });
         }
     }
+
+    static async getBrandsWithCount(req, res) {
+    try {
+        const { category } = req.query;
+        const brands = await brandService.getBrandsWithCount(category);
+        res.status(200).json(brands);
+    } catch (error) {
+        console.error("Error fetching brands with count:", error);
+        res.status(500).json({ message: "Failed to retrieve brands with count" });
+    }
+}
 }
 
 export default BrandController;

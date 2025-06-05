@@ -1,4 +1,3 @@
-// ProductPage.jsx - Updated with matching breakpoint
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
@@ -26,7 +25,6 @@ const ProductPage = () => {
   useEffect(() => {
     const categoryFromUrl = searchParams.get('category');
     if (categoryFromUrl && categoryFromUrl !== selectedCategory) {
-      console.log(`Setting category from URL: ${categoryFromUrl}`);
       updateCategory(categoryFromUrl);
     }
   }, [searchParams, selectedCategory, updateCategory]);
@@ -47,22 +45,22 @@ const ProductPage = () => {
   }
 
   return (
-    <div className="bg-white min-h-screen">
-      <div className="container mx-auto px-4 py-6 max-w-7xl">
-        <div className="mb-6">
+    <div className="bg-gradient-to-br from-gray-50/50 to-white min-h-screen">
+      <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="mb-8">
           <Breadcrumb items={breadcrumbItems} />
           
-          <div className="mt-4">
-            <h1 className="text-2xl font-semibold text-gray-900 mb-1">
+          <div className="mt-6">
+            <h1 className="text-3xl font-light text-gray-900 mb-2 tracking-tight">
               {selectedCategory ? selectedCategory : 'All Products'}
             </h1>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 font-medium">
               {totalItems || 0} products available
             </p>
           </div>
         </div>
         
-        <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-64 flex-shrink-0">
             <FilterSideBar />
           </div>
@@ -78,20 +76,25 @@ const ProductPage = () => {
             <ProductGrid viewMode={viewMode} />
             
             {totalPages > 1 && (
-              <div className="mt-8">
+              <div className="mt-12 flex justify-center">
                 <ReactPaginate
                   previousLabel="← Previous"
                   nextLabel="Next →"
                   pageCount={totalPages}
                   onPageChange={handlePageClick}
                   forcePage={currentPage - 1}
-                  containerClassName="flex justify-center items-center space-x-2"
-                  pageClassName="px-3 py-2 border border-gray-300 rounded hover:bg-gray-50 cursor-pointer"
-                  activeClassName="bg-gray-900 text-white border-gray-900"
-                  previousClassName="px-3 py-2 border border-gray-300 rounded hover:bg-gray-50 cursor-pointer"
-                  nextClassName="px-3 py-2 border border-gray-300 rounded hover:bg-gray-50 cursor-pointer"
+                  containerClassName="flex items-center space-x-1"
+                  pageClassName="group"
+                  pageLinkClassName="px-4 py-2.5 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-all font-medium text-sm text-gray-700 hover:border-gray-300"
+                  activeClassName="bg-gray-900 text-white border-gray-900 shadow-sm"
+                  activeLinkClassName="text-white hover:bg-gray-900"
+                  previousClassName="group"
+                  previousLinkClassName="px-4 py-2.5 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-all font-medium text-sm text-gray-700 hover:border-gray-300"
+                  nextClassName="group"
+                  nextLinkClassName="px-4 py-2.5 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-all font-medium text-sm text-gray-700 hover:border-gray-300"
                   disabledClassName="opacity-50 cursor-not-allowed"
-                  breakClassName="px-3 py-2"
+                  disabledLinkClassName="hover:bg-transparent hover:border-gray-200"
+                  breakClassName="px-2 py-2 text-gray-400"
                 />
               </div>
             )}

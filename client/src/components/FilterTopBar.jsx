@@ -1,7 +1,5 @@
-// FilterTopBar.jsx - Clean white eBay-style design
 import React from "react";
 import { useProductContext } from "../context/ProductContext";
-import { SlidersHorizontal } from "lucide-react";
 
 const FilterTopBar = () => {
   const { 
@@ -23,16 +21,16 @@ const FilterTopBar = () => {
   const hasConditionOptions = filterOptions.conditions.length > 0;
 
   return (
-    <div className="bg-white border-b border-gray-200 p-4 mb-4">
-      <div className="flex flex-wrap items-center gap-4">
+    <div className=" p-5 mb-6 border-b border-gray-200">
+      <div className="flex flex-wrap items-center gap-6">
         {/* Size Filter */}
         {hasSizeOptions && (
-          <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
+          <div className="flex items-center gap-3">
+            <label className="text-sm font-medium text-gray-800 whitespace-nowrap">
               Size
             </label>
             <select
-              className="bg-white border border-gray-300 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors min-w-[120px]"
+              className="bg-white/90 border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[130px] hover:border-gray-300"
               value={secondaryFilters.size}
               onChange={(e) => updateSecondaryFilter('size', e.target.value)}
             >
@@ -48,12 +46,12 @@ const FilterTopBar = () => {
         
         {/* Color Filter */}
         {hasColorOptions && (
-          <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
+          <div className="flex items-center gap-3">
+            <label className="text-sm font-medium text-gray-800 whitespace-nowrap">
               Color
             </label>
             <select
-              className="bg-white border border-gray-300 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors min-w-[120px]"
+              className="bg-white/90 border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[130px] hover:border-gray-300"
               value={secondaryFilters.color}
               onChange={(e) => updateSecondaryFilter('color', e.target.value)}
             >
@@ -69,12 +67,12 @@ const FilterTopBar = () => {
         
         {/* Condition Filter */}
         {hasConditionOptions && (
-          <div className="flex items-center gap-2">
-            <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
+          <div className="flex items-center gap-3">
+            <label className="text-sm font-medium text-gray-800 whitespace-nowrap">
               Condition
             </label>
             <select
-              className="bg-white border border-gray-300 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors min-w-[140px]"
+              className="bg-white/90 border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[150px] hover:border-gray-300"
               value={secondaryFilters.condition}
               onChange={(e) => updateSecondaryFilter('condition', e.target.value)}
             >
@@ -92,19 +90,19 @@ const FilterTopBar = () => {
         <div className="flex-1"></div>
         
         {/* Sort Control */}
-        <div className="flex items-center gap-2">
-          <label className="text-sm font-medium text-gray-700 whitespace-nowrap">
+        <div className="flex items-center gap-3">
+          <label className="text-sm font-medium text-gray-800 whitespace-nowrap">
             Sort by
           </label>
           <select
-            className="bg-white border border-gray-300 rounded px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-colors min-w-[160px]"
+            className="bg-white/90 border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[180px] hover:border-gray-300"
             onChange={handleSortChange}
             defaultValue="title-asc"
           >
             <option value="title-asc">Best Match</option>
             <option value="created_at-desc">Time: newest first</option>
-            <option value="price-asc">Price + Shipping: lowest first</option>
-            <option value="price-desc">Price + Shipping: highest first</option>
+            <option value="price-asc">Price: lowest first</option>
+            <option value="price-desc">Price: highest first</option>
             <option value="title-asc">Name: A to Z</option>
             <option value="title-desc">Name: Z to A</option>
           </select>

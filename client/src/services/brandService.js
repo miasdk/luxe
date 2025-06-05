@@ -40,6 +40,20 @@ class BrandService {
             throw error;
         }
     }
+
+    async fetchBrandsWithCount(category = null) {
+    try {
+        const url = category 
+            ? `${API_BASE_URL}/api/brands/brands-with-count?category=${encodeURIComponent(category)}`
+            : `${API_BASE_URL}/api/brands/brands-with-count`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("HTTP error: " + response.status);
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching brands with count:", error);
+        throw error;
+    }
+}
 }
 
 const brandService = new BrandService();

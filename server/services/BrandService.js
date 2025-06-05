@@ -18,6 +18,15 @@ class BrandService {
             throw error;
         }
     }
+
+    async getBrandsWithCount(categoryName = null) {
+    try {
+        return await BrandModel.getBrandsWithCount(categoryName);
+    } catch (error) {
+        console.error("BrandService.getBrandsWithCount():", error.message);
+        throw error;
+    }
+}
 }
 
 export default new BrandService();

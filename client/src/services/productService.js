@@ -4,14 +4,15 @@
  */
 
 // Base API URL - adjust if your API is not served at /api
-const API_BASE_URL = import.meta.env.VITE_API_URL + '/api/products';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 /**
  * Fetch all products without any filters
  * @returns {Promise<Array>} Array of product objects
  */
 const fetchAllProducts = async () => {
     try {
-        const response = await fetch(`${API_BASE_URL}`);
+        const response = await fetch(`${API_BASE_URL}/api/products`);
         if (!response.ok) {
             throw new Error('Failed to fetch products');
         }
@@ -29,7 +30,7 @@ const fetchAllProducts = async () => {
  */
 const fetchProductById = async (productId) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/${productId}`);
+        const response = await fetch(`${API_BASE_URL}/api/products/${productId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch product');
         }
@@ -47,7 +48,7 @@ const fetchProductById = async (productId) => {
  */
 const fetchProductsByCategory = async (category) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/category/${encodeURIComponent(category)}`);
+        const response = await fetch(`${API_BASE_URL}/api/products/category/${encodeURIComponent(category)}`);
         if (!response.ok) {
             throw new Error('Failed to fetch products by category');
         }
@@ -61,6 +62,13 @@ const fetchProductsByCategory = async (category) => {
 /**
  * Fetch products with applied filters
  * @param {Object} filters - Object containing filter criteria
+ * @param {string} [filters.category] - Category filter
+ * @param {string} [filters.brand] - Brand filter
+ * @param {string} [filters.size] - Size filter
+ * @param {string} [filters.color] - Color filter
+ * @param {string} [filters.condition] - Condition filter
+ * @param {number} [filters.minPrice] - Minimum price
+ * @param {number} [filters.maxPrice] - Maximum price
  * @param {string} [sortBy='title'] - Field to sort by
  * @param {string} [sortOrder='ASC'] - Sort direction ('ASC' or 'DESC')
  * @returns {Promise<Array>} Array of filtered product objects
@@ -78,14 +86,18 @@ const fetchFilteredProducts = async (filters, sortBy = 'title', sortOrder = 'ASC
         if (filters.condition) queryParams.append('condition', filters.condition);
         
         // Add price range if specified
-        if (filters.minPrice !== undefined) queryParams.append('minPrice', filters.minPrice);
-        if (filters.maxPrice !== undefined) queryParams.append('maxPrice', filters.maxPrice);
+        if (filters.minPrice !== undefined && filters.minPrice !== '') {
+            queryParams.append('minPrice', filters.minPrice);
+        }
+        if (filters.maxPrice !== undefined && filters.maxPrice !== '') {
+            queryParams.append('maxPrice', filters.maxPrice);
+        }
         
         // Add sorting parameters
         queryParams.append('sortBy', sortBy);
         queryParams.append('sortOrder', sortOrder);
         
-        const response = await fetch(`${API_BASE_URL}/filter?${queryParams.toString()}`);
+        const response = await fetch(`${API_BASE_URL}/api/products/filter?${queryParams.toString()}`);
         if (!response.ok) {
             throw new Error('Failed to fetch filtered products');
         }
@@ -103,7 +115,7 @@ const fetchFilteredProducts = async (filters, sortBy = 'title', sortOrder = 'ASC
  */
 const searchProducts = async (keyword) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/search?keyword=${encodeURIComponent(keyword)}`);
+        const response = await fetch(`${API_BASE_URL}/api/products/search?keyword=${encodeURIComponent(keyword)}`);
         if (!response.ok) {
             throw new Error('Failed to search products');
         }
@@ -120,7 +132,7 @@ const searchProducts = async (keyword) => {
  */
 const fetchCategoriesWithCount = async () => {
     try {
-        const response = await fetch(`${API_BASE_URL}/categories-with-count`);
+        const response = await fetch(`${API_BASE_URL}/api/products/categories-with-count`);
         if (!response.ok) throw new Error('Failed to fetch categories');
         return await response.json();
     } catch (error) {
@@ -130,15 +142,21 @@ const fetchCategoriesWithCount = async () => {
 };
 
 /**
- * Fetch available filter options based on selected category
+ * Fetch available filter options based on selected category and brand
  * @param {string} [category] - Optional category to filter options by
+ * @param {string} [brand] - Optional brand to filter options by
  * @returns {Promise<Object>} Object containing filter options with counts
  */
-const fetchFilterOptions = async (category) => {
+const fetchFilterOptions = async (category, brand) => {
     try {
-        const url = category 
-            ? `${API_BASE_URL}/filter-options?category=${encodeURIComponent(category)}`
-            : `${API_BASE_URL}/filter-options`;
+        const queryParams = new URLSearchParams();
+        
+        if (category) queryParams.append('category', category);
+        if (brand) queryParams.append('brand', brand);
+        
+        const queryString = queryParams.toString();
+        const url = `${API_BASE_URL}/api/products/filter-options${queryString ? `?${queryString}` : ''}`;
+        
         const response = await fetch(url);
         if (!response.ok) throw new Error('Failed to fetch filter options');
         return await response.json();
@@ -155,7 +173,7 @@ const fetchFilterOptions = async (category) => {
  */
 const addProduct = async (productData) => {
     try {
-        const response = await fetch(`${API_BASE_URL}`, {
+        const response = await fetch(`${API_BASE_URL}/api/products`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -183,7 +201,7 @@ const addProduct = async (productData) => {
  */
 const updateProduct = async (productId, productData) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/${productId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/products/${productId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -210,7 +228,7 @@ const updateProduct = async (productId, productData) => {
  */
 const deleteProduct = async (productId) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/${productId}`, {
+        const response = await fetch(`${API_BASE_URL}/api/products/${productId}`, {
             method: 'DELETE',
         });
         
@@ -226,6 +244,49 @@ const deleteProduct = async (productId) => {
     }
 };
 
+/**
+ * Fetch price range for products (useful for price filter sliders)
+ * @param {string} [category] - Optional category to get price range for
+ * @param {string} [brand] - Optional brand to get price range for
+ * @returns {Promise<Object>} Object with min and max prices
+ */
+const fetchPriceRange = async (category, brand) => {
+    try {
+        const queryParams = new URLSearchParams();
+        
+        if (category) queryParams.append('category', category);
+        if (brand) queryParams.append('brand', brand);
+        
+        const queryString = queryParams.toString();
+        const url = `${API_BASE_URL}/api/products/price-range${queryString ? `?${queryString}` : ''}`;
+        
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Failed to fetch price range');
+        return await response.json();
+    } catch (error) {
+        console.error('Error in fetchPriceRange:', error);
+        // Return default range if API fails
+        return { minPrice: 0, maxPrice: 1000 };
+    }
+};
+
+/**
+ * Fetch product recommendations based on a product ID
+ * @param {string|number} productId - ID of the product to get recommendations for
+ * @param {number} [limit=4] - Number of recommendations to return
+ * @returns {Promise<Array>} Array of recommended products
+ */
+const fetchRecommendations = async (productId, limit = 4) => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/products/${productId}/recommendations?limit=${limit}`);
+        if (!response.ok) throw new Error('Failed to fetch recommendations');
+        return await response.json();
+    } catch (error) {
+        console.error('Error in fetchRecommendations:', error);
+        return []; // Return empty array if recommendations fail
+    }
+};
+
 export default {
     fetchAllProducts,
     fetchProductById,
@@ -234,6 +295,8 @@ export default {
     searchProducts,
     fetchCategoriesWithCount,
     fetchFilterOptions,
+    fetchPriceRange,
+    fetchRecommendations,
     addProduct,
     updateProduct,
     deleteProduct

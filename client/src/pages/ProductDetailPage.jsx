@@ -18,6 +18,8 @@ import productsService from "../services/productService"
 import { useCart } from "../context/CartContext"
 import ProductCarousel from "../components/ProductCarousel"
 import WishlistButton from '../components/WishlistButton';
+import Breadcrumb from '../components/Breadcrumb'; // Add this import at the top
+
 
 export default function ProductDetailPage() {
   const { productId } = useParams()
@@ -150,26 +152,25 @@ export default function ProductDetailPage() {
   return (
     <div className="bg-white">
       <div className="bg-gray-50 py-4 border-b border-gray-100">
-        <div className="container mx-auto px-4">
-          <nav className="flex text-sm">
-            <Link to="/" className="text-gray-500 hover:text-gray-700">
-              Home
-            </Link>
-            <span className="mx-2 text-gray-400">/</span>
-            <Link to="/products" className="text-gray-500 hover:text-gray-700">
-              Products
-            </Link>
-            <span className="mx-2 text-gray-400">/</span>
-            <Link to={`/categories/${product.category_name}`} className="text-gray-500 hover:text-gray-700">
-              {product.category_name}
-            </Link>
-            <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-900 font-medium">{product.title}</span>
-          </nav>
-        </div>
+      <div className="container mx-auto px-4">
+        <Breadcrumb 
+          items={[
+            { label: 'Products', href: '/products' },
+            { 
+              label: product.category_name, 
+              href: `/products?category=${encodeURIComponent(product.category_name)}` 
+            },
+            ...(product.brand_name ? [{ 
+              label: product.brand_name, 
+              href: `/products?category=${encodeURIComponent(product.category_name)}&brand=${encodeURIComponent(product.brand_name)}` 
+            }] : []),
+            { label: product.title, href: null }
+          ]} 
+        />
       </div>
+    </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 ">
         <div className="flex flex-col md:flex-row gap-12">
           <div className="md:w-1/2">
             <div className="mb-4 aspect-square overflow-hidden rounded-xl bg-gray-50">
