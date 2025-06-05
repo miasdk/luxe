@@ -20,7 +20,18 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',                      // Local development
+    'https://e-cart-mu-olive.vercel.app'          // Production frontend
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 
 // Swagger Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {
