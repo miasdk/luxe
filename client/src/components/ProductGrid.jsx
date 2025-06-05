@@ -79,8 +79,7 @@ const ProductGrid = ({ viewMode }) => {
           ))}
         </div>
       ) : (
-        // List View
-        <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+        <div className="bg-white rounded-2xl overflow-hidden">
           {products.map((product, index) => {
             const productId = getProperty(product, 'product_id');
             const title = getProperty(product, 'title');

@@ -14,13 +14,11 @@ const ActiveFilters = ({ viewMode, setViewMode }) => {
     resetFilters
   } = useProductContext();
 
-  // Count active filters
   const getActiveFilterCount = () => {
     let count = 0;
     if (selectedCategory) count++;
     if (selectedBrand) count++;
     
-    // Count secondary filters that have values
     count += Object.values(secondaryFilters).filter(val => val !== '' && val !== null && val !== undefined).length;
     
     return count;
@@ -58,31 +56,6 @@ const ActiveFilters = ({ viewMode, setViewMode }) => {
               </h3>
             </div>
           )}
-        </div>
-
-        <div className="flex bg-white rounded-lg border border-gray-200 p-1 shadow-sm">
-          <button 
-            onClick={() => setViewMode('grid')} 
-            className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all ${
-              viewMode === 'grid' 
-                ? 'bg-gray-900 text-white shadow-sm' 
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-            }`}
-          >
-            <Grid3X3 size={16} />
-            Grid
-          </button>
-          <button 
-            onClick={() => setViewMode('list')} 
-            className={`flex items-center gap-2 px-3 py-2 rounded-md text-sm transition-all ${
-              viewMode === 'list' 
-                ? 'bg-gray-900 text-white shadow-sm' 
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
-            }`}
-          >
-            <List size={16} />
-            List
-          </button>
         </div>
       </div>
 

@@ -7,17 +7,20 @@ import ActiveFilters from '../components/ActiveFilters';
 import ProductGrid from '../components/ProductGrid';
 import Breadcrumb from '../components/Breadcrumb';
 import { useProductContext } from '../context/ProductContext';
+import { Grid3X3, List, TrendingUp, Clock, Shield } from 'lucide-react';
 
 const ProductPage = () => {
   const [searchParams] = useSearchParams();
   const { 
     updateCategory, 
-    selectedCategory, 
+    selectedCategory,
+    selectedBrand,
     products,
     currentPage,
     totalPages,
     totalItems,
-    handlePageChange
+    handlePageChange,
+    loading
   } = useProductContext();
   
   const [viewMode, setViewMode] = useState('grid');
@@ -44,19 +47,61 @@ const ProductPage = () => {
     });
   }
 
+  const getPageTitle = () => {
+    if (selectedBrand && selectedCategory) {
+      return `${selectedBrand} ${selectedCategory}`;
+    } else if (selectedCategory) {
+      return selectedCategory;
+    } else if (selectedBrand) {
+      return `${selectedBrand} Products`;
+    }
+    return 'All Products';
+  };
+
   return (
     <div className="bg-gradient-to-br from-gray-50/50 to-white min-h-screen">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="mb-8">
           <Breadcrumb items={breadcrumbItems} />
           
-          <div className="mt-6">
-            <h1 className="text-3xl font-light text-gray-900 mb-2 tracking-tight">
-              {selectedCategory ? selectedCategory : 'All Products'}
-            </h1>
-            <p className="text-sm text-gray-600 font-medium">
-              {totalItems || 0} products available
-            </p>
+          <div className="mt-6 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="flex-1">
+              <h1 className="text-3xl font-light text-gray-900 mb-3 tracking-tight">
+                {getPageTitle()}
+              </h1>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 text-sm">
+                <p className="text-gray-600 font-medium">
+                  {loading ? 'Loading...' : `${totalItems || 0} products available`}
+                </p>
+              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="flex bg-white rounded-lg border border-gray-200 p-1 shadow-sm">
+                <button 
+                  onClick={() => setViewMode('grid')} 
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all ${
+                    viewMode === 'grid' 
+                      ? 'bg-gray-900 text-white shadow-sm' 
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  <Grid3X3 size={16} />
+                  <span className="hidden xs:inline">Grid</span>
+                </button>
+                <button 
+                  onClick={() => setViewMode('list')} 
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all ${
+                    viewMode === 'list' 
+                      ? 'bg-gray-900 text-white shadow-sm' 
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  <List size={16} />
+                  <span className="hidden xs:inline">List</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -68,10 +113,7 @@ const ProductPage = () => {
           <div className="flex-1 min-w-0">
             <FilterTopBar />
             
-            <ActiveFilters 
-              viewMode={viewMode} 
-              setViewMode={setViewMode} 
-            />
+            <ActiveFilters />
             
             <ProductGrid viewMode={viewMode} />
             

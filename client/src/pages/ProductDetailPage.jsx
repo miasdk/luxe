@@ -151,7 +151,7 @@ export default function ProductDetailPage() {
 
   return (
     <div className="bg-white">
-      <div className="bg-gray-50 py-4 border-b border-gray-100">
+      <div className="py-5  border-gray-100">
       <div className="container mx-auto px-4">
         <Breadcrumb 
           items={[
@@ -170,10 +170,10 @@ export default function ProductDetailPage() {
       </div>
     </div>
 
-      <div className="container mx-auto px-4 ">
+      <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-12">
           <div className="md:w-1/2">
-            <div className="mb-4 aspect-square overflow-hidden rounded-xl bg-gray-50">
+            <div className="mb-4 aspect-square overflow-hidden rounded-xl ">
               <img
                 src={galleryImages[activeImage] || product.image}
                 alt={product.title}
