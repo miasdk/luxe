@@ -509,7 +509,6 @@ export default function CreateListing() {
                 </div>
               </div>
 
-              {/* Summary & Submit */}
               <div className="bg-white rounded-2xl p-8 shadow-sm">
                 <div className="mb-6">
                   <h2 className="text-2xl font-light text-gray-900 mb-2">Review & Submit</h2>

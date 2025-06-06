@@ -86,7 +86,7 @@ const CheckoutPage = () => {
     return (
         <div className="min-h-screen bg-gray-50">
             <div className="container mx-auto px-4 py-12 max-w-6xl">
-                {/* Header */}
+           
                 <div className="mb-12">
                     <div className="flex items-center gap-4 mb-6">
                         <Link 
@@ -97,8 +97,7 @@ const CheckoutPage = () => {
                         </Link>
                         <h1 className="text-4xl font-light text-gray-900">Checkout</h1>
                     </div>
-                    
-                    {/* Progress Steps */}
+
                     <div className="flex items-center space-x-4">
                         <div className={`flex items-center ${currentStep >= 1 ? 'text-gray-900' : 'text-gray-400'}`}>
                             <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
@@ -134,7 +133,7 @@ const CheckoutPage = () => {
                         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
                             <h2 className="text-2xl font-light text-gray-900 mb-6">Order Summary</h2>
                             <div className="space-y-4">
-                                {cart.map(item => ( // Changed: cartItems -> cart
+                                {cart.map(item => ( 
                                     <div key={item.product_id} className="flex items-center gap-4 py-4 border-b border-gray-100 last:border-0">
                                         <div className="w-16 h-16 bg-gray-50 rounded-lg overflow-hidden">
                                             <img 
@@ -292,7 +291,7 @@ const CheckoutPage = () => {
                 </div>
                 
                 {orderCreated && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="fixed inset-0 bg-gray-100 bg-opacity-80 flex items-center justify-center z-50">
                         <div className="bg-white rounded-2xl p-8 max-w-md mx-4 text-center">
                             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <Check size={32} className="text-green-600" />

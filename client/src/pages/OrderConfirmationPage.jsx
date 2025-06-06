@@ -200,21 +200,6 @@ const OrderConfirmationPage = () => {
                                 </div>
                             </div>
                         )}
-                        
-                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-                            <h3 className="text-xl font-medium text-gray-900 mb-6">What's Next?</h3>
-                            <div className="space-y-4">
-                                <button className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-300 font-medium">
-                                    <Download size={18} />
-                                    Download Receipt
-                                </button>
-                                
-                                <button className="w-full flex items-center justify-center gap-3 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300 font-medium">
-                                    <Mail size={18} />
-                                    Email Confirmation
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
