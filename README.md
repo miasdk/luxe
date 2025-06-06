@@ -42,8 +42,8 @@ eCart is a production-ready e-commerce platform engineered to demonstrate enterp
 - **Scalable Architecture** - Microservices-ready design with clear separation of concerns
 - **Production Database** - PostgreSQL with optimized queries, full-text search, and proper indexing
 - **Comprehensive API** - 25+ documented endpoints with interactive testing via Swagger/OpenAPI
-- **Enterprise Authentication** - Firebase integration with JWT token validation
-- **Payment Processing** - PCI-compliant Stripe integration with webhook handling
+- **Modern Authentication** - Firebase integration with Google OAuth 2.0 and JWT token validation
+- **Payment Processing** - PCI-compliant Stripe integration with live payment handling
 - **Professional Deployment** - Multi-environment CI/CD pipeline with automated testing
 
 ### Core Capabilities
@@ -53,19 +53,22 @@ eCart is a production-ready e-commerce platform engineered to demonstrate enterp
 | Feature | Technology | Status |
 |---------|------------|--------|
 | **E-Commerce Engine** | React + Node.js | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
+| **Social Like System** | PostgreSQL + React | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
 | **Search System** | PostgreSQL Full-Text | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
-| **Payment Processing** | Stripe Integration | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
-| **Authentication** | Firebase Auth | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
+| **Payment Processing** | Stripe Live Integration | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
+| **Authentication** | Firebase + Google OAuth | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
 | **API Documentation** | Swagger/OpenAPI | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
 | **Cloud Deployment** | Vercel + Render | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
 
 </div>
 
 **Advanced Features**
+- **Social Commerce System** - Instagram-style product likes with heart icons and dynamic like counts
+- **Google Authentication** - One-click sign-in with Google OAuth 2.0 integration and profile synchronization
 - **Intelligent Search System** - PostgreSQL full-text search with relevance ranking and multi-criteria filtering
-- **Secure Payment Infrastructure** - Stripe integration with SCA compliance and webhook validation
+- **Live Payment Infrastructure** - Stripe integration with production keys, SCA compliance and webhook validation
 - **Real-Time Cart Management** - Persistent shopping cart with optimistic UI updates and conflict resolution
-- **Comprehensive User Management** - Firebase Authentication with role-based access control
+- **Comprehensive User Management** - Firebase Authentication with Google OAuth and role-based access control
 - **Interactive API Documentation** - Swagger/OpenAPI 3.0 with live testing capabilities for all 25+ endpoints
 - **Responsive Progressive Web App** - Mobile-first design with offline capabilities and performance optimization
 - **Production Monitoring** - Health checks, error tracking, and performance metrics
@@ -74,7 +77,7 @@ eCart is a production-ready e-commerce platform engineered to demonstrate enterp
 
 ## Live Application
 
-> **Production URLs** - All services deployed and operational
+> **Production URLs** - All services deployed and operational with live payments
 
 | Service | Status | URL | Description |
 |---------|--------|-----|-------------|
@@ -110,7 +113,7 @@ Zod               → Type validation
 Node.js           → JavaScript runtime
 Express           → Web framework
 PostgreSQL        → Primary database
-Firebase Auth     → Authentication
+Firebase Auth     → Authentication + OAuth
 Stripe            → Payment processing
 Swagger/OpenAPI   → API documentation
 ```
@@ -162,7 +165,8 @@ products                                    product_colors
 ├── id (SERIAL PK)                         ├── product_id (FK)
 ├── title (VARCHAR) [INDEXED]             ├── color_id (FK)
 ├── description (TEXT) [FULL-TEXT]        └── PRIMARY KEY (product_id, color_id)
-├── price (DECIMAL) [INDEXED]             
+├── price (DECIMAL) [INDEXED] 
+├── num_likes (INTEGER)                 
 ├── image (VARCHAR)                        product_sizes
 ├── category_id (FK → categories.id)      ├── product_id (FK)
 ├── brand_id (FK → brands.id)             ├── size_id (FK)
@@ -201,9 +205,10 @@ order_items             wishlists                  ├── created_at
 graph LR
     A[React Client<br/>Vercel CDN] -->|HTTPS| B[Express API<br/>Render]
     B -->|SQL| C[PostgreSQL<br/>Database]
-    A -->|Auth| D[Firebase Auth]
+    A -->|OAuth| D[Firebase Auth]
+    A -->|Google OAuth| E[Google Identity]
     B -->|Verify Token| D
-    B -->|Payment| E[Stripe API]
+    B -->|Payment| F[Stripe API]
     
     subgraph "Client Layer"
         A
@@ -220,6 +225,7 @@ graph LR
     subgraph "External Services"
         D
         E
+        F
     end
 ```
 
@@ -231,6 +237,7 @@ graph LR
 - API caching and synchronization via React Query
 - Form validation using Zod schemas
 - Global CDN distribution for optimal performance
+- Google OAuth integration with Firebase
 
 **Express API (Render)**
 - RESTful endpoint design following OpenAPI 3.0 standards
@@ -246,6 +253,7 @@ graph LR
 
 **External Services**
 - Firebase Authentication for secure user management
+- Google OAuth 2.0 for social authentication
 - Stripe payment processing with webhook verification
 - Render infrastructure for auto-scaling and monitoring
 
@@ -320,6 +328,7 @@ cd frontend && npm run dev    # Terminal 2
 - Node.js 18 or higher
 - PostgreSQL 14 or higher  
 - Firebase project with Authentication enabled
+- Google OAuth configured in Firebase
 - Stripe account for payment processing
 
 **Backend `.env`**
@@ -330,7 +339,7 @@ DATABASE_URL=postgresql://username:password@localhost:5432/ecart
 FIREBASE_PROJECT_ID=your-firebase-project-id
 FIREBASE_PRIVATE_KEY="your-firebase-private-key"
 FIREBASE_CLIENT_EMAIL=your-firebase-client-email
-STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
+STRIPE_SECRET_KEY=sk_live_your_stripe_secret_key
 ```
 
 **Frontend `.env.local`**
@@ -339,7 +348,7 @@ VITE_API_URL=http://localhost:3001/api
 VITE_FIREBASE_API_KEY=your-firebase-api-key
 VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
 VITE_FIREBASE_PROJECT_ID=your-firebase-project-id
-VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
+VITE_STRIPE_PUBLISHABLE_KEY=pk_live_your_stripe_publishable_key
 ```
 
 **Database Setup**
@@ -347,6 +356,12 @@ VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
 createdb ecart
 cd backend && npm run db:setup  # if migrations exist
 ```
+
+**Google OAuth Setup**
+1. Firebase Console → Authentication → Sign-in providers → Google → Enable
+2. Google Cloud Console → APIs & Services → Credentials
+3. Add authorized redirect URIs and JavaScript origins
+4. Configure OAuth consent screen
 
 </details>
 
@@ -426,6 +441,22 @@ cd backend && npm run db:setup  # if migrations exist
 
 ## Key Technical Features
 
+### Advanced Authentication System
+The authentication system supports multiple sign-in methods with Firebase integration:
+- **Email/Password Authentication** - Traditional registration and login
+- **Google OAuth 2.0** - One-click sign-in with Google accounts
+- **Profile Synchronization** - Automatic user profile creation in backend database
+- **JWT Token Validation** - Secure API endpoint protection
+- **Session Management** - Persistent authentication across browser sessions
+
+### Social Commerce Features
+Interactive like system enhances user engagement and provides social proof:
+- **Product Like System** - Instagram-style heart icons with dynamic like counts
+- **Wishlist Integration** - Liking products adds them to user wishlist
+- **Real-time Updates** - Like counts update dynamically when users interact
+- **Social Proof Display** - Popular products show engagement metrics
+- **Cross-platform Consistency** - Like counts visible across all product views
+
 ### Advanced Product Search
 The search system uses PostgreSQL's full-text search capabilities with `tsvector` and `plainto_tsquery()` for relevance-ranked results. The search includes:
 - Title and description matching
@@ -444,7 +475,7 @@ The shopping cart system provides:
 
 ### Order Processing
 Complete order management includes:
-- Stripe payment intent creation
+- Stripe payment intent creation with live keys
 - Order status tracking (pending, paid, shipped, delivered)
 - Email confirmations (when implemented)
 - Order history with detailed item information
@@ -465,7 +496,7 @@ Complete order management includes:
 The React application is deployed on Vercel with:
 - Automatic deployments from the main GitHub branch
 - Preview deployments for pull requests
-- Environment variable management
+- Environment variable management for production keys
 - Custom domain support
 - Performance monitoring and analytics
 
@@ -503,6 +534,7 @@ This project was built using modern full-stack development practices:
 
 ### Security Implementation
 - **Firebase Authentication** - Secure user registration and login
+- **Google OAuth 2.0** - Social authentication integration
 - **JWT Token Validation** - Protected API endpoints
 - **Input Validation** - Zod schemas for type safety
 - **CORS Configuration** - Controlled cross-origin requests
@@ -522,6 +554,9 @@ Planned improvements and features for future development:
 - **Mobile Application** - React Native app for iOS and Android
 - **Recommendation Engine** - AI-powered product suggestions
 - **Multi-vendor Support** - Marketplace functionality for multiple sellers
+- **Social Authentication** - GitHub, Facebook, and Twitter OAuth integration
+- **Product Rating System** - Star ratings and review analytics integration
+- **Recommendation Engine** - AI-powered product suggestions based on likes and purchases
 
 ---
 
@@ -544,7 +579,7 @@ This project represents a comprehensive demonstration of modern software enginee
 - **Cloud Deployment**: Multi-environment CI/CD pipeline with Vercel and Render
 - **Documentation**: Interactive API documentation exceeding industry standards
 - **Monitoring**: Health checks, error tracking, and performance metrics
-- **Security**: Firebase ID token authentication, input validation, and secure payment processing
+- **Security**: Firebase ID token authentication, Google OAuth, input validation, and secure payment processing
 
 **Software Engineering Practices**
 - **Architecture**: Clean separation of concerns with scalable design patterns
@@ -556,9 +591,9 @@ This project represents a comprehensive demonstration of modern software enginee
 
 eCart demonstrates understanding of real-world e-commerce challenges:
 - **Scalability**: Architecture designed to handle enterprise-level traffic
-- **User Experience**: Intuitive interface with performance optimization
+- **User Experience**: Intuitive interface with modern authentication options
 - **Data Integrity**: ACID transactions and proper error handling
-- **Payment Security**: PCI-compliant Stripe integration
+- **Payment Security**: PCI-compliant Stripe integration with live payment processing
 - **Operational Excellence**: Comprehensive logging and monitoring capabilities
 
 This project showcases the ability to deliver production-ready software that meets both technical requirements and business objectives, demonstrating readiness for professional software development roles.
