@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import { ProductProvider } from "./context/ProductContext";
-import { WishlistProvider } from "./context/WishlistContext"; // Add this import
+import { WishlistProvider } from "./context/WishlistContext"; 
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage"; 
 import ProductPage from "./pages/ProductPage"; 
@@ -11,7 +11,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage"; 
 import CheckoutPage from "./pages/CheckoutPage"; 
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
-import WishlistPage from "./pages/WishlistPage"; // Add this import
+import WishlistPage from "./pages/WishlistPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import CreateListing from "./pages/CreateListing";

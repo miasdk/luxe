@@ -13,6 +13,7 @@ import {
   ChevronDown,
   ChevronUp,
   Pencil,
+  Heart,
 } from "lucide-react"
 import productsService from "../services/productService"
 import { useCart } from "../context/CartContext"
@@ -48,6 +49,26 @@ export default function ProductDetailPage() {
 
     fetchProduct()
     window.scrollTo(0, 0)
+  }, [productId])
+
+  // Listen for product likes updates
+  useEffect(() => {
+    const handleProductRefresh = async () => {
+      if (productId) {
+        try {
+          const data = await productsService.fetchProductById(productId)
+          setProduct(data)
+        } catch (error) {
+          console.error("Error refreshing product:", error)
+        }
+      }
+    }
+
+    window.addEventListener('productLikesUpdated', handleProductRefresh)
+    
+    return () => {
+      window.removeEventListener('productLikesUpdated', handleProductRefresh)
+    }
   }, [productId])
 
   const handleAddToCart = () => {
@@ -180,25 +201,39 @@ export default function ProductDetailPage() {
           <div className="md:w-1/2">
             <div className="mb-6">
               <div className="flex items-start justify-between">
-                <div>
+                <div className="flex-1 min-w-0">
                   <h1 className="text-3xl font-light text-gray-900 mb-1">{product.title}</h1>
-                  {product.brand_name && (
-                    <p className="text-gray-500">{product.brand_name}</p>
-                  )}
+                  <div className="flex items-center gap-4 mb-2">
+                    {product.brand_name && (
+                      <p className="text-gray-500">{product.brand_name}</p>
+                    )}
+                  </div>
                 </div>
-                <div className="flex gap-2">
-                  <WishlistButton 
-                      productId={product.product_id} 
-                      className="p-2 rounded-full border bg-gray-50 border-gray-200 hover:bg-gray-100"
-                      showText={false}
-                  />
-                  <Link
-                    to={`/update-listing/${product.product_id}`}
-                    className="p-2 rounded-full bg-gray-50 border border-gray-200 text-gray-500 hover:bg-gray-100"
-                    aria-label="Edit product"
-                  >
-                    <Pencil size={20} />
-                  </Link>
+                <div className="flex flex-row gap-2 ml-4">
+
+                <div className="flex flex-col items-center">
+                    <WishlistButton 
+                        productId={product.product_id} 
+                        className="p-2 rounded-full border bg-gray-50 border-gray-200 hover:bg-gray-100"
+                        showText={false}
+                        size={20}
+                    />
+                  <span className="text-xs text-gray-500 mt-1">
+                    {product.num_likes} {product.num_likes === 1 ? 'like' : 'likes'}
+                  </span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <Link
+                      to={`/update-listing/${product.product_id}`}
+                      className="p-2 rounded-full border border-gray-200 text-gray-500 hover:bg-gray-100"
+                      aria-label="Edit product"
+                    >
+                      <Pencil size={20} />
+                    </Link>
+                     <span className="text-xs text-gray-500 mt-1">
+                        Edit
+                      </span>
+                      </div>
                 </div>
               </div>
             </div>
@@ -234,7 +269,6 @@ export default function ProductDetailPage() {
             <div className="mb-8">
               {cartQuantity > 0 ? (
                 <div className="space-y-4">
-                  {/* Cart Quantity Controls */}
                   <div className="flex items-center justify-center gap-4">
                     <div className="flex items-center border border-gray-300 rounded-md">
                       <button
@@ -278,7 +312,6 @@ export default function ProductDetailPage() {
                 </div>
               ) : (
                 <div>
-                  {/* Add to Cart Button */}
                   <button
                     onClick={handleAddToCart}
                     className="w-full px-6 py-3 bg-gray-900 text-white rounded-md font-medium hover:bg-gray-800 transition-colors flex items-center justify-center"
@@ -486,7 +519,6 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Cart Modal */}
       <CartModal 
         isOpen={isCartModalOpen} 
         onClose={() => setIsCartModalOpen(false)} 

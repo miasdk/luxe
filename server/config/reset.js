@@ -138,6 +138,7 @@ const createProductsTable = async () => {
             description TEXT NOT NULL,
             category_id INT NOT NULL REFERENCES categories(id) ON DELETE CASCADE,
             image VARCHAR(255) NOT NULL,
+            num_likes INT DEFAULT 0,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     `;
@@ -153,9 +154,9 @@ const seedProductsTable = async () => {
     await createProductsTable();    
 
     const insertQuery = `
-        INSERT INTO products (brand_id, title, price, description, category_id, image, created_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7)
-    `;
+    INSERT INTO products (brand_id, title, price, description, category_id, image, num_likes, created_at)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+`;
     try {
         for (const product of products) {
             await pool.query(insertQuery, [
@@ -165,6 +166,7 @@ const seedProductsTable = async () => {
                 product.description,
                 product.category_id,
                 product.image,
+                product.num_likes || 0,
                 product.created_at
             ]);
 
@@ -594,6 +596,7 @@ const createProductDetailsView = async () => {
             p.price,
             p.description,
             p.image,
+            p.num_likes,  
             p.created_at,
             b.name AS brand_name,
             c.name AS category_name,
@@ -613,7 +616,7 @@ const createProductDetailsView = async () => {
     `;
     try {
         await pool.query(query);
-        console.log('Product details view created successfully');
+        console.log('Product details view created successfully with num_likes');
     } catch (error) {
         console.error('Error creating product details view', error.stack);
     }
@@ -754,12 +757,12 @@ const dropOrderRelatedTables = async () => {
 
 // seedOrdersTable();
 // seedOrderItemsTable();
-// createShippingInfoTable();
-// createOrderDetailsView();
-// createProductDetailsView();
-// createCartDetailsView();
+createShippingInfoTable();
+createOrderDetailsView();
+createProductDetailsView();
+createCartDetailsView();
 
 
 
 
-createWishlistTable();
+// createWishlistTable();

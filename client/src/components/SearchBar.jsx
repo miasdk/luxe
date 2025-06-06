@@ -19,7 +19,6 @@ const SearchBar = ({ className = '' }) => {
         e.preventDefault();
         
         if (query.trim()) {
-            // Navigate to search results page with query parameter
             navigate(`/search?q=${encodeURIComponent(query.trim())}`);
             setShowSuggestions(false);
             inputRef.current.blur();

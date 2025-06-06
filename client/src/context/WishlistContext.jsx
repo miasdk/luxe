@@ -1,4 +1,4 @@
-// WishlistContext.jsx - Corrected version
+// WishlistContext.jsx - Updated with product refresh
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useAuthContext } from './AuthContext';
 
@@ -60,6 +60,12 @@ export const WishlistProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  // Trigger product refresh across the app
+  const triggerProductRefresh = () => {
+    // Dispatch a custom event that product components can listen to
+    window.dispatchEvent(new CustomEvent('productLikesUpdated'));
+  };
   
   // Add item to wishlist
   const addToWishlist = async (productId) => {
@@ -74,7 +80,9 @@ export const WishlistProvider = ({ children }) => {
       
       if (!response.ok) throw new Error('Failed to add to wishlist');
       
-      fetchWishlist();
+      // Refresh wishlist and trigger product refresh
+      await fetchWishlist();
+      triggerProductRefresh();
       return true;
     } catch (err) {
       setError(err.message);
@@ -93,7 +101,9 @@ export const WishlistProvider = ({ children }) => {
       
       if (!response.ok) throw new Error('Failed to remove from wishlist');
       
+      // Update local state and trigger product refresh
       setWishlistItems(prev => prev.filter(item => item.product_id !== productId));
+      triggerProductRefresh();
       return true;
     } catch (err) {
       setError(err.message);
@@ -121,6 +131,7 @@ export const WishlistProvider = ({ children }) => {
       if (!response.ok) throw new Error('Failed to clear wishlist');
       
       setWishlistItems([]);
+      triggerProductRefresh();
       return true;
     } catch (err) {
       setError(err.message);
@@ -147,5 +158,3 @@ export const WishlistProvider = ({ children }) => {
     </WishlistContext.Provider>
   );
 };
-
-// Removed the duplicate export here

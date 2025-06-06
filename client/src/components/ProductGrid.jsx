@@ -1,4 +1,4 @@
-// ProductGrid.jsx - Updated to work with enhanced ActiveFilters
+// ProductGrid.jsx 
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from "./ProductCard";

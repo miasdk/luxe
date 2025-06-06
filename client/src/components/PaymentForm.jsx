@@ -28,7 +28,6 @@ const PaymentForm = ({ userId, orderItems, shippingInfo, onPaymentSuccess }) => 
         setErrorMessage("");
     
         try {
-            // Step 1: Create an order and get clientSecret
             const response = await fetch(`${API_BASE_URL}/api/orders`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -46,7 +45,6 @@ const PaymentForm = ({ userId, orderItems, shippingInfo, onPaymentSuccess }) => 
     
             const { order, clientSecret } = await response.json();
     
-            // Step 2: Confirm payment with Stripe
             const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
                 payment_method: { card: elements.getElement(CardElement) },
             });
@@ -55,7 +53,6 @@ const PaymentForm = ({ userId, orderItems, shippingInfo, onPaymentSuccess }) => 
                 throw new Error(error.message);
             }
     
-            // Step 3: Send stripePaymentId to backend to update order status
             const updateResponse = await fetch(`${API_BASE_URL}/api/orders/${order.id}/update-payment`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
@@ -66,7 +63,6 @@ const PaymentForm = ({ userId, orderItems, shippingInfo, onPaymentSuccess }) => 
                 throw new Error("Payment confirmed but failed to update order");
             }
     
-            // Notify parent component of success
             onPaymentSuccess(order.id);
         } catch (error) {
             setErrorMessage(error.message || "Payment processing error");

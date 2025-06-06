@@ -20,7 +20,8 @@ const ProductPage = () => {
     totalPages,
     totalItems,
     handlePageChange,
-    loading
+    loading,
+    refreshProducts // Make sure your ProductContext has this method
   } = useProductContext();
   
   const [viewMode, setViewMode] = useState('grid');
@@ -31,6 +32,22 @@ const ProductPage = () => {
       updateCategory(categoryFromUrl);
     }
   }, [searchParams, selectedCategory, updateCategory]);
+
+  // Listen for product likes updates
+  useEffect(() => {
+    const handleProductRefresh = () => {
+      // Refresh products to get updated like counts
+      if (refreshProducts) {
+        refreshProducts();
+      }
+    };
+
+    window.addEventListener('productLikesUpdated', handleProductRefresh);
+    
+    return () => {
+      window.removeEventListener('productLikesUpdated', handleProductRefresh);
+    };
+  }, [refreshProducts]);
 
   const handlePageClick = (event) => {
     handlePageChange(event.selected + 1);

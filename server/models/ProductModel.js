@@ -218,7 +218,7 @@ class ProductModel {
     }
     
 
-    static async addProduct({ brand_id, title, price, description, category_id, image, color_ids = [], size_ids = [], condition_ids = [] }) { 
+    static async addProduct({ brand_id, title, price, description, category_id, image, num_likes = 0, color_ids = [], size_ids = [], condition_ids = [] }) { 
         const client = await pool.connect(); // Get a connection from the pool
     
         try {
@@ -226,11 +226,11 @@ class ProductModel {
     
             // Step 1: Insert product into the products table
             const insertProductQuery = `
-                INSERT INTO products (brand_id, title, price, description, category_id, image, created_at)
-                VALUES ($1, $2, $3, $4, $5, $6, NOW())
+                INSERT INTO products (brand_id, title, price, description, category_id, image, num_likes, created_at)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, NOW())
                 RETURNING *;
             `;
-            const productValues = [brand_id, title, price, description, category_id, image];
+            const productValues = [brand_id, title, price, description, category_id, image, num_likes || 0]
             const { rows } = await client.query(insertProductQuery, productValues);
             const product = rows[0]; // Extract the inserted product
             const product_id = product.id;

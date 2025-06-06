@@ -17,7 +17,7 @@ export default function RegisterForm() {
         
         try {
             await registerUser(email, password, displayName);
-            navigate('/'); // Redirect to home page after successful registration
+            navigate('/');
         } catch (error) {
             setError(error.message);
         } finally {

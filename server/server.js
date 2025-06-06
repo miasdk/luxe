@@ -10,7 +10,7 @@ import ordersRouter from './routes/orderRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import wishlistRouter from './routes/wishlistRoutes.js';
 import searchRouter from './routes/searchRoutes.js';
-import categoriesRouter from './routes/categoryRoutes.js'; // TEMPORARILY COMMENTED
+import categoriesRouter from './routes/categoryRoutes.js';
 
 // Import Swagger
 import { specs, swaggerUi, customCss } from './swagger.js';
@@ -22,8 +22,8 @@ const app = express();
 app.use(express.json());
 const corsOptions = {
   origin: [
-    'http://localhost:5173',                      // Local development
-    'https://e-cart-mu-olive.vercel.app'          // Production frontend
+    'http://localhost:5173',                      
+    'https://e-cart-mu-olive.vercel.app'          
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -41,7 +41,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {
 
 // API Routes
 app.use('/api/products', productsRouter);
-// app.use('/api/categories', categoriesRouter); // TEMPORARILY COMMENTED
 app.use('/api/cart', cartRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/users', userRouter);
