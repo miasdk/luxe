@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <article className="bg-white group h-full overflow-hidden relative rounded-lg border border-gray-100 hover:border-gray-200 transition-all">
+    <article className=" group h-full overflow-hidden relative rounded-lg  hover:border-gray-200 transition-all">
       
       <div className="absolute top-3 right-3 z-10">
         <WishlistButton
