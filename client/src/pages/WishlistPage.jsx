@@ -119,14 +119,13 @@ const WishlistPage = () => {
     }
     
     return (
-        <div className="bg-gray-50 min-h-screen">
-            <div className="container mx-auto px-4 py-6 max-w-4xl">
-                {/* Header */}
-                <div className="mb-6">
-                    <h1 className="text-2xl sm:text-3xl font-light text-gray-900 mb-2">
+        <div className="bg-white min-h-screen">
+            <div className="container mx-auto px-4 py-6 max-w-6xl">
+                <div className="mb-6 pb-4 border-b border-gray-200">
+                    <h1 className="text-2xl font-normal text-gray-900 mb-1">
                         Saved items
                     </h1>
-                    <p className="text-gray-600">
+                    <p className="text-sm text-gray-600">
                         {wishlistItems.length === 0 
                             ? "Items you save will be stored here" 
                             : `${wishlistItems.length} item${wishlistItems.length === 1 ? '' : 's'}`
@@ -135,164 +134,135 @@ const WishlistPage = () => {
                 </div>
 
                 {wishlistItems.length === 0 ? (
-                    <div className="bg-white rounded-xl p-8 text-center">
-                        <Heart size={64} className="text-gray-300 mx-auto mb-6" />
-                        <h2 className="text-xl font-medium text-gray-900 mb-2">You haven't saved anything yet</h2>
-                        <p className="text-gray-600 mb-8 max-w-md mx-auto">
-                            When you find something you like, select the heart icon to save it here.
+                    <div className="text-center py-16">
+                        <Heart size={48} className="text-gray-300 mx-auto mb-4" />
+                        <h2 className="text-lg font-normal text-gray-900 mb-2">You haven't saved anything yet</h2>
+                        <p className="text-gray-600 mb-6 max-w-md mx-auto">
+                            When you find something you like, select the heart to save it here.
                         </p>
                         <Link
                             to="/products"
-                            className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                            className="inline-block px-6 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition-colors"
                         >
                             Start shopping
                         </Link>
                     </div>
                 ) : (
                     <>
-                        <div className="bg-white rounded-xl p-4 mb-4 shadow-sm">
-                            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                                <div className="flex items-center gap-4">
-                                    <label className="flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedItems.length === wishlistItems.length}
-                                            onChange={handleSelectAll}
-                                            className="mr-2 w-4 h-4"
-                                        />
-                                        <span className="text-sm font-medium">
-                                            Select all ({wishlistItems.length})
-                                        </span>
-                                    </label>
-                                    
-                                    {selectedItems.length > 0 && (
-                                        <span className="text-sm text-blue-600 font-medium">
-                                            {selectedItems.length} selected
-                                        </span>
-                                    )}
-                                </div>
-
-                                <div className="flex items-center gap-2 flex-wrap">
-                                    {selectedItems.length > 0 && (
-                                        <>
-                                            <button
-                                                onClick={handleBulkAddToCart}
-                                                className="flex-1 sm:flex-initial px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
-                                            >
-                                                Add to cart ({selectedItems.length})
-                                            </button>
-                                            <button
-                                                onClick={handleBulkRemove}
-                                                className="flex-1 sm:flex-initial px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-50 transition-colors"
-                                            >
-                                                Remove
-                                            </button>
-                                        </>
-                                    )}
-                                    
-                                    <button
-                                        onClick={() => clearWishlist()}
-                                        className="px-4 py-2 text-gray-600 text-sm hover:text-gray-800 transition-colors"
-                                    >
-                                        Clear all
-                                    </button>
+                        {/* Bulk Actions */}
+                        {selectedItems.length > 0 && (
+                            <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded">
+                                <div className="flex items-center justify-between">
+                                    <span className="text-sm text-blue-800">
+                                        {selectedItems.length} item{selectedItems.length === 1 ? '' : 's'} selected
+                                    </span>
+                                    <div className="flex items-center gap-3">
+                                        <button
+                                            onClick={handleBulkAddToCart}
+                                            className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+                                        >
+                                            Add to cart
+                                        </button>
+                                        <button
+                                            onClick={handleBulkRemove}
+                                            className="text-sm text-red-600 hover:text-red-800"
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+                        )}
+
+                        <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200">
+                            <label className="flex items-center text-sm">
+                                <input
+                                    type="checkbox"
+                                    checked={selectedItems.length === wishlistItems.length}
+                                    onChange={handleSelectAll}
+                                    className="mr-2"
+                                />
+                                Select all
+                            </label>
+                            <button
+                                onClick={() => clearWishlist()}
+                                className="text-sm text-gray-600 hover:text-gray-800"
+                            >
+                                Clear all
+                            </button>
                         </div>
 
-                        <div className="space-y-4">
-                            {wishlistItems.map((item) => (
-                                <div key={item.product_id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                    <div className="p-4">
-                                        <div className="flex items-start gap-3">
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedItems.includes(item.product_id)}
-                                                onChange={() => handleSelectItem(item.product_id)}
-                                                className="mt-1 w-4 h-4"
+                        <div className="space-y-0">
+                            {wishlistItems.map((item, index) => (
+                                <div key={item.product_id} className={`flex items-start gap-4 py-4 ${index !== wishlistItems.length - 1 ? 'border-b border-gray-100' : ''}`}>
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedItems.includes(item.product_id)}
+                                        onChange={() => handleSelectItem(item.product_id)}
+                                        className="mt-1"
+                                    />
+                                    
+                                    <div className="w-20 h-20 bg-gray-50 border border-gray-200 flex-shrink-0">
+                                        <Link to={`/products/${item.product_id}`}>
+                                            <img 
+                                                src={item.image} 
+                                                alt={item.title} 
+                                                className="w-full h-full object-contain"
                                             />
-                                            
-                                            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-50 rounded-lg overflow-hidden flex-shrink-0">
-                                                <Link to={`/products/${item.product_id}`}>
-                                                    <img 
-                                                        src={item.image} 
-                                                        alt={item.title} 
-                                                        className="w-full h-full object-contain hover:scale-105 transition-transform"
-                                                    />
-                                                </Link>
-                                            </div>
-                                            
-                                            <div className="flex-1 min-w-0">
-                                                <Link 
-                                                    to={`/products/${item.product_id}`}
-                                                    className="text-blue-600 hover:text-blue-800 font-medium text-sm sm:text-base leading-tight block mb-1"
-                                                >
-                                                    {item.title}
-                                                </Link>
-                                                
-                                                {item.brand_name && (
-                                                    <p className="text-gray-600 text-xs sm:text-sm mb-1">by {item.brand_name}</p>
-                                                )}
-                                                
-                                                <div className="flex items-center gap-2 mb-2">
-                                                    <span className="font-semibold text-lg text-gray-900">
-                                                        ${item.price}
-                                                    </span>
-                                                    {item.original_price && item.original_price > item.price && (
-                                                        <span className="text-gray-500 line-through text-sm">
-                                                            ${item.original_price}
-                                                        </span>
-                                                    )}
-                                                </div>
-                                                
-                                                <div className="space-y-1">
-                                                    {item.conditions && (
-                                                        <p className="text-gray-600 text-xs sm:text-sm">
-                                                            Condition: {item.conditions}
-                                                        </p>
-                                                    )}
-                                                    
-                                                    {item.sizes && (
-                                                        <p className="text-gray-600 text-xs sm:text-sm">
-                                                            Size: {item.sizes}
-                                                        </p>
-                                                    )}
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="flex flex-col gap-2">
-                                                <button
-                                                    onClick={() => handleMoveToCart(item)}
-                                                    className="px-3 py-2 bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-1"
-                                                >
-                                                    <ShoppingCart size={14} />
-                                                    <span className="hidden sm:inline">Add to cart</span>
-                                                </button>
-                                                
-                                                <button
-                                                    onClick={() => removeFromWishlist(item.product_id)}
-                                                    className="p-2 text-gray-400 hover:text-red-500 transition-colors"
-                                                    title="Remove from saved items"
-                                                >
-                                                    <Trash2 size={16} />
-                                                </button>
-                                            </div>
+                                        </Link>
+                                    </div>
+                                    
+                                    <div className="flex-1 min-w-0">
+                                        <Link 
+                                            to={`/products/${item.product_id}`}
+                                            className="text-blue-600 hover:underline font-normal text-sm block mb-1"
+                                        >
+                                            {item.title}
+                                        </Link>
+                                        
+                                        {item.brand_name && (
+                                            <p className="text-gray-600 text-sm mb-1">{item.brand_name}</p>
+                                        )}
+                                        
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <span className="font-bold text-lg text-gray-900">
+                                                ${item.price}
+                                            </span>
+                                            {item.original_price && item.original_price > item.price && (
+                                                <span className="text-gray-500 line-through text-sm">
+                                                    ${item.original_price}
+                                                </span>
+                                            )}
                                         </div>
+                                        
+                                        <div className="flex items-center gap-4 text-sm text-gray-600">
+                                            {item.conditions && (
+                                                <span>Condition: {item.conditions}</span>
+                                            )}
+                                            {item.sizes && (
+                                                <span>Size: {item.sizes}</span>
+                                            )}
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="flex items-center gap-3">
+                                        <button
+                                            onClick={() => handleMoveToCart(item)}
+                                            className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 transition-colors"
+                                        >
+                                            Add to cart
+                                        </button>
+                                        
+                                        <button
+                                            onClick={() => removeFromWishlist(item.product_id)}
+                                            className="text-gray-400 hover:text-red-500 transition-colors"
+                                            title="Remove"
+                                        >
+                                            <Trash2 size={16} />
+                                        </button>
                                     </div>
                                 </div>
                             ))}
-                        </div>
-                        
-                        <div className="mt-8 bg-white rounded-xl p-6 text-center shadow-sm">
-                            <h3 className="font-medium text-gray-900 mb-2">Keep exploring</h3>
-                            <p className="text-gray-600 mb-4">Find more items you'll love</p>
-                            <Link
-                                to="/products"
-                                className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
-                            >
-                                Continue shopping
-                                <ArrowRight size={16} className="ml-2" />
-                            </Link>
                         </div>
                     </>
                 )}
