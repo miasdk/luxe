@@ -1,17 +1,35 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { useAuthContext } from "../context/AuthContext";
 import RegisterForm from "../components/RegisterForm";
-import {FaGoogle, FaGithub} from 'react-icons/fa';
+import { FaGoogle } from 'react-icons/fa';
+import { useState } from 'react';
 
 export default function RegisterPage() {
     const { user } = useAuth();
+    const { signInWithGoogle } = useAuthContext();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    //If use is already logged in, redirect 
     if (user) {
         navigate("/");
-        return null; 
+        return null;
     }
+
+    const handleGoogleSignIn = async () => {
+        try {
+            setLoading(true);
+            setError('');
+            await signInWithGoogle();
+            navigate('/');
+        } catch (error) {
+            setError('Google sign-in failed. Please try again.');
+            console.error('Google sign-in error:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -27,7 +45,7 @@ export default function RegisterPage() {
                 </p>
             </div>
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className=" py-8 px-4  sm:rounded-lg sm:px-10">
+                <div className="py-8 px-4 sm:rounded-lg sm:px-10">
                     <RegisterForm />
     
                     <div className="mt-6">
@@ -41,22 +59,24 @@ export default function RegisterPage() {
                                 </span>
                             </div>
                         </div>
-                        <div className="mt-6 grid grid-cols-2 gap-3">
+                        
+                        {error && (
+                            <div className="mt-4 p-3 bg-red-50 text-red-700 rounded-lg border border-red-100 text-sm text-center">
+                                {error}
+                            </div>
+                        )}
+                        
+                        <div className="mt-6">
                             <button
                                 type="button"
-                                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                                disabled
+                                onClick={handleGoogleSignIn}
+                                disabled={loading}
+                                className={`w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium transition-colors ${
+                                    loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50'
+                                }`}
                             >
                                 <FaGoogle className="w-5 h-5 mr-2" />
-                                Google
-                            </button>
-                            <button
-                                type="button"
-                                className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                                disabled
-                            >
-                                <FaGithub className="w-5 h-5 mr-2" />
-                                GitHub 
+                                {loading ? 'Signing in...' : 'Google'}
                             </button>
                         </div>
                     </div>
