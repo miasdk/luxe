@@ -78,9 +78,9 @@ eCart is a production-ready e-commerce platform engineered to demonstrate enterp
 
 | Service | Status | URL | Description |
 |---------|--------|-----|-------------|
-| **Frontend** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecart-frontend.vercel.app](https://ecart-frontend.vercel.app) | React application |
-| **Backend API** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecart-backend.railway.app](https://ecart-backend.railway.app) | Node.js REST API |
-| **API Documentation** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecart-backend.railway.app/api-docs](https://ecart-backend.railway.app/api-docs) | Interactive Swagger docs |
+| **Frontend** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [e-cart-mu-olive.vercel.app](https://e-cart-mu-olive.vercel.app/) | React application |
+| **Backend API** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecart-mxsk.onrender.com](https://ecart-mxsk.onrender.com) | Node.js REST API |
+| **API Documentation** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecart-mxsk.onrender.com/api-docs/](https://ecart-mxsk.onrender.com/api-docs/) | Interactive Swagger docs |
 | **Database** | ![Status](https://img.shields.io/badge/🟢-Live-success) | `PostgreSQL on Railway` | Production database |
 
 ---
