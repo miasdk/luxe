@@ -18,7 +18,7 @@ import productsService from "../services/productService"
 import { useCart } from "../context/CartContext"
 import ProductCarousel from "../components/ProductCarousel"
 import WishlistButton from '../components/WishlistButton';
-import Breadcrumb from '../components/Breadcrumb'; // Add this import at the top
+import Breadcrumb from '../components/Breadcrumb';
 
 
 export default function ProductDetailPage() {
@@ -29,7 +29,7 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1)
   const [activeTab, setActiveTab] = useState("description")
   const [openAccordion, setOpenAccordion] = useState("description")
-  const { addToCart, removeFromCart, cartItems } = useCart()
+  const { addToCart, removeFromCart, cart } = useCart()
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -38,7 +38,7 @@ export default function ProductDetailPage() {
         const data = await productsService.fetchProductById(productId)
         setProduct(data)
 
-        const cartItem = cartItems.find((item) => item.product_id === data.product_id)
+        const cartItem = cart.find((item) => item.product_id === data.product_id)
         if (cartItem) {
           setQuantity(cartItem.quantity)
         }
@@ -51,15 +51,11 @@ export default function ProductDetailPage() {
 
     fetchProduct()
     window.scrollTo(0, 0)
-  }, [productId, cartItems])
+  }, [productId, cart])
 
   const handleAddToCart = () => {
     if (product) {
-      const productToAdd = {
-        ...product,
-        quantityToAdd: quantity,
-      }
-      addToCart(productToAdd)
+      addToCart(product, quantity)
     }
   }
 
@@ -146,7 +142,7 @@ export default function ProductDetailPage() {
   }
 
   const galleryImages = generateGalleryImages(product)
-  const isInCart = cartItems.find((item) => item.product_id === product.product_id)
+  const isInCart = cart.find((item) => item.product_id === product.product_id)
   const cartQuantity = isInCart ? isInCart.quantity : 0
 
   return (

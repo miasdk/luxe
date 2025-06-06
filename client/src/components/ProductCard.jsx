@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import WishlistButton from "./WishlistButton";
 
 const ProductCard = ({ product }) => {
-  const { addToCart, removeFromCart, cartItems } = useCart();
-  const isInCart = cartItems && cartItems.find(item => item.product_id === product.product_id);
+  const { addToCart, removeFromCart, cart } = useCart(); 
+  const isInCart = cart && cart.find(item => item.product_id === product.product_id); // Changed: cartItems -> cart
   const quantity = isInCart ? isInCart.quantity : 0;
 
   const handleAddToCart = () => {

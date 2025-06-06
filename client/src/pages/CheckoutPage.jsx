@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const CheckoutPage = () => {
     const { user } = useAuthContext();
-    const { cartItems, cartTotal, clearCart } = useCart();
+    const { cart, subtotal, clearCart } = useCart(); 
     const navigate = useNavigate();
     
     const [shippingInfo, setShippingInfo] = useState({
@@ -24,19 +24,17 @@ const CheckoutPage = () => {
     const [orderId, setOrderId] = useState(null);
     const [currentStep, setCurrentStep] = useState(1);
     
-    // Redirect to login if not authenticated
     useEffect(() => {
         if (!user) {
             navigate('/login', { state: { from: '/checkout' } });
         }
     }, [user, navigate]);
     
-    // Redirect to cart if cart is empty
     useEffect(() => {
-        if (cartItems.length === 0 && !orderCreated) {
+        if (cart.length === 0 && !orderCreated) { 
             navigate('/cart');
         }
-    }, [cartItems, navigate, orderCreated]);
+    }, [cart, navigate, orderCreated]); 
     
     // Handle shipping info changes
     const handleInputChange = (e) => {
@@ -49,7 +47,7 @@ const CheckoutPage = () => {
     
     // Format cart items for order creation
     const getOrderItems = () => {
-        return cartItems.map(item => ({
+        return cart.map(item => ({ 
             productId: item.product_id,
             quantity: item.quantity,
             unitPrice: item.price
@@ -74,7 +72,7 @@ const CheckoutPage = () => {
                shippingInfo.state && shippingInfo.zip && shippingInfo.email;
     };
     
-    if (!user || (cartItems.length === 0 && !orderCreated)) {
+    if (!user || (cart.length === 0 && !orderCreated)) { 
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
                 <div className="text-center">
@@ -132,13 +130,11 @@ const CheckoutPage = () => {
                 </div>
                 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {/* Main Content */}
                     <div className="lg:col-span-2 space-y-8">
-                        {/* Order Summary */}
                         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
                             <h2 className="text-2xl font-light text-gray-900 mb-6">Order Summary</h2>
                             <div className="space-y-4">
-                                {cartItems.map(item => (
+                                {cart.map(item => ( // Changed: cartItems -> cart
                                     <div key={item.product_id} className="flex items-center gap-4 py-4 border-b border-gray-100 last:border-0">
                                         <div className="w-16 h-16 bg-gray-50 rounded-lg overflow-hidden">
                                             <img 
@@ -157,7 +153,6 @@ const CheckoutPage = () => {
                             </div>
                         </div>
                         
-                        {/* Shipping Information */}
                         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
                             <div className="flex items-center gap-3 mb-6">
                                 <Truck size={24} className="text-gray-700" />
@@ -235,7 +230,6 @@ const CheckoutPage = () => {
                             </div>
                         </div>
                         
-                        {/* Payment */}
                         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
                             <div className="flex items-center gap-3 mb-6">
                                 <Lock size={24} className="text-gray-700" />
@@ -251,7 +245,6 @@ const CheckoutPage = () => {
                         </div>
                     </div>
                     
-                    {/* Order Total */}
                     <div>
                         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sticky top-8">
                             <h3 className="text-2xl font-light text-gray-900 mb-8">Order Total</h3>
@@ -259,7 +252,7 @@ const CheckoutPage = () => {
                             <div className="space-y-6">
                                 <div className="flex justify-between items-center">
                                     <span className="text-gray-600">Subtotal</span>
-                                    <span className="text-xl font-light">${cartTotal.toFixed(2)}</span>
+                                    <span className="text-xl font-light">${subtotal.toFixed(2)}</span> {/* Changed: cartTotal -> subtotal */}
                                 </div>
                                 
                                 <div className="flex justify-between items-center">
@@ -275,12 +268,11 @@ const CheckoutPage = () => {
                                 <div className="border-t border-gray-100 pt-6">
                                     <div className="flex justify-between items-center">
                                         <span className="text-xl font-medium text-gray-900">Total</span>
-                                        <span className="text-3xl font-light text-gray-900">${cartTotal.toFixed(2)}</span>
+                                        <span className="text-3xl font-light text-gray-900">${subtotal.toFixed(2)}</span> {/* Changed: cartTotal -> subtotal */}
                                     </div>
                                 </div>
                             </div>
                             
-                            {/* Security Features */}
                             <div className="mt-8 pt-6 border-t border-gray-100 space-y-3">
                                 <div className="flex items-center text-sm text-gray-600">
                                     <Lock size={16} className="mr-3 text-green-600" />
