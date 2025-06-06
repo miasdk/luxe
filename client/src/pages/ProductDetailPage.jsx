@@ -19,6 +19,7 @@ import { useCart } from "../context/CartContext"
 import ProductCarousel from "../components/ProductCarousel"
 import WishlistButton from '../components/WishlistButton';
 import Breadcrumb from '../components/Breadcrumb';
+import CartModal from '../components/CartModal';
 
 
 export default function ProductDetailPage() {
@@ -29,6 +30,7 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1)
   const [activeTab, setActiveTab] = useState("description")
   const [openAccordion, setOpenAccordion] = useState("description")
+  const [isCartModalOpen, setIsCartModalOpen] = useState(false)
   const { addToCart, removeFromCart, cart } = useCart()
 
   useEffect(() => {
@@ -37,11 +39,6 @@ export default function ProductDetailPage() {
         setLoading(true)
         const data = await productsService.fetchProductById(productId)
         setProduct(data)
-
-        const cartItem = cart.find((item) => item.product_id === data.product_id)
-        if (cartItem) {
-          setQuantity(cartItem.quantity)
-        }
       } catch (error) {
         console.error("Error fetching product:", error)
       } finally {
@@ -51,23 +48,25 @@ export default function ProductDetailPage() {
 
     fetchProduct()
     window.scrollTo(0, 0)
-  }, [productId, cart])
+  }, [productId])
 
   const handleAddToCart = () => {
     if (product) {
-      addToCart(product, quantity)
+      addToCart(product, 1)  // Always add 1 item
     }
   }
 
   const handleRemoveFromCart = () => {
     if (product) {
-      removeFromCart(product.product_id)
-      setQuantity(1)
+      const cartItem = cart.find(item => item.product_id === product.product_id)
+      if (cartItem) {
+        removeFromCart(product.product_id, cartItem.quantity)
+      }
     }
   }
 
   const incrementQuantity = () => {
-    if (product && quantity < product.stock) {
+    if (product && quantity < (product.stock || 999)) {
       setQuantity((prev) => prev + 1)
     }
   }
@@ -233,23 +232,23 @@ export default function ProductDetailPage() {
             )}
 
             <div className="mb-8">
-                  <div className="flex items-center gap-4 mb-4">
+              {cartQuantity > 0 ? (
+                <div className="space-y-4">
+                  {/* Cart Quantity Controls */}
+                  <div className="flex items-center justify-center gap-4">
                     <div className="flex items-center border border-gray-300 rounded-md">
                       <button
-                        onClick={decrementQuantity}
-                        disabled={quantity <= 1}
-                        className={`p-2 ${quantity <= 1 ? "text-gray-300" : "text-gray-600 hover:bg-gray-50"}`}
+                        onClick={() => removeFromCart(product.product_id, 1)}
+                        disabled={cartQuantity <= 1}
+                        className={`p-2 ${cartQuantity <= 1 ? "text-gray-300" : "text-gray-600 hover:bg-gray-50"}`}
                         aria-label="Decrease quantity"
                       >
                         <Minus size={16} />
                       </button>
-                      <span className="w-12 text-center text-gray-900">{quantity}</span>
+                      <span className="w-12 text-center text-gray-900">{cartQuantity}</span>
                       <button
-                        onClick={incrementQuantity}
-                        disabled={product.stock && quantity >= product.stock}
-                        className={`p-2 ${
-                          product.stock && quantity >= product.stock ? "text-gray-300" : "text-gray-600 hover:bg-gray-50"
-                        }`}
+                        onClick={() => addToCart(product, 1)}
+                        className="p-2 text-gray-600 hover:bg-gray-50"
                         aria-label="Increase quantity"
                       >
                         <Plus size={16} />
@@ -260,31 +259,35 @@ export default function ProductDetailPage() {
                     )}
                   </div>
 
-                  {cartQuantity > 0 ? (
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <button
-                        onClick={handleRemoveFromCart}
-                        className="flex-1 px-6 py-3 border border-gray-300 rounded-md text-gray-700 font-medium hover:bg-gray-50 transition-colors"
-                      >
-                        Remove from Cart
-                      </button>
-                      <Link
-                        to="/cart"
-                        className="flex-1 px-6 py-3 bg-gray-900 text-white rounded-md font-medium hover:bg-gray-800 transition-colors flex items-center justify-center"
-                      >
-                        <ShoppingBag size={18} className="mr-2" />
-                        ({cartQuantity}) In Cart
-                      </Link>
-                    </div>
-                  ) : (
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <button
-                      onClick={handleAddToCart}
-                      className="w-full px-6 py-3 bg-gray-900 text-white rounded-md font-medium hover:bg-gray-800 transition-colors flex items-center justify-center"
+                      onClick={handleRemoveFromCart}
+                      className="flex-1 px-6 py-3 border border-red-300 text-red-600 rounded-md font-medium hover:bg-red-50 transition-colors"
+                    >
+                      Remove from Cart
+                    </button>
+                    <button
+                      onClick={() => setIsCartModalOpen(true)}
+                      className="flex-1 px-6 py-3 bg-gray-900 text-white rounded-md font-medium hover:bg-gray-800 transition-colors flex items-center justify-center"
                     >
                       <ShoppingBag size={18} className="mr-2" />
-                      Add to Cart
+                      ({cartQuantity}) View Cart
                     </button>
-                  )}
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  {/* Add to Cart Button */}
+                  <button
+                    onClick={handleAddToCart}
+                    className="w-full px-6 py-3 bg-gray-900 text-white rounded-md font-medium hover:bg-gray-800 transition-colors flex items-center justify-center"
+                  >
+                    <ShoppingBag size={18} className="mr-2" />
+                    Add to Cart
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="border-t border-gray-200 pt-6 space-y-4">
@@ -482,6 +485,12 @@ export default function ProductDetailPage() {
           <ProductCarousel category={product.category_name} />
         </div>
       </div>
+
+      {/* Cart Modal */}
+      <CartModal 
+        isOpen={isCartModalOpen} 
+        onClose={() => setIsCartModalOpen(false)} 
+      />
     </div>
   )
 }

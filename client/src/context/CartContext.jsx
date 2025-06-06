@@ -1,6 +1,6 @@
 // context/CartContext.jsx
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { useAuth } from './AuthContext';
+import { useAuthContext } from './AuthContext';
 import cartService from '../services/cartService';
 
 const CartContext = createContext();
@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
     const [cartId, setCartId] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const { user } = useAuth();
+    const { user } = useAuthContext();
 
     // Load cart when user changes
     useEffect(() => {
@@ -32,10 +32,10 @@ export const CartProvider = ({ children }) => {
     }, [user]);
 
     // Load user's cart from backend
-    const loadUserCart = async () => {
+    const loadUserCart = async (showLoading = true) => {
         if (!user?.uid) return;
         
-        setLoading(true);
+        if (showLoading) setLoading(true);
         try {
             const cartData = await cartService.getCartByUserId(user.uid);
             setCartId(cartData.id);
@@ -44,7 +44,7 @@ export const CartProvider = ({ children }) => {
             console.error('Error loading cart:', error);
             setCart([]);
         } finally {
-            setLoading(false);
+            if (showLoading) setLoading(false);
         }
     };
 
@@ -62,8 +62,8 @@ export const CartProvider = ({ children }) => {
                 quantity
             });
             
-            // Reload cart to get updated data
-            await loadUserCart();
+            // Reload cart without showing loading state
+            await loadUserCart(false);
         } catch (error) {
             console.error('Error adding item to cart:', error);
         }
@@ -83,8 +83,8 @@ export const CartProvider = ({ children }) => {
                 quantity
             });
             
-            // Reload cart to get updated data
-            await loadUserCart();
+            // Reload cart without showing loading state
+            await loadUserCart(false);
         } catch (error) {
             console.error('Error removing item from cart:', error);
         }
@@ -113,8 +113,8 @@ export const CartProvider = ({ children }) => {
                 quantity: newQuantity
             });
             
-            // Reload cart to get updated data
-            await loadUserCart();
+            // Reload cart without showing loading state
+            await loadUserCart(false);
         } catch (error) {
             console.error('Error updating item quantity:', error);
         }
@@ -152,7 +152,7 @@ export const CartProvider = ({ children }) => {
 
     // Calculate totals
     const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
-    const subtotal = cart.reduce((total, product) => total + (product.price * product.quantity), 0);
+    const subtotal = cart.reduce((total, product) => total + (parseFloat(product.price) * product.quantity), 0);
 
     const value = {
         cart,

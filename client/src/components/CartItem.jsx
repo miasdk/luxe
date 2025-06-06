@@ -1,17 +1,19 @@
-import { useShoppingCart } from "../context/CartContext";
+import { useCart } from "../context/CartContext"; 
 import formatCurrency from "../utilities/formatCurrency";
 
 const CartItem = ({ product }) => {
-    const { removeFromCart, addToCart } = useShoppingCart();
+    const { removeFromCart, addToCart } = useCart(); 
     const quantity = product.quantity;
 
     return (
        <div className="flex items-center justify-between py-2">
-            <img 
-                src={product.image} 
-                alt={product.title} 
-                className="w-16 h-16 object-cover rounded" 
-            />
+            <Link to={`/products/${product.product_id}`}>
+                <img 
+                    src={product.image} 
+                    alt={product.title} 
+                    className="w-16 h-16 object-cover rounded hover:opacity-80 transition-opacity cursor-pointer" 
+                />
+            </Link>
             <div className="flex-1 ml-4">
                 <p className="font-medium">{product.title}</p>
                 <p className="text-sm text-gray-500">${product.price} x {quantity}</p>

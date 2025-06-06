@@ -147,7 +147,6 @@ const FilterSideBar = () => {
             )}
           </div>
 
-          {/* Brands Section */}
           {brandsWithCount && brandsWithCount.length > 0 && (
             <div>
               <button

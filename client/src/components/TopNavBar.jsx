@@ -7,7 +7,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { Heart, ShoppingCart } from 'lucide-react';
 import { useWishlist } from '../context/WishlistContext';
-import CartModal from './CartModal'; // Import the cart modal
+import CartModal from './CartModal';
 
 export default function TopNavBar({ user, loading }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -15,7 +15,7 @@ export default function TopNavBar({ user, loading }) {
     const dropdownRef = useRef(null);
     const navigate = useNavigate();
 
-    const { cartItems } = useCart();
+    const { cart } = useCart(); 
     const { wishlistItems } = useWishlist();
 
     useEffect(() => {
@@ -118,7 +118,6 @@ export default function TopNavBar({ user, loading }) {
                                     </div>
                                 </Link>
                                 
-                                {/* Cart Modal Trigger */}
                                 <button 
                                     onClick={toggleCartModal}
                                     className="relative flex items-center p-2 hover:bg-gray-100 rounded-md transition-colors"
@@ -126,9 +125,9 @@ export default function TopNavBar({ user, loading }) {
                                 >
                                     <div className="relative">
                                         <ShoppingCart size={20} />
-                                        {cartItems && cartItems.length > 0 && (
+                                        {cart && cart.length > 0 && ( 
                                             <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center font-medium">
-                                                {cartItems.length}
+                                                {cart.length} 
                                             </span>
                                         )}
                                     </div>

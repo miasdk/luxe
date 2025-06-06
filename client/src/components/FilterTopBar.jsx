@@ -23,7 +23,6 @@ const FilterTopBar = () => {
   return (
     <div className=" p-5 mb-6 border-b border-gray-200">
       <div className="flex flex-wrap items-center gap-6">
-        {/* Size Filter */}
         {hasSizeOptions && (
           <div className="flex items-center gap-3">
             <label className="text-sm font-medium text-gray-800 whitespace-nowrap">
@@ -44,7 +43,6 @@ const FilterTopBar = () => {
           </div>
         )}
         
-        {/* Color Filter */}
         {hasColorOptions && (
           <div className="flex items-center gap-3">
             <label className="text-sm font-medium text-gray-800 whitespace-nowrap">
@@ -65,7 +63,6 @@ const FilterTopBar = () => {
           </div>
         )}
         
-        {/* Condition Filter */}
         {hasConditionOptions && (
           <div className="flex items-center gap-3">
             <label className="text-sm font-medium text-gray-800 whitespace-nowrap">
@@ -86,10 +83,8 @@ const FilterTopBar = () => {
           </div>
         )}
         
-        {/* Spacer */}
         <div className="flex-1"></div>
         
-        {/* Sort Control */}
         <div className="flex items-center gap-3">
           <label className="text-sm font-medium text-gray-800 whitespace-nowrap">
             Sort by
