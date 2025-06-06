@@ -10,7 +10,7 @@ export default function DemoWarning() {
                 <div className="flex items-center">
                     <span className="text-sm">
                         This website is for demonstration purposes only. Orders placed will not be fulfilled.
-                        For updates, check out the project on <a href="github.com/your-repo" className="text-blue-500 hover:underline">GitHub</a>.
+                        For updates, check out the project on <a href="https://github.com/miasdk/eCart" className="text-blue-500 hover:underline">GitHub</a>.
 
                     </span>
                 </div>
