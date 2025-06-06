@@ -23,21 +23,21 @@ import NotFound from "./pages/404NotFound";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe("pk_test_51QwQtUKwM231sxh5HpiL7QcLaQvsfKUYi2K4sEnCdWYVbT50BmTHoqQc3whyoBI4NRwOd1E2l2QjobSn1vqlhbGK004kKaeVy6");
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 function App() {
   return (
     <AuthProvider>
       <CartProvider>
         <ProductProvider>
-          <WishlistProvider> {/* Add WishlistProvider */}
+          <WishlistProvider> 
             <Routes>
               <Route element={<Layout />}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/products" element={<ProductPage />} />
                 <Route path="/products/:productId" element={<ProductDetailPage />} />
                 <Route path="/cart" element={<CartPage />} />
-                <Route path="/wishlist" element={<WishlistPage />} /> {/* Add wishlist route */}
+                <Route path="/wishlist" element={<WishlistPage />} /> 
                 <Route path="/checkout" element={
                   <Elements stripe={stripePromise}>
                     <CheckoutPage />
