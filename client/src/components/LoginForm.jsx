@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { loginUser } from '../services/authService';
+import { Link } from 'react-router-dom';
 
 export default function LoginForm({ onSuccess }) {
     const [email, setEmail] = useState('');
@@ -74,9 +75,9 @@ export default function LoginForm({ onSuccess }) {
             <div className="mt-6 text-center">
                 <p className="text-gray-600">
                     Don't have an account?{' '}
-                    <a href='/register' className='text-blue-600 hover:text-blue-800 font-medium transition-colors'>
-                        Sign up
-                    </a>
+                    <Link to="/register" className="text-blue-600 hover:text-blue-800 font-medium">
+                        Register here  
+                    </Link>
                 </p>
             </div>
         </form>

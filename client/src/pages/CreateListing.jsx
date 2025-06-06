@@ -15,6 +15,7 @@ import categoryService from "../services/categoryService";
 import { colorData } from "../data/colors";
 import { conditionData } from "../data/conditions";
 import { sizeData } from "../data/sizes";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function CreateListing() {
   const navigate = useNavigate();

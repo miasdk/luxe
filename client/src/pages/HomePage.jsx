@@ -63,7 +63,7 @@ const HomePage = () => {
                   Explore Collection
                 </Link>
                 <Link
-                  to="/create-listing"
+                  to={user ? "/create-listing" : "/login"}
                   className="inline-flex items-center px-8 py-4 text-lg bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300 font-medium"
                 >
                   Start Selling
