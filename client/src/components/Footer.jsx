@@ -13,8 +13,10 @@ export default function Footer() {
         </div>
       </div>
 
-        <div className="flex justify-center mt-4">  
+        <div className="flex justify-center mt-4"> 
+          <a href="https://github.com/miasdk/eCart" target="_blank" rel="noopener noreferrer">
             <FaGithub className="text-gray-800 hover:text-white mx-2" size={24} />
+          </a>
         </div>
     </footer>
   );
