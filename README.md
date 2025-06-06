@@ -4,11 +4,11 @@
 
 **A full-stack e-commerce platform built with React, Node.js, and PostgreSQL**
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-brightgreen)](https://ecart-frontend.vercel.app)
-[![API Docs](https://img.shields.io/badge/API_Docs-Swagger-blue)](https://ecart-backend.railway.app/api-docs)
-[![Backend](https://img.shields.io/badge/Backend-Railway-purple)](https://ecart-backend.railway.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-brightgreen)](https://e-cart-mu-olive.vercel.app)
+[![API Docs](https://img.shields.io/badge/API_Docs-Swagger-blue)](https://ecart-mxsk.onrender.com/api-docs)
+[![Backend](https://img.shields.io/badge/Backend-Render-purple)](https://ecart-mxsk.onrender.com)
 
-[View Live Demo](https://ecart-frontend.vercel.app) • [API Documentation](https://ecart-backend.railway.app/api-docs) • [Report Issues](https://github.com/yourusername/ecart/issues)
+[View Live Demo](https://e-cart-mu-olive.vercel.app) • [API Documentation](https://ecart-mxsk.onrender.com/api-docs) • [Report Issues](https://github.com/yourusername/ecart/issues)
 
 </div>
 
@@ -57,7 +57,7 @@ eCart is a production-ready e-commerce platform engineered to demonstrate enterp
 | **Payment Processing** | Stripe Integration | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
 | **Authentication** | Firebase Auth | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
 | **API Documentation** | Swagger/OpenAPI | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
-| **Cloud Deployment** | Vercel + Railway | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
+| **Cloud Deployment** | Vercel + Render | ![Complete](https://img.shields.io/badge/🟢-Complete-success) |
 
 </div>
 
@@ -78,10 +78,10 @@ eCart is a production-ready e-commerce platform engineered to demonstrate enterp
 
 | Service | Status | URL | Description |
 |---------|--------|-----|-------------|
-| **Frontend** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [e-cart-mu-olive.vercel.app](https://e-cart-mu-olive.vercel.app/) | React application |
+| **Frontend** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [e-cart-mu-olive.vercel.app](https://e-cart-mu-olive.vercel.app) | React application |
 | **Backend API** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecart-mxsk.onrender.com](https://ecart-mxsk.onrender.com) | Node.js REST API |
-| **API Documentation** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecart-mxsk.onrender.com/api-docs/](https://ecart-mxsk.onrender.com/api-docs/) | Interactive Swagger docs |
-| **Database** | ![Status](https://img.shields.io/badge/🟢-Live-success) | `PostgreSQL on Railway` | Production database |
+| **API Documentation** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecart-mxsk.onrender.com/api-docs](https://ecart-mxsk.onrender.com/api-docs) | Interactive Swagger docs |
+| **Database** | ![Status](https://img.shields.io/badge/🟢-Live-success) | `PostgreSQL on Render` | Production database |
 
 ---
 
@@ -123,7 +123,7 @@ Swagger/OpenAPI   → API documentation
 **Infrastructure**
 ```
 Vercel            → Frontend hosting
-Railway           → Backend hosting
+Render            → Backend hosting
 GitHub            → Version control
 ```
 
@@ -199,7 +199,7 @@ order_items             wishlists                  ├── created_at
 
 ```mermaid
 graph LR
-    A[React Client<br/>Vercel CDN] -->|HTTPS| B[Express API<br/>Railway]
+    A[React Client<br/>Vercel CDN] -->|HTTPS| B[Express API<br/>Render]
     B -->|SQL| C[PostgreSQL<br/>Database]
     A -->|Auth| D[Firebase Auth]
     B -->|Verify Token| D
@@ -232,7 +232,7 @@ graph LR
 - Form validation using Zod schemas
 - Global CDN distribution for optimal performance
 
-**Express API (Railway)**
+**Express API (Render)**
 - RESTful endpoint design following OpenAPI 3.0 standards
 - Firebase ID token verification middleware
 - Rate limiting and request throttling
@@ -247,7 +247,7 @@ graph LR
 **External Services**
 - Firebase Authentication for secure user management
 - Stripe payment processing with webhook verification
-- Railway infrastructure for auto-scaling and monitoring
+- Render infrastructure for auto-scaling and monitoring
 
 </details>
 
@@ -366,13 +366,13 @@ cd backend && npm run db:setup  # if migrations exist
 
 <div align="center">
 
-[![API Documentation](https://img.shields.io/badge/📚_Interactive_Documentation-Swagger_UI-85EA2D?style=for-the-badge&logo=swagger)](https://ecart-backend.railway.app/api-docs)
+[![API Documentation](https://img.shields.io/badge/📚_Interactive_Documentation-Swagger_UI-85EA2D?style=for-the-badge&logo=swagger)](https://ecart-mxsk.onrender.com/api-docs)
 
 **25+ Documented Endpoints** | **Live Testing** | **Authentication Ready**
 
 </div>
 
-**Development**: [localhost:3001/api-docs](http://localhost:3001/api-docs) • **Production**: [ecart-backend.railway.app/api-docs](https://ecart-backend.railway.app/api-docs)
+**Development**: [localhost:3001/api-docs](http://localhost:3001/api-docs) • **Production**: [ecart-mxsk.onrender.com/api-docs](https://ecart-mxsk.onrender.com/api-docs)
 
 ### API Architecture Highlights
 - **25+ Documented Endpoints** - Complete CRUD operations across all resources
@@ -469,8 +469,8 @@ The React application is deployed on Vercel with:
 - Custom domain support
 - Performance monitoring and analytics
 
-### Backend Deployment (Railway)
-The Node.js API is deployed on Railway featuring:
+### Backend Deployment (Render)
+The Node.js API is deployed on Render featuring:
 - Container-based deployment with automatic scaling
 - Managed PostgreSQL database with automated backups
 - Environment variable management and secrets
@@ -541,7 +541,7 @@ This project represents a comprehensive demonstration of modern software enginee
 - **Database**: Normalized schema design, query optimization, and advanced PostgreSQL features
 
 **DevOps & Production Readiness**
-- **Cloud Deployment**: Multi-environment CI/CD pipeline with Vercel and Railway
+- **Cloud Deployment**: Multi-environment CI/CD pipeline with Vercel and Render
 - **Documentation**: Interactive API documentation exceeding industry standards
 - **Monitoring**: Health checks, error tracking, and performance metrics
 - **Security**: Firebase ID token authentication, input validation, and secure payment processing
