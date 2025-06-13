@@ -32,6 +32,8 @@ export default function ProductCarousel({ category, title = "Products" }) {
           data = await productService.fetchAllProducts()
         }
 
+        // Sort products by number of likes in descending order
+        data.sort((a, b) => (b.num_likes || 0) - (a.num_likes || 0))
         setProducts(data)
       } catch (error) {
         console.error("Error fetching products:", error)
@@ -141,7 +143,7 @@ export default function ProductCarousel({ category, title = "Products" }) {
             spaceBetween: 24,
           },
         }}
-        className="carousel-swiper product-carousel !overflow-visible"
+        className="carousel-swiper product-carousel"
       >
         {products.map((product) => (
           <SwiperSlide key={product.product_id}>

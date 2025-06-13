@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { useAuthContext } from "../context/AuthContext"
 import ProductCarousel from "../components/ProductCarousel"
 import CategoryCarousel from "../components/CategoryCarousel"
-import { Truck, RotateCcw, ArrowRight, Heart, Shield } from "lucide-react"
+import { Truck, RotateCcw, ArrowRight, Heart, Shield, Star, Zap, TrendingUp } from "lucide-react"
 import brandService from "../services/brandService"
 import categoryService from "../services/categoryService"
 
@@ -70,8 +70,8 @@ const HomePage = () => {
                 </Link>
               </div>
             </div>
-
-            <div className="xl:col-span-2 relative">
+            
+            <div className="order-1 lg:order-2 xl:col-span-2 relative">
               <div className="aspect-square xl:aspect-[4/5] max-w-lg mx-auto overflow-hidden rounded-3xl shadow-2xl">
                 <img
                   src="https://www.fashiongonerogue.com/wp-content/uploads/2025/02/Bottega-Veneta-Summer-2025-Campaign01-768x960.jpg"
@@ -113,11 +113,17 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-10 bg-white">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 xl:px-8 max-w-7xl">
           <div className="flex justify-between items-center mb-16">
-            <h2 className="text-4xl font-light text-gray-900">New Arrivals</h2>
-            <Link to="/products" className="text-gray-700 xl:text-lg font-medium flex items-center group">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+
+                <span className="text-sm font-medium text-gray-600">TRENDING NOW</span>
+              </div>
+              <h2 className="text-4xl font-light text-gray-900">Most Popular This Week</h2>
+            </div>
+            <Link to="/products?sort=popular" className="text-gray-700 xl:text-lg font-medium flex items-center group">
               View All
               <ArrowRight size={20} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
@@ -126,10 +132,10 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 xl:px-8 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-5 gap-16 xl:gap-20 items-center">
-            <div className="order-2 lg:order-1 xl:col-span-3">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
               <div className="inline-block bg-white text-gray-700 text-sm font-medium px-4 py-2 rounded-full mb-6 shadow-sm">
                 FEATURED PRODUCT
               </div>
@@ -158,36 +164,42 @@ const HomePage = () => {
               </div>
             </div>
             
-            <div className="order-1 lg:order-2 xl:col-span-2 relative">
-              <div className="grid grid-cols-2 gap-6 max-w-6xl xl:max-w-none mx-auto">
-                <div className="aspect-[4/5] xl:aspect-[3/4] overflow-hidden rounded-lg shadow-xl">
-                  <img
-                    src="https://www.net-a-porter.com/variants/images/1647597326342291/in/w2000_q80.jpg"
-                    alt="Essential Blazer - Front View"
-                    className="object-cover h-full w-full hover:scale-105 transition-transform duration-700"
-                  />
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-xl group">
+                  <div className="relative h-full">
+                    <img
+                      src="https://www.net-a-porter.com/variants/images/1647597326342291/in/w2000_q80.jpg"
+                      alt="Featured product"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
                 </div>
-                
-                <div className="aspect-[4/5] xl:aspect-[3/4] overflow-hidden rounded-lg shadow-xl">
-                  <img
-                    src="https://www.net-a-porter.com/variants/images/1647597326342291/ou/w2000_q80.jpg"
-                    alt="Essential Blazer - Detail View"
-                    className="object-cover h-full w-full hover:scale-105 transition-transform duration-700"
-                  />
+                <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-xl group">
+                  <div className="relative h-full">
+                    <img
+                      src="https://www.net-a-porter.com/variants/images/1647597326342291/ou/w2000_q80.jpg"
+                      alt="Featured product detail"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
                 </div>
-              </div>
-              
-              <div className="absolute top-6 right-6 bg-white/95 backdrop-blur-sm text-gray-900 px-6 py-3 text-sm font-medium rounded-xl shadow-lg">
-                BESTSELLER
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 xl:px-8 max-w-7xl">
-          <h2 className="text-4xl font-light text-gray-900 mb-16">Shop by Category</h2>
+          <div className="flex justify-between items-center mb-16">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-sm font-medium text-gray-600">SHOP BY CATEGORY</span>
+              </div>
+              <h2 className="text-4xl font-light text-gray-900">Explore Collections</h2>
+            </div>
+          </div>
           <CategoryCarousel />
         </div>
       </section>
@@ -247,6 +259,13 @@ const HomePage = () => {
           <NewsletterForm />
         </div>
       </section>
+
+      <div className="container mx-auto px-4 xl:px-8 max-w-7xl">
+        <div className="mb-12">
+          <h2 className="text-2xl font-light text-gray-900 mb-8">Trending Now</h2>
+          <ProductCarousel />
+        </div>
+      </div>
     </div>
   )
 }

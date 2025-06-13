@@ -124,7 +124,7 @@ export default function CategoryCarousel() {
             spaceBetween: 30,
           },
         }}
-        className="carousel-swiper category-carousel !overflow-visible"
+        className="carousel-swiper category-carousel"
       >
         {categories.map((category) => (
           <SwiperSlide key={category.id}>

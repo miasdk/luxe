@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <article className=" group h-full overflow-hidden relative rounded-lg  hover:border-gray-200 transition-all">
+    <article className="group h-full flex flex-col overflow-hidden relative rounded-lg hover:border-gray-200 transition-all">
       
       <div className="absolute top-3 right-3 z-10">
         <WishlistButton
@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
         />
       </div>
 
-      <div className="relative">
+      <div className="relative flex-shrink-0">
         <Link to={`/products/${product.product_id}`}>
           <img
             src={product.image}
@@ -38,7 +38,7 @@ const ProductCard = ({ product }) => {
         </Link>
       </div>
 
-      <div className="p-4">
+      <div className="p-4 flex flex-col flex-grow">
         <div className="flex items-center justify-between mb-2">
           <Link to={`/products/${product.product_id}`} className="text-gray-900 hover:text-gray-700 flex-1 min-w-0">
             <h2 className="text-lg font-semibold hover:underline truncate">{product.title}</h2>
@@ -52,10 +52,10 @@ const ProductCard = ({ product }) => {
         
         <p className="text-xl font-bold mb-2">${product.price}</p>
         
-        <p className="text-gray-700 text-sm line-clamp-2 mb-4">{product.description}</p>
+        <p className="text-gray-700 text-sm line-clamp-2 mb-4 flex-grow">{product.description}</p>
 
         {quantity > 0 ? (
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2 mt-auto">
             <div className="flex items-center gap-2">
               <button
                 className="px-3 py-1 border border-gray-300 rounded hover:bg-gray-100 text-sm"
@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
           </div>
         ) : (
           <button
-            className="w-full px-4 py-2 border border-gray-500 hover:bg-gray-800 hover:text-white rounded-lg transition-colors font-medium"
+            className="w-full px-4 py-2 border border-gray-500 hover:bg-gray-800 hover:text-white rounded-lg transition-colors font-medium mt-auto"
             onClick={handleAddToCart}
           >
             Add to Cart
