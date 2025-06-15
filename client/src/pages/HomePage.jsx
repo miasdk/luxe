@@ -259,13 +259,6 @@ const HomePage = () => {
           <NewsletterForm />
         </div>
       </section>
-
-      <div className="container mx-auto px-4 xl:px-8 max-w-7xl">
-        <div className="mb-12">
-          <h2 className="text-2xl font-light text-gray-900 mb-8">Trending Now</h2>
-          <ProductCarousel />
-        </div>
-      </div>
     </div>
   )
 }
