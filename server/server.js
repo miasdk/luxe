@@ -23,7 +23,8 @@ app.use(express.json());
 const corsOptions = {
   origin: [
     'http://localhost:5173',                      
-    'https://e-cart-mu-olive.vercel.app'          
+    'https://e-cart-mu-olive.vercel.app',
+    'https://ecartdemo.vercel.app'          
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
