@@ -87,8 +87,8 @@ const HomePage = () => {
           </div>
         </div>
         
-        <div className="absolute top-1/4 right-0 w-[32rem] h-[32rem] bg-gray-100 rounded-full opacity-30 -mr-48" />
-        <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] bg-gray-100 rounded-full opacity-30 -ml-40 -mb-40" />
+        <div className="absolute top-1/4 -left-16 w-[28rem] h-[28rem] bg-gradient-to-br from-gray-100/30 to-white/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 -right-16 w-[24rem] h-[24rem] bg-gradient-to-br from-gray-100/30 to-white/20 rounded-full blur-3xl"></div>
       </section>
 
       <section className="bg-gray-50 py-12 border-b border-gray-100">
