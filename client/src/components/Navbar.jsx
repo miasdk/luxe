@@ -20,14 +20,14 @@ const Navbar = () => {
     return (
         <nav className="bg-white border-b border-gray-100 sticky top-0 z-50">
             <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-                <div className="flex items-center justify-between h-16">
+                <div className="flex items-center h-16">
                     {/* Logo */}
-                    <Link to="/" className="flex items-center">
+                    <Link to="/" className="flex-shrink-0 mr-8">
                         <span className="text-2xl font-light text-gray-900">eCart</span>
                     </Link>
 
-                    {/* Search Bar */}
-                    <div className="flex-1 max-w-2xl mx-8">
+                    {/* Search Bar - Centered */}
+                    <div className="flex-1 max-w-3xl">
                         <div className="relative">
                             <input
                                 type="text"
@@ -51,7 +51,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Navigation Links */}
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-6 ml-8">
                         <Link
                             to="/products"
                             className="text-sm text-gray-600 hover:text-gray-900"
