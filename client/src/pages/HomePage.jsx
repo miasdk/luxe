@@ -43,28 +43,28 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-white">
       <section className="relative bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-        <div className="container mx-auto px-4 xl:px-8 py-12 md:py-16 xl:py-20 max-w-6xl">
-          <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-8 xl:gap-12 items-center">
-            <div className="xl:col-span-3 space-y-6">
-              <div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight text-gray-900 leading-tight">
+        <div className="container mx-auto px-4 xl:px-8 py-16 md:py-20 xl:py-24 max-w-6xl">
+          <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-12 xl:gap-16 items-center">
+            <div className="xl:col-span-3 space-y-8">
+              <div className="space-y-6">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-tight text-gray-900 leading-[1.1]">
                   Discover <span className="font-normal">Exceptional</span> Pieces
                 </h1>
-                <p className="mt-6 text-lg xl:text-xl text-gray-600 max-w-2xl leading-relaxed">
+                <p className="text-xl xl:text-2xl text-gray-600 max-w-2xl leading-relaxed">
                   A curated marketplace for those who appreciate quality, craftsmanship, and timeless design.
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-6">
                 <Link
                   to="/products"
-                  className="inline-flex items-center px-6 py-3 text-base bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-300 font-medium shadow-sm"
+                  className="inline-flex items-center px-8 py-4 text-lg bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-300 font-medium shadow-sm"
                 >
                   Explore Collection
                 </Link>
                 <Link
                   to={user ? "/create-listing" : "/login"}
-                  className="inline-flex items-center px-6 py-3 text-base bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300 font-medium"
+                  className="inline-flex items-center px-8 py-4 text-lg bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300 font-medium"
                 >
                   Start Selling
                 </Link>
@@ -79,16 +79,16 @@ const HomePage = () => {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 md:-left-12 bg-white p-6 rounded-xl shadow-lg max-w-sm">
-                <p className="text-sm text-gray-500 mb-1">Featured Collection</p>
-                <p className="text-lg font-medium text-gray-900">Timeless Essentials</p>
+              <div className="absolute -bottom-8 -left-8 md:-left-12 bg-white p-8 rounded-xl shadow-lg max-w-sm">
+                <p className="text-sm text-gray-500 mb-2">Featured Collection</p>
+                <p className="text-xl font-medium text-gray-900">Timeless Essentials</p>
               </div>
             </div>
           </div>
         </div>
         
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-gray-100 rounded-full opacity-30 -mr-48" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gray-100 rounded-full opacity-30 -ml-40 -mb-40" />
+        <div className="absolute top-1/4 right-0 w-[32rem] h-[32rem] bg-gray-100 rounded-full opacity-30 -mr-48" />
+        <div className="absolute bottom-0 left-0 w-[28rem] h-[28rem] bg-gray-100 rounded-full opacity-30 -ml-40 -mb-40" />
       </section>
 
       <section className="bg-gray-50 py-12 border-b border-gray-100">
