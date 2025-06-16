@@ -43,28 +43,28 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-white">
       <section className="relative bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-        <div className="container mx-auto px-4 xl:px-8 py-20 md:py-28 xl:py-36 max-w-7xl">
-          <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-16 xl:gap-20 items-center">
-            <div className="xl:col-span-3 space-y-10">
+        <div className="container mx-auto px-4 xl:px-8 py-12 md:py-16 xl:py-20 max-w-6xl">
+          <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-8 xl:gap-12 items-center">
+            <div className="xl:col-span-3 space-y-6">
               <div>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-tight text-gray-900 leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight text-gray-900 leading-tight">
                   Discover <span className="font-normal">Exceptional</span> Pieces
                 </h1>
-                <p className="mt-8 text-xl xl:text-2xl text-gray-600 max-w-2xl leading-relaxed">
+                <p className="mt-6 text-lg xl:text-xl text-gray-600 max-w-2xl leading-relaxed">
                   A curated marketplace for those who appreciate quality, craftsmanship, and timeless design.
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-6">
+              <div className="flex flex-wrap gap-4">
                 <Link
                   to="/products"
-                  className="inline-flex items-center px-8 py-4 text-lg bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-300 font-medium shadow-sm"
+                  className="inline-flex items-center px-6 py-3 text-base bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-300 font-medium shadow-sm"
                 >
                   Explore Collection
                 </Link>
                 <Link
                   to={user ? "/create-listing" : "/login"}
-                  className="inline-flex items-center px-8 py-4 text-lg bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300 font-medium"
+                  className="inline-flex items-center px-6 py-3 text-base bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300 font-medium"
                 >
                   Start Selling
                 </Link>
@@ -72,16 +72,16 @@ const HomePage = () => {
             </div>
             
             <div className="order-1 lg:order-2 xl:col-span-2 relative">
-              <div className="aspect-square xl:aspect-[4/5] max-w-lg mx-auto overflow-hidden rounded-3xl shadow-2xl">
+              <div className="aspect-square xl:aspect-[4/5] max-w-lg mx-auto overflow-hidden rounded-2xl shadow-xl">
                 <img
                   src="https://www.fashiongonerogue.com/wp-content/uploads/2025/02/Bottega-Veneta-Summer-2025-Campaign01-768x960.jpg"
                   alt="Featured collection showcase"
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="absolute -bottom-8 -left-8 md:-left-16 bg-white p-8 rounded-2xl shadow-xl max-w-sm">
-                <p className="text-sm text-gray-500 mb-2">Featured Collection</p>
-                <p className="text-xl font-medium text-gray-900">Timeless Essentials</p>
+              <div className="absolute -bottom-6 -left-6 md:-left-12 bg-white p-6 rounded-xl shadow-lg max-w-sm">
+                <p className="text-sm text-gray-500 mb-1">Featured Collection</p>
+                <p className="text-lg font-medium text-gray-900">Timeless Essentials</p>
               </div>
             </div>
           </div>
@@ -91,21 +91,21 @@ const HomePage = () => {
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-gray-100 rounded-full opacity-30 -ml-40 -mb-40" />
       </section>
 
-      <section className="bg-gray-50 py-16 border-b border-gray-100">
-        <div className="container mx-auto px-4 xl:px-8 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <section className="bg-gray-50 py-12 border-b border-gray-100">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <TrustBadge
-              icon={<Truck size={24} />}
+              icon={<Truck size={20} />}
               title="Complimentary Shipping"
               description="On orders over $100"
             />
             <TrustBadge
-              icon={<RotateCcw size={24} />}
+              icon={<RotateCcw size={20} />}
               title="Hassle-Free Returns"
               description="30-day return policy"
             />
             <TrustBadge
-              icon={<Shield size={24} />}
+              icon={<Shield size={20} />}
               title="Buyer Protection"
               description="Secure transactions guaranteed"
             />
@@ -113,60 +113,77 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 xl:px-8 max-w-7xl">
-          <div className="flex justify-between items-center mb-16">
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+          <div className="flex justify-between items-center mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-
+              <div className="flex items-center gap-2 mb-1">
                 <span className="text-sm font-medium text-gray-600">TRENDING NOW</span>
               </div>
-              <h2 className="text-4xl font-light text-gray-900">Most Popular This Week</h2>
+              <h2 className="text-2xl font-light text-gray-900">Most Popular This Week</h2>
             </div>
-            <Link to="/products?sort=popular" className="text-gray-700 xl:text-lg font-medium flex items-center group">
+            <Link to="/products?sort=popular" className="text-gray-700 text-base font-medium flex items-center group">
               View All
-              <ArrowRight size={20} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
-          <ProductCarousel />
+          <ProductCarousel filterType="popular" />
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 xl:px-8 max-w-7xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+          <div className="flex justify-between items-center mb-8">
             <div>
-              <div className="inline-block bg-white text-gray-700 text-sm font-medium px-4 py-2 rounded-full mb-6 shadow-sm">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-sm font-medium text-gray-600">BEST DEALS</span>
+              </div>
+              <h2 className="text-2xl font-light text-gray-900">Lowest Prices</h2>
+            </div>
+            <Link to="/products?sort=price_low" className="text-gray-700 text-base font-medium flex items-center group">
+              View All
+              <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
+          <ProductCarousel filterType="price_low" />
+        </div>
+      </section>
+
+       <section className="py-12 bg-white">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <div className="inline-block bg-white text-gray-700 text-sm font-medium px-3 py-1.5 rounded-full mb-4 shadow-sm">
                 FEATURED PRODUCT
               </div>
-              <h2 className="text-4xl xl:text-5xl font-light mb-6 leading-tight text-gray-900">The Essential Oversized Blazer</h2>
-              <p className="text-gray-600 xl:text-xl mb-8 leading-relaxed max-w-2xl">
+              <h2 className="text-3xl xl:text-4xl font-light mb-4 leading-tight text-gray-900">The Essential Oversized Blazer</h2>
+              <p className="text-gray-600 text-base mb-6 leading-relaxed max-w-2xl">
                 Crafted from premium Italian wool, our signature blazer combines timeless design with modern
                 proportions. A versatile staple that effortlessly elevates any outfit.
               </p>
-              <div className="mb-8">
+              <div className="mb-6">
                 <div className="flex items-center gap-3">
-                  <span className="text-3xl xl:text-4xl font-light text-gray-900">$289.00</span>
-                  <span className="text-sm bg-green-50 text-green-700 px-3 py-1 rounded-full">Free shipping</span>
+                  <span className="text-2xl xl:text-3xl font-light text-gray-900">$289.00</span>
+                  <span className="text-sm bg-green-50 text-green-700 px-2.5 py-0.5 rounded-full">Free shipping</span>
                 </div>
               </div>
-              <div className="flex gap-6">
+              <div className="flex gap-4">
                 <Link
                   to="/products"
-                  className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 px-8 py-4 text-lg rounded-lg font-medium shadow-sm"
+                  className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 px-6 py-3 text-base rounded-lg font-medium shadow-sm"
                 >
                   Shop Now
                 </Link>
-                <button className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-all duration-300 px-8 py-4 text-lg rounded-lg font-medium flex items-center shadow-sm">
-                  <Heart size={20} className="mr-2" />
+                <button className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-all duration-300 px-6 py-3 text-base rounded-lg font-medium flex items-center shadow-sm">
+                  <Heart size={18} className="mr-2" />
                   Add to Favorites
                 </button>
               </div>
             </div>
             
             <div className="relative">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-xl group">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-lg group">
                   <div className="relative h-full">
                     <img
                       src="https://www.net-a-porter.com/variants/images/1647597326342291/in/w2000_q80.jpg"
@@ -175,7 +192,7 @@ const HomePage = () => {
                     />
                   </div>
                 </div>
-                <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-xl group">
+                <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-lg group">
                   <div className="relative h-full">
                     <img
                       src="https://www.net-a-porter.com/variants/images/1647597326342291/ou/w2000_q80.jpg"
@@ -190,14 +207,14 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 xl:px-8 max-w-7xl">
-          <div className="flex justify-between items-center mb-16">
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+          <div className="flex justify-between items-center mb-8">
             <div>
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-1">
                 <span className="text-sm font-medium text-gray-600">SHOP BY CATEGORY</span>
               </div>
-              <h2 className="text-4xl font-light text-gray-900">Explore Collections</h2>
+              <h2 className="text-2xl font-light text-gray-900">Explore Collections</h2>
             </div>
           </div>
           <CategoryCarousel />
@@ -205,23 +222,23 @@ const HomePage = () => {
       </section>
 
       {!user && (
-        <section className="bg-gray-900 text-white py-24">
+        <section className="bg-gray-900 text-white py-16">
           <div className="container mx-auto px-4 xl:px-8 text-center max-w-4xl">
-            <h2 className="text-4xl xl:text-5xl font-light mb-6">Join Our Marketplace</h2>
-            <p className="text-gray-300 xl:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-3xl xl:text-4xl font-light mb-4">Join Our Marketplace</h2>
+            <p className="text-gray-300 text-base mb-8 max-w-2xl mx-auto leading-relaxed">
               Sign up for exclusive access to special collections, personalized recommendations, and a seamless shopping
               experience.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/login"
-                className="bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300 px-10 py-4 text-lg rounded-lg font-medium shadow-sm"
+                className="bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300 px-8 py-3 text-base rounded-lg font-medium shadow-sm"
               >
                 Sign In
               </Link>
               <Link
                 to="/register"
-                className="bg-gray-800 text-white hover:bg-gray-700 border border-gray-700 transition-all duration-300 px-10 py-4 text-lg rounded-lg font-medium"
+                className="bg-gray-800 text-white hover:bg-gray-700 border border-gray-700 transition-all duration-300 px-8 py-3 text-base rounded-lg font-medium"
               >
                 Create Account
               </Link>
@@ -230,10 +247,10 @@ const HomePage = () => {
         </section>
       )}
 
-      <section className="bg-gray-50 py-20 border-t border-gray-100">
-        <div className="container mx-auto px-4 xl:px-8 max-w-7xl">
-          <h2 className="text-4xl font-light text-gray-900 mb-16 text-center">Our Brands</h2>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-12 items-center justify-center">
+      <section className="bg-gray-50 py-12 border-t border-gray-100">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+          <h2 className="text-2xl font-light text-gray-900 mb-8 text-center">Our Brands</h2>
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-8 items-center justify-center">
             {brands.slice(0, 6).map((brand) => (
               <div
                 key={brand.id}
@@ -242,7 +259,7 @@ const HomePage = () => {
                 <img
                   src={brand.image || "/placeholder.svg"}
                   alt={brand.name}
-                  className="h-16 object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
+                  className="h-12 object-contain opacity-70 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>
             ))}

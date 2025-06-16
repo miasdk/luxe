@@ -11,7 +11,11 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 import "swiper/css/autoplay"
 
-export default function ProductCarousel({ category, title = "Products" }) {
+export default function ProductCarousel({ 
+  category, 
+  title = "Products",
+  filterType = "popular"
+}) {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [isBeginning, setIsBeginning] = useState(true)
@@ -32,8 +36,24 @@ export default function ProductCarousel({ category, title = "Products" }) {
           data = await productService.fetchAllProducts()
         }
 
-        // Sort products by number of likes in descending order
-        data.sort((a, b) => (b.num_likes || 0) - (a.num_likes || 0))
+        // Sort products based on filterType
+        switch (filterType) {
+          case "newest":
+            data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            break
+          case "popular":
+            data.sort((a, b) => (b.num_likes || 0) - (a.num_likes || 0))
+            break
+          case "price_low":
+            data.sort((a, b) => (a.price || 0) - (b.price || 0))
+            break
+          case "price_high":
+            data.sort((a, b) => (b.price || 0) - (a.price || 0))
+            break
+          default:
+            data.sort((a, b) => (b.num_likes || 0) - (a.num_likes || 0))
+        }
+
         setProducts(data)
       } catch (error) {
         console.error("Error fetching products:", error)
@@ -43,7 +63,7 @@ export default function ProductCarousel({ category, title = "Products" }) {
     }
 
     fetchProducts()
-  }, [category])
+  }, [category, filterType])
 
   if (loading) {
     return (

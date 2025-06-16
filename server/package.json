@@ -11,7 +11,9 @@
     "start:prod-with-reset": "npm run db:reset && node --require dotenv/config server.js",
     "db:reset": "cd config && node --require dotenv/config reset.js",
     "db:seed": "cd config && node --require dotenv/config seed.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
     "lint": "echo \"Linting not configured\" && exit 0"
   },
   "keywords": [
@@ -42,9 +44,13 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "^1.3.1",
+    "@vitest/ui": "^1.3.1",
     "nodemon": "^3.1.7",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.2",
-    "tailwindcss": "^4.0.6"
+    "tailwindcss": "^4.0.6",
+    "supertest": "^6.3.4",
+    "vitest": "^1.3.1"
   }
 }
