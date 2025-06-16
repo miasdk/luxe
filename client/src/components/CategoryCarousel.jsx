@@ -41,8 +41,24 @@ export default function CategoryCarousel() {
       <div className="mx-auto py-8">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-pulse">
           {[...Array(4)].map((_, index) => (
-            <div key={index} className="aspect-[4/5] bg-gray-200 rounded-xl"></div>
+            <div key={index} className="bg-white rounded-xl shadow-sm overflow-hidden">
+              <div className="aspect-square bg-gray-200"></div>
+              <div className="p-4">
+                <div className="h-4 bg-gray-200 rounded w-3/4 mb-3"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+              </div>
+            </div>
           ))}
+        </div>
+      </div>
+    )
+  }
+
+  if (categories.length === 0) {
+    return (
+      <div className="py-16 text-center">
+        <div className="inline-block p-6 bg-gray-100 rounded-lg">
+          <p className="text-gray-600">No categories found.</p>
         </div>
       </div>
     )
@@ -116,12 +132,8 @@ export default function CategoryCarousel() {
             spaceBetween: 24,
           },
           1024: {
-            slidesPerView: 4,
-            spaceBetween: 24,
-          },
-          1280: {
             slidesPerView: 5,
-            spaceBetween: 30,
+            spaceBetween: 24,
           },
         }}
         className="carousel-swiper category-carousel"
