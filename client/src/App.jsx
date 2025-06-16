@@ -22,6 +22,7 @@ import SearchResultsPage from "./pages/SearchResultsPage";
 import NotFound from "./pages/404NotFound";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -44,10 +45,26 @@ function App() {
                   </Elements>
                 } />
                 <Route path="/order-confirmation/:orderId" element={<OrderConfirmationPage />} />
-                <Route path="/create-listing" element={<CreateListing />} />
-                <Route path="/update-listing/:id" element={<UpdateListing />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/orders" element={<OrdersPage />} />
+                <Route path="/create-listing" element={
+                  <ProtectedRoute>
+                    <CreateListing />
+                  </ProtectedRoute>
+                } />
+                <Route path="/update-listing/:id" element={
+                  <ProtectedRoute>
+                    <UpdateListing />
+                  </ProtectedRoute>
+                } />
+                <Route path="/profile" element={
+                  <ProtectedRoute>
+                    <ProfilePage />
+                  </ProtectedRoute>
+                } />
+                <Route path="/orders" element={
+                  <ProtectedRoute>
+                    <OrdersPage />
+                  </ProtectedRoute>
+                } />
                 <Route path="/search" element={<SearchResultsPage />} />
               </Route>
               
