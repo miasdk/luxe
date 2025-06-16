@@ -265,6 +265,29 @@ export default function ProfilePage() {
                             <p className="text-blue-600 text-sm mt-1">Stay tuned for updates!</p>
                         </div>
                     </div>
+
+                    <div className="bg-white rounded-xl p-6">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                                <TrendingUp size={20} className="text-gray-600" />
+                            </div>
+                            <h3 className="text-lg font-medium text-gray-900">Advanced Features Coming Soon</h3>
+                        </div>
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-3 text-gray-600">
+                                <Clock size={18} />
+                                <span>Order History & Tracking</span>
+                            </div>
+                            <div className="flex items-center gap-3 text-gray-600">
+                                <Mail size={18} />
+                                <span>Email Notifications</span>
+                            </div>
+                            <div className="flex items-center gap-3 text-gray-600">
+                                <Shield size={18} />
+                                <span>Enhanced Security Features</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
