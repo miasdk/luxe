@@ -33,6 +33,13 @@ const OrdersPage = () => {
                 
                 const data = await response.json();
                 
+                // If data is empty array, just set empty orders
+                if (!data || data.length === 0) {
+                    setOrders([]);
+                    setLoading(false);
+                    return;
+                }
+                
                 const groupedOrders = data.reduce((acc, item) => {
                     if (!acc[item.order_id]) {
                         acc[item.order_id] = {
@@ -56,6 +63,7 @@ const OrdersPage = () => {
                 setOrders(Object.values(groupedOrders));
                 setLoading(false);
             } catch (err) {
+                console.error('Error fetching orders:', err);
                 setError(err.message);
                 setLoading(false);
             }
@@ -87,7 +95,7 @@ const OrdersPage = () => {
     if (loading) {
         return (
             <div className="bg-white min-h-screen">
-                <div className="container mx-auto px-4 py-6 max-w-4xl">
+                <div className="container mx-auto px-4 xl:px-8 py-8 max-w-7xl">
                     <div className="animate-pulse">
                         <div className="h-8 bg-gray-200 rounded w-48 mb-6"></div>
                         <div className="space-y-4">
@@ -126,7 +134,7 @@ const OrdersPage = () => {
     if (error) {
         return (
             <div className="bg-white min-h-screen">
-                <div className="container mx-auto px-4 py-6 max-w-4xl">
+                <div className="container mx-auto px-4 xl:px-8 py-8 max-w-7xl">
                     <div className="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
                         <AlertCircle size={48} className="text-red-500 mx-auto mb-4" />
                         <h2 className="text-lg font-medium text-gray-900 mb-2">Something went wrong</h2>
@@ -146,7 +154,7 @@ const OrdersPage = () => {
     if (orders.length === 0) {
         return (
             <div className="bg-white min-h-screen">
-                <div className="container mx-auto px-4 py-6 max-w-4xl">
+                <div className="container mx-auto px-4 xl:px-8 py-8 max-w-7xl">
                     <div className="text-center py-16">
                         <Package size={48} className="text-gray-300 mx-auto mb-4" />
                         <h2 className="text-lg font-normal text-gray-900 mb-2">No orders yet</h2>
@@ -193,7 +201,7 @@ const OrdersPage = () => {
     
     return (
         <div className="bg-white min-h-screen">
-            <div className="container mx-auto px-4 py-8 max-w-7xl">
+            <div className="container mx-auto px-4 xl:px-8 py-8 max-w-7xl">
                 <div className="mb-8">
                     <h1 className="text-3xl font-light text-gray-900 mb-3 tracking-tight">
                         My Orders
