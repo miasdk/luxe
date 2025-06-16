@@ -10,23 +10,19 @@ const Navbar = () => {
     const [cart, setCart] = useState([]);
 
     const handleSearch = () => {
-        // Implementation of handleSearch function
     };
 
     const handleLogout = () => {
-        // Implementation of handleLogout function
     };
 
     return (
         <nav className="bg-white border-b border-gray-100 sticky top-0 z-50">
             <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
                 <div className="flex items-center h-16">
-                    {/* Logo */}
                     <Link to="/" className="flex-shrink-0 mr-8">
                         <span className="text-2xl font-light text-gray-900">eCart</span>
                     </Link>
 
-                    {/* Search Bar - Centered */}
                     <div className="flex-1 max-w-3xl">
                         <div className="relative">
                             <input
