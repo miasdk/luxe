@@ -17,20 +17,16 @@ export const WishlistProvider = ({ children }) => {
   
   // Debug log
   useEffect(() => {
-    console.log("WishlistContext initialized");
-    console.log("API Base URL:", API_BASE_URL);
-    console.log("Current user:", user);
+
   }, []);
   
   // Fetch wishlist when user changes
   useEffect(() => {
     if (user) {
-      console.log("User authenticated, fetching wishlist");
-      fetchWishlist();
-    } else {
-      console.log("No user, clearing wishlist");
-      setWishlistItems([]);
-    }
+                  fetchWishlist();
+            } else {
+            setWishlistItems([]);
+        }
   }, [user]);
   
   // Fetch user's wishlist
@@ -39,8 +35,6 @@ export const WishlistProvider = ({ children }) => {
     
     setLoading(true);
     try {
-      console.log(`Fetching wishlist for user: ${user.uid}`);
-      
       const response = await fetch(`${API_BASE_URL}/api/wishlist/user/${user.uid}`);
       
       if (!response.ok) {
@@ -50,7 +44,6 @@ export const WishlistProvider = ({ children }) => {
       }
       
       const data = await response.json();
-      console.log("Wishlist data received:", data);
       setWishlistItems(data);
       setError(null);
     } catch (err) {

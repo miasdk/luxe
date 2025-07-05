@@ -737,32 +737,49 @@ const dropOrderRelatedTables = async () => {
 
 
 
-// Then call this function before creating the tables again
-// await dropOrderRelatedTables();
+// Main setup function to create all tables and seed data
+const setupDatabase = async () => {
+    try {
+        console.log('🚀 Starting database setup...');
+        
+        // Create and seed core tables
+        await seedUsersTable();
+        await seedCategoriesTable();
+        await seedBrandsTable();
+        await seedProductsTable();
+        await seedSizesTable();
+        await seedColorsTable();
+        await seedConditionsTable();
+        await seedCartsTable();
+        
+        // Create junction tables and seed them
+        await seedProductSizes();
+        await seedProductColors();
+        await seedProductConditions();
+        
+        // Create order tables
+        await seedOrdersTable();
+        await seedOrderItemsTable();
+        
+        // Create additional tables
+        await createShippingInfoTable();
+        await createWishlistTable();
+        
+        // Implement full-text search
+        await implementFullTextSearch();
+        
+        // Create views
+        await createProductDetailsView();
+        await createCartDetailsView();
+        await createOrderDetailsView();
+        
+        console.log('✅ Database setup completed successfully!');
+        
+    } catch (error) {
+        console.error('❌ Database setup failed:', error);
+        throw error;
+    }
+};
 
-// Continue with the rest of your table creation
-// implementFullTextSearch();
-// seedCategoriesTable();
-// seedBrandsTable();
-// seedProductsTable();
-// seedSizesTable();
-// seedColorsTable();
-// seedConditionsTable();
-// seedProductSizes();
-// seedProductColors();
-// seedProductConditions();
-// createProductDetailsView();
-// createCartDetailsView();
-// createOrderDetailsView();
-
-// seedOrdersTable();
-// seedOrderItemsTable();
-createShippingInfoTable();
-createOrderDetailsView();
-createProductDetailsView();
-createCartDetailsView();
-
-
-
-
-// createWishlistTable();
+// Run setup
+setupDatabase();

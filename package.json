@@ -1,6 +1,50 @@
 {
+  "name": "ecart",
+  "version": "1.0.0",
+  "description": "A modern full-stack e-commerce platform built with React, Node.js, and PostgreSQL",
+  "main": "server/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd server && npm run start:dev-no-reset",
+    "client:dev": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "test": "concurrently \"npm run server:test\" \"npm run client:test\"",
+    "server:test": "cd server && npm test",
+    "client:test": "cd client && npm test",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "keywords": [
+    "ecommerce",
+    "react",
+    "nodejs",
+    "postgresql",
+    "stripe",
+    "firebase",
+    "full-stack",
+    "shopping-cart",
+    "online-store"
+  ],
+  "author": "Mia Tapia <miatapiaswe@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miasdk/ecart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/miasdk/ecart/issues"
+  },
+  "homepage": "https://ecartdemo.vercel.app",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
     "axios": "^1.9.0",
     "lucide-react": "^0.488.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

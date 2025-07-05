@@ -19,6 +19,7 @@ import { useAuthContext } from "../context/AuthContext";
 
 export default function CreateListing() {
   const navigate = useNavigate();
+  const { user } = useAuthContext();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [step, setStep] = useState(1);
@@ -100,7 +101,8 @@ export default function CreateListing() {
     try {
       const productToCreate = {
         ...formData,
-        price: parseFloat(formData.price)
+        price: parseFloat(formData.price),
+        seller_id: user?.uid
       };
 
       const createdProduct = await productsService.addProduct(productToCreate);

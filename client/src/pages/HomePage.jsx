@@ -297,7 +297,6 @@ const NewsletterForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("Newsletter subscription for:", email)
     setEmail("")
   }
 

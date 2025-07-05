@@ -11,6 +11,7 @@ import userRouter from './routes/userRoutes.js';
 import wishlistRouter from './routes/wishlistRoutes.js';
 import searchRouter from './routes/searchRoutes.js';
 import categoriesRouter from './routes/categoryRoutes.js';
+import newsletterRouter from './routes/newsletterRoutes.js';
 
 // Import Swagger
 import { specs, swaggerUi, customCss } from './swagger.js';
@@ -48,7 +49,8 @@ app.use('/api/users', userRouter);
 app.use('/api/brands', brandsRouter);
 app.use('/api/wishlist', wishlistRouter);
 app.use('/api/search', searchRouter);
-app.use('/api/categories', categoriesRouter); 
+app.use('/api/categories', categoriesRouter);
+app.use('/api/newsletter', newsletterRouter); 
 
 // Home route
 app.get('/', (req, res) => {

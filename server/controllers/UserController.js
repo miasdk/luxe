@@ -49,7 +49,6 @@ class UserController {
     }
 
     static async handleRegistration(req, res) {
-        console.log('📥 Received registration:', req.body);
         try {
             const user = await UserService.syncUser({
                 uid: req.body.uid,

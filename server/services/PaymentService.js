@@ -14,8 +14,6 @@ class PaymentService {
                 automatic_payment_methods: { enabled: true }
             });
 
-            console.log("✅ Stripe PaymentIntent Created:", paymentIntent);
-
             return {
                 clientSecret: paymentIntent.client_secret,
                 stripePaymentId: paymentIntent.id

@@ -38,9 +38,7 @@ class CartModel {
 
     // Update cart item quantity
     static async updateCartItem(cartId, productId, quantity) {
-        console.log("Updating Cart Item:", { cartId, productId, quantity });
-    
-        const query = `
+                const query = `
             UPDATE cart_products
             SET quantity = $3
             WHERE cart_id = $1 AND product_id = $2
@@ -49,15 +47,11 @@ class CartModel {
     
         const result = await pool.query(query, [cartId, productId, quantity]);
         
-        console.log("Updated Row:", result.rows);
-        
         return result.rows[0];
     }
 
     // Remove an item from the cart
     static async removeCartItem(cartId, productId, quantity = 1) {
-        console.log("Removing item from cart:", { cartId, productId, quantity });
-        
         // First check current quantity
         const checkQuery = `
             SELECT quantity FROM cart_products

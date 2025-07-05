@@ -40,7 +40,8 @@ const options = {
       { name: 'Categories', description: 'Product categories' },
       { name: 'Brands', description: 'Product brands' },
       { name: 'Wishlist', description: 'User wishlist' },
-      { name: 'Search', description: 'Product search' }
+      { name: 'Search', description: 'Product search' },
+      { name: 'Newsletter', description: 'Newsletter subscription management' }
     ]
   },
   apis: ['./routes/*.js']

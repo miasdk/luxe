@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Mail } from "lucide-react"
+import newsletterService from "../services/newsletterService"
 
 const NewsletterForm = () => {
   const [email, setEmail] = useState("")
@@ -19,13 +20,11 @@ const NewsletterForm = () => {
     }
 
     try {
-      // TODO: Implement newsletter subscription API call
-      // For now, we'll simulate a successful subscription
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await newsletterService.subscribe(email)
       setStatus("success")
       setEmail("")
     } catch (err) {
-      setError("Failed to subscribe. Please try again.")
+      setError(err.message || "Failed to subscribe. Please try again.")
       setStatus("error")
     }
   }

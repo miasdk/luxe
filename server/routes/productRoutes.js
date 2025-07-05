@@ -75,11 +75,11 @@ const router = express.Router();
 router.get('/categories-with-count', ProductController.getCategoriesWithCount);
 router.get('/filter-options', ProductController.getFilterOptions);
 router.get('/category/:category', ProductController.getProductsByCategory);
+router.get('/seller/:sellerId', ProductController.getProductsBySeller);
 router.get('/search', ProductController.searchProductsByTitle);
 router.get('/filter', ProductController.getProductsByFilters);
 
 router.get('/', ProductController.getAllProducts);
-
 router.get('/:id', ProductController.getProductById);
 
 // Other methods

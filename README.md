@@ -4,11 +4,11 @@
 
 **A full-stack e-commerce platform built with React, Node.js, and PostgreSQL**
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-brightgreen)](https://e-cart-mu-olive.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-brightgreen)](https://ecartdemo.vercel.app)
 [![API Docs](https://img.shields.io/badge/API_Docs-Swagger-blue)](https://ecart-mxsk.onrender.com/api-docs)
 [![Backend](https://img.shields.io/badge/Backend-Render-purple)](https://ecart-mxsk.onrender.com)
 
-[View Live Demo](https://e-cart-mu-olive.vercel.app) • [API Documentation](https://ecart-mxsk.onrender.com/api-docs) • [Report Issues](https://github.com/yourusername/ecart/issues)
+[View Live Demo](https://ecartdemo.vercel.app) • [API Documentation](https://ecart-mxsk.onrender.com/api-docs) • [Report Issues](https://github.com/miasdk/ecart/issues)
 
 </div>
 
@@ -41,7 +41,7 @@ eCart is a production-ready e-commerce platform engineered to demonstrate enterp
 **Technical Highlights:**
 - **Scalable Architecture** - Microservices-ready design with clear separation of concerns
 - **Production Database** - PostgreSQL with optimized queries, full-text search, and proper indexing
-- **Comprehensive API** - 25+ documented endpoints with interactive testing via Swagger/OpenAPI
+- **Comprehensive API** - 30+ documented endpoints with interactive testing via Swagger/OpenAPI
 - **Modern Authentication** - Firebase integration with Google OAuth 2.0 and JWT token validation
 - **Payment Processing** - PCI-compliant Stripe integration with live payment handling
 - **Professional Deployment** - Multi-environment CI/CD pipeline with automated testing
@@ -69,7 +69,10 @@ eCart is a production-ready e-commerce platform engineered to demonstrate enterp
 - **Live Payment Infrastructure** - Stripe integration with production keys, SCA compliance and webhook validation
 - **Real-Time Cart Management** - Persistent shopping cart with optimistic UI updates and conflict resolution
 - **Comprehensive User Management** - Firebase Authentication with Google OAuth and role-based access control
-- **Interactive API Documentation** - Swagger/OpenAPI 3.0 with live testing capabilities for all 25+ endpoints
+- **Listing Management System** - Users can create, edit, delete, and manage their own product listings
+- **Professional Profile Dashboard** - Clean, minimalist profile page with listing management and order history
+- **Newsletter Subscription** - Complete email subscription system with database integration
+- **Interactive API Documentation** - Swagger/OpenAPI 3.0 with live testing capabilities for all 30+ endpoints
 - **Responsive Progressive Web App** - Mobile-first design with offline capabilities and performance optimization
 - **Production Monitoring** - Health checks, error tracking, and performance metrics
 
@@ -81,7 +84,7 @@ eCart is a production-ready e-commerce platform engineered to demonstrate enterp
 
 | Service | Status | URL | Description |
 |---------|--------|-----|-------------|
-| **Frontend** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [e-cart-mu-olive.vercel.app](https://e-cart-mu-olive.vercel.app) | React application |
+| **Frontend** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecartdemo.vercel.app](https://ecartdemo.vercel.app) | React application |
 | **Backend API** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecart-mxsk.onrender.com](https://ecart-mxsk.onrender.com) | Node.js REST API |
 | **API Documentation** | ![Status](https://img.shields.io/badge/🟢-Live-success) | [ecart-mxsk.onrender.com/api-docs](https://ecart-mxsk.onrender.com/api-docs) | Interactive Swagger docs |
 | **Database** | ![Status](https://img.shields.io/badge/🟢-Live-success) | `PostgreSQL on Render` | Production database |
@@ -383,14 +386,14 @@ cd backend && npm run db:setup  # if migrations exist
 
 [![API Documentation](https://img.shields.io/badge/📚_Interactive_Documentation-Swagger_UI-85EA2D?style=for-the-badge&logo=swagger)](https://ecart-mxsk.onrender.com/api-docs)
 
-**25+ Documented Endpoints** | **Live Testing** | **Authentication Ready**
+**30+ Documented Endpoints** | **Live Testing** | **Authentication Ready**
 
 </div>
 
 **Development**: [localhost:3001/api-docs](http://localhost:3001/api-docs) • **Production**: [ecart-mxsk.onrender.com/api-docs](https://ecart-mxsk.onrender.com/api-docs)
 
 ### API Architecture Highlights
-- **25+ Documented Endpoints** - Complete CRUD operations across all resources
+- **30+ Documented Endpoints** - Complete CRUD operations across all resources
 - **Interactive Testing** - Swagger UI with authentication and live API testing
 - **Schema Validation** - Request/response validation with detailed error handling
 - **Authentication Integration** - Firebase ID token verification with bearer authentication
@@ -414,6 +417,12 @@ cd backend && npm run db:setup  # if migrations exist
 | **Users** | `/api/users/register` | POST | User registration with Firebase | No |
 | | `/api/users/{id}` | GET | User profile management | Yes |
 | **Wishlist** | `/api/wishlist/user/{userId}` | GET | User's saved products | Yes |
+| **Listings** | `/api/products/seller/{sellerId}` | GET | User's created listings | Yes |
+| | `/api/products` | POST | Create new product listing | Yes |
+| | `/api/products/{id}` | PUT | Update product listing | Yes |
+| | `/api/products/{id}` | DELETE | Delete product listing | Yes |
+| **Newsletter** | `/api/newsletter/subscribe` | POST | Subscribe to newsletter | No |
+| | `/api/newsletter/unsubscribe` | POST | Unsubscribe from newsletter | No |
 
 ### API Response Standards
 ```json
@@ -480,6 +489,29 @@ Complete order management includes:
 - Email confirmations (when implemented)
 - Order history with detailed item information
 - Admin order management capabilities
+
+### Listing Management System
+The platform includes a comprehensive listing management system for sellers:
+- **Create Listings** - Multi-step form with image upload, category selection, and attribute management
+- **Edit Listings** - Update product details, pricing, and availability
+- **Delete Listings** - Remove products with confirmation dialogs
+- **My Listings Dashboard** - Centralized view of all user-created products with quick actions
+- **Seller Tracking** - Database tracking of which user created each listing
+
+### Professional Profile Dashboard
+Clean, minimalist profile page designed for professional appearance:
+- **User Information** - Display name, email, join date, and profile picture
+- **Activity Statistics** - Order count, wishlist items, and listing metrics
+- **Listing Management** - Integrated view and management of user's products
+- **Quick Actions** - Easy access to create listings and view orders
+- **Responsive Design** - Mobile-optimized layout with clean typography
+
+### Newsletter Subscription System
+Complete email marketing integration with database persistence:
+- **Subscribe/Unsubscribe** - User-friendly newsletter signup with validation
+- **Database Integration** - Persistent subscriber management with PostgreSQL
+- **API Endpoints** - RESTful endpoints for subscription management
+- **Email Validation** - Input validation and duplicate prevention
 
 ### Performance Optimizations
 - Code splitting for faster initial load times
@@ -621,7 +653,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **GitHub**: [@miasdk](https://github.com/miasdk)
 - **Email**: miatapiaswe@gmail.com
 - **LinkedIn**: [Mia Elena](https://www.linkedin.com/in/miaelena/)
-- **Project Repository**: [GitHub Repository](https://github.com/yourusername/ecart)
+- **Project Repository**: [GitHub Repository](https://github.com/miasdk/ecart)
 
 ---
 

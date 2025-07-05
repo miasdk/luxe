@@ -159,7 +159,6 @@ const CartModal = ({ isOpen, onClose }) => {
                                 <Link to="/checkout">
                                     <button
                                         onClick={() => {
-                                            console.log('Proceeding to checkout...');
                                             onClose();
                                         }}
                                         className="w-full bg-gray-900 text-white py-3 px-4 rounded-lg hover:bg-gray-800 transition-all duration-200 font-medium flex items-center justify-center gap-2"

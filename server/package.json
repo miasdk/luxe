@@ -22,10 +22,21 @@
     "express",
     "postgresql",
     "stripe",
-    "firebase"
+    "firebase",
+    "rest-api",
+    "backend",
+    "swagger"
   ],
-  "author": "Mia Tapia",
+  "author": "Mia Tapia <miatapiaswe@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miasdk/ecart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/miasdk/ecart/issues"
+  },
+  "homepage": "https://ecart-mxsk.onrender.com",
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=8.0.0"

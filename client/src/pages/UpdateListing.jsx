@@ -117,7 +117,6 @@ export default function UpdateListing() {
             throw new Error("Product not found");
           }
           
-          console.log("Product data from API:", productData);
           setProduct(productData);
           
           setFormData({
@@ -189,8 +188,6 @@ export default function UpdateListing() {
         size_ids: sizeIds,
         condition_ids: conditionIds
       };
-      
-      console.log("Sending to backend:", updatedProduct);
       
       await productsService.updateProduct(product.product_id, updatedProduct);
       

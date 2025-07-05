@@ -1,7 +1,8 @@
 {
   "name": "ecart-client",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "eCart frontend - React application for the e-commerce platform",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +13,17 @@
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui"
   },
+  "keywords": [
+    "react",
+    "vite",
+    "ecommerce",
+    "frontend",
+    "tailwind",
+    "stripe",
+    "firebase"
+  ],
+  "author": "Mia Tapia <miatapiaswe@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",

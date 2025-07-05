@@ -28,6 +28,15 @@ class ProductService {
         }
     }
 
+    async getProductsBySeller(sellerId) {
+        try {
+            return await ProductModel.getProductsBySeller(sellerId);
+        } catch (error) {
+            console.error('ProductService.getProductsBySeller(): Error:', error.message);
+            throw error;
+        }
+    }
+
     async getFilterOptions(category) {
     try {
         return await ProductModel.getFilterOptions(category);

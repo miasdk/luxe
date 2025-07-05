@@ -67,7 +67,6 @@ export default function TopNavBar({ user, loading }) {
                                             alt="Profile"
                                             className="w-8 h-8 rounded-full border-2 border-gray-200 object-cover"
                                             onError={(e) => {
-                                                console.log('Image failed to load:', user.photoURL);
                                                 e.target.style.display = 'none';
                                                 e.target.parentNode.querySelector('.fallback-icon').style.display = 'block';
                                             }}

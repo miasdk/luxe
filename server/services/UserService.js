@@ -10,7 +10,6 @@ class UserService {
             photo_url,
             metadata
         } = firebaseUser;
-        console.log('🔄 Syncing user:', { uid, email, display_name });
         const updated_at = metadata?.lastRefreshTime || new Date().toISOString();
 
         const user = await UserModel.createOrUpdateUser(

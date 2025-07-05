@@ -39,7 +39,6 @@ class OrderModel {
                 const result = await pool.query(query, values);
                 insertedItems.push(result.rows[0]);
             }
-            console.log("✅ Inserted Order Items:", insertedItems);
             return insertedItems;
         } catch (error) {
             console.error("❌ Failed to insert order items:", error.message);
