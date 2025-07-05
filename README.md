@@ -36,7 +36,7 @@
 
 ## Project Overview
 
-eCart is a production-ready e-commerce platform engineered to demonstrate enterprise-level full-stack development capabilities. The application showcases advanced architectural patterns, comprehensive API documentation, and modern DevOps practices suitable for scalable commercial deployment.
+eCart is a production-ready e-commerce platform engineered to demonstrate scalable full-stack development capabilities. The application showcases advanced architectural patterns, comprehensive API documentation, and modern DevOps practices suitable for commercial deployment.
 
 **Technical Highlights:**
 - **Scalable Architecture** - Microservices-ready design with clear separation of concerns
@@ -614,7 +614,7 @@ Planned improvements and features for future development:
 
 ### Technical Achievements
 
-This project represents a comprehensive demonstration of modern software engineering practices and enterprise-level development capabilities:
+This project represents a comprehensive demonstration of modern software engineering practices and scalable development capabilities:
 
 **Full-Stack Proficiency**
 - **Frontend**: Advanced React patterns including custom hooks, context management, and performance optimization
@@ -636,7 +636,7 @@ This project represents a comprehensive demonstration of modern software enginee
 ### Business Impact Simulation
 
 eCart demonstrates understanding of real-world e-commerce challenges:
-- **Scalability**: Architecture designed to handle enterprise-level traffic
+- **Scalability**: Architecture designed to handle high-traffic loads
 - **User Experience**: Intuitive interface with modern authentication options
 - **Data Integrity**: ACID transactions and proper error handling
 - **Payment Security**: PCI-compliant Stripe integration with live payment processing
