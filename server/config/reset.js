@@ -97,7 +97,7 @@ const createBrandsTable = async () => {
         DROP TABLE IF EXISTS brands CASCADE;
         CREATE TABLE brands (
             id SERIAL PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
+            name VARCHAR(255) NOT NULL UNIQUE,
             image VARCHAR(255) NOT NULL
         );
     `;

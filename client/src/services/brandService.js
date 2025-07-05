@@ -41,6 +41,62 @@ class BrandService {
         }
     }
 
+    /**
+     * Creates a new brand.
+     * @param {Object} brandData - The brand data to create.
+     * @returns {Promise<Object>} A promise that resolves to the created brand object.
+     */
+    async createBrand(brandData) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/brands/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(brandData),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "HTTP error: " + response.status);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error creating brand:", error);
+            throw error;
+        }
+    }
+
+    /**
+     * Finds or creates a brand by name.
+     * @param {string} brandName - The name of the brand to find or create.
+     * @returns {Promise<Object>} A promise that resolves to the brand object.
+     */
+    async findOrCreateBrand(brandName) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/brands/find-or-create`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: brandName }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "HTTP error: " + response.status);
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error finding or creating brand:", error);
+            throw error;
+        }
+    }
+
     async fetchBrandsWithCount(category = null) {
     try {
         const url = category 

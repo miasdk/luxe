@@ -70,6 +70,7 @@ eCart is a production-ready e-commerce platform engineered to demonstrate enterp
 - **Real-Time Cart Management** - Persistent shopping cart with optimistic UI updates and conflict resolution
 - **Comprehensive User Management** - Firebase Authentication with Google OAuth and role-based access control
 - **Listing Management System** - Users can create, edit, delete, and manage their own product listings
+- **Dynamic Brand Management** - Users can create new brands on-the-fly during product listing creation
 - **Professional Profile Dashboard** - Clean, minimalist profile page with listing management and order history
 - **Newsletter Subscription** - Complete email subscription system with database integration
 - **Interactive API Documentation** - Swagger/OpenAPI 3.0 with live testing capabilities for all 30+ endpoints
@@ -158,8 +159,8 @@ The application utilizes a normalized PostgreSQL schema optimized for e-commerce
 -- Core Entity Tables
 users                    categories              brands
 ├── id (SERIAL PK)      ├── id (SERIAL PK)     ├── id (SERIAL PK)
-├── uid (VARCHAR)       ├── name (VARCHAR)     ├── name (VARCHAR)
-├── email (VARCHAR)     └── description (TEXT) └── description (TEXT)
+├── uid (VARCHAR)       ├── name (VARCHAR)     ├── name (VARCHAR UNIQUE)
+├── email (VARCHAR)     └── description (TEXT) └── image (VARCHAR)
 ├── display_name        
 └── created_at          
 
@@ -421,6 +422,11 @@ cd backend && npm run db:setup  # if migrations exist
 | | `/api/products` | POST | Create new product listing | Yes |
 | | `/api/products/{id}` | PUT | Update product listing | Yes |
 | | `/api/products/{id}` | DELETE | Delete product listing | Yes |
+| **Brands** | `/api/brands` | GET | Get all brands | No |
+| | `/api/brands/{id}` | GET | Get brand by ID | No |
+| | `/api/brands` | POST | Create new brand | No |
+| | `/api/brands/find-or-create` | POST | Find or create brand by name | No |
+| | `/api/brands/brands-with-count` | GET | Get brands with product counts | No |
 | **Newsletter** | `/api/newsletter/subscribe` | POST | Subscribe to newsletter | No |
 | | `/api/newsletter/unsubscribe` | POST | Unsubscribe from newsletter | No |
 
@@ -457,6 +463,14 @@ The authentication system supports multiple sign-in methods with Firebase integr
 - **Profile Synchronization** - Automatic user profile creation in backend database
 - **JWT Token Validation** - Secure API endpoint protection
 - **Session Management** - Persistent authentication across browser sessions
+
+### Dynamic Brand Management System
+Advanced brand creation system allows marketplace scalability:
+- **Smart Brand Selector** - Searchable dropdown with autocomplete functionality
+- **On-the-Fly Brand Creation** - Users can create new brands during product listing
+- **Duplicate Prevention** - Database constraints prevent brand name conflicts
+- **Automatic Brand Discovery** - Find-or-create API endpoint for seamless UX
+- **Real-time Brand Updates** - Frontend automatically refreshes brand lists
 
 ### Social Commerce Features
 Interactive like system enhances user engagement and provides social proof:

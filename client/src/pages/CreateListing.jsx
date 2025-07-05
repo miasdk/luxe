@@ -16,6 +16,7 @@ import { colorData } from "../data/colors";
 import { conditionData } from "../data/conditions";
 import { sizeData } from "../data/sizes";
 import { useAuthContext } from "../context/AuthContext";
+import BrandSelector from "../components/BrandSelector";
 
 export default function CreateListing() {
   const navigate = useNavigate();
@@ -327,20 +328,14 @@ export default function CreateListing() {
                   <label htmlFor="brand_id" className="block text-sm font-medium text-gray-700 mb-2">
                     Brand
                   </label>
-                  <select
-                    id="brand_id"
-                    name="brand_id"
+                  <BrandSelector
                     value={formData.brand_id}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
-                  >
-                    <option value="">Select brand</option>
-                    {brands.map(brand => (
-                      <option key={brand.id} value={brand.id}>
-                        {brand.name}
-                      </option>
-                    ))}
-                  </select>
+                    onChange={(brandId) => {
+                      setFormData(prev => ({ ...prev, brand_id: brandId }));
+                      // Refresh brands list to include any newly created brands
+                      brandService.fetchAllBrands().then(setBrands).catch(console.error);
+                    }}
+                  />
                 </div>
               </div>
 
