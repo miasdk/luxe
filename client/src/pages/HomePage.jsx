@@ -97,10 +97,7 @@ const HomePage = () => {
         </div>
       </section>
 
-
-
-        {/* Brands Section - Enhanced */}
-        <section className="bg-white py-20 border-t border-gray-100">
+      <section className="bg-white py-20 border-t border-gray-100">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           
           <div className="grid grid-cols-3 md:grid-cols-6 gap-12 items-center justify-center">
@@ -121,7 +118,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Popular Products - Enhanced spacing */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="flex justify-between items-center mb-12">
@@ -140,7 +136,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Value Products - Enhanced */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="flex justify-between items-center mb-12">
@@ -159,7 +154,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Featured Product - Enhanced with better layout */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -197,25 +191,17 @@ const HomePage = () => {
                     className="w-full h-full object-contain bg-gray-50"
                   />
                 </div>
-                <div className="aspect-[4/5] overflow-hidden shadow-xl bg-gray-50 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <div className="text-6xl font-light text-gray-300 mb-4">BR</div>
-                    <p className="text-sm text-gray-500 font-medium">BANANA REPUBLIC</p>
-                    <p className="text-xs text-gray-400 mt-2">Premium Quality</p>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Categories - Enhanced */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <span className="text-sm font-medium text-gray-600 tracking-wide">SHOP BY CATEGORY</span>
+          <div className="mb-16">
+            <div className="flex gap-2 mb-4">
+              <span className="text-sm font-medium text-grzay-600 tracking-wide">SHOP BY CATEGORY</span>
             </div>
             <h2 className="text-3xl xl:text-4xl font-light text-gray-900">Explore Collections</h2>
           </div>
@@ -223,7 +209,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CTA Section - Enhanced */}
       {!user && (
         <section className="bg-gray-900 text-white py-24">
           <div className="container mx-auto px-4 xl:px-8 text-center max-w-4xl">
@@ -250,7 +235,6 @@ const HomePage = () => {
         </section>
       )}
 
-      {/* Newsletter Section */}
       <section className="bg-gray-900 text-white py-28">
         <div className="container mx-auto px-4 xl:px-8 max-w-4xl text-center">
           <h2 className="text-4xl xl:text-5xl font-light mb-8">Subscribe to Our Newsletter</h2>
