@@ -163,7 +163,7 @@ const HomePage = () => {
               </div>
               <h2 className="text-4xl xl:text-5xl font-light mb-8 leading-tight text-gray-900">Elegant Banana Republic Blouse</h2>
               <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-xl">
-                A sophisticated white blouse perfect for work or casual wear. This versatile piece from Banana Republic 
+                A classic white blouse perfect for work or casual wear. This versatile piece from Banana Republic 
                 combines classic elegance with modern comfort, making it a wardrobe essential.
               </p>
               <div className="mb-10">
