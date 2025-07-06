@@ -13,6 +13,7 @@ const ProductPage = () => {
   const [searchParams] = useSearchParams();
   const { 
     updateCategory, 
+    updateBrand,
     selectedCategory,
     selectedBrand,
     products,
@@ -28,10 +29,16 @@ const ProductPage = () => {
 
   useEffect(() => {
     const categoryFromUrl = searchParams.get('category');
+    const brandFromUrl = searchParams.get('brand');
+    
     if (categoryFromUrl && categoryFromUrl !== selectedCategory) {
       updateCategory(categoryFromUrl);
     }
-  }, [searchParams, selectedCategory, updateCategory]);
+    
+    if (brandFromUrl && brandFromUrl !== selectedBrand) {
+      updateBrand(brandFromUrl);
+    }
+  }, [searchParams, selectedCategory, selectedBrand, updateCategory, updateBrand]);
 
   // Listen for product likes updates
   useEffect(() => {

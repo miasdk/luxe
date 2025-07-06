@@ -97,7 +97,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Stats Section - New addition for credibility */}
+      {/* Stats Section - New addition for credibility
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -117,6 +117,28 @@ const HomePage = () => {
               <div className="text-3xl xl:text-4xl font-light text-gray-900">24/7</div>
               <div className="text-sm text-gray-600 tracking-wide">SUPPORT</div>
             </div>
+          </div>
+        </div>
+      </section> */}
+
+        {/* Brands Section - Enhanced */}
+        <section className="bg-white py-20 border-t border-gray-100">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+          
+          <div className="grid grid-cols-3 md:grid-cols-6 gap-12 items-center justify-center">
+            {brands.slice(0, 6).map((brand) => (
+              <Link
+                key={brand.id}
+                to={`/products?brand=${encodeURIComponent(brand.name)}`}
+                className="flex items-center justify-center transition-all duration-300 hover:scale-110 group cursor-pointer"
+              >
+                <img
+                  src={brand.image || "/placeholder.svg"}
+                  alt={brand.name}
+                  className="h-14 object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                />
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -261,16 +283,17 @@ const HomePage = () => {
           </div>
           <div className="grid grid-cols-3 md:grid-cols-6 gap-12 items-center justify-center">
             {brands.slice(0, 6).map((brand) => (
-              <div
+              <Link
                 key={brand.id}
-                className="flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                to={`/products?brand=${encodeURIComponent(brand.name)}`}
+                className="flex items-center justify-center transition-all duration-300 hover:scale-110 group cursor-pointer"
               >
                 <img
                   src={brand.image || "/placeholder.svg"}
                   alt={brand.name}
                   className="h-14 object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
                 />
-              </div>
+              </Link>
             ))}
           </div>
         </div>

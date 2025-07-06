@@ -146,6 +146,15 @@ export const ProductProvider = ({ children }) => {
   const updateBrand = (brand) => {
     setSelectedBrand(brand);
     setCurrentPage(1);
+    
+    // Update URL without causing page reload
+    const url = new URL(window.location);
+    if (brand) {
+      url.searchParams.set('brand', brand);
+    } else {
+      url.searchParams.delete('brand');
+    }
+    window.history.pushState({}, '', url);
   };
 
   // Update secondary filters
@@ -180,6 +189,7 @@ export const ProductProvider = ({ children }) => {
     // Clear URL params
     const url = new URL(window.location);
     url.searchParams.delete('category');
+    url.searchParams.delete('brand');
     window.history.pushState({}, '', url);
   };
 
@@ -220,15 +230,20 @@ export const ProductProvider = ({ children }) => {
     const handlePopState = () => {
       const urlParams = new URLSearchParams(window.location.search);
       const categoryParam = urlParams.get('category');
+      const brandParam = urlParams.get('brand');
       
       if (categoryParam !== selectedCategory) {
         setSelectedCategory(categoryParam || '');
+      }
+      
+      if (brandParam !== selectedBrand) {
+        setSelectedBrand(brandParam || '');
       }
     };
 
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
-  }, [selectedCategory]);
+  }, [selectedCategory, selectedBrand]);
 
   const value = {
     // Data

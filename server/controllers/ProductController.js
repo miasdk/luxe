@@ -69,27 +69,28 @@ class ProductController {
             res.status(201).json(newProduct);
         } catch (error) {
             console.error("Error adding product:", error);
-            res.status(500).json({ message: "Failed to add product" });
+            res.status(500).json({ 
+                message: "Failed to add product",
+                error: error.message,
+                details: error.stack
+            });
         }
     }
 
-   static async updateProduct(req, res) {
-    const productService = new ProductService();
-    const { id } = req.params;
-    
-    try {
-        console.log("Update request for product ID:", id);
-        console.log("Request body:", req.body);
+    static async updateProduct(req, res) {
+        const productService = new ProductService();
+        const { id } = req.params;
         
-        const updatedProduct = await productService.updateProduct(id, req.body);
-        res.status(200).json(updatedProduct);
-    } catch (error) {
-        console.error("Error updating product:", error);
-        res.status(500).json({ 
-        message: "Failed to update product",
-        error: error.message 
-        });
-    }
+        try {
+            const updatedProduct = await productService.updateProduct(id, req.body);
+            res.status(200).json(updatedProduct);
+        } catch (error) {
+            console.error("Error updating product:", error);
+            res.status(500).json({ 
+                message: "Failed to update product",
+                error: error.message 
+            });
+        }
     }
 
     static async deleteProduct(req, res) {
@@ -106,15 +107,15 @@ class ProductController {
     }
 
     static async getFilterOptions(req, res) {
-    const productService = new ProductService();
-    const { category } = req.query;
-    try {
-        const filterOptions = await productService.getFilterOptions(category);
-        res.status(200).json(filterOptions);
-    } catch (error) {
-        console.error("Error fetching filter options:", error);
-        res.status(500).json({ message: "Failed to retrieve filter options" });
-    }
+        const productService = new ProductService();
+        const { category } = req.query;
+        try {
+            const filterOptions = await productService.getFilterOptions(category);
+            res.status(200).json(filterOptions);
+        } catch (error) {
+            console.error("Error fetching filter options:", error);
+            res.status(500).json({ message: "Failed to retrieve filter options" });
+        }
     }
 
     static async getCategoriesWithCount(req, res) {
@@ -125,6 +126,18 @@ class ProductController {
         } catch (error) {
             console.error("Error fetching categories with count:", error);
             res.status(500).json({ message: "Failed to retrieve categories" });
+        }
+    }
+
+    static async getProductsBySeller(req, res) {
+        const productService = new ProductService();
+        const { sellerId } = req.params;
+        try {
+            const products = await productService.getProductsBySeller(sellerId);
+            res.status(200).json(products);
+        } catch (error) {
+            console.error("Error fetching products by seller:", error);
+            res.status(500).json({ message: "Failed to retrieve seller products" });
         }
     }
 }
