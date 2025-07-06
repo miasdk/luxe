@@ -183,11 +183,11 @@ const HomePage = () => {
             </div>
             
             <div className="relative">
-                <div className="overflow-hidden shadow-xl">
+                <div className="overflow-hidden">
                   <img
                     src="https://cf-assets-thredup.thredup.com/assets/640936167/retina.jpg"
                     alt="Banana Republic Blouse"
-                    className="w-full h-full object-contain bg-gray-50"
+                    className="w-full h-full object-contain"
                   />
                 </div>
             </div>
