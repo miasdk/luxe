@@ -115,7 +115,7 @@ const SearchBar = ({ className = '' }) => {
                         onBlur={() => {
                             setFocused(false);
                         }}
-                        className={`w-full pl-11 pr-10 py-3 rounded-l-xl border-y border-l ring-offset-2 transition-all duration-300 focus:outline-none text-sm 
+                        className={`w-full pl-11 pr-10 py-3 border-y border-l ring-offset-2 transition-all duration-300 focus:outline-none text-sm 
                             ${focused 
                                 ? 'border-gray-500 ring-2 ring-gray-200 shadow-md bg-white' 
                                 : 'border-gray-300 bg-gray-50 hover:bg-gray-100 shadow-sm'
@@ -126,7 +126,7 @@ const SearchBar = ({ className = '' }) => {
                         <button
                             type="button"
                             onClick={clearSearch}
-                            className={`absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 rounded-full transition-all duration-200 ${
+                            className={`absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-6 h-6 transition-all duration-200 ${
                                 focused 
                                     ? 'bg-gray-200 text-gray-700 hover:bg-gray-300' 
                                     : 'text-gray-400 hover:text-gray-600'
@@ -141,7 +141,7 @@ const SearchBar = ({ className = '' }) => {
                 <button
                     type="submit"
                     disabled={!query.trim()}
-                    className={`w-30 py-3 px-4 rounded-r-xl flex items-center justify-center transition-all duration-200 font-medium text-sm
+                    className={`w-30 py-3 px-4 flex items-center justify-center transition-all duration-200 font-medium text-sm
                         ${query.trim() 
                             ? 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800' 
                             : 'bg-blue-300 text-white cursor-not-allowed'
@@ -154,7 +154,7 @@ const SearchBar = ({ className = '' }) => {
             
             {showSuggestions && (
                 <div 
-                    className={`absolute z-50 w-full mt-2 bg-white rounded-xl border border-gray-200 shadow-xl overflow-hidden transition-all duration-300 transform origin-top ${
+                    className={`absolute z-50 w-full mt-2 bg-white border border-gray-200 shadow-xl overflow-hidden transition-all duration-300 transform origin-top ${
                         loading ? 'opacity-90' : 'opacity-100'
                     }`}
                     style={{
@@ -186,7 +186,7 @@ const SearchBar = ({ className = '' }) => {
                                         setShowSuggestions(false);
                                     }}
                                 >
-                                    <div className="w-16 h-16 bg-white rounded-lg flex-shrink-0 border border-gray-100 overflow-hidden p-1 shadow-sm group-hover:shadow transition-shadow">
+                                    <div className="w-16 h-16 bg-white flex-shrink-0 border border-gray-100 overflow-hidden p-1 shadow-sm group-hover:shadow transition-shadow">
                                         <img 
                                             src={product.image}
                                             alt={product.title}
@@ -197,11 +197,11 @@ const SearchBar = ({ className = '' }) => {
                                     <div className="flex-1 min-w-0">
                                         <p className="text-sm font-medium text-gray-900 line-clamp-1 group-hover:text-gray-700">{product.title}</p>
                                         <div className="flex flex-wrap justify-between items-center mt-1.5 gap-y-1">
-                                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 group-hover:bg-gray-200 transition-colors">
+                                            <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-800 group-hover:bg-gray-200 transition-colors">
                                                 {product.brand_name}
                                             </span>
                                             {product.category_name && (
-                                                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">
+                                                <span className="inline-flex items-center px-2 py-0.5 text-xs font-medium bg-gray-50 text-gray-600 border border-gray-100">
                                                     {product.category_name}
                                                 </span>
                                             )}
@@ -221,7 +221,7 @@ const SearchBar = ({ className = '' }) => {
                                         navigate(`/search?q=${encodeURIComponent(query.trim())}`);
                                         setShowSuggestions(false);
                                     }}
-                                    className="w-full py-2.5 text-center text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors group flex items-center justify-center"
+                                    className="w-full py-2.5 text-center text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors group flex items-center justify-center"
                                 >
                                     <span>View all results for "{query}"</span>
                                     <ArrowRight size={16} className="ml-2 opacity-70 group-hover:translate-x-1 transition-transform" />

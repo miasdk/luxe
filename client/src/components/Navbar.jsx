@@ -35,7 +35,7 @@ const Navbar = () => {
                                         handleSearch();
                                     }
                                 }}
-                                className="w-full h-10 pl-4 pr-10 text-sm text-gray-900 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="w-full h-10 pl-4 pr-10 text-sm text-gray-900 bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             />
                             <button
                                 onClick={handleSearch}
@@ -68,7 +68,7 @@ const Navbar = () => {
                                 >
                                     <Heart size={20} />
                                     {wishlistItems.length > 0 && (
-                                        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                                        <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center">
                                             {wishlistItems.length}
                                         </span>
                                     )}
@@ -79,7 +79,7 @@ const Navbar = () => {
                                 >
                                     <ShoppingBag size={20} />
                                     {cart.length > 0 && (
-                                        <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                                        <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs w-4 h-4 flex items-center justify-center">
                                             {cart.length}
                                         </span>
                                     )}
@@ -93,7 +93,7 @@ const Navbar = () => {
                                         <span className="text-sm">{user.display_name}</span>
                                     </button>
                                     {isProfileOpen && (
-                                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-2">
+                                        <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg border border-gray-100 py-2">
                                             <Link
                                                 to="/profile"
                                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
@@ -126,7 +126,7 @@ const Navbar = () => {
                                 </Link>
                                 <Link
                                     to="/register"
-                                    className="text-sm bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+                                    className="text-sm bg-gray-900 text-white px-4 py-2 hover:bg-gray-800 transition-colors"
                                 >
                                     Register
                                 </Link>

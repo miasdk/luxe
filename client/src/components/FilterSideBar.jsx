@@ -50,15 +50,15 @@ const FilterSideBar = () => {
   const hasActiveFilters = selectedCategory || selectedBrand;
 
   return (
-    <div className={` rounded-xl  ${isMobile ? '' : 'sticky top-6'}`}>
+    <div className={` ${isMobile ? '' : 'sticky top-6'}`}>
       <div 
         className={`flex items-center justify-between p-5 ${
-          isMobile ? 'cursor-pointer hover:bg-gray-50/80 transition-colors rounded-t-xl' : ''
+          isMobile ? 'cursor-pointer hover:bg-gray-50/80 transition-colors' : ''
         }`}
         onClick={isMobile ? toggleAccordion : undefined}
       >
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-gray-100 flex items-center justify-center">
             <Filter size={16} className="text-gray-600" />
           </div>
           <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
@@ -71,7 +71,7 @@ const FilterSideBar = () => {
                 e.stopPropagation();
                 resetFilters();
               }}
-              className="flex items-center gap-1.5 text-red-600 hover:text-red-700 text-sm font-medium transition-colors px-2 py-1 rounded-md hover:bg-red-50"
+              className="flex items-center gap-1.5 text-red-600 hover:text-red-700 text-sm font-medium transition-colors px-2 py-1 hover:bg-red-50"
             >
               <X size={12} />
               Clear

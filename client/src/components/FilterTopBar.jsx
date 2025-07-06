@@ -29,7 +29,7 @@ const FilterTopBar = () => {
               Size
             </label>
             <select
-              className="bg-white/90 border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[130px] hover:border-gray-300"
+              className="bg-white/90 border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[130px] hover:border-gray-300"
               value={secondaryFilters.size}
               onChange={(e) => updateSecondaryFilter('size', e.target.value)}
             >
@@ -49,7 +49,7 @@ const FilterTopBar = () => {
               Color
             </label>
             <select
-              className="bg-white/90 border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[130px] hover:border-gray-300"
+              className="bg-white/90 border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[130px] hover:border-gray-300"
               value={secondaryFilters.color}
               onChange={(e) => updateSecondaryFilter('color', e.target.value)}
             >
@@ -69,7 +69,7 @@ const FilterTopBar = () => {
               Condition
             </label>
             <select
-              className="bg-white/90 border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[150px] hover:border-gray-300"
+              className="bg-white/90 border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[150px] hover:border-gray-300"
               value={secondaryFilters.condition}
               onChange={(e) => updateSecondaryFilter('condition', e.target.value)}
             >
@@ -90,7 +90,7 @@ const FilterTopBar = () => {
             Sort by
           </label>
           <select
-            className="bg-white/90 border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[180px] hover:border-gray-300"
+            className="bg-white/90 border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all min-w-[180px] hover:border-gray-300"
             onChange={handleSortChange}
             defaultValue="title-asc"
           >
