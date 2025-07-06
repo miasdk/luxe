@@ -75,18 +75,7 @@ const router = express.Router();
 router.get('/categories-with-count', ProductController.getCategoriesWithCount);
 router.get('/filter-options', ProductController.getFilterOptions);
 router.get('/category/:category', ProductController.getProductsByCategory);
-router.get('/seller/:sellerId', async (req, res) => {
-    const ProductService = (await import('../services/ProductService.js')).default;
-    const productService = new ProductService();
-    const { sellerId } = req.params;
-    try {
-        const products = await productService.getProductsBySeller(sellerId);
-        res.status(200).json(products);
-    } catch (error) {
-        console.error("Error fetching products by seller:", error);
-        res.status(500).json({ message: "Failed to retrieve seller products" });
-    }
-});
+router.get('/seller/:sellerId', ProductController.getProductsBySeller);
 router.get('/search', ProductController.searchProductsByTitle);
 router.get('/filter', ProductController.getProductsByFilters);
 
