@@ -4,7 +4,7 @@ export default function Footer() {
     <footer className="border border-black/10 text-black py-4">
       <div className="container mx-auto text-center">
         <p className="text-sm">
-          &copy; {new Date().getFullYear()} eCart. All rights reserved.
+          &copy; {new Date().getFullYear()} Luxe. All rights reserved.
         </p>
         <div className="mt-2">
           <a href="/privacy" className="text-gray-400 hover:text-white mx-2">Privacy Policy</a>

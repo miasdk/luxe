@@ -1,5 +1,5 @@
 {
-  "name": "ecart-server",
+  "name": "luxe-server",
   "version": "1.0.0",
   "description": "eCart e-commerce platform backend API",
   "main": "server.js",

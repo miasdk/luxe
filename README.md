@@ -1,4 +1,4 @@
-# eCart - Modern E-Commerce Platform
+# Luxe - Premium Marketplace Platform
 
 <div align="center">
 

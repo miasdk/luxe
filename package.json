@@ -1,5 +1,5 @@
 {
-  "name": "ecart",
+  "name": "luxe",
   "version": "1.0.0",
   "description": "A modern full-stack e-commerce platform built with React, Node.js, and PostgreSQL",
   "main": "server/server.js",

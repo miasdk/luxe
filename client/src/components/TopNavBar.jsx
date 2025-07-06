@@ -142,7 +142,7 @@ export default function TopNavBar({ user, loading }) {
                         </div>
                     ) : (
                         <span className="hidden sm:inline-block text-xs">
-                            Welcome to eCart!<Link to="/login" className="text-blue-400 hover:underline"> Login</Link> or <Link to="/register" className="text-blue-400 hover:underline"> Register</Link>
+                            Welcome to Luxe!<Link to="/login" className="text-blue-400 hover:underline"> Login</Link> or <Link to="/register" className="text-blue-400 hover:underline"> Register</Link>
                         </span>
                     )}
 
