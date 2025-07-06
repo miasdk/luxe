@@ -4,7 +4,7 @@
  */
 
 // Base API URL - adjust if your API is not served at /api
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+import { API_BASE_URL } from '../config/api.js';
 
 /**
  * Fetch all products without any filters

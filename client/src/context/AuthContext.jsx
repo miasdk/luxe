@@ -6,6 +6,7 @@ import {
     signInWithPopup,
     signOut as firebaseSignOut
 } from 'firebase/auth';
+import { API_BASE_URL } from '../config/api.js';
 
 const AuthContext = createContext();
 
@@ -51,8 +52,6 @@ export function AuthProvider({ children }) {
     // Register user in your backend
     const registerUserInBackend = async (firebaseUser) => {
         try {
-            const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-            
             const response = await fetch(`${API_BASE_URL}/api/users/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
