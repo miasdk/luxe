@@ -59,15 +59,18 @@ export function AuthProvider({ children }) {
                 body: JSON.stringify({
                     uid: firebaseUser.uid,
                     email: firebaseUser.email,
-                    displayName: firebaseUser.displayName || firebaseUser.email,
+                    display_name: firebaseUser.displayName || firebaseUser.email,
                 }),
             });
             
             if (!response.ok && response.status !== 409) { // 409 = user already exists
-                throw new Error('Failed to register user in backend');
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || 'Failed to register user in backend');
             }
         } catch (error) {
             console.error('Backend registration error:', error);
+            // Don't throw here - we don't want to block the login process
+            // The user can still use the app even if backend registration fails
         }
     };
 

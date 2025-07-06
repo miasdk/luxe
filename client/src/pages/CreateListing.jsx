@@ -99,11 +99,18 @@ export default function CreateListing() {
     setLoading(true);
     setError(null);
 
+    // Check if user is authenticated
+    if (!user || !user.uid) {
+      setError("Please sign in to create a listing.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const productToCreate = {
         ...formData,
         price: parseFloat(formData.price),
-        seller_id: user?.uid
+        seller_id: user.uid
       };
 
       const createdProduct = await productsService.addProduct(productToCreate);
@@ -112,7 +119,18 @@ export default function CreateListing() {
       });
     } catch (err) {
       console.error("Error creating product:", err);
-      setError(err.message || "Failed to create product");
+      let errorMessage = err.message || "Failed to create product";
+      
+      // Provide more helpful error messages
+      if (errorMessage.includes('seller_id_fkey')) {
+        errorMessage = "Please sign in with a valid account to create listings.";
+      } else if (errorMessage.includes('brand_id_fkey')) {
+        errorMessage = "Selected brand is invalid. Please try selecting a different brand.";
+      } else if (errorMessage.includes('category_id_fkey')) {
+        errorMessage = "Selected category is invalid. Please try selecting a different category.";
+      }
+      
+      setError(errorMessage);
       window.scrollTo(0, 0);
     } finally {
       setLoading(false);
