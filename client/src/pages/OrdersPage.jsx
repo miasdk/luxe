@@ -23,22 +23,33 @@ const OrdersPage = () => {
     
     useEffect(() => {
         const fetchOrders = async () => {
-            if (!user) return;
+            if (!user) {
+                setLoading(false);
+                setOrders([]);
+                return;
+            }
             
             try {
                 const response = await fetch(`${API_BASE_URL}/api/orders/user/${user.uid}`);
-                if (!response.ok) {
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // If data is empty array, just set empty orders
+                    if (!data || data.length === 0) {
+                        setOrders([]);
+                        setLoading(false);
+                        return;
+                    }
+                } else if (response.status === 404) {
+                    // User has no orders yet - this is normal
+                    setOrders([]);
+                    setLoading(false);
+                    return;
+                } else {
                     throw new Error('Failed to fetch orders');
                 }
                 
                 const data = await response.json();
-                
-                // If data is empty array, just set empty orders
-                if (!data || data.length === 0) {
-                    setOrders([]);
-                    setLoading(false);
-                    return;
-                }
                 
                 const groupedOrders = data.reduce((acc, item) => {
                     if (!acc[item.order_id]) {
@@ -64,7 +75,12 @@ const OrdersPage = () => {
                 setLoading(false);
             } catch (err) {
                 console.error('Error fetching orders:', err);
-                setError(err.message);
+                // Handle network errors more gracefully
+                if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
+                    setError('Unable to connect to server. Please check your internet connection and try again.');
+                } else {
+                    setError(err.message);
+                }
                 setLoading(false);
             }
         };
