@@ -19,7 +19,7 @@ const options = {
         description: 'Development server'
       },
       {
-        url: process.env.PRODUCTION_API_URL || 'https://your-render-app.onrender.com/api',
+        url: process.env.PRODUCTION_API_URL || 'https://ecart-mxsk.onrender.com/api',
         description: 'Production server'
       }
     ],
