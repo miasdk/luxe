@@ -379,6 +379,46 @@ cd backend && npm run db:setup  # if migrations exist
 
 ---
 
+## 💳 Payment Testing
+
+> **Test the complete payment flow with these Stripe test credentials**
+
+### Test Payment Functionality
+
+The application uses **Stripe live mode** for real payment processing. To test the payment functionality without making actual charges, use these test card numbers:
+
+| Card Number | Brand | Result |
+|-------------|--------|--------|
+| `4242 4242 4242 4242` | Visa | ✅ Successful payment |
+| `4000 0000 0000 0002` | Visa | ❌ Card declined |
+| `4000 0000 0000 9995` | Visa | ❌ Insufficient funds |
+| `4000 0000 0000 0069` | Visa | ❌ Expired card |
+
+**Test Details:**
+- **Expiry Date**: Any future date (e.g., `12/25`)
+- **CVC**: Any 3-digit number (e.g., `123`)
+- **ZIP Code**: Any 5-digit number (e.g., `12345`)
+
+### How to Test Payments
+
+1. **Add items to cart** on [ecartdemo.vercel.app](https://ecartdemo.vercel.app)
+2. **Sign in** with Google OAuth or create an account
+3. **Proceed to checkout** and fill in shipping information
+4. **Use test card numbers** above in the payment form
+5. **Complete purchase** - you'll see order confirmation
+
+**Note**: Test payments will not result in actual charges. The system uses Stripe's test environment for safe testing.
+
+### Payment Features Demonstrated
+
+- **Secure Payment Processing** - PCI-compliant Stripe integration
+- **Real-time Validation** - Card validation and error handling
+- **Order Creation** - Complete order workflow with database persistence
+- **Payment Confirmation** - Success/failure handling with user feedback
+- **Order History** - Completed orders appear in user profile
+
+---
+
 ## API Documentation & Testing
 
 > **Interactive API Documentation**: Experience the API with live testing capabilities
