@@ -183,7 +183,6 @@ const HomePage = () => {
             </div>
             
             <div className="relative">
-              <div className="grid grid-cols-2 gap-8">
                 <div className="overflow-hidden shadow-xl">
                   <img
                     src="https://cf-assets-thredup.thredup.com/assets/640936167/retina.jpg"
@@ -191,7 +190,6 @@ const HomePage = () => {
                     className="w-full h-full object-contain bg-gray-50"
                   />
                 </div>
-              </div>
             </div>
           </div>
         </div>
