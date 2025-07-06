@@ -23,6 +23,10 @@ export default function MyListings() {
     useEffect(() => {
         if (user?.uid) {
             fetchUserListings();
+        } else {
+            // If no user, set loading to false and listings to empty
+            setLoading(false);
+            setListings([]);
         }
     }, [user]);
 
@@ -31,13 +35,22 @@ export default function MyListings() {
             const response = await fetch(`${API_BASE_URL}/api/products/seller/${user.uid}`);
             if (response.ok) {
                 const data = await response.json();
-                setListings(data);
+                setListings(Array.isArray(data) ? data : []);
+            } else if (response.status === 404) {
+                // User has no listings yet, this is normal
+                setListings([]);
             } else {
-                throw new Error('Failed to fetch listings');
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || `HTTP ${response.status}: Failed to fetch listings`);
             }
         } catch (err) {
             console.error('Error fetching listings:', err);
-            setError(err.message);
+            // Only show error if it's not a network issue or empty result
+            if (err.message.includes('Failed to fetch')) {
+                setError('Unable to connect to server. Please check your internet connection.');
+            } else {
+                setError(err.message);
+            }
         } finally {
             setLoading(false);
         }
