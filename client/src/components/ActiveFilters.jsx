@@ -1,4 +1,4 @@
-// ActiveFilters.jsx - Fixed to work with current ProductContext
+
 import React from 'react';
 import { useProductContext } from '../context/ProductContext';
 import { X, RotateCcw, Grid3X3, List, Filter } from 'lucide-react';

@@ -1,4 +1,4 @@
-// context/CartContext.jsx
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useAuthContext } from './AuthContext';
 import cartService from '../services/cartService';

@@ -54,7 +54,7 @@ const HomePage = () => {
             <div className="xl:col-span-3 space-y-10">
               <div className="space-y-8">
                 <div className="inline-block bg-gray-900 text-white text-sm font-medium px-4 py-2 tracking-wide">
-                  CURATED LUXURY MARKETPLACE
+                  CURATED PREMIUM MARKETPLACE
                 </div>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-tight text-gray-900 leading-[1.05]">
                   Discover <span className="font-normal">Exceptional</span> Pieces
@@ -97,29 +97,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Stats Section - New addition for credibility
-      <section className="py-16 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="space-y-2">
-              <div className="text-3xl xl:text-4xl font-light text-gray-900">10K+</div>
-              <div className="text-sm text-gray-600 tracking-wide">CURATED PIECES</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl xl:text-4xl font-light text-gray-900">500+</div>
-              <div className="text-sm text-gray-600 tracking-wide">VERIFIED SELLERS</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl xl:text-4xl font-light text-gray-900">98%</div>
-              <div className="text-sm text-gray-600 tracking-wide">SATISFACTION</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl xl:text-4xl font-light text-gray-900">24/7</div>
-              <div className="text-sm text-gray-600 tracking-wide">SUPPORT</div>
-            </div>
-          </div>
-        </div>
-      </section> */}
+
 
         {/* Brands Section - Enhanced */}
         <section className="bg-white py-20 border-t border-gray-100">
@@ -168,9 +146,9 @@ const HomePage = () => {
           <div className="flex justify-between items-center mb-12">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-medium text-gray-600 tracking-wide">EXCEPTIONAL VALUE</span>
+                <span className="text-sm font-medium text-gray-600 tracking-wide">BEST DEALS</span>
               </div>
-              <h2 className="text-3xl xl:text-4xl font-light text-gray-900">Luxury for Less</h2>
+              <h2 className="text-3xl xl:text-4xl font-light text-gray-900">Lowest Prices</h2>
             </div>
             <Link to="/products?sort=price_low" className="text-gray-700 text-base font-medium flex items-center group">
               View All
@@ -272,34 +250,7 @@ const HomePage = () => {
         </section>
       )}
 
-      {/* Brands Section - Enhanced */}
-      <section className="bg-white py-20 border-t border-gray-100">
-        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl xl:text-4xl font-light text-gray-900 mb-4">Our Brands</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Discover exceptional pieces from the world's most coveted brands
-            </p>
-          </div>
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-12 items-center justify-center">
-            {brands.slice(0, 6).map((brand) => (
-              <Link
-                key={brand.id}
-                to={`/products?brand=${encodeURIComponent(brand.name)}`}
-                className="flex items-center justify-center transition-all duration-300 hover:scale-110 group cursor-pointer"
-              >
-                <img
-                  src={brand.image || "/placeholder.svg"}
-                  alt={brand.name}
-                  className="h-14 object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                />
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter - Enhanced */}
+      {/* Newsletter Section */}
       <section className="bg-gray-900 text-white py-28">
         <div className="container mx-auto px-4 xl:px-8 max-w-4xl text-center">
           <h2 className="text-4xl xl:text-5xl font-light mb-8">Subscribe to Our Newsletter</h2>

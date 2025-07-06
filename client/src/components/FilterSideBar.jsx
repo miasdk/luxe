@@ -1,4 +1,4 @@
-// Enhanced FilterSideBar.jsx - With Brand Filtering
+
 import React, { useState, useEffect } from "react";
 import { useProductContext } from "../context/ProductContext";
 import { ChevronDown, ChevronUp, Filter, X } from "lucide-react";

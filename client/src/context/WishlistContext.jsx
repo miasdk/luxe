@@ -1,4 +1,4 @@
-// WishlistContext.jsx - Updated with product refresh
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useAuthContext } from './AuthContext';
 

@@ -412,12 +412,7 @@ export default function UpdateListing() {
                   </span>
                 </div>
               </div>
-              <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                <p className="text-xs text-blue-800">
-                  <strong>Note:</strong> Brand, category, and attributes cannot be modified in this version. 
-                  Contact support if changes are needed.
-                </p>
-              </div>
+
             </div>
 
             {/* Delete Section */}

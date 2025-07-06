@@ -1,7 +1,7 @@
 import { Info } from 'lucide-react';
 export default function DemoWarning() {
     return (
-        <div className="border border-red-400 text-red-800 p-6 flexjustify-between mb-1">
+        <div className="border border-red-400 text-red-800 p-6 flex justify-between mb-1">
             <div className="flex flex-col items-left">
                 <h4 className="text-lg font-semibold mb-2">
                     <Info className="inline-block mr-2" />

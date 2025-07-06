@@ -1,4 +1,4 @@
-// ProductContext.jsx - Complete with Brand Filtering Support
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import productService from '../services/productService';
 import brandService from '../services/brandService';
