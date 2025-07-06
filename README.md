@@ -381,41 +381,80 @@ cd backend && npm run db:setup  # if migrations exist
 
 ## 💳 Payment Testing
 
-> **Test the complete payment flow with these Stripe test credentials**
+> **⚠️ IMPORTANT: This application uses Stripe LIVE mode with real payment processing**
 
-### Test Payment Functionality
+### Payment Testing Options
 
-The application uses **Stripe live mode** for real payment processing. To test the payment functionality without making actual charges, use these test card numbers:
+This application is configured with **Stripe live keys** for demonstration purposes. You have two options for testing:
 
-| Card Number | Brand | Result |
-|-------------|--------|--------|
-| `4242 4242 4242 4242` | Visa | ✅ Successful payment |
-| `4000 0000 0000 0002` | Visa | ❌ Card declined |
-| `4000 0000 0000 9995` | Visa | ❌ Insufficient funds |
-| `4000 0000 0000 0069` | Visa | ❌ Expired card |
+#### Option 1: Live Payment Testing (Small Amounts)
+If you want to test with real payments, use your actual payment cards with small amounts (e.g., $1-5). **These will be real charges.**
 
-**Test Details:**
-- **Expiry Date**: Any future date (e.g., `12/25`)
+#### Option 2: Developer Testing (Recommended)
+For safe testing without charges, developers can temporarily switch to test mode:
+
+**Stripe Test Card Numbers** (Only works in test mode):
+
+| Card Number | Brand | Result | Use Case |
+|-------------|--------|--------|----------|
+| `4242 4242 4242 4242` | Visa | ✅ Successful payment | Happy path testing |
+| `4000 0000 0000 0002` | Visa | ❌ Card declined | Error handling |
+| `4000 0000 0000 9995` | Visa | ❌ Insufficient funds | Payment failure |
+| `4000 0000 0000 0069` | Visa | ❌ Expired card | Validation testing |
+| `4000 0000 0000 0127` | Visa | ❌ Incorrect CVC | Security testing |
+| `4000 0000 0000 0341` | Visa | ❌ Processing error | Error handling |
+
+**Test Card Details:**
+- **Expiry Date**: Any future date (e.g., `12/28`)
 - **CVC**: Any 3-digit number (e.g., `123`)
-- **ZIP Code**: Any 5-digit number (e.g., `12345`)
+- **ZIP Code**: Any 5-digit US ZIP (e.g., `12345`)
+- **Name**: Any name (e.g., `Test User`)
 
-### How to Test Payments
+### How to Test the Payment Flow
 
-1. **Add items to cart** on [ecartdemo.vercel.app](https://ecartdemo.vercel.app)
-2. **Sign in** with Google OAuth or create an account
-3. **Proceed to checkout** and fill in shipping information
-4. **Use test card numbers** above in the payment form
-5. **Complete purchase** - you'll see order confirmation
+1. **Browse Products** → Visit [ecartdemo.vercel.app](https://ecartdemo.vercel.app)
+2. **Add to Cart** → Select products and add them to your shopping cart
+3. **Sign In** → Use Google OAuth or create an account with email/password
+4. **Checkout** → Click "Checkout" and fill in shipping information:
+   - Full Name: `John Doe`
+   - Email: Your email address
+   - Address: `123 Test Street`
+   - City: `San Francisco`
+   - State: `CA`
+   - ZIP: `94102`
+5. **Payment** → Enter payment details (see options above)
+6. **Confirmation** → View order confirmation and check your profile for order history
 
-**Note**: Test payments will not result in actual charges. The system uses Stripe's test environment for safe testing.
+### 🔧 Switching to Test Mode (For Developers)
+
+To use test cards, update environment variables:
+
+```env
+# Replace live keys with test keys
+VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your_test_key
+STRIPE_SECRET_KEY=sk_test_your_test_key
+```
 
 ### Payment Features Demonstrated
 
-- **Secure Payment Processing** - PCI-compliant Stripe integration
-- **Real-time Validation** - Card validation and error handling
-- **Order Creation** - Complete order workflow with database persistence
-- **Payment Confirmation** - Success/failure handling with user feedback
-- **Order History** - Completed orders appear in user profile
+- **🔒 Secure Processing** - PCI-compliant Stripe integration with SCA support
+- **💳 Multiple Payment Methods** - Credit/debit cards with real-time validation
+- **🛡️ Fraud Protection** - Built-in Stripe fraud detection and 3D Secure
+- **📱 Mobile Optimized** - Responsive payment forms for all devices
+- **⚡ Real-time Validation** - Instant card validation and error feedback
+- **📋 Order Management** - Complete order creation and tracking system
+- **📧 Confirmation Flow** - Success/failure handling with detailed feedback
+- **📊 Order History** - Persistent order tracking in user profile
+- **🔄 Payment Status** - Real-time payment status updates
+- **💰 Live Transactions** - Production-ready payment infrastructure
+
+### 🛡️ Security Features
+
+- **PCI Compliance** - Stripe handles all sensitive card data
+- **SSL Encryption** - All payment data transmitted over HTTPS
+- **Tokenization** - Card details never stored on our servers
+- **3D Secure** - Additional authentication for European cards
+- **Fraud Detection** - Stripe's machine learning fraud prevention
 
 ---
 
