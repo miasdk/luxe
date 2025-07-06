@@ -167,20 +167,20 @@ const HomePage = () => {
               <div className="inline-block bg-gray-900 text-white text-sm font-medium px-4 py-2 mb-8 tracking-wide">
                 FEATURED PRODUCT
               </div>
-              <h2 className="text-4xl xl:text-5xl font-light mb-8 leading-tight text-gray-900">The Essential Oversized Blazer</h2>
+              <h2 className="text-4xl xl:text-5xl font-light mb-8 leading-tight text-gray-900">Elegant Banana Republic Blouse</h2>
               <p className="text-xl text-gray-600 mb-10 leading-relaxed max-w-xl">
-                Crafted from premium materials, our signature blazer combines timeless design with modern
-                proportions. A versatile staple that effortlessly elevates any outfit.
+                A sophisticated white blouse perfect for work or casual wear. This versatile piece from Banana Republic 
+                combines classic elegance with modern comfort, making it a wardrobe essential.
               </p>
               <div className="mb-10">
                 <div className="flex items-center gap-4">
-                  <span className="text-4xl xl:text-5xl font-light text-gray-900">$289.00</span>
-                  <span className="text-sm bg-green-50 text-green-700 px-4 py-2 font-medium tracking-wide">FREE SHIPPING</span>
+                  <span className="text-4xl xl:text-5xl font-light text-gray-900">$39.99</span>
+                  <span className="text-sm bg-green-50 text-green-700 px-4 py-2 font-medium tracking-wide">GREAT VALUE</span>
                 </div>
               </div>
               <div className="flex gap-6">
                 <Link
-                  to="/products"
+                  to="/products/13"
                   className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 px-10 py-5 text-lg font-medium shadow-sm"
                 >
                   Shop Now
@@ -192,17 +192,17 @@ const HomePage = () => {
               <div className="grid grid-cols-2 gap-8">
                 <div className="aspect-[4/5] overflow-hidden shadow-xl">
                   <img
-                    src="https://www.net-a-porter.com/variants/images/1647597326342291/in/w2000_q80.jpg"
-                    alt="Featured product"
-                    className="w-full h-full object-cover"
+                    src="https://cf-assets-thredup.thredup.com/assets/640936167/retina.jpg"
+                    alt="Banana Republic Blouse"
+                    className="w-full h-full object-contain bg-gray-50"
                   />
                 </div>
-                <div className="aspect-[4/5] overflow-hidden shadow-xl">
-                  <img
-                    src="https://www.net-a-porter.com/variants/images/1647597326342291/ou/w2000_q80.jpg"
-                    alt="Featured product detail"
-                    className="w-full h-full object-cover"
-                  />
+                <div className="aspect-[4/5] overflow-hidden shadow-xl bg-gray-50 flex items-center justify-center">
+                  <div className="text-center p-8">
+                    <div className="text-6xl font-light text-gray-300 mb-4">BR</div>
+                    <p className="text-sm text-gray-500 font-medium">BANANA REPUBLIC</p>
+                    <p className="text-xs text-gray-400 mt-2">Premium Quality</p>
+                  </div>
                 </div>
               </div>
             </div>
