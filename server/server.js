@@ -52,6 +52,31 @@ app.use('/api/search', searchRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/newsletter', newsletterRouter); 
 
+// Health check route
+app.get('/health', async (req, res) => {
+    try {
+        // Test database connection
+        const { pool } = await import('./config/database.js');
+        const result = await pool.query('SELECT 1 as test');
+        
+        res.status(200).json({ 
+            status: 'OK', 
+            timestamp: new Date().toISOString(),
+            environment: process.env.NODE_ENV || 'development',
+            database: 'connected'
+        });
+    } catch (error) {
+        console.error('Health check failed:', error);
+        res.status(500).json({ 
+            status: 'ERROR', 
+            timestamp: new Date().toISOString(),
+            environment: process.env.NODE_ENV || 'development',
+            database: 'disconnected',
+            error: error.message
+        });
+    }
+});
+
 // Home route
 app.get('/', (req, res) => {
     res.redirect('/api-docs');
@@ -62,4 +87,6 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
     console.log(`📚 API Docs: http://localhost:${PORT}/api-docs`);
+    console.log(`🔍 Health check: http://localhost:${PORT}/health`);
+    console.log(`🌐 Environment: ${process.env.NODE_ENV || 'development'}`);
 });
