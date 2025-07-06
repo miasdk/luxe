@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 const CategoryCard = ({ category }) => {
   return (
-    <div className="group relative overflow-hidden rounded-lg bg-white transition-all duration-300 hover:shadow-md">
+    <div className="group relative overflow-hidden bg-white transition-all duration-300 hover:shadow-md">
       <div className="aspect-[4/5] overflow-hidden">
         <img
           src={category.image || "/placeholder.svg"}
@@ -16,7 +16,7 @@ const CategoryCard = ({ category }) => {
 
       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
         <div className="transform transition-transform duration-300 group-hover:translate-y-[-4px]">
-          <div className="mb-1 inline-block rounded-full bg-white/20 px-2.5 py-1 text-xs font-medium backdrop-blur-sm">
+          <div className="mb-1 inline-block bg-white/20 px-2.5 py-1 text-xs font-medium backdrop-blur-sm">
             {category.itemCount || "Collection"}
           </div>
           <h2 className="mb-2 font-light text-2xl tracking-wide">{category.name}</h2>
@@ -32,7 +32,7 @@ const CategoryCard = ({ category }) => {
         </div>
       </div>
 
-      <div className="absolute inset-0 rounded-xl border border-white/10 pointer-events-none"></div>
+      <div className="absolute inset-0 border border-white/10 pointer-events-none"></div>
     </div>
   )
 }

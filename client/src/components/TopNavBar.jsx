@@ -53,7 +53,7 @@ export default function TopNavBar({ user, loading }) {
     return (
         <>
             <nav className="sticky top-0 bg-white z-50 border-solid p-1 shadow-sm">
-                <div className="container mx-auto flex justify-between items-center">
+                <div className="container mx-auto px-4 xl:px-8 max-w-6xl flex justify-between items-center">
                     {user ? (
                         <div className="relative" ref={dropdownRef}>
                             <button 

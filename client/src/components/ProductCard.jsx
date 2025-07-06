@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <article className="group h-full flex flex-col overflow-hidden relative rounded-lg hover:border-gray-200 transition-all">
+    <article className="group h-full flex flex-col overflow-hidden relative hover:border-gray-200 transition-all">
       
       <div className="absolute top-3 right-3 z-10">
         <WishlistButton
@@ -65,21 +65,21 @@ const ProductCard = ({ product }) => {
           <div className="flex flex-col items-center gap-2 mt-auto">
             <div className="flex items-center gap-2">
               <button
-                className="px-3 py-1 border border-gray-300 rounded hover:bg-gray-100 text-sm"
+                className="px-3 py-1 border border-gray-300 hover:bg-gray-100 text-sm"
                 onClick={handleRemoveFromCart}
               >
                 -
               </button>
               <span className="text-sm font-semibold">{quantity} in cart</span>
               <button
-                className="px-3 py-1 border border-gray-300 rounded hover:bg-gray-100 text-sm"
+                className="px-3 py-1 border border-gray-300 hover:bg-gray-100 text-sm"
                 onClick={handleAddToCart}
               >
                 +
               </button>
             </div>
             <button
-              className="border border-red-500 text-red-500 px-3 py-1 rounded-full hover:bg-red-500 hover:text-white text-sm transition-colors"
+              className="border border-red-500 text-red-500 px-3 py-1 hover:bg-red-500 hover:text-white text-sm transition-colors"
               onClick={handleRemoveFromCart}
             >
               Remove
@@ -87,7 +87,7 @@ const ProductCard = ({ product }) => {
           </div>
         ) : (
           <button
-            className="w-full px-4 py-2 border border-gray-500 hover:bg-gray-800 hover:text-white rounded-lg transition-colors font-medium mt-auto"
+            className="w-full px-4 py-2 border border-gray-500 hover:bg-gray-800 hover:text-white transition-colors font-medium mt-auto"
             onClick={handleAddToCart}
           >
             Add to Cart

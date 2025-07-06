@@ -1,11 +1,11 @@
 export const brandData = [
     {
-        name: "Lululemon",
-        image: "https://1000logos.net/wp-content/uploads/2017/08/Lululemon-Logo-768x636.png",
+        name: "Nike",
+        image: "https://1000logos.net/wp-content/uploads/2021/11/Nike-Logo-768x432.png",
     },
     {
-        name: "Banana Republic",
-        image: "https://1000logos.net/wp-content/uploads/2025/02/Banana-Republic-Logo.png",
+        name: "Zara",
+        image: "https://1000logos.net/wp-content/uploads/2022/08/Zara-log%D0%BE-768x432.png",
     },
     {
         name: "H&M",
@@ -16,12 +16,8 @@ export const brandData = [
         image: "https://1000logos.net/wp-content/uploads/2017/12/Gap-Logo-768x512.png",
     },
     {
-        name: "Nike",
-        image: "https://1000logos.net/wp-content/uploads/2021/11/Nike-Logo-768x432.png",
-    },
-    {
-        name: "Zara",
-        image: "https://1000logos.net/wp-content/uploads/2022/08/Zara-log%D0%BE-768x432.png",
+        name: "Lululemon",
+        image: "https://1000logos.net/wp-content/uploads/2017/08/Lululemon-Logo-768x636.png",
     },
     {
         name: "J.Crew",

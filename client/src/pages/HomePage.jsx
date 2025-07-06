@@ -58,13 +58,13 @@ const HomePage = () => {
               <div className="flex flex-wrap gap-6">
                 <Link
                   to="/products"
-                  className="inline-flex items-center px-8 py-4 text-lg bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-all duration-300 font-medium shadow-sm"
+                  className="inline-flex items-center px-8 py-4 text-lg bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 font-medium shadow-sm"
                 >
                   Explore Collection
                 </Link>
                 <Link
                   to={user ? "/create-listing" : "/login"}
-                  className="inline-flex items-center px-8 py-4 text-lg bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all duration-300 font-medium"
+                  className="inline-flex items-center px-8 py-4 text-lg bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all duration-300 font-medium"
                 >
                   Start Selling
                 </Link>
@@ -72,14 +72,14 @@ const HomePage = () => {
             </div>
             
             <div className="order-1 lg:order-2 xl:col-span-2 relative">
-              <div className="aspect-square xl:aspect-[4/5] max-w-lg mx-auto overflow-hidden rounded-2xl shadow-xl">
+              <div className="aspect-square xl:aspect-[4/5] max-w-lg mx-auto overflow-hidden shadow-xl">
                 <img
                   src="https://www.fashiongonerogue.com/wp-content/uploads/2025/02/Bottega-Veneta-Summer-2025-Campaign01-768x960.jpg"
                   alt="Featured collection showcase"
                   className="object-cover w-full h-full"
                 />
               </div>
-              <div className="absolute -bottom-8 -left-8 md:-left-12 bg-white p-8 rounded-xl shadow-lg max-w-sm">
+              <div className="absolute -bottom-8 -left-8 md:-left-12 bg-white p-8 shadow-lg max-w-sm">
                 <p className="text-sm text-gray-500 mb-2">Featured Collection</p>
                 <p className="text-xl font-medium text-gray-900">Timeless Essentials</p>
               </div>
@@ -90,7 +90,7 @@ const HomePage = () => {
 
       </section>
 
-      <section className="bg-gray-50 py-12 border-b border-gray-100">
+            <section className="bg-gray-50 py-12 border-b border-gray-100">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <TrustBadge
@@ -130,14 +130,14 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-12 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="flex justify-between items-center mb-8">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-sm font-medium text-gray-600">BEST DEALS</span>
+                <span className="text-sm font-medium text-gray-600">EXCEPTIONAL VALUE</span>
               </div>
-              <h2 className="text-2xl font-light text-gray-900">Lowest Prices</h2>
+              <h2 className="text-2xl font-light text-gray-900">Luxury for Less</h2>
             </div>
             <Link to="/products?sort=price_low" className="text-gray-700 text-base font-medium flex items-center group">
               View All
@@ -148,57 +148,49 @@ const HomePage = () => {
         </div>
       </section>
 
-       <section className="py-12 bg-white">
+       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-block bg-white text-gray-700 text-sm font-medium px-3 py-1.5 rounded-full mb-4 shadow-sm">
+              <div className="inline-block bg-gray-100 text-gray-700 text-sm font-medium px-4 py-2 mb-6">
                 FEATURED PRODUCT
               </div>
-              <h2 className="text-3xl xl:text-4xl font-light mb-4 leading-tight text-gray-900">The Essential Oversized Blazer</h2>
-              <p className="text-gray-600 text-base mb-6 leading-relaxed max-w-2xl">
-                Crafted from premium Italian wool, our signature blazer combines timeless design with modern
+              <h2 className="text-3xl xl:text-4xl font-light mb-6 leading-tight text-gray-900">The Essential Oversized Blazer</h2>
+              <p className="text-gray-600 text-lg mb-8 leading-relaxed max-w-2xl">
+                Crafted from premium materials, our signature blazer combines timeless design with modern
                 proportions. A versatile staple that effortlessly elevates any outfit.
               </p>
-              <div className="mb-6">
+              <div className="mb-8">
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl xl:text-3xl font-light text-gray-900">$289.00</span>
-                  <span className="text-sm bg-green-50 text-green-700 px-2.5 py-0.5 rounded-full">Free shipping</span>
+                  <span className="text-3xl xl:text-4xl font-light text-gray-900">$289.00</span>
+                  <span className="text-sm bg-green-50 text-green-700 px-3 py-1.5 font-medium">Free shipping</span>
                 </div>
               </div>
               <div className="flex gap-4">
                 <Link
                   to="/products"
-                  className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 px-6 py-3 text-base rounded-lg font-medium shadow-sm"
+                  className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 px-8 py-4 text-lg font-medium shadow-sm"
                 >
                   Shop Now
                 </Link>
-                <button className="border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-all duration-300 px-6 py-3 text-base rounded-lg font-medium flex items-center shadow-sm">
-                  <Heart size={18} className="mr-2" />
-                  Add to Favorites
-                </button>
               </div>
             </div>
             
             <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-lg group">
-                  <div className="relative h-full">
-                    <img
-                      src="https://www.net-a-porter.com/variants/images/1647597326342291/in/w2000_q80.jpg"
-                      alt="Featured product"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="aspect-[4/5] overflow-hidden shadow-lg">
+                  <img
+                    src="https://www.net-a-porter.com/variants/images/1647597326342291/in/w2000_q80.jpg"
+                    alt="Featured product"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className="aspect-[4/5] overflow-hidden rounded-lg shadow-lg group">
-                  <div className="relative h-full">
-                    <img
-                      src="https://www.net-a-porter.com/variants/images/1647597326342291/ou/w2000_q80.jpg"
-                      alt="Featured product detail"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
+                <div className="aspect-[4/5] overflow-hidden shadow-lg">
+                  <img
+                    src="https://www.net-a-porter.com/variants/images/1647597326342291/ou/w2000_q80.jpg"
+                    alt="Featured product detail"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -231,13 +223,13 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/login"
-                className="bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300 px-8 py-3 text-base rounded-lg font-medium shadow-sm"
+                className="bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300 px-8 py-3 text-base font-medium shadow-sm"
               >
                 Sign In
               </Link>
               <Link
                 to="/register"
-                className="bg-gray-800 text-white hover:bg-gray-700 border border-gray-700 transition-all duration-300 px-8 py-3 text-base rounded-lg font-medium"
+                className="bg-gray-800 text-white hover:bg-gray-700 border border-gray-700 transition-all duration-300 px-8 py-3 text-base font-medium"
               >
                 Create Account
               </Link>
@@ -281,7 +273,7 @@ const HomePage = () => {
 
 const TrustBadge = ({ icon, title, description }) => (
   <div className="flex items-center gap-6 group">
-    <div className="p-4 rounded-2xl bg-white group-hover:bg-gray-100 transition-all duration-300 text-gray-700 shadow-sm">
+    <div className="p-4 bg-white group-hover:bg-gray-100 transition-all duration-300 text-gray-700 shadow-sm">
       {icon}
     </div>
     <div>
@@ -304,7 +296,7 @@ const NewsletterForm = () => {
       <input
         type="email"
         placeholder="Your email address"
-        className="flex-grow bg-white/10 border border-white/20 text-white placeholder-white/60 px-6 py-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40"
+        className="flex-grow bg-white/10 border border-white/20 text-white placeholder-white/60 px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40"
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -312,7 +304,7 @@ const NewsletterForm = () => {
       />
       <button
         type="submit"
-        className="bg-white text-gray-900 hover:bg-gray-100 transition-colors duration-300 px-8 py-4 text-lg rounded-lg font-medium whitespace-nowrap shadow-sm"
+        className="bg-white text-gray-900 hover:bg-gray-100 transition-colors duration-300 px-8 py-4 text-lg font-medium whitespace-nowrap shadow-sm"
         aria-label="Subscribe"
       >
         Subscribe
