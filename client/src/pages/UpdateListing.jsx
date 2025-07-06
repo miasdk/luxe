@@ -27,6 +27,7 @@ export default function UpdateListing() {
   const [formData, setFormData] = useState({
     title: "",
     price: "",
+    original_price: "",
     description: "",
     image: ""
   });
@@ -122,6 +123,7 @@ export default function UpdateListing() {
           setFormData({
             title: productData.title || "",
             price: productData.price || "",
+            original_price: productData.original_price || "",
             description: productData.description || "",
             image: productData.image || ""
           });
@@ -180,6 +182,7 @@ export default function UpdateListing() {
       const updatedProduct = {
         title: formData.title,
         price: parseFloat(formData.price),
+        original_price: formData.original_price ? parseFloat(formData.original_price) : null,
         description: formData.description,
         image: formData.image,
         brand_id: brandId,
@@ -476,24 +479,49 @@ export default function UpdateListing() {
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-2">
-                    Price
-                  </label>
-                  <div className="relative">
-                    <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
-                    <input
-                      type="number"
-                      id="price"
-                      name="price"
-                      value={formData.price}
-                      onChange={handleInputChange}
-                      required
-                      min="0"
-                      step="0.01"
-                      placeholder="0.00"
-                      className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
-                    />
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-2">
+                      Current Price
+                    </label>
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                      <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        value={formData.price}
+                        onChange={handleInputChange}
+                        required
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                        className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="original_price" className="block text-sm font-medium text-gray-700 mb-2">
+                      Original Price <span className="text-gray-400 text-xs">(optional)</span>
+                    </label>
+                    <div className="relative">
+                      <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                      <input
+                        type="number"
+                        id="original_price"
+                        name="original_price"
+                        value={formData.original_price}
+                        onChange={handleInputChange}
+                        min="0"
+                        step="0.01"
+                        placeholder="0.00"
+                        className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
+                      />
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Show the original retail price to highlight savings
+                    </p>
                   </div>
                 </div>
               </div>

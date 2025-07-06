@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import WishlistButton from "./WishlistButton";
+import PriceDisplay from "./PriceDisplay";
 
 const ProductCard = ({ product }) => {
   const { addToCart, removeFromCart, cart } = useCart(); 
@@ -50,7 +51,13 @@ const ProductCard = ({ product }) => {
           {product.conditions} | Sz. {product.sizes}
         </span>
         
-        <p className="text-xl font-bold mb-2">${product.price}</p>
+        <div className="mb-2">
+          <PriceDisplay 
+            price={product.price}
+            originalPrice={product.original_price}
+            size="medium"
+          />
+        </div>
         
         <p className="text-gray-700 text-sm line-clamp-2 mb-4 flex-grow">{product.description}</p>
 

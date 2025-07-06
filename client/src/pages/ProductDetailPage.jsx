@@ -21,6 +21,7 @@ import ProductCarousel from "../components/ProductCarousel"
 import WishlistButton from '../components/WishlistButton';
 import Breadcrumb from '../components/Breadcrumb';
 import CartModal from '../components/CartModal';
+import PriceDisplay from '../components/PriceDisplay';
 
 
 export default function ProductDetailPage() {
@@ -207,6 +208,12 @@ export default function ProductDetailPage() {
                     {product.brand_name && (
                       <p className="text-gray-500">{product.brand_name}</p>
                     )}
+                    {product.seller_name && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-gray-300">•</span>
+                        <p className="text-gray-500">Sold by <span className="font-medium">{product.seller_name}</span></p>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-row gap-2 ml-4">
@@ -239,16 +246,12 @@ export default function ProductDetailPage() {
             </div>
 
             <div className="mb-6">
-              <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-3xl font-light text-gray-900">${product.price}</span>
-                {product.original_price && (
-                  <span className="text-lg text-gray-500 line-through">${product.original_price}</span>
-                )}
-                {product.original_price && (
-                  <span className="text-sm font-medium text-green-600 bg-green-50 px-2 py-0.5 rounded">
-                    {Math.round(((product.original_price - product.price) / product.original_price) * 100)}% OFF
-                  </span>
-                )}
+              <div className="mb-2">
+                <PriceDisplay 
+                  price={product.price}
+                  originalPrice={product.original_price}
+                  size="large"
+                />
               </div>
               <p className="text-sm text-gray-500">
                 In Stock
