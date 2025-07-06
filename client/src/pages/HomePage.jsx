@@ -184,7 +184,7 @@ const HomePage = () => {
             
             <div className="relative">
               <div className="grid grid-cols-2 gap-8">
-                <div className="aspect-[4/5] overflow-hidden shadow-xl">
+                <div className="overflow-hidden shadow-xl">
                   <img
                     src="https://cf-assets-thredup.thredup.com/assets/640936167/retina.jpg"
                     alt="Banana Republic Blouse"
