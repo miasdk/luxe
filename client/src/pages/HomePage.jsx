@@ -78,7 +78,7 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="relative bg-white">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="grid md:grid-cols-5 gap-12 xl:gap-16 items-center py-16 md:py-20">
+          <div className="grid md:grid-cols-5 gap-12 xl:gap-16 items-center pt-8 md:pt-6 pb-16 md:pb-20">
             {/* Content Side */}
             <div className="md:col-span-2 space-y-8">
               <div className="space-y-6">
@@ -197,6 +197,26 @@ const HomePage = () => {
             </Link>
           </div>
           <ProductCarousel filterType="popular" />
+        </div>
+      </section>
+
+       {/* Affordable Find */}
+       <section className="py-12">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+          <div className="flex justify-between items-center mb-8">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium text-gray-600 tracking-wide marketplace-label">AFFORDABLE FINDS</span>
+              </div>
+              <h2 className="text-xl xl:text-2xl font-semibold text-gray-900 marketplace-title">Lowest Prices</h2>
+              <p className="text-sm text-gray-600 marketplace-body">Amazing deals that won't break the budget</p>
+            </div>
+            <Link to="/products?sort=price_low" className="text-gray-700 text-sm font-medium flex items-center group">
+              View All
+              <ArrowRight size={16} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
+          <ProductCarousel filterType="price_low" />
         </div>
       </section>
 
@@ -351,23 +371,22 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Affordable Find */}
       <section className="py-12">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="flex justify-between items-center mb-8">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-gray-600 tracking-wide marketplace-label">AFFORDABLE FINDS</span>
+                <span className="text-xs font-medium text-gray-600 tracking-wide marketplace-label">JUST ARRIVED</span>
               </div>
-              <h2 className="text-xl xl:text-2xl font-semibold text-gray-900 marketplace-title">Lowest Prices</h2>
-              <p className="text-sm text-gray-600 marketplace-body">Amazing deals that won't break the budget</p>
+              <h2 className="text-xl xl:text-2xl font-semibold text-gray-900 marketplace-title">New Arrivals</h2>
+              <p className="text-sm text-gray-600 marketplace-body">Explore latest arrivals</p>
             </div>
             <Link to="/products?sort=price_low" className="text-gray-700 text-sm font-medium flex items-center group">
               View All
               <ArrowRight size={16} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </div>
-          <ProductCarousel filterType="price_low" />
+          <ProductCarousel filterType="new" />
         </div>
       </section>
 
