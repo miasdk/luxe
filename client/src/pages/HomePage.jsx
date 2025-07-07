@@ -190,7 +190,7 @@ const HomePage = () => {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="inline-block bg-gray-900 text-white text-sm font-medium px-4 py-2 mb-8 tracking-wide">
-                  FEATURED PRODUCT
+                  SPOTLIGHT
                 </div>
                 <h2 className="text-4xl xl:text-5xl font-light mb-8 leading-tight text-gray-900">{featuredProduct.title}</h2>
                 <p className="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl">
@@ -234,7 +234,7 @@ const HomePage = () => {
           <div className="flex justify-between items-center mb-10">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-medium text-gray-600 tracking-wide">BEST DEALS</span>
+                <span className="text-sm font-medium text-gray-600 tracking-wide">AFFORDABLE FINDS</span>
               </div>
               <h2 className="text-3xl xl:text-4xl font-light text-gray-900">Lowest Prices</h2>
             </div>
@@ -264,8 +264,7 @@ const HomePage = () => {
           <div className="container mx-auto px-4 xl:px-8 text-center max-w-4xl">
             <h2 className="text-4xl xl:text-5xl font-light mb-6">Join Our Marketplace</h2>
             <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Sign up for exclusive access to special collections, personalized recommendations, and a seamless shopping
-              experience.
+              Create an account to start buying and selling.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
@@ -296,7 +295,7 @@ const HomePage = () => {
         <div className="container mx-auto px-4 xl:px-8 max-w-4xl text-center relative z-10">
           <h2 className="text-4xl xl:text-5xl font-light mb-8 text-gray-900">Subscribe to Our Newsletter</h2>
           <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Be the first to know about new collections, exclusive offers, and curated selections.
+            Get updates on new arrivals and featured items.
           </p>
           <NewsletterForm />
         </div>
