@@ -210,11 +210,19 @@ const updateProduct = async (productId, productData) => {
         });
         
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Failed to update product');
+            let errorData;
+            try {
+                errorData = await response.json();
+            } catch (parseError) {
+                console.error('Failed to parse error response:', parseError);
+                throw new Error(`Update failed with status ${response.status}: ${response.statusText}`);
+            }
+            console.error('Update error:', errorData);
+            throw new Error(errorData.message || errorData.error || `Update failed with status ${response.status}`);
         }
         
-        return await response.json();
+        const result = await response.json();
+        return result;
     } catch (error) {
         console.error(`Error in updateProduct(${productId}):`, error);
         throw error;
@@ -286,6 +294,8 @@ const fetchRecommendations = async (productId, limit = 4) => {
         return []; // Return empty array if recommendations fail
     }
 };
+
+
 
 export default {
     fetchAllProducts,
