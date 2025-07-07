@@ -4,7 +4,7 @@ export default function Footer() {
     <footer className="bg-black text-white py-16 border-t border-gray-800">
       <div className="container mx-auto text-center">
         <p className="text-gray-300 mb-3">
-          Made with <FaHeart className="inline text-red-500" /> by Mia Elena Tapia
+          Made with <FaHeart className="inline text-red-500" /> by Mia Elena
         </p>
         <p className="text-gray-400">
           &copy; {new Date().getFullYear()} Luxe. All rights reserved.

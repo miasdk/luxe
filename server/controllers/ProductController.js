@@ -141,6 +141,24 @@ class ProductController {
         }
     }
 
+    static async getFeaturedProduct(req, res) {
+        try {
+            const featuredProductService = new FeaturedProductService();
+            const featuredProduct = await featuredProductService.getFeaturedProduct();
+            
+            if (!featuredProduct) {
+                return res.status(404).json({ message: "No featured product available" });
+            }
+
+            // Log the selection for analytics
+            featuredProductService.logFeaturedSelection(featuredProduct);
+            
+            res.status(200).json(featuredProduct);
+        } catch (error) {
+            console.error("Error fetching featured product:", error);
+            res.status(500).json({ message: "Failed to retrieve featured product" });
+        }
+    }
 }
 
 export default ProductController;
