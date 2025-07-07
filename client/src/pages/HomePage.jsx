@@ -110,7 +110,7 @@ const HomePage = () => {
             <div className="order-1 lg:order-2 xl:col-span-2 relative">
               <div className="aspect-square xl:aspect-[4/5] max-w-lg mx-auto overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=1000&fit=crop&crop=center"
+                  src="https://www.fashiongonerogue.com/wp-content/uploads/2025/02/Bottega-Veneta-Summer-2025-Campaign01-768x960.jpg"
                   alt="Featured collection showcase"
                   className="object-cover w-full h-full"
                 />
@@ -167,25 +167,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-gray-100 border-t border-gray-200">
-        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-medium text-gray-600 tracking-wide">BEST DEALS</span>
-              </div>
-              <h2 className="text-3xl xl:text-4xl font-light text-gray-900">Lowest Prices</h2>
-            </div>
-            <Link to="/products?sort=price_low" className="text-gray-700 text-base font-medium flex items-center group">
-              View All
-              <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </div>
-          <ProductCarousel filterType="price_low" />
-        </div>
-      </section>
-
-      <section className="py-28 bg-white border-t border-gray-100">
+      <section className="py-28 bg-gray-50 border-t border-gray-200">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           {featuredProductLoading ? (
             <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -246,6 +228,24 @@ const HomePage = () => {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="py-24 bg-white border-t border-gray-100">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-sm font-medium text-gray-600 tracking-wide">BEST DEALS</span>
+              </div>
+              <h2 className="text-3xl xl:text-4xl font-light text-gray-900">Lowest Prices</h2>
+            </div>
+            <Link to="/products?sort=price_low" className="text-gray-700 text-base font-medium flex items-center group">
+              View All
+              <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
+          <ProductCarousel filterType="price_low" />
         </div>
       </section>
 
