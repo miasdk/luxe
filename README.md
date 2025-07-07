@@ -1,8 +1,10 @@
+<<<<<<< HEAD
 # eCart - Full-Stack E-Commerce Marketplace
 
 <div align="center">
 
 **An e-commerce marketplace built with React 18, Node.js/Express, and PostgreSQL featuring Firebase authentication, CRUD product management, shopping cart functionality, and Stripe payment integration**
+
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-brightgreen)](https://ecartdemo.vercel.app)
 [![API Docs](https://img.shields.io/badge/API_Docs-Swagger-blue)](https://ecart-mxsk.onrender.com/api-docs)
