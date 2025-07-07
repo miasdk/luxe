@@ -166,6 +166,43 @@ export default function ProductDetailPage() {
   const isInCart = cart.find((item) => item.product_id === product.product_id)
   const cartQuantity = isInCart ? isInCart.quantity : 0
 
+  if (loading) {
+    return (
+      <div className="bg-white min-h-screen">
+        <div className="container mx-auto px-4 py-8">
+          <div className="animate-pulse">
+            <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="aspect-square bg-gray-200 rounded-xl"></div>
+              <div className="space-y-4">
+                <div className="h-8 bg-gray-200 rounded w-3/4"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+                <div className="h-6 bg-gray-200 rounded w-1/4"></div>
+                <div className="h-12 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (!product) {
+    return (
+      <div className="bg-white min-h-screen">
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center py-12">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Product not found</h1>
+            <p className="text-gray-600 mb-6">The product you're looking for doesn't exist or has been removed.</p>
+            <Link to="/products" className="bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors">
+              Browse Products
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="bg-white">
       <div className="py-5  border-gray-100">
