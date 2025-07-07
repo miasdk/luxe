@@ -57,18 +57,6 @@ const HomePage = () => {
     fetchFeaturedProduct()
   }, [])
 
-  // Helper function to get price badge
-  const getPriceBadge = (price) => {
-    const numPrice = parseFloat(price)
-    if (numPrice <= 50) {
-      return { text: "GREAT VALUE", color: "bg-green-50 text-green-700" }
-    } else if (numPrice <= 150) {
-      return { text: "PREMIUM", color: "bg-blue-50 text-blue-700" }
-    } else {
-      return { text: "LUXURY", color: "bg-purple-50 text-purple-700" }
-    }
-  }
-
   if (loading) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -140,7 +128,7 @@ const HomePage = () => {
       <section className="bg-white py-20 border-t border-gray-100">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="text-center mb-16">
-            <span className="text-sm font-medium text-gray-600 tracking-wide">TRUSTED BY LEADING BRANDS</span>
+            <span className="text-sm font-medium text-gray-600 tracking-wide">SHOP BRANDS</span>
           </div>
           
           <div className="grid grid-cols-3 md:grid-cols-6 gap-12 items-center justify-center">
@@ -231,9 +219,6 @@ const HomePage = () => {
                 <div className="mb-10">
                   <div className="flex items-center gap-4">
                     <span className="text-4xl xl:text-5xl font-light text-gray-900">${featuredProduct.price}</span>
-                    <span className={`text-sm px-4 py-2 font-medium tracking-wide ${getPriceBadge(featuredProduct.price).color}`}>
-                      {getPriceBadge(featuredProduct.price).text}
-                    </span>
                   </div>
                   {featuredProduct.brand_name && (
                     <p className="text-sm text-gray-500 mt-2">by {featuredProduct.brand_name}</p>
@@ -251,15 +236,12 @@ const HomePage = () => {
               </div>
               
               <div className="relative">
-                <div className="overflow-hidden bg-gray-50 rounded-lg shadow-lg">
+                <div className="overflow-hidden bg-gray-50 rounded-lg">
                   <img
                     src={featuredProduct.image || "/placeholder.svg"}
                     alt={featuredProduct.title}
                     className="w-full h-full object-contain p-8"
                   />
-                </div>
-                <div className="absolute -top-4 -right-4 bg-white rounded-full p-3 shadow-lg">
-                  <Heart size={24} className="text-gray-400" />
                 </div>
               </div>
             </div>
