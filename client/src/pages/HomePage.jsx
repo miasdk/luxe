@@ -125,7 +125,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="bg-white py-20 border-t border-gray-100">
+      <section className="bg-gray-50 py-24 border-t border-gray-200">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="text-center mb-16">
             <span className="text-sm font-medium text-gray-600 tracking-wide">SHOP BRANDS</span>
@@ -149,7 +149,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-24 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="flex justify-between items-center mb-12">
             <div>
@@ -167,7 +167,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-gray-100 border-t border-gray-200">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="flex justify-between items-center mb-12">
             <div>
@@ -185,7 +185,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-24 bg-white">
+      <section className="py-28 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           {featuredProductLoading ? (
             <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -236,11 +236,11 @@ const HomePage = () => {
               </div>
               
               <div className="relative">
-                <div className="overflow-hidden bg-gray-50 rounded-lg">
+                <div className="aspect-square bg-white rounded-lg border border-gray-100 overflow-hidden shadow-sm">
                   <img
                     src={featuredProduct.image || "/placeholder.svg"}
                     alt={featuredProduct.title}
-                    className="w-full h-full object-contain p-8"
+                    className="w-full h-full object-contain p-12"
                   />
                 </div>
               </div>
@@ -249,7 +249,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-24 bg-gray-50 border-t border-gray-200">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="mb-16">
             <div className="flex gap-2 mb-4">
@@ -262,7 +262,7 @@ const HomePage = () => {
       </section>
 
       {!user && (
-        <section className="bg-gray-900 text-white py-24">
+        <section className="bg-gray-800 text-white py-24 border-t border-gray-700">
           <div className="container mx-auto px-4 xl:px-8 text-center max-w-4xl">
             <h2 className="text-4xl xl:text-5xl font-light mb-6">Join Our Marketplace</h2>
             <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
@@ -287,7 +287,7 @@ const HomePage = () => {
         </section>
       )}
 
-      <section className="bg-gray-900 text-white py-28">
+      <section className="bg-gray-900 text-white py-32 border-t border-gray-800">
         <div className="container mx-auto px-4 xl:px-8 max-w-4xl text-center">
           <h2 className="text-4xl xl:text-5xl font-light mb-8">Subscribe to Our Newsletter</h2>
           <p className="text-xl text-gray-300 mb-16 max-w-2xl mx-auto leading-relaxed">
