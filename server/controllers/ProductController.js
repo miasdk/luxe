@@ -140,6 +140,7 @@ class ProductController {
             res.status(500).json({ message: "Failed to retrieve seller products" });
         }
     }
+
 }
 
 export default ProductController;

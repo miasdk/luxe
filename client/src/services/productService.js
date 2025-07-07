@@ -319,51 +319,54 @@ const getFeaturedProduct = async () => {
             
             // 1. Image quality (products with images get priority)
             if (product.image && product.image.trim() !== '') {
+                score += 20;
+            }
+            
+            // 2. Brand recognition (core brands get extra points)
+            if (product.brand_name && coreBrands.includes(product.brand_name)) {
+                score += 15;
+            }
+            
+            // 3. Popular categories get bonus points
+            if (product.category_name && popularCategories.includes(product.category_name)) {
                 score += 10;
             }
             
-            // 2. Description quality (longer descriptions indicate more care)
-            if (product.description && product.description.length > 50) {
+            // 4. Engagement metrics (likes indicate popularity)
+            if (product.num_likes) {
+                // Logarithmic scaling for likes (prevents outliers from dominating)
+                score += Math.min(Math.log10(product.num_likes + 1) * 8, 25);
+            }
+            
+            // 5. Price range scoring (moderate prices get slight preference)
+            const price = parseFloat(product.price);
+            if (price >= 30 && price <= 100) {
+                score += 8;
+            } else if (price >= 15 && price <= 150) {
                 score += 5;
             }
             
-            // 3. Price sweet spot (products in $20-$200 range)
-            const price = parseFloat(product.price);
-            if (price >= 20 && price <= 200) {
-                score += 8;
+            // 6. Recency bonus for newer items
+            if (product.created_at) {
+                const daysSinceCreated = (Date.now() - new Date(product.created_at)) / (1000 * 60 * 60 * 24);
+                if (daysSinceCreated <= 7) {
+                    score += 12; // New items get significant boost
+                } else if (daysSinceCreated <= 30) {
+                    score += 6; // Recent items get modest boost
+                }
             }
             
-            // 4. Popular categories get bonus
-            if (popularCategories.includes(product.category_name)) {
-                score += 3;
-            }
-            
-            // 5. Core brands get priority
-            if (coreBrands.includes(product.brand_name)) {
-                score += 6;
-            }
-            
-            // 6. Products with likes get small bonus
-            if (product.num_likes && product.num_likes > 0) {
-                score += Math.min(product.num_likes, 5); // Cap at 5 points
-            }
-            
-            // 7. Add randomness factor (0-5 points) to ensure variety
+            // 7. Add small random factor for variety (prevents same product always winning)
             score += Math.random() * 5;
             
-            return {
-                ...product,
-                _score: score
-            };
+            return { ...product, featuredScore: score };
         });
 
-        // Sort by score (highest first) and take top candidate
-        scoredProducts.sort((a, b) => b._score - a._score);
+        // Sort by score (highest first) and return the top product
+        scoredProducts.sort((a, b) => b.featuredScore - a.featuredScore);
         
-        // Remove the score property before returning
-        const featuredProduct = { ...scoredProducts[0] };
-        delete featuredProduct._score;
-        
+        // Remove the scoring field before returning
+        const { featuredScore, ...featuredProduct } = scoredProducts[0];
         return featuredProduct;
         
     } catch (error) {

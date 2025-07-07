@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap');
 @import "tailwindcss";
 
+/* Marketplace-inspired font stack similar to eBay and The RealReal */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .licorice-regular {
   font-family: "Licorice", cursive;
   font-weight: 400;
@@ -11,7 +20,27 @@
   font-family: "Licorice", cursive;
   font-weight: 400;
   font-style: normal;
-  font-size: 2.5rem;
+  font-size: 2rem;
+}
+
+/* Marketplace typography utilities */
+.marketplace-title {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.marketplace-body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.marketplace-label {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 /* Unified carousel base styles */

@@ -7,9 +7,12 @@ import { pool } from '../config/database.js';
 class ProductModel {
     static async getAllProducts() {
         const selectQuery = ` 
-            SELECT * 
-            FROM product_details
-            ORDER BY title, price;
+            SELECT p.*, u.display_name as seller_name, u.photo_url as seller_photo
+            FROM products p
+            LEFT JOIN users u ON p.seller_id = u.uid
+            LEFT JOIN brands b ON p.brand_id = b.id
+            LEFT JOIN categories c ON p.category_id = c.id
+            ORDER BY p.title, p.price;
         `;
 
         const results = await pool.query(selectQuery);
@@ -18,9 +21,13 @@ class ProductModel {
 
     static async getProductById(productId) {
         const selectQuery = `
-            SELECT * 
-            FROM product_details
-            WHERE product_id = $1;
+            SELECT p.*, u.display_name as seller_name, u.photo_url as seller_photo,
+                   b.name as brand_name, c.name as category_name
+            FROM products p
+            LEFT JOIN users u ON p.seller_id = u.uid
+            LEFT JOIN brands b ON p.brand_id = b.id
+            LEFT JOIN categories c ON p.category_id = c.id
+            WHERE p.id = $1;
         `;
 
         const results = await pool.query(selectQuery, [productId]);

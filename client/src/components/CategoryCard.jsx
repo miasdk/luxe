@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 
 const CategoryCard = ({ category }) => {
   return (
-    <div className="group relative overflow-hidden bg-white transition-all duration-300 hover:shadow-md">
-      <div className="aspect-[4/5] overflow-hidden">
+    <div className="group relative overflow-hidden bg-white transition-all duration-300 hover:shadow-md rounded-sm">
+      <div className="aspect-[3/4] overflow-hidden">
         <img
           src={category.image || "/placeholder.svg"}
           alt={category.name}

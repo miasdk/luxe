@@ -39,7 +39,7 @@ export default function CategoryCarousel() {
   if (isLoading) {
     return (
       <div className="mx-auto py-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 animate-pulse">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 animate-pulse">
           {[...Array(4)].map((_, index) => (
             <div key={index} className="bg-white rounded-xl shadow-sm overflow-hidden">
               <div className="aspect-square bg-gray-200"></div>
@@ -132,8 +132,8 @@ export default function CategoryCarousel() {
             spaceBetween: 24,
           },
           1024: {
-            slidesPerView: 5,
-            spaceBetween: 24,
+            slidesPerView: 4,
+            spaceBetween: 28,
           },
         }}
         className="carousel-swiper category-carousel"

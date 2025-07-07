@@ -138,6 +138,7 @@ const createProductsTable = async () => {
             description TEXT NOT NULL,
             category_id INT NOT NULL REFERENCES categories(id) ON DELETE CASCADE,
             image VARCHAR(255) NOT NULL,
+            seller_id TEXT REFERENCES users(uid) ON DELETE CASCADE,
             num_likes INT DEFAULT 0,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
@@ -154,8 +155,8 @@ const seedProductsTable = async () => {
     await createProductsTable();    
 
     const insertQuery = `
-    INSERT INTO products (brand_id, title, price, description, category_id, image, num_likes, created_at)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    INSERT INTO products (brand_id, title, price, description, category_id, image, seller_id, num_likes, created_at)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
 `;
     try {
         for (const product of products) {
@@ -166,6 +167,7 @@ const seedProductsTable = async () => {
                 product.description,
                 product.category_id,
                 product.image,
+                product.seller_id || null,
                 product.num_likes || 0,
                 product.created_at
             ]);
@@ -598,12 +600,16 @@ const createProductDetailsView = async () => {
             p.image,
             p.num_likes,  
             p.created_at,
+            p.seller_id,
+            u.display_name AS seller_name,
+            u.photo_url AS seller_photo,
             b.name AS brand_name,
             c.name AS category_name,
             array_remove(array_agg(DISTINCT s.name), NULL) AS sizes,
             array_remove(array_agg(DISTINCT cl.name), NULL) AS colors,
             array_remove(array_agg(DISTINCT co.name), NULL) AS conditions
         FROM products p
+        LEFT JOIN users u ON p.seller_id = u.uid
         LEFT JOIN brands b ON p.brand_id = b.id
         LEFT JOIN categories c ON p.category_id = c.id
         LEFT JOIN product_sizes ps ON p.id = ps.product_id
@@ -612,11 +618,11 @@ const createProductDetailsView = async () => {
         LEFT JOIN colors cl ON pc.color_id = cl.color_id
         LEFT JOIN product_conditions pc2 ON p.id = pc2.product_id
         LEFT JOIN conditions co ON pc2.condition_id = co.conditions_id
-        GROUP BY p.id, b.name, c.name;
+        GROUP BY p.id, p.seller_id, u.display_name, u.photo_url, b.name, c.name;
     `;
     try {
         await pool.query(query);
-        console.log('Product details view created successfully with num_likes');
+        console.log('Product details view created successfully with seller information');
     } catch (error) {
         console.error('Error creating product details view', error.stack);
     }

@@ -34,6 +34,8 @@ const addSellerIdToProducts = async () => {
                 p.num_likes,
                 p.created_at,
                 p.seller_id,
+                u.display_name AS seller_name,
+                u.photo_url AS seller_photo,
                 b.name AS brand_name,
                 c.name AS category_name,
                 ARRAY_AGG(DISTINCT col.name) FILTER (WHERE col.name IS NOT NULL) AS colors,
@@ -41,6 +43,7 @@ const addSellerIdToProducts = async () => {
                 ARRAY_AGG(DISTINCT cond.name) FILTER (WHERE cond.name IS NOT NULL) AS conditions,
                 p.search_vector
             FROM products p
+            LEFT JOIN users u ON p.seller_id = u.uid
             LEFT JOIN brands b ON p.brand_id = b.id
             LEFT JOIN categories c ON p.category_id = c.id
             LEFT JOIN product_colors pc ON p.id = pc.product_id
@@ -49,12 +52,12 @@ const addSellerIdToProducts = async () => {
             LEFT JOIN sizes s ON ps.size_id = s.size_id
             LEFT JOIN product_conditions pcon ON p.id = pcon.product_id
             LEFT JOIN conditions cond ON pcon.condition_id = cond.conditions_id
-            GROUP BY p.id, p.title, p.price, p.description, p.image, p.num_likes, p.created_at, p.seller_id, b.name, c.name, p.search_vector
+            GROUP BY p.id, p.title, p.price, p.description, p.image, p.num_likes, p.created_at, p.seller_id, u.display_name, u.photo_url, b.name, c.name, p.search_vector
             ORDER BY p.created_at DESC;
         `;
         
         await client.query(updateViewQuery);
-        console.log('✅ Updated product_details view to include seller_id');
+        console.log('✅ Updated product_details view to include seller information');
         
         await client.query('COMMIT');
         console.log('✅ Migration completed successfully');

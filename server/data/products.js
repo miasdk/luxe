@@ -7,7 +7,8 @@ export const productData = [
         category_id: 1, 
         description: "A light and airy floral dress perfect for summer.",
         image: "https://cf-assets-thredup.thredup.com/assets/660386110/retina.jpg",
-        num_likes: 234
+        num_likes: 234,
+        seller_id: "user1"
     },
     {
         brand_id: 6,
@@ -16,7 +17,8 @@ export const productData = [
         category_id: 1, 
         description: "A timeless classic, perfect for any occasion.",
         image: "https://cf-assets-thredup.thredup.com/assets/654243459/retina.jpg",
-        num_likes: 467
+        num_likes: 467,
+        seller_id: "user2"
     },
     {
         brand_id: 4,
@@ -25,7 +27,8 @@ export const productData = [
         category_id: 1, 
         description: "Flowing maxi dress with a bohemian vibe.",
         image: "https://cf-assets-thredup.thredup.com/assets/641044509/retina.jpg",
-        num_likes: 189
+        num_likes: 189,
+        seller_id: "user3"
     },
     {
         brand_id: 3,
@@ -33,7 +36,8 @@ export const productData = [
         price: 69.99,
         category_id: 1, 
         description: "Flattering wrap dress with adjustable waist.",
-        image: "https://cf-assets-thredup.thredup.com/assets/627588647/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/627588647/retina.jpg",
+        seller_id: "user4"
     },
     {
         brand_id: 6,
@@ -42,7 +46,8 @@ export const productData = [
         category_id: 1, 
         description: "Silky slip dress for a touch of elegance.",
         image: "https://cf-assets-thredup.thredup.com/assets/648232149/retina.jpg",
-        num_likes: 156
+        num_likes: 156,
+        seller_id: "user5"
     },
     {
         brand_id: 3,
@@ -50,7 +55,8 @@ export const productData = [
         price: 39.99,
         category_id: 1, 
         description: "Breezy sundress for warm summer days.",
-        image: "https://cf-assets-thredup.thredup.com/assets/617546679/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/617546679/retina.jpg",
+        seller_id: "user6"
     },
     {
         brand_id: 2,
@@ -58,7 +64,8 @@ export const productData = [
         price: 55.99,
         category_id: 1, 
         description: "Classic shift dress for a simple and chic look.",
-        image: "https://cf-assets-thredup.thredup.com/assets/658391199/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/658391199/retina.jpg",
+        seller_id: "user7"
     },
     {
         brand_id: 6,
@@ -67,7 +74,8 @@ export const productData = [
         category_id: 1, 
         description: "Figure-hugging bodycon dress for a night out.",
         image: "https://cf-assets-thredup.thredup.com/assets/655065124/retina.jpg",
-        num_likes: 278
+        num_likes: 278,
+        seller_id: "user8"
     },
     {
         brand_id: 6,
@@ -75,7 +83,8 @@ export const productData = [
         price: 75.99,
         category_id: 1, 
         description: "Trendy off-shoulder dress for a summery feel.",
-        image: "https://cf-assets-thredup.thredup.com/assets/640823262/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/640823262/retina.jpg",
+        seller_id: "user9"
     },
     {
         brand_id: 2,
@@ -84,7 +93,8 @@ export const productData = [
         category_id: 1, 
         description: "Elegant lace dress for special occasions.",
         image: "https://cf-assets-thredup.thredup.com/assets/644489855/retina.jpg",
-        num_likes: 342
+        num_likes: 342,
+        seller_id: "user10"
     },
   
     // Tops (2)
@@ -95,7 +105,8 @@ export const productData = [
         price: 19.99,
         category_id: 2, 
         description: "Classic cotton t-shirt.",
-        image: "https://cf-assets-thredup.thredup.com/assets/613075875/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/613075875/retina.jpg",
+        seller_id: "user1"
     },
     {
         brand_id: 1,
@@ -103,7 +114,8 @@ export const productData = [
         price: 15.99,
         category_id: 2, 
         description: "Sleeveless tank top for warm weather.",
-        image: "https://cf-assets-thredup.thredup.com/assets/650189184/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/650189184/retina.jpg",
+        seller_id: "user2"
     },
     {
         brand_id: 2,
@@ -112,7 +124,8 @@ export const productData = [
         category_id: 2, 
         description: "Elegant blouse for work or casual wear.",
         image: "https://cf-assets-thredup.thredup.com/assets/640936167/retina.jpg",
-        num_likes: 123
+        num_likes: 123,
+        seller_id: "user3"
     },
     {
         brand_id: 5,
@@ -120,7 +133,8 @@ export const productData = [
         price: 49.99,
         category_id: 2, 
         description: "Cozy sweatshirt for chilly days.",
-        image: "https://cf-assets-thredup.thredup.com/assets/640597045/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/640597045/retina.jpg",
+        seller_id: "user4"
     },
     {
         brand_id: 5,
@@ -129,7 +143,8 @@ export const productData = [
         category_id: 2, 
         description: "Hooded sweatshirt for a casual look.",
         image: "https://cf-assets-thredup.thredup.com/assets/663736236/retina.jpg",
-        num_likes: 298
+        num_likes: 298,
+        seller_id: "user5"
     },
     {
         brand_id: 3,
@@ -138,7 +153,8 @@ export const productData = [
         category_id: 2, 
         description: "Trendy crop top for summer.",
         image: "https://cf-assets-thredup.thredup.com/assets/646464937/retina.jpg",
-        num_likes: 201
+        num_likes: 201,
+        seller_id: "user6"
     },
     {
         brand_id: 1,
@@ -146,7 +162,8 @@ export const productData = [
         price: 35.99,
         category_id: 2, 
         description: "Stylish off-shoulder top for a summery feel.",
-        image: "https://cf-assets-thredup.thredup.com/assets/663737680/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/663737680/retina.jpg",
+        seller_id: "user7"
     },
     {
         brand_id: 7,
@@ -154,7 +171,8 @@ export const productData = [
         price: 39.99,
         category_id: 2, 
         description: "Versatile long-sleeve shirt for any season.",
-        image: "https://cf-assets-thredup.thredup.com/assets/651314803/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/651314803/retina.jpg",
+        seller_id: "user8"
     },
     {
         brand_id: 7,
@@ -162,7 +180,8 @@ export const productData = [
         price: 45.99,
         category_id: 2, 
         description: "Classic button-down shirt for a polished look.",
-        image: "https://cf-assets-thredup.thredup.com/assets/655314777/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/655314777/retina.jpg",
+        seller_id: "user9"
     },
     {
         brand_id: 3,
@@ -170,7 +189,8 @@ export const productData = [
         price: 19.99,
         category_id: 2, 
         description: "Delicate camisole for layering.",
-        image: "https://cf-assets-thredup.thredup.com/assets/571409958/retina.jpg"
+        image: "https://cf-assets-thredup.thredup.com/assets/571409958/retina.jpg",
+        seller_id: "user10"
     },
   
     // Sweaters (3)
