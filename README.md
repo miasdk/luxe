@@ -76,7 +76,6 @@ eCart is a production-ready e-commerce marketplace engineered to demonstrate sca
 - **Real-Time Cart Management** - Persistent shopping cart with optimistic UI updates and conflict resolution
 - **Advanced User Management** - Firebase Authentication with role-based access control and user profiles
 - **Dynamic Product Catalog** - Categories, brands, sizes, colors, and condition management
-- **Professional Newsletter System** - Email subscription system with database integration
 - **Interactive API Documentation** - Swagger/OpenAPI 3.0 with live testing capabilities for all 30+ endpoints
 - **Responsive Progressive Web App** - Mobile-first design with offline capabilities and performance optimization
 - **Production Monitoring** - Health checks, error tracking, and performance metrics
