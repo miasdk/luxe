@@ -295,7 +295,82 @@ const fetchRecommendations = async (productId, limit = 4) => {
     }
 };
 
+/**
+ * Get a dynamically selected featured product using a smart algorithm
+ * @returns {Promise<Object|null>} Featured product object or null
+ */
+const getFeaturedProduct = async () => {
+    try {
+        const products = await fetchAllProducts();
+        
+        if (!products || products.length === 0) {
+            return null;
+        }
 
+        // Core brands that get priority in scoring
+        const coreBrands = ['Nike', 'Zara', 'H&M', 'Gap', 'Lululemon', 'J.Crew'];
+        
+        // Popular categories for bonus points
+        const popularCategories = ['Tops', 'Dresses', 'Shoes', 'Accessories'];
+
+        // Score each product using multiple criteria
+        const scoredProducts = products.map(product => {
+            let score = 0;
+            
+            // 1. Image quality (products with images get priority)
+            if (product.image && product.image.trim() !== '') {
+                score += 10;
+            }
+            
+            // 2. Description quality (longer descriptions indicate more care)
+            if (product.description && product.description.length > 50) {
+                score += 5;
+            }
+            
+            // 3. Price sweet spot (products in $20-$200 range)
+            const price = parseFloat(product.price);
+            if (price >= 20 && price <= 200) {
+                score += 8;
+            }
+            
+            // 4. Popular categories get bonus
+            if (popularCategories.includes(product.category_name)) {
+                score += 3;
+            }
+            
+            // 5. Core brands get priority
+            if (coreBrands.includes(product.brand_name)) {
+                score += 6;
+            }
+            
+            // 6. Products with likes get small bonus
+            if (product.num_likes && product.num_likes > 0) {
+                score += Math.min(product.num_likes, 5); // Cap at 5 points
+            }
+            
+            // 7. Add randomness factor (0-5 points) to ensure variety
+            score += Math.random() * 5;
+            
+            return {
+                ...product,
+                _score: score
+            };
+        });
+
+        // Sort by score (highest first) and take top candidate
+        scoredProducts.sort((a, b) => b._score - a._score);
+        
+        // Remove the score property before returning
+        const featuredProduct = { ...scoredProducts[0] };
+        delete featuredProduct._score;
+        
+        return featuredProduct;
+        
+    } catch (error) {
+        console.error('Error in getFeaturedProduct:', error);
+        return null;
+    }
+};
 
 export default {
     fetchAllProducts,
@@ -309,5 +384,6 @@ export default {
     fetchRecommendations,
     addProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getFeaturedProduct
 };
