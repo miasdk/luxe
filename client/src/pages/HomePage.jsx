@@ -113,7 +113,7 @@ const HomePage = () => {
 
             {/* Image Side with Featured Collection */}
             <div className="order-1 md:order-2 md:col-span-3 relative">
-              <div className="aspect-square xl:aspect-[4/5] max-w-xl mx-auto overflow-hidden shadow-2xl rounded-sm">
+              <div className="h-full overflow-hidden shadow-2xl">
                 <img
                   src="https://www.fashiongonerogue.com/wp-content/uploads/2025/02/Bottega-Veneta-Summer-2025-Campaign01-768x960.jpg"
                   alt="Featured collection showcase"
