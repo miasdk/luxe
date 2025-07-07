@@ -7,6 +7,7 @@ import { Truck, RotateCcw, ArrowRight, Heart, Shield, Star, Zap, TrendingUp } fr
 import brandService from "../services/brandService"
 import categoryService from "../services/categoryService"
 import productService from "../services/productService"
+import editorial2 from "../assets/images/editorial2.jpg"
 
 // Core brands to display on homepage
 const CORE_BRANDS = ['Nike', 'Zara', 'H&M', 'Gap', 'Lululemon', 'J.Crew']
@@ -287,10 +288,17 @@ const HomePage = () => {
         </section>
       )}
 
-      <section className="bg-gray-900 text-white py-20 border-t border-gray-800">
-        <div className="container mx-auto px-4 xl:px-8 max-w-4xl text-center">
-          <h2 className="text-4xl xl:text-5xl font-light mb-8">Subscribe to Our Newsletter</h2>
-          <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+      <section className="bg-white py-20 border-t border-gray-200 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={editorial2}
+            alt="Newsletter background"
+            className="w-full h-full object-cover opacity-10"
+          />
+        </div>
+        <div className="container mx-auto px-4 xl:px-8 max-w-4xl text-center relative z-10">
+          <h2 className="text-4xl xl:text-5xl font-light mb-8 text-gray-900">Subscribe to Our Newsletter</h2>
+          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
             Be the first to know about new collections, exclusive offers, and curated selections.
           </p>
           <NewsletterForm />
@@ -325,7 +333,7 @@ const NewsletterForm = () => {
       <input
         type="email"
         placeholder="Enter your email address"
-        className="flex-grow bg-white/10 border border-white/20 text-white placeholder-white/60 px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-white/40 rounded-lg backdrop-blur-sm"
+        className="flex-grow bg-white border border-gray-200 text-gray-900 placeholder-gray-500 px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900 rounded-lg shadow-sm"
         required
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -333,7 +341,7 @@ const NewsletterForm = () => {
       />
       <button
         type="submit"
-        className="bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300 px-8 py-4 text-lg font-medium whitespace-nowrap shadow-sm rounded-lg hover:shadow-md"
+        className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 px-8 py-4 text-lg font-medium whitespace-nowrap shadow-sm rounded-lg hover:shadow-md"
         aria-label="Subscribe"
       >
         Subscribe
