@@ -84,6 +84,19 @@ export default function UpdateListing() {
 
   // Fetch reference data and product
   useEffect(() => {
+    // Validate product ID first
+    if (!id || id === 'undefined' || id === 'null') {
+      setError("Invalid product ID. Redirecting...");
+      setLoading(false);
+      
+      // Redirect after a short delay
+      setTimeout(() => {
+        navigate('/products');
+      }, 2000);
+      
+      return;
+    }
+
     const fetchAllData = async () => {
       setLoading(true);
       setError(null);
@@ -165,6 +178,19 @@ export default function UpdateListing() {
       setError("Title, price, and description are required");
       return;
     }
+
+    // Debug the product ID issue
+    console.log("Product object:", product);
+    console.log("Product ID from product:", product?.product_id);
+    console.log("Product ID from URL (id):", id);
+    
+    // Get the correct product ID with fallbacks
+    const productId = product?.product_id || product?.id || id;
+    
+    if (!productId || productId === 'undefined') {
+      setError("Invalid product ID - cannot update product");
+      return;
+    }
     
     setIsSubmitting(true);
     setError(null);
@@ -199,9 +225,9 @@ export default function UpdateListing() {
       
       // Note: original_price field removed - not supported by production database
       
-      await productsService.updateProduct(product.product_id, updatedProduct);
+      await productsService.updateProduct(productId, updatedProduct);
       
-      navigate(`/products/${product.product_id}`, { 
+      navigate(`/products/${productId}`, { 
         state: { message: "Product updated successfully" } 
       });
     } catch (err) {
@@ -215,7 +241,15 @@ export default function UpdateListing() {
 
   const handleDelete = async () => {
     try {
-      await productsService.deleteProduct(product.product_id);
+      // Get the correct product ID with fallbacks
+      const productId = product?.product_id || product?.id || id;
+      
+      if (!productId || productId === 'undefined') {
+        setError("Invalid product ID - cannot delete product");
+        return;
+      }
+      
+      await productsService.deleteProduct(productId);
       navigate("/products", { state: { message: "Product deleted successfully" } });
     } catch (err) {
       setError(err.message || "Failed to delete product");
@@ -310,14 +344,14 @@ export default function UpdateListing() {
             </div>
             <div className="flex items-center gap-3">
               <Link
-                to={`/products/${product.product_id}`}
+                to={`/products/${product?.product_id || product?.id || id}`}
                 className="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-50 transition-colors"
               >
                 <Eye size={16} className="mr-2" />
                 View Product
               </Link>
               <Link
-                to={`/products/${product.product_id}`}
+                to={`/products/${product?.product_id || product?.id || id}`}
                 className="inline-flex items-center px-4 py-2 border border-gray-300 text-gray-700 font-medium rounded-md hover:bg-gray-50 transition-colors"
               >
                 <ArrowLeft size={16} className="mr-2" />

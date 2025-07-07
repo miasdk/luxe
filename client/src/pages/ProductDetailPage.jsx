@@ -206,7 +206,7 @@ export default function ProductDetailPage() {
   return (
     <div className="bg-white">
       <div className="py-5  border-gray-100">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
         <Breadcrumb 
           items={[
             { label: 'Products', href: '/products' },
@@ -224,7 +224,7 @@ export default function ProductDetailPage() {
       </div>
     </div>
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 xl:px-8 py-8 max-w-6xl">
         <div className="flex flex-col md:flex-row gap-12">
           <div className="md:w-1/2">
             <div className="mb-4 aspect-square overflow-hidden rounded-xl ">
@@ -268,7 +268,7 @@ export default function ProductDetailPage() {
                   </div>
                   <div className="flex flex-col items-center">
                     <Link
-                      to={`/update-listing/${product.product_id}`}
+                      to={`/update-listing/${product?.product_id || product?.id || productId}`}
                       className="p-2 rounded-full border border-gray-200 text-gray-500 hover:bg-gray-100"
                       aria-label="Edit product"
                     >
@@ -277,7 +277,7 @@ export default function ProductDetailPage() {
                      <span className="text-xs text-gray-500 mt-1">
                         Edit
                       </span>
-                      </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -397,7 +397,7 @@ export default function ProductDetailPage() {
       </div>
 
       <div className="hidden md:block border-t border-gray-200">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="flex border-b border-gray-200">
             <button
               onClick={() => setActiveTab("description")}
@@ -478,7 +478,7 @@ export default function ProductDetailPage() {
       </div>
 
       <div className="md:hidden border-t border-gray-200">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="divide-y divide-gray-200">
             <div className="py-4">
               <button
@@ -549,7 +549,7 @@ export default function ProductDetailPage() {
       </div>
 
       <div className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="mb-10">
             <h2 className="text-2xl font-light text-gray-900 mb-2">You May Also Like</h2>
             <p className="text-gray-600">Explore more items from the {product.category_name} collection</p>
