@@ -1,8 +1,8 @@
-# eCart - Production-Ready E-Commerce Platform
+# Luxe - Production-Ready E-Commerce Platform
 
 <div align="center">
 
-**A comprehensive full-stack e-commerce marketplace built with React, Node.js, and PostgreSQL featuring authentication, product management, shopping cart, and integrated Stripe payments**
+**A comprehensive full-stack e-commerce marketplace built with React, Node.js, and PostgreSQL featuring firebase authentication system, product management, shopping cart, and integrated Stripe payments**
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-brightgreen)](https://ecartdemo.vercel.app)
 [![API Docs](https://img.shields.io/badge/API_Docs-Swagger-blue)](https://ecart-mxsk.onrender.com/api-docs)
