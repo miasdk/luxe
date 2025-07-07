@@ -1,8 +1,8 @@
-# eCart - Production-Ready E-Commerce Platform
+# eCart - Full-Stack E-Commerce Marketplace
 
 <div align="center">
 
-**A comprehensive full-stack e-commerce marketplace built with React, Node.js, and PostgreSQL featuring authentication, product management, shopping cart, and integrated Stripe payments**
+**An e-commerce marketplace built with React 18, Node.js/Express, and PostgreSQL featuring Firebase authentication, CRUD product management, shopping cart functionality, and Stripe payment integration**
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-brightgreen)](https://ecartdemo.vercel.app)
 [![API Docs](https://img.shields.io/badge/API_Docs-Swagger-blue)](https://ecart-mxsk.onrender.com/api-docs)
@@ -18,64 +18,55 @@
 
 - [Project Overview](#project-overview)
 - [Live Application](#live-application)
-- [Core E-Commerce Capabilities](#core-e-commerce-capabilities)
 - [Technology Stack](#technology-stack)
-- [Design System & UI/UX](#design-system--uiux)
-- [Architecture & Design Patterns](#architecture--design-patterns)
-- [Database Schema & Optimization](#database-schema--optimization)
-- [API Documentation & Testing](#api-documentation--testing)
-- [Application Flow & User Journey](#application-flow--user-journey)
-- [Getting Started](#getting-started)
 - [Key Technical Features](#key-technical-features)
+- [Database & Architecture](#database--architecture)
 - [Deployment](#deployment)
-- [Development Methodology](#development-methodology)
-- [Technical Achievements](#technical-achievements)
-- [License](#license)
-- [Contributing](#contributing)
+- [Local Setup](#local-setup)
 - [Contact](#contact)
 
 ## Project Overview
 
-eCart is a **production-ready e-commerce marketplace** demonstrating advanced full-stack development capabilities with modern web technologies. Built to showcase scalable architecture, comprehensive API design, and professional development practices suitable for enterprise-level applications.
+eCart is a full-stack e-commerce marketplace built with React, Node.js, and PostgreSQL. The application demonstrates MVC architecture patterns, RESTful API design, and modern deployment practices.
 
-**Key Technical Highlights:**
-- **Enterprise Architecture** - MVC pattern with service layer abstraction and clear separation of concerns
-- **Production Database** - PostgreSQL with GIN indexes, full-text search, and optimized query performance
-- **Comprehensive REST API** - 45+ documented endpoints with interactive Swagger/OpenAPI testing
-- **Modern Authentication** - Firebase integration with Google OAuth 2.0 and JWT token validation
-- **Live Payment Processing** - Production Stripe integration with PCI-compliant payment handling
-- **Multi-Cloud Deployment** - Distributed architecture across Vercel, Render, and Railway platforms
+**Technical Implementation:**
+- **MVC Architecture** - Controllers handle HTTP requests, Services contain business logic, Models manage data access
+- **PostgreSQL Database** - Normalized schema with GIN indexes for full-text search on product titles/descriptions
+- **REST API** - 45+ endpoints documented with Swagger/OpenAPI 3.0 for testing
+- **Firebase Authentication** - Google OAuth 2.0 integration with JWT token validation middleware
+- **Stripe Payment Integration** - Checkout sessions with live payment processing
+- **Multi-Platform Deployment** - Frontend on Vercel, API on Render, Database on Railway
 
-### Core E-Commerce Capabilities
+### E-Commerce Features
 
 <div align="center">
 
 | Feature | Technology Stack | Implementation |
 |---------|------------------|----------------|
-| **User Authentication** | Firebase + Google OAuth | ![Complete](https://img.shields.io/badge/🟢-Production_Ready-success) |
-| **Product Catalog** | PostgreSQL + Full-Text Search | ![Complete](https://img.shields.io/badge/🟢-Production_Ready-success) |
-| **Shopping Cart** | Context API + Persistent Storage | ![Complete](https://img.shields.io/badge/🟢-Production_Ready-success) |
-| **Payment Processing** | Stripe Live Integration | ![Complete](https://img.shields.io/badge/🟢-Production_Ready-success) |
-| **Order Management** | Complete Workflow System | ![Complete](https://img.shields.io/badge/🟢-Production_Ready-success) |
-| **Search & Filtering** | PostgreSQL GIN + Advanced Filters | ![Complete](https://img.shields.io/badge/🟢-Production_Ready-success) |
-| **Seller Dashboard** | CRUD Product Management | ![Complete](https://img.shields.io/badge/🟢-Production_Ready-success) |
-| **Wishlist System** | Social Features + Like Counts | ![Complete](https://img.shields.io/badge/🟢-Production_Ready-success) |
-| **API Documentation** | Swagger/OpenAPI 3.0 | ![Complete](https://img.shields.io/badge/🟢-Production_Ready-success) |
-| **Responsive Design** | Mobile-First + Tailwind CSS | ![Complete](https://img.shields.io/badge/🟢-Production_Ready-success) |
+| **User Authentication** | Firebase Auth + Google OAuth | ![Complete](https://img.shields.io/badge/🟢-Implemented-success) |
+| **Product Catalog** | PostgreSQL + GIN Full-Text Search | ![Complete](https://img.shields.io/badge/🟢-Implemented-success) |
+| **Shopping Cart** | React Context + localStorage | ![Complete](https://img.shields.io/badge/🟢-Implemented-success) |
+| **Payment Processing** | Stripe Checkout Sessions | ![Complete](https://img.shields.io/badge/🟢-Implemented-success) |
+| **Order Management** | PostgreSQL Orders/Order Items Tables | ![Complete](https://img.shields.io/badge/🟢-Implemented-success) |
+| **Search & Filtering** | PostgreSQL WHERE clauses + ILIKE | ![Complete](https://img.shields.io/badge/🟢-Implemented-success) |
+| **Product Management** | CRUD Operations via REST API | ![Complete](https://img.shields.io/badge/🟢-Implemented-success) |
+| **Wishlist/Likes** | PostgreSQL Wishlists Table + Like Counter | ![Complete](https://img.shields.io/badge/🟢-Implemented-success) |
+| **API Documentation** | Swagger/OpenAPI 3.0 Spec | ![Complete](https://img.shields.io/badge/🟢-Implemented-success) |
+| **Responsive Design** | Tailwind CSS Utility Classes | ![Complete](https://img.shields.io/badge/🟢-Implemented-success) |
 
 </div>
 
-**Advanced E-Commerce Features Implemented:**
-- **Social Commerce System** - Product likes with real-time counters and user engagement tracking
-- **Google OAuth Integration** - Seamless sign-in with automatic profile creation and management
-- **Intelligent Product Discovery** - Multi-criteria scoring algorithm for featured product selection
-- **Live Payment Infrastructure** - Production Stripe keys with secure payment processing
-- **Dynamic Product Catalog** - Categories, brands, sizes, colors, and condition management
-- **Comprehensive Seller Tools** - Product listing creation, editing, and inventory management
-- **Newsletter Subscription** - Email capture system with PostgreSQL storage and admin management
-- **Real-Time Cart Management** - Persistent shopping cart with immediate UI feedback
-- **Advanced Search Capabilities** - Full-text search with relevance ranking and faceted filtering
-- **Professional API Design** - RESTful endpoints with comprehensive documentation and testing tools
+**E-Commerce Features Implemented:**
+- **Product Like System** - Users can like products, like counts stored in PostgreSQL, displayed on product cards
+- **Google OAuth Integration** - Login via Google with Firebase, automatic user profile creation in database
+- **Featured Product Algorithm** - Multi-criteria scoring system (brand, likes, price, recency) to select daily featured product
+- **Stripe Payment Processing** - Checkout sessions with live Stripe integration, order confirmation emails
+- **Product Catalog Management** - Categories, brands, sizes, colors, conditions stored in separate PostgreSQL tables
+- **Seller Product Management** - Create, read, update, delete operations for product listings via authenticated API endpoints
+- **Newsletter Email Capture** - Email subscription form with PostgreSQL storage and duplicate prevention
+- **Persistent Shopping Cart** - Cart state managed in React Context, persisted to localStorage, synchronized across browser sessions
+- **Full-Text Product Search** - PostgreSQL GIN indexes enable searching product titles and descriptions with ranking
+- **REST API Design** - 45+ endpoints following RESTful conventions with Swagger documentation for testing
 
 ---
 
@@ -161,186 +152,11 @@ VS Code           → Development environment
 
 ---
 
-## Design System & UI/UX
 
-The application implements a comprehensive design system focused on **modern minimalism**, **professional elegance**, and **user-centered design**. Every interface decision reflects contemporary e-commerce best practices and sophisticated visual hierarchy.
 
-### Typography System
+## Database & Architecture
 
-The typography foundation establishes **visual hierarchy** and **brand consistency** across all user touchpoints.
-
-**Unified Font Foundation**
-```css
-/* Primary Typeface: Inter (System Default) */
-font-family: Inter, "Helvetica Neue", Arial, sans-serif;
-
-/* Typography Hierarchy */
-Hero Titles     → font-bold + tracking-tight     (maximum impact)
-Section Headers → font-light + tracking-tight    (refined elegance)  
-Body Text       → font-normal + leading-relaxed  (optimal readability)
-UI Labels       → font-medium + tracking-wide    (functional clarity)
-```
-
-**Responsive Typography Scale**
-```css
-/* Hero (Homepage) */
-text-5xl md:text-6xl lg:text-7xl xl:text-8xl  /* 48px → 128px */
-
-/* Page Headers (Product Pages) */  
-text-3xl font-light tracking-tight            /* 30px, refined */
-
-/* Section Headings */
-text-3xl font-light tracking-tight            /* Consistent hierarchy */
-
-/* Component Titles */
-text-xl md:text-2xl font-semibold             /* 20px → 24px */
-
-/* Body Text */
-text-lg leading-relaxed                       /* 18px, readable */
-```
-
-### Color Psychology & Branding
-
-**Primary Palette**
-```css
-/* Sophisticated Grays (Professional Foundation) */
-Gray-900: #111827   → Primary text, navigation, CTAs
-Gray-800: #1F2937   → Secondary elements, hover states  
-Gray-600: #4B5563   → Subdued text, descriptions
-Gray-400: #9CA3AF   → Placeholders, disabled states
-Gray-100: #F3F4F6   → Background tints, subtle borders
-
-/* Accent Colors (Strategic Application) */
-Red-500:  #EF4444   → Sale badges, urgent notifications
-Blue-600: #2563EB   → Links, interactive elements
-Green-500: #10B981  → Success states, confirmations
-```
-
-**Gradient System (Premium Touch)**
-```css
-/* Primary Button Gradients */
-from-gray-900 via-gray-800 to-black    → Sophisticated depth
-hover:from-gray-800 via-gray-700       → Interactive refinement
-
-/* Background Gradients */
-from-gray-50/50 to-white               → Subtle page backgrounds
-```
-
-### Layout & Spatial Design
-
-**Grid System & Spacing**
-```css
-/* Container Widths */
-max-w-6xl     → Main content areas (1152px)
-max-w-7xl     → Product grids (1280px)  
-max-w-4xl     → Text-focused sections (896px)
-
-/* Responsive Breakpoints */
-sm: 640px     → Mobile landscape
-md: 768px     → Tablet portrait  
-lg: 1024px    → Tablet landscape
-xl: 1280px    → Desktop
-2xl: 1536px   → Large desktop
-
-/* Spacing Scale (Tailwind-based) */
-py-16         → Major section spacing (4rem)
-py-12         → Standard section spacing (3rem)
-py-8          → Component spacing (2rem)
-gap-6         → Grid gutters (1.5rem)
-```
-
-### Component Design Philosophy
-
-**Button Architecture**
-```css
-/* Primary Actions (Conversion-focused) */
-Gradient backgrounds → Visual premium feel
-Shadow elevation    → Depth and importance
-Hover animations    → Micro-interaction feedback
-Icon integration    → Clear action indication
-
-/* Secondary Actions (Supportive) */
-Border-based design → Non-competing hierarchy  
-Gradient on hover   → Progressive enhancement
-Subtle shadows      → Professional refinement
-```
-
-**Card Design System**
-```css
-/* Product Cards */
-border-gray-200/50  → Subtle definition
-hover:shadow-lg     → Interactive feedback
-rounded-lg          → Modern corner radius
-overflow-hidden     → Clean image treatment
-
-/* Content Cards */
-bg-white            → Clean background
-shadow-sm           → Gentle elevation
-border treatment    → Defined boundaries
-```
-
-### User Experience Principles
-
-**Interaction Design**
-- **Progressive Disclosure** - Complex features revealed gradually
-- **Micro-Animations** - Framer Motion for smooth state transitions  
-- **Optimistic UI** - Immediate feedback before server confirmation
-- **Error Prevention** - Form validation and user guidance
-
-**Accessibility Considerations**
-- **Color Contrast** - WCAG 2.1 AA compliance for all text
-- **Focus Management** - Clear keyboard navigation paths
-- **Semantic HTML** - Proper heading hierarchy and landmarks
-- **Screen Reader Support** - Meaningful alt texts and ARIA labels
-
-**Mobile-First Responsive Strategy**
-```css
-/* Adaptive Component Sizing */
-px-4 xl:px-8        → Responsive horizontal padding
-text-lg xl:text-xl  → Scalable typography
-grid-cols-1 md:grid-cols-2 lg:grid-cols-4  → Progressive layouts
-
-/* Touch-Friendly Interactions */
-py-3 px-6           → Minimum 44px touch targets
-gap-4               → Adequate spacing between interactive elements
-```
-
-### Brand Identity & Visual Tone
-
-**Marketplace Aesthetic**
-- **Premium Minimalism** - Clean interfaces inspired by luxury e-commerce
-- **Professional Confidence** - Bold typography with refined spacing
-- **Contemporary Elegance** - Subtle gradients and sophisticated colors
-- **User-Centric Clarity** - Clear information hierarchy and intuitive navigation
-
-**Visual Inspiration References**
-- **Typography**: Apple.com, Stripe.com (clean, confident)
-- **Layout**: The RealReal, Vestiaire Collective (luxury marketplaces)  
-- **Interactions**: Linear.app, Notion.com (smooth, purposeful)
-- **Color**: Figma.com, GitHub.com (professional, accessible)
-
-### Design System Benefits
-
-**Developer Experience**
-- **Consistent Implementation** - Unified utility classes and patterns
-- **Scalable Architecture** - Reusable components and design tokens
-- **Maintenance Efficiency** - Centralized styling decisions
-
-**User Experience**
-- **Cognitive Consistency** - Predictable interface patterns
-- **Visual Hierarchy** - Clear information prioritization  
-- **Professional Credibility** - Polished, intentional design decisions
-
-**Business Impact**
-- **Conversion Optimization** - Strategic use of color and typography for CTAs
-- **Brand Differentiation** - Sophisticated aesthetic sets premium expectations
-- **Scalability Foundation** - Design system supports feature expansion
-
----
-
-## Database Schema & Optimization
-
-The application utilizes a normalized PostgreSQL schema optimized for e-commerce operations with comprehensive relationships between core business entities.
+The application uses a normalized PostgreSQL schema with foreign key relationships between Users, Products, Orders, Categories, Brands, and Cart tables.
 
 ### Entity Relationship Diagram (ERD)
 
@@ -581,455 +397,37 @@ newsletter
 
 ---
 
-## Architecture & Design Patterns
 
-### System Architecture
 
-```mermaid
-graph TB
-    subgraph "Client Layer"
-        A[React Frontend<br/>Vercel CDN]
-        A1[Mobile App<br/>React Native]
-    end
-    
-    subgraph "API Gateway"
-        B[Express.js API<br/>Render Cloud]
-        B1[Rate Limiting]
-        B2[Authentication]
-        B3[CORS Handling]
-    end
-    
-    subgraph "Business Logic"
-        C[Product Service]
-        C1[Cart Service]
-        C2[Order Service]
-        C3[User Service]
-        C4[Payment Service]
-        C5[Search Service]
-    end
-    
-    subgraph "Data Layer"
-        D[PostgreSQL<br/>Railway Cloud]
-    end
-    
-    subgraph "External Services"
-        E[Firebase Auth<br/>Google OAuth]
-        E1[Stripe Payments<br/>PCI Compliance]
-        E2[Email Service<br/>Newsletter]
-    end
-    
-    subgraph "File Storage"
-        F[Cloudinary<br/>Image CDN]
-        F1[AWS S3<br/>Document Storage]
-    end
-    
-    A --> B
-    A1 --> B
-    B --> B1
-    B --> B2
-    B --> B3
-    B --> C
-    B --> C1
-    B --> C2
-    B --> C3
-    B --> C4
-    B --> C5
-    C --> D
-    C1 --> D
-    C2 --> D
-    C3 --> D
-    C4 --> D
-    C5 --> D
-    B2 --> E
-    C4 --> E1
-    C3 --> E2
-    C --> F
-    D --> F1
+
+
+
+
+## Local Setup
+
+**Prerequisites:** Node.js 18+, PostgreSQL, Firebase project, Stripe account
+
+```bash
+# Clone and install dependencies
+git clone https://github.com/miasdk/eCart.git
+cd eCart
+
+# Install server dependencies
+cd server && npm install
+
+# Install client dependencies  
+cd ../client && npm install
+
+# Setup environment variables (see .env.example files)
+# Initialize database with sample data
+cd server && node config/reset.js
+
+# Start development servers
+npm start          # Backend on :3001
+cd ../client && npm run dev  # Frontend on :5173
 ```
 
-### Design Patterns Implemented
-- **MVC Architecture** - Clear separation between models, views, and controllers
-- **Repository Pattern** - Data access layer abstraction for testability
-- **Service Layer** - Business logic encapsulation for e-commerce workflows
-- **Factory Pattern** - Payment processor initialization and configuration management
-- **Observer Pattern** - Real-time cart updates and inventory management
-- **Strategy Pattern** - Multiple payment strategies (Stripe, PayPal future)
-- **Singleton Pattern** - Database connection pooling and configuration management
-
----
-
-## API Documentation & Testing
-
-> **Interactive API Documentation**: Experience the e-commerce API with live testing capabilities
-
-<div align="center">
-
-[![API Documentation](https://img.shields.io/badge/📚_Interactive_Documentation-Swagger_UI-85EA2D?style=for-the-badge&logo=swagger)](https://ecart-mxsk.onrender.com/api-docs)
-
-**30+ Documented Endpoints** | **E-Commerce Specific** | **Live Testing**
-
-</div>
-
-**Development**: [localhost:3001/api-docs](http://localhost:3001/api-docs) • **Production**: [ecart-mxsk.onrender.com/api-docs](https://ecart-mxsk.onrender.com/api-docs)
-
-### Core API Endpoints
-
-| Resource | Endpoint | Method | Description | Auth |
-|----------|----------|--------|-------------|------|
-| **Products** | `/api/products` | GET | List all products with filtering | No |
-| | `/api/products/:id` | GET | Get product details with seller info | No |
-| | `/api/products` | POST | Create new product listing | Yes |
-| | `/api/products/:id` | PUT | Update product details | Yes |
-| | `/api/products/:id` | DELETE | Delete product listing | Yes |
-| **Categories** | `/api/categories` | GET | List all product categories | No |
-| | `/api/categories/:id/products` | GET | Get products by category | No |
-| **Brands** | `/api/brands` | GET | List all brands | No |
-| | `/api/brands` | POST | Create new brand | Yes |
-| **Cart** | `/api/cart` | GET | Get user's shopping cart | Yes |
-| | `/api/cart/add` | POST | Add item to cart | Yes |
-| | `/api/cart/update` | PUT | Update cart item quantity | Yes |
-| | `/api/cart/remove` | DELETE | Remove item from cart | Yes |
-| **Orders** | `/api/orders` | GET | Get user's order history | Yes |
-| | `/api/orders` | POST | Create new order | Yes |
-| | `/api/orders/:id` | GET | Get order details | Yes |
-| **Users** | `/api/users/profile` | GET | Get user profile | Yes |
-| | `/api/users/profile` | PUT | Update user profile | Yes |
-| **Wishlist** | `/api/wishlist` | GET | Get user's wishlist | Yes |
-| | `/api/wishlist/add` | POST | Add product to wishlist | Yes |
-| | `/api/wishlist/remove` | DELETE | Remove from wishlist | Yes |
-| **Search** | `/api/search` | GET | Search products with filters | No |
-
-### API Response Standards
-```json
-// Success Response
-{
-  "success": true,
-  "data": {
-    "products": [...],
-    "pagination": {
-      "page": 1,
-      "limit": 20,
-      "total": 150,
-      "totalPages": 8
-    }
-  },
-  "message": "Products retrieved successfully"
-}
-
-// Error Response
-{
-  "success": false,
-  "error": {
-    "code": "VALIDATION_ERROR",
-    "message": "Invalid product data",
-    "details": {
-      "price": "Price must be a positive number",
-      "title": "Title is required"
-    }
-  },
-  "timestamp": "2024-01-15T10:30:00Z"
-}
-```
-
----
-
-## Application Flow & User Journey
-
-### Complete E-Commerce Workflow
-
-The eCart platform provides a comprehensive e-commerce experience from product discovery to order fulfillment:
-
-#### **1. User Registration & Authentication**
-```mermaid
-flowchart TD
-    A[User Visits Site] --> B{Logged In?}
-    B -->|No| C[Login/Register Page]
-    B -->|Yes| D[Browse Products]
-    C --> E[Email/Password or Google OAuth]
-    E --> F[Firebase Authentication]
-    F --> G[User Profile Created]
-    G --> D
-    
-    subgraph "Authentication Options"
-        E1[Email Registration] --> E2[Email Verification]
-        E3[Google OAuth] --> E4[Profile Sync]
-    end
-```
-
-#### **2. Product Discovery & Search**
-```mermaid
-flowchart TD
-    A[Homepage] --> B[Product Categories]
-    A --> C[Search Bar]
-    A --> D[Featured Products]
-    B --> E[Category Filter]
-    C --> F[Search Results]
-    D --> G[Product Details]
-    E --> H[Brand Filter]
-    F --> I[Price Filter]
-    H --> J[Filtered Results]
-    I --> J
-    J --> G
-    
-    subgraph "Search Features"
-        F1[Full-Text Search] --> F2[Autocomplete]
-        F2 --> F3[Search Suggestions]
-        F3 --> F4[Recent Searches]
-    end
-```
-
-#### **3. Shopping Cart & Checkout**
-```mermaid
-flowchart TD
-    A[Add to Cart] --> B[Cart Storage]
-    B --> C[View Cart]
-    C --> D[Update Quantities]
-    D --> E[Proceed to Checkout]
-    E --> F[Shipping Information]
-    F --> G[Payment Method]
-    G --> H[Stripe Processing]
-    H --> I[Order Confirmation]
-    I --> J[Email Notification]
-    
-    subgraph "Cart Features"
-        B1[Persistent Storage] --> B2[Real-time Updates]
-        B2 --> B3[Price Calculations]
-        B3 --> B4[Tax & Shipping]
-    end
-```
-
-#### **4. Seller Workflow**
-```mermaid
-flowchart TD
-    A[Seller Dashboard] --> B[Create Listing]
-    B --> C[Product Information]
-    C --> D[Upload Images]
-    D --> E[Set Pricing]
-    E --> F[Publish Product]
-    F --> G[Manage Inventory]
-    G --> H[Process Orders]
-    H --> I[Ship Products]
-    I --> J[Track Performance]
-    
-    subgraph "Listing Management"
-        C1[Title & Description] --> C2[Category Selection]
-        C2 --> C3[Brand Selection]
-        C3 --> C4[Condition & Attributes]
-    end
-```
-
-### User Journey: Complete Shopping Experience
-
-#### **For Buyers (Customers)**
-
-**Step 1: Discovery**
-```
-Homepage → Category Browse → Product Search → Filter Results
-```
-
-**Step 2: Product Evaluation**
-```
-Product Details → Image Gallery → Seller Information → Reviews & Ratings
-```
-
-**Step 3: Purchase Decision**
-```
-Add to Cart → Wishlist Save → Compare Products → Proceed to Checkout
-```
-
-**Step 4: Checkout Process**
-```
-Cart Review → Shipping Details → Payment Information → Order Confirmation
-```
-
-#### **For Sellers (Vendors)**
-
-**Step 1: Setup**
-```
-Account Creation → Profile Setup → Seller Verification → Dashboard Access
-```
-
-**Step 2: Product Management**
-```
-Create Listing → Upload Images → Set Pricing → Publish Product
-```
-
-**Step 3: Order Fulfillment**
-```
-Receive Orders → Process Payments → Ship Products → Update Tracking
-```
-
-**Step 4: Business Management**
-```
-View Analytics → Manage Inventory → Customer Communication → Performance Review
-```
-
-### Technical Flow: Frontend to Backend
-
-#### **Product Search & Filtering**
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant F as Frontend (React)
-    participant A as API (Express)
-    participant D as Database (PostgreSQL)
-    participant C as Cache (Redis)
-
-    U->>F: Enter Search Query
-    F->>A: GET /api/search?q=keyword&category=&brand=&price=
-    A->>C: Check Cache for Results
-    alt Cache Hit
-        C->>A: Return Cached Results
-    else Cache Miss
-        A->>D: Execute Full-Text Search Query
-        D->>A: Return Search Results
-        A->>C: Cache Results (5 min TTL)
-    end
-    A->>F: Return Filtered Products
-    F->>U: Display Search Results
-    
-    U->>F: Apply Additional Filters
-    F->>A: GET /api/products/filter
-    A->>D: Execute Complex Filter Query
-    D->>A: Return Filtered Dataset
-    A->>F: Return Updated Results
-    F->>U: Update Product Grid
-```
-
-#### **Shopping Cart Management**
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant F as Frontend (React)
-    participant A as API (Express)
-    participant D as Database (PostgreSQL)
-    participant S as Session (Redis)
-
-    U->>F: Add Product to Cart
-    F->>A: POST /api/cart/add {productId, quantity}
-    A->>D: Check Product Availability
-    D->>A: Confirm Stock Level
-    A->>D: Insert/Update Cart Item
-    A->>S: Update Session Cart
-    A->>F: Return Updated Cart
-    F->>U: Show Success Message
-
-    U->>F: Update Item Quantity
-    F->>A: PUT /api/cart/update {itemId, quantity}
-    A->>D: Update Cart Item
-    A->>S: Sync Session Data
-    A->>F: Return Cart Totals
-    F->>U: Update Cart Display
-
-    U->>F: Proceed to Checkout
-    F->>A: POST /api/orders/create
-    A->>D: Create Order Record
-    A->>A: Calculate Totals & Tax
-    A->>F: Return Payment Intent
-    F->>U: Redirect to Payment
-```
-
-#### **Payment Processing Flow**
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant F as Frontend (React)
-    participant A as API (Express)
-    participant S as Stripe
-    participant D as Database (PostgreSQL)
-
-    U->>F: Submit Payment Information
-    F->>S: Create Payment Method
-    S->>F: Return Payment Method ID
-    F->>A: POST /api/orders/process-payment
-    A->>S: Create Payment Intent
-    S->>A: Return Client Secret
-    A->>F: Return Payment Intent
-    F->>S: Confirm Payment
-    S->>A: Webhook: Payment Succeeded
-    A->>D: Update Order Status
-    A->>D: Reduce Product Inventory
-    A->>D: Clear User Cart
-    A->>F: Return Success Response
-    F->>U: Show Order Confirmation
-```
-
----
-
-## Getting Started
-
-### Prerequisites
-- Node.js 18+ 
-- PostgreSQL 14+
-- Firebase project
-- Stripe account
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/miasdk/eCart.git
-   cd eCart
-   ```
-
-2. **Install dependencies**
-   ```bash
-   # Install server dependencies
-   cd server
-   npm install
-   
-   # Install client dependencies
-   cd ../client
-   npm install
-   ```
-
-3. **Environment Setup**
-   
-   Create `.env` files in both server and client directories:
-   
-   **Server (.env)**
-   ```env
-   PORT=3001
-   DATABASE_URL=postgresql://username:password@localhost:5432/ecart_db
-   FIREBASE_PROJECT_ID=your-firebase-project-id
-   FIREBASE_PRIVATE_KEY=your-firebase-private-key
-   FIREBASE_CLIENT_EMAIL=your-firebase-client-email
-   STRIPE_SECRET_KEY=your-stripe-secret-key
-   STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
-   NODE_ENV=development
-   ```
-   
-   **Client (.env)**
-   ```env
-   VITE_API_BASE_URL=http://localhost:3001
-   VITE_FIREBASE_API_KEY=your-firebase-api-key
-   VITE_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
-   VITE_FIREBASE_PROJECT_ID=your-firebase-project-id
-   VITE_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
-   VITE_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
-   VITE_FIREBASE_APP_ID=your-app-id
-   VITE_STRIPE_PUBLISHABLE_KEY=your-stripe-publishable-key
-   ```
-
-4. **Database Setup**
-   ```bash
-   cd server
-   node config/reset.js  # Initialize database with sample data
-   ```
-
-5. **Start Development Servers**
-   ```bash
-   # Start backend (from server directory)
-   npm start
-   
-   # Start frontend (from client directory)  
-   npm run dev
-   ```
-
-The application will be available at:
-- Frontend: http://localhost:5173
-- Backend: http://localhost:3001
-- API Docs: http://localhost:3001/api-docs
+**Live Demo Available:** [ecartdemo.vercel.app](https://ecartdemo.vercel.app) • **API Docs:** [ecart-mxsk.onrender.com/api-docs](https://ecart-mxsk.onrender.com/api-docs)
 
 ---
 
@@ -1049,16 +447,16 @@ The React application demonstrates modern frontend patterns:
 - **Custom Hooks** - useAuth, useCart, useLocalStorage for reusable logic
 - **React Query** - Server state management and caching (future enhancement)
 
-**Performance Optimizations**
-- **Image Optimization** - Optimized image loading and compression
-- **Memoization** - React.memo and useMemo for expensive calculations
-- **Efficient Rendering** - Optimized re-rendering with proper key management
-- **Bundle Optimization** - Vite build optimization for production deployment
+**Frontend Optimizations**
+- **Image Loading** - Images loaded with proper alt text and responsive sizing using Tailwind classes
+- **React Memoization** - React.memo used on ProductCard component to prevent unnecessary re-renders
+- **Component Keys** - Proper key props on mapped components for efficient Virtual DOM updates
+- **Vite Build** - Production builds use Vite's built-in minification and tree shaking
 
 ### Backend Architecture
-The Express.js API showcases enterprise-grade patterns:
+The Express.js API uses MVC pattern with separation of concerns:
 
-**Service Layer Architecture**
+**Service Layer Pattern**
 ```javascript
 // Controllers handle HTTP requests
 class ProductController {
@@ -1093,8 +491,8 @@ class ProductModel {
 - **CORS** - Cross-origin resource sharing
 - **Compression** - Response compression for performance
 
-### Smart Recommendation Algorithm
-The application features an intelligent product recommendation system that powers the "Product of the Day" spotlight section. This algorithm demonstrates machine learning concepts and data-driven product selection.
+### Featured Product Selection Algorithm
+The application includes a scoring algorithm that selects the "Product of the Day" for the homepage spotlight section. This algorithm uses weighted criteria to rank products.
 
 **Multi-Criteria Scoring System**
 ```javascript
@@ -1293,10 +691,10 @@ CMD ["npm", "start"]
 ```
 
 **Database (Railway)**
-- **Automated Backups** - Daily backups with 7-day retention
-- **High Availability** - Multi-AZ deployment with failover
-- **Performance Monitoring** - Query performance insights
-- **Connection Pooling** - PgBouncer for connection management
+- **PostgreSQL Database** - Hosted PostgreSQL instance with persistent storage
+- **Automatic Backups** - Railway provides automated database backups
+- **Environment Variables** - Database connection string configured via environment variables
+- **Remote Access** - Database accessible via PostgreSQL connection string from backend API
 
 ### CI/CD & Deployment
 
@@ -1315,61 +713,17 @@ Git Push → Vercel Build → Frontend Deploy (2-3 min)
 
 ---
 
-## Development Methodology
 
-### Project Management Approach
-This project demonstrates professional development practices:
 
-**Git Workflow & CI/CD**
-- **Feature Branches** - Separate branches for each feature development
-- **Pull Requests** - Code review process with automatic preview deployments
-- **Automated Deployment** - Vercel and Render CI/CD on push to main branch
-- **Preview Builds** - Automatic staging environments for pull request testing
-- **Semantic Commits** - Conventional commit messages for clear change tracking
+## Key Technical Features
 
-**Code Quality**
-- **ESLint Configuration** - Consistent code style enforcement
-- **Prettier Integration** - Automated code formatting
-- **Type Safety** - JSDoc comments for type documentation
-- **Testing Strategy** - Unit and integration test coverage
+This project implements core e-commerce functionality using full-stack web development technologies:
 
-**Documentation Standards**
-- **API Documentation** - Swagger/OpenAPI 3.0 specifications
-- **Code Documentation** - Inline comments and JSDoc
-- **README Documentation** - Comprehensive project documentation
-- **Deployment Guides** - Step-by-step deployment instructions
-
-### Performance & Architecture
-
-**Frontend Performance**
-- **Build Optimization** - Vite for fast development and optimized production builds
-- **Responsive Design** - Mobile-first approach with Tailwind CSS utility classes
-- **State Management** - Efficient Context API usage with proper memoization
-- **Image Handling** - Optimized image loading and display
-
-**Backend Performance**
-- **Response Times** - ~180ms average API response time
-- **Database Queries** - PostgreSQL query optimization with proper indexing
-- **RESTful Design** - Clean API architecture with consistent response patterns
-- **Error Handling** - Comprehensive error management and logging
-
-**Production Deployment**
-- **Multi-Cloud Architecture** - Frontend on Vercel, Backend on Render, Database on Railway
-- **Environment Management** - Proper separation of development and production configurations
-- **Database Optimization** - PostgreSQL with GIN indexes for full-text search
-- **Security Implementation** - Firebase authentication with JWT token validation
-
----
-
-## Technical Achievements
-
-This project represents a comprehensive demonstration of modern e-commerce technology development and full-stack engineering practices:
-
-**E-Commerce Expertise**
-- **Payment Integration** - Stripe payment processing with secure transaction handling
-- **Product Management** - Complete CRUD operations for product catalog management
-- **Order Management** - Full order workflow from cart to order confirmation
-- **User Experience** - Modern, responsive e-commerce interface design
+**E-Commerce Features Built**
+- **Payment Integration** - Stripe Checkout Sessions with order confirmation workflow
+- **Product Management** - Create, read, update, delete operations for product listings
+- **Order Management** - Shopping cart to order creation with PostgreSQL storage
+- **User Interface** - Responsive design using Tailwind CSS grid and flexbox
 
 **Full-Stack Development**
 - **Frontend**: React 18 with hooks, Context API, and component-based architecture
@@ -1377,45 +731,29 @@ This project represents a comprehensive demonstration of modern e-commerce techn
 - **Database**: PostgreSQL with normalized schema and optimized query performance
 - **Authentication**: Firebase integration with Google OAuth 2.0 and JWT validation
 
-**Production Readiness**
-- **Multi-Cloud Deployment**: Distributed architecture across Vercel, Render, and Railway
-- **Security**: Firebase authentication with role-based access control
-- **Performance**: Database optimization with proper indexing and query tuning
-- **Documentation**: Comprehensive API documentation with Swagger/OpenAPI 3.0
+**Deployment Implementation**
+- **Multi-Platform Deployment**: Frontend on Vercel, API on Render, Database on Railway
+- **Authentication Security**: Firebase JWT token validation on protected routes
+- **Database Indexing**: PostgreSQL GIN indexes on product search fields
+- **API Documentation**: Swagger/OpenAPI 3.0 specification with 45+ documented endpoints
 
-**Software Engineering Excellence**
-- **Architecture**: MVC pattern with service layer abstraction for maintainable code
-- **CI/CD Pipeline**: Automated deployment with Vercel and Render Git integration
-- **Code Quality**: ESLint configuration and consistent coding standards
-- **API Design**: RESTful endpoints with proper HTTP status codes and error handling
-- **Database Design**: Normalized PostgreSQL schema with efficient relationships
+**Software Engineering Practices**
+- **MVC Architecture**: Controllers for HTTP handling, Services for business logic, Models for data access
+- **Automated Deployment**: Git push triggers automatic builds on Vercel and Render
+- **Code Standards**: ESLint rules enforced with Prettier formatting
+- **REST API**: HTTP status codes (200, 201, 400, 401, 404, 500) with JSON responses
+- **Normalized Database**: Foreign key relationships between Users, Products, Orders, Categories tables
 
-### E-Commerce Impact
+### E-Commerce Functionality Implemented
 
-eCart demonstrates understanding of real-world e-commerce challenges:
-- **User Experience** - Intuitive shopping experience with modern UI/UX
-- **Performance** - Fast loading times and responsive interactions
-- **Scalability** - Architecture designed for growth and high traffic
-- **Security** - PCI-compliant payment processing and data protection
-- **Mobile-First** - Responsive design optimized for all devices
+eCart includes standard e-commerce website features:
+- **User Experience** - Product browsing, search, cart management, and checkout workflow
+- **Performance** - ~180ms API response times, Vite build optimization
+- **Responsive Design** - Tailwind CSS breakpoints for mobile, tablet, and desktop layouts
+- **Payment Security** - Stripe handles PCI compliance for payment processing
+- **Cross-Device Compatibility** - CSS Grid and Flexbox for responsive product grids
 
-This project showcases the ability to deliver production-ready e-commerce software that meets both technical requirements and business objectives, demonstrating readiness for professional software development roles in the e-commerce industry.
-
----
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-ecommerce-feature`)
-3. Commit your changes (`git commit -m 'Add new e-commerce feature'`)
-4. Push to the branch (`git push origin feature/new-ecommerce-feature`)
-5. Open a Pull Request
+This project demonstrates implementation of core e-commerce features using React, Node.js, PostgreSQL, and third-party services, suitable for portfolio demonstration of full-stack development skills.
 
 ---
 
