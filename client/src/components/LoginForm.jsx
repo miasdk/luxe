@@ -79,7 +79,7 @@ export default function LoginForm({ onSuccess }) {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        placeholder="you@example.com"
+                        placeholder="Enter your email address"
                         className='w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors'
                     />
                 </div>

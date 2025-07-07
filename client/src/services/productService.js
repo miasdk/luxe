@@ -301,7 +301,7 @@ const fetchRecommendations = async (productId, limit = 4) => {
  */
 const getFeaturedProduct = async () => {
     try {
-        const products = await fetchAllProducts();
+        const products = await fetchFilteredProducts({}, 'title', 'ASC');
         
         if (!products || products.length === 0) {
             return null;

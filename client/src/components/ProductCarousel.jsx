@@ -14,7 +14,9 @@ import "swiper/css/autoplay"
 export default function ProductCarousel({ 
   category, 
   title = "Products",
-  filterType = "popular"
+  filterType = "popular",
+  collection = null,
+  isLoading = false
 }) {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
@@ -25,6 +27,14 @@ export default function ProductCarousel({
   const nextRef = useRef(null)
 
   useEffect(() => {
+    // If collection is provided, use it directly
+    if (collection) {
+      setProducts(collection.products || [])
+      setLoading(isLoading)
+      return
+    }
+
+    // Otherwise, fetch products using the existing logic
     const fetchProducts = async () => {
       try {
         setLoading(true)
@@ -33,12 +43,15 @@ export default function ProductCarousel({
         if (category) {
           data = await productService.fetchProductsByCategory(category)
         } else {
-          data = await productService.fetchAllProducts()
+          // For carousels, we want rich product data with attributes
+          // Use filtered products with no filters to get all products with full details
+          data = await productService.fetchFilteredProducts({}, 'title', 'ASC')
         }
 
         // Sort products based on filterType
         switch (filterType) {
           case "newest":
+          case "new":
             data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
             break
           case "popular":
@@ -63,7 +76,7 @@ export default function ProductCarousel({
     }
 
     fetchProducts()
-  }, [category, filterType])
+  }, [category, filterType, collection, isLoading])
 
   if (loading) {
     return (

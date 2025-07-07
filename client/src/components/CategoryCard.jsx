@@ -6,7 +6,7 @@ const CategoryCard = ({ category }) => {
     <div className="group relative overflow-hidden bg-white transition-all duration-300 hover:shadow-md rounded-sm">
       <div className="aspect-[3/4] overflow-hidden">
         <img
-          src={category.image || "/placeholder.svg"}
+          src={category.image || "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop&crop=center"}
           alt={category.name}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />

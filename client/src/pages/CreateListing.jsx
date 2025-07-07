@@ -34,7 +34,6 @@ export default function CreateListing() {
   const [formData, setFormData] = useState({
     title: "",
     price: "",
-    original_price: "",
     description: "",
     brand_id: "",
     category_id: "",
@@ -111,12 +110,11 @@ export default function CreateListing() {
       const productToCreate = {
         ...formData,
         price: parseFloat(formData.price),
-        original_price: formData.original_price ? parseFloat(formData.original_price) : null,
         seller_id: user.uid
       };
 
       const createdProduct = await productsService.addProduct(productToCreate);
-      navigate(`/products/${createdProduct.id}`, { 
+              navigate(`/products/${createdProduct.id}`, { 
         state: { message: "Product created successfully" }
       });
     } catch (err) {
@@ -298,29 +296,6 @@ export default function CreateListing() {
                       />
                     </div>
                   </div>
-
-                  <div>
-                    <label htmlFor="original_price" className="block text-sm font-medium text-gray-700 mb-2">
-                      Original Price <span className="text-gray-400 text-xs">(optional)</span>
-                    </label>
-                    <div className="relative">
-                      <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
-                      <input
-                        type="number"
-                        id="original_price"
-                        name="original_price"
-                        value={formData.original_price}
-                        onChange={handleInputChange}
-                        placeholder="0.00"
-                        min="0"
-                        step="0.01"
-                        className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
-                      />
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">
-                      Show the original retail price to highlight savings
-                    </p>
-                  </div>
                 </div>
               </div>
 
@@ -478,7 +453,7 @@ export default function CreateListing() {
                       name="image"
                       value={formData.image}
                       onChange={handleInputChange}
-                      placeholder="https://example.com/image.jpg"
+                      placeholder="https://images.unsplash.com/photo-..."
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors"
                     />
                     <p className="text-xs text-gray-500 mt-2">

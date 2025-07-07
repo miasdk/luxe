@@ -374,7 +374,7 @@ export default function UpdateListing() {
                   name="image"
                   value={formData.image}
                   onChange={handleInputChange}
-                  placeholder="https://example.com/image.jpg"
+                  placeholder="https://images.unsplash.com/photo-..."
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-colors text-sm"
                 />
               </div>

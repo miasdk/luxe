@@ -48,7 +48,11 @@ const ProductCard = ({ product }) => {
         </div>
 
         <span className="text-sm text-gray-500 truncate block mb-2">
-          {product.conditions} | Sz. {product.sizes}
+          {product.conditions && product.conditions.length > 0 
+            ? product.conditions.join(', ') 
+            : 'Good condition'} | Sz. {product.sizes && product.sizes.length > 0 
+            ? product.sizes.join(', ') 
+            : 'Various'}
         </span>
         
         <div className="mb-2">
