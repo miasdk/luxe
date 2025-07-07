@@ -80,9 +80,9 @@ export default function ProductDetailPage() {
 
   const handleRemoveFromCart = () => {
     if (product) {
-      const cartItem = cart.find(item => item.product_id === product.product_id)
+      const cartItem = cart.find(item => item.product_id === product.id)
       if (cartItem) {
-        removeFromCart(product.product_id, cartItem.quantity)
+        removeFromCart(product.id, cartItem.quantity)
       }
     }
   }
@@ -163,7 +163,7 @@ export default function ProductDetailPage() {
   }
 
   const galleryImages = generateGalleryImages(product)
-  const isInCart = cart.find((item) => item.product_id === product.product_id)
+  const isInCart = cart.find((item) => item.product_id === product.id)
   const cartQuantity = isInCart ? isInCart.quantity : 0
 
   if (loading) {
@@ -257,7 +257,7 @@ export default function ProductDetailPage() {
 
                 <div className="flex flex-col items-center">
                     <WishlistButton 
-                        productId={product.product_id} 
+                        productId={product.id} 
                         className="p-2 rounded-full border bg-gray-50 border-gray-200 hover:bg-gray-100"
                         showText={false}
                         size={20}
@@ -312,7 +312,7 @@ export default function ProductDetailPage() {
                   <div className="flex items-center justify-center gap-4">
                     <div className="flex items-center border border-gray-300 rounded-md">
                       <button
-                        onClick={() => removeFromCart(product.product_id, 1)}
+                        onClick={() => removeFromCart(product.id, 1)}
                         disabled={cartQuantity <= 1}
                         className={`p-2 ${cartQuantity <= 1 ? "text-gray-300" : "text-gray-600 hover:bg-gray-50"}`}
                         aria-label="Decrease quantity"
@@ -451,9 +451,9 @@ export default function ProductDetailPage() {
                           <span className="font-medium">Size:</span> {product.sizes}
                         </li>
                       )}
-                      <li>
-                        <span className="font-medium">SKU:</span> {product.product_id}
-                      </li>
+                      <div className="mb-4">
+                        <span className="font-medium">SKU:</span> {product.id}
+                      </div>
                       {product.category_name && (
                         <li>
                           <span className="font-medium">Category:</span> {product.category_name}
@@ -531,9 +531,9 @@ export default function ProductDetailPage() {
                           <span className="font-medium">Size:</span> {product.sizes}
                         </li>
                       )}
-                      <li>
-                        <span className="font-medium">SKU:</span> {product.product_id}
-                      </li>
+                      <div className="mb-4">
+                        <span className="font-medium">SKU:</span> {product.id}
+                      </div>
                       {product.category_name && (
                         <li>
                           <span className="font-medium">Category:</span> {product.category_name}

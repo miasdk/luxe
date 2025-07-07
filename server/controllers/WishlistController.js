@@ -29,11 +29,23 @@ class WishlistController {
         const { userId, productId } = req.body;
         
         if (!userId || !productId) {
-            return res.status(400).json({ message: 'User ID and Product ID are required' });
+            return res.status(400).json({ 
+                message: 'User ID and Product ID are required',
+                received: { userId: userId, productId: productId }
+            });
+        }
+        
+        // Validate that productId is a valid number
+        const productIdNum = parseInt(productId);
+        if (isNaN(productIdNum)) {
+            return res.status(400).json({ 
+                message: 'Product ID must be a valid number',
+                received: productId
+            });
         }
         
         try {
-            const wishlistItem = await WishlistService.addToWishlist(userId, productId);
+            const wishlistItem = await WishlistService.addToWishlist(userId, productIdNum);
             
             if (!wishlistItem) {
                 return res.status(200).json({ message: 'Item already in wishlist' });
@@ -42,7 +54,7 @@ class WishlistController {
             res.status(201).json(wishlistItem);
         } catch (error) {
             console.error('Error adding to wishlist:', error.message);
-            res.status(500).json({ message: 'Failed to add item to wishlist' });
+            res.status(500).json({ message: 'Failed to add item to wishlist', error: error.message });
         }
     }
 

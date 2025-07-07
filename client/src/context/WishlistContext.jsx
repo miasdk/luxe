@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useAuthContext } from './AuthContext';
 
@@ -71,13 +70,18 @@ export const WishlistProvider = ({ children }) => {
         body: JSON.stringify({ userId: user.uid, productId }),
       });
       
-      if (!response.ok) throw new Error('Failed to add to wishlist');
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Server error response:', errorText);
+        throw new Error(`Failed to add to wishlist: ${response.status} - ${errorText}`);
+      }
       
       // Refresh wishlist and trigger product refresh
       await fetchWishlist();
       triggerProductRefresh();
       return true;
     } catch (err) {
+      console.error('AddToWishlist error:', err);
       setError(err.message);
       return false;
     }
