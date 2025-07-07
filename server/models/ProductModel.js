@@ -230,7 +230,7 @@ class ProductModel {
     }
     
 
-    static async addProduct({ brand_id, title, price, original_price, description, category_id, image, seller_id, num_likes = 0, color_ids = [], size_ids = [], condition_ids = [] }) { 
+    static async addProduct({ brand_id, title, price, description, category_id, image, seller_id, num_likes = 0, color_ids = [], size_ids = [], condition_ids = [] }) { 
         const client = await pool.connect(); // Get a connection from the pool
     
         try {
@@ -238,11 +238,11 @@ class ProductModel {
     
             // Step 1: Insert product into the products table
             const insertProductQuery = `
-                INSERT INTO products (brand_id, title, price, original_price, description, category_id, image, seller_id, num_likes, created_at)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, NOW())
+                INSERT INTO products (brand_id, title, price, description, category_id, image, seller_id, num_likes, created_at)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW())
                 RETURNING *;
             `;
-            const productValues = [brand_id, title, price, original_price, description, category_id, image, seller_id, num_likes || 0]
+            const productValues = [brand_id, title, price, description, category_id, image, seller_id, num_likes || 0]
             const { rows } = await client.query(insertProductQuery, productValues);
             const product = rows[0]; // Extract the inserted product
             const product_id = product.id;
@@ -293,7 +293,7 @@ class ProductModel {
     /**
      * This method updates a product in the products table along with all associated attributes.   
      */
-    static async updateProduct(productId, { brand_id, title, price, original_price, description, category_id, image, seller_id, color_ids = [], size_ids = [], condition_ids = [] }) {
+    static async updateProduct(productId, { brand_id, title, price, description, category_id, image, seller_id, color_ids = [], size_ids = [], condition_ids = [] }) {
         const client = await pool.connect();
         
         try {
@@ -302,11 +302,11 @@ class ProductModel {
             // Step 1: Update product
             const updateProductQuery = `
                 UPDATE products
-                SET brand_id = $1, title = $2, price = $3, original_price = $4, description = $5, category_id = $6, image = $7, seller_id = $8
-                WHERE id = $9
+                SET brand_id = $1, title = $2, price = $3, description = $4, category_id = $5, image = $6, seller_id = $7
+                WHERE id = $8
                 RETURNING *;
             `;
-            const productValues = [brand_id, title, price, original_price, description, category_id, image, seller_id, productId];
+            const productValues = [brand_id, title, price, description, category_id, image, seller_id, productId];
             const { rows } = await client.query(updateProductQuery, productValues);
             const product = rows[0];
     
