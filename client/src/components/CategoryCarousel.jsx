@@ -6,6 +6,10 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import categoryService from "../services/categoryService"
 import CategoryCard from "./CategoryCard"
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+import "swiper/css/autoplay"
 
 export default function CategoryCarousel() {
   const [categories, setCategories] = useState([])

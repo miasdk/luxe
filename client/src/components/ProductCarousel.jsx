@@ -6,6 +6,10 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import productService from "../services/productService"
 import ProductCard from "./ProductCard"
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+import "swiper/css/autoplay"
 
 export default function ProductCarousel({ 
   category, 

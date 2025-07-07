@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Licorice&display=swap');
 @import "tailwindcss";
-/* Load Swiper CSS early to prevent loading issues */
-@import "swiper/css";
-@import "swiper/css/navigation";
-@import "swiper/css/pagination";
-@import "swiper/css/autoplay";
 
 .licorice-regular {
   font-family: "Licorice", cursive;
@@ -19,56 +14,43 @@
   font-size: 2.5rem;
 }
 
-/* Unified carousel base styles - with !important for loading order */
+/* Unified carousel base styles */
 .carousel-swiper {
-  padding: 0.5rem 0.25rem 1.5rem !important;
-  margin: -0.5rem -0.25rem -1.5rem !important;
+  padding: 0.5rem 0.25rem 1.5rem;
+  margin: -0.5rem -0.25rem -1.5rem;
   overflow: hidden !important;
-  visibility: visible !important;
-  opacity: 1 !important;
 }
 
 /* Unified pagination styles */
 .carousel-swiper .swiper-pagination {
-  position: relative !important;
-  bottom: 0 !important;
-  margin-top: 1rem !important;
-  display: flex !important;
-  justify-content: center !important;
+  position: relative;
+  bottom: 0;
+  margin-top: 1rem;
 }
 
 .carousel-swiper .swiper-pagination-bullet {
-  width: 8px !important;
-  height: 8px !important;
-  background-color: #e5e7eb !important;
-  opacity: 1 !important;
-  transition: all 0.3s ease !important;
-  margin: 0 4px !important;
+  width: 8px;
+  height: 8px;
+  background-color: #e5e7eb;
+  opacity: 1;
+  transition: all 0.3s ease;
 }
 
 .carousel-swiper .swiper-pagination-bullet-active {
-  background-color: #111827 !important;
-  width: 24px !important;
-  border-radius: 4px !important;
+  background-color: #111827;
+  width: 24px;
+  border-radius: 4px;
 }
 
 /* Unified navigation button disabled state */
 .carousel-swiper .swiper-button-disabled {
-  opacity: 0.4 !important;
-  cursor: not-allowed !important;
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
-/* Ensure proper slide height and prevent layout shift */
+/* Ensure proper slide height */
 .carousel-swiper .swiper-slide {
-  height: auto !important;
-  display: flex !important;
-  align-items: stretch !important;
-}
-
-/* Prevent flash of unstyled content */
-.carousel-swiper .swiper-wrapper {
-  display: flex !important;
-  transition-timing-function: ease !important;
+  height: auto;
 }
 
 /* Category-specific styles */
