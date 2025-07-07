@@ -75,7 +75,7 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section - Sales-focused with authentic collections theme */}
+      {/* Hero Section */}
       <section className="relative bg-white">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="grid md:grid-cols-5 gap-12 xl:gap-16 items-center py-16 md:py-20">
@@ -180,7 +180,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Trending Now - Social proof while browsing */}
+      {/* Trending Now */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="flex justify-between items-center mb-8">
@@ -351,7 +351,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Affordable Finds - Price-conscious hook */}
+      {/* Affordable Find */}
       <section className="py-12">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
           <div className="flex justify-between items-center mb-8">
