@@ -123,9 +123,9 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="bg-gray-50 py-16 border-t border-gray-200">
+      <section className="bg-gray-50 py-12 border-t border-gray-200">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <span className="text-sm font-medium text-gray-600 tracking-wide">SHOP BRANDS</span>
           </div>
           
@@ -147,9 +147,9 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-16 bg-white border-t border-gray-100">
+      <section className="py-12 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="flex justify-between items-center mb-10">
+          <div className="flex justify-between items-center mb-8">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-medium text-gray-600 tracking-wide">TRENDING NOW</span>
@@ -165,10 +165,11 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50 border-t border-gray-200">
-        <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+      <section className="py-12 bg-gray-50 border-t border-gray-200 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100"></div>
+        <div className="container mx-auto px-4 xl:px-8 max-w-6xl relative">
           {featuredProductLoading ? (
-            <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6 animate-pulse">
                 <div className="h-8 bg-gray-200 rounded w-48"></div>
                 <div className="h-12 bg-gray-200 rounded w-3/4"></div>
@@ -183,45 +184,50 @@ const HomePage = () => {
               <div className="aspect-square bg-gray-200 animate-pulse rounded-lg"></div>
             </div>
           ) : featuredProductError || !featuredProduct ? (
-            <div className="text-center py-16">
+            <div className="text-center py-12">
               <p className="text-gray-500 text-lg">Featured product unavailable</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div>
-                <div className="inline-block bg-gray-900 text-white text-sm font-medium px-4 py-2 mb-8 tracking-wide">
-                  SPOTLIGHT
-                </div>
-                <h2 className="text-4xl xl:text-5xl font-light mb-8 leading-tight text-gray-900">{featuredProduct.title}</h2>
-                <p className="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl">
-                  {featuredProduct.description}
-                </p>
-                <div className="mb-10">
-                  <div className="flex items-center gap-4">
-                    <span className="text-4xl xl:text-5xl font-light text-gray-900">${featuredProduct.price}</span>
-                  </div>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="relative">
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-gray-200 opacity-30 rounded-full blur-2xl"></div>
+                <div className="relative">
+                  <span className="inline-block px-3 py-1 bg-gray-800 text-white text-xs font-medium tracking-wider rounded-full mb-6">FEATURED</span>
+                  <h2 className="text-4xl xl:text-5xl font-light mb-4 leading-tight text-gray-900">{featuredProduct.title}</h2>
                   {featuredProduct.brand_name && (
-                    <p className="text-sm text-gray-500 mt-2">by {featuredProduct.brand_name}</p>
+                    <p className="text-lg text-gray-600 mb-4 font-medium">{featuredProduct.brand_name}</p>
                   )}
-                </div>
-                <div className="flex gap-6">
-                  <Link
-                    to={`/products/${featuredProduct.product_id}`}
-                    className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 px-10 py-5 text-lg font-medium shadow-sm rounded-lg hover:shadow-md inline-flex items-center group"
-                  >
-                    Shop Now
-                    <ArrowRight size={18} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Link>
+                  <p className="text-gray-700 mb-6 leading-relaxed max-w-xl">
+                    {featuredProduct.description}
+                  </p>
+                  <div className="mb-6 p-4 bg-white/60 rounded-lg border border-gray-200/50 inline-block">
+                    <span className="text-3xl xl:text-4xl font-light text-gray-900">${featuredProduct.price}</span>
+                  </div>
+                  <div className="flex gap-4">
+                    <Link
+                      to={`/products/${featuredProduct.product_id}`}
+                      className="bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 px-8 py-3 font-medium shadow-lg hover:shadow-xl inline-flex items-center group rounded-lg"
+                    >
+                      View Product
+                      <ArrowRight size={16} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
+                  </div>
                 </div>
               </div>
               
               <div className="relative">
-                <div className="aspect-square bg-white rounded-lg border border-gray-100 overflow-hidden shadow-sm">
-                  <img
-                    src={featuredProduct.image || "/placeholder.svg"}
-                    alt={featuredProduct.title}
-                    className="w-full h-full object-contain p-12"
-                  />
+                <div className="absolute -top-8 -right-8 w-32 h-32 bg-gray-300 opacity-20 rounded-full blur-3xl"></div>
+                <div className="relative">
+                  <div className="aspect-square bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-200/50 transform hover:scale-[1.02] transition-all duration-500">
+                    <img
+                      src={featuredProduct.image || "/placeholder.svg"}
+                      alt={featuredProduct.title}
+                      className="w-full h-full object-contain p-8"
+                    />
+                  </div>
+                  <div className="absolute -bottom-4 -left-4 bg-white p-3 rounded-xl shadow-lg border border-gray-100">
+                    <Star className="w-5 h-5 text-gray-700" fill="currentColor" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -229,9 +235,9 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-16 bg-white border-t border-gray-100">
+      <section className="py-12 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="flex justify-between items-center mb-10">
+          <div className="flex justify-between items-center mb-8">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-sm font-medium text-gray-600 tracking-wide">AFFORDABLE FINDS</span>
@@ -247,9 +253,9 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50 border-t border-gray-200">
+      <section className="py-12 bg-gray-50 border-t border-gray-200">
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="mb-12">
+          <div className="mb-10">
             <div className="flex gap-2 mb-4">
               <span className="text-sm font-medium text-gray-600 tracking-wide">SHOP BY CATEGORY</span>
             </div>
@@ -260,10 +266,10 @@ const HomePage = () => {
       </section>
 
       {!user && (
-        <section className="bg-gray-800 text-white py-16 border-t border-gray-700">
+        <section className="bg-gray-800 text-white py-12 border-t border-gray-700">
           <div className="container mx-auto px-4 xl:px-8 text-center max-w-4xl">
             <h2 className="text-4xl xl:text-5xl font-light mb-6">Join Our Marketplace</h2>
-            <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
               Create an account to start buying and selling.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -284,7 +290,7 @@ const HomePage = () => {
         </section>
       )}
 
-      <section className="bg-white py-20 border-t border-gray-200 relative overflow-hidden">
+      <section className="bg-white py-16 border-t border-gray-200 relative overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={editorial2}
@@ -293,8 +299,8 @@ const HomePage = () => {
           />
         </div>
         <div className="container mx-auto px-4 xl:px-8 max-w-4xl text-center relative z-10">
-          <h2 className="text-4xl xl:text-5xl font-light mb-8 text-gray-900">Subscribe to Our Newsletter</h2>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <h2 className="text-4xl xl:text-5xl font-light mb-6 text-gray-900">Subscribe to Our Newsletter</h2>
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
             Get updates on new arrivals and featured items.
           </p>
           <NewsletterForm />
