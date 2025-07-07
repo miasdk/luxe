@@ -80,9 +80,6 @@ const HomePage = () => {
           <div className="grid md:grid-cols-2 xl:grid-cols-5 gap-16 xl:gap-20 items-center">
             <div className="xl:col-span-3 space-y-10">
               <div className="space-y-8">
-                <div className="inline-block bg-gray-900 text-white text-sm font-medium px-4 py-2 tracking-wide">
-                  CURATED PREMIUM MARKETPLACE
-                </div>
                 <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-tight text-gray-900 leading-[1.05]">
                   Discover <span className="font-normal">Exceptional</span> Pieces
                 </h1>
