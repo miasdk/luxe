@@ -110,7 +110,7 @@ const HomePage = () => {
             <div className="order-1 lg:order-2 xl:col-span-2 relative">
               <div className="aspect-square xl:aspect-[4/5] max-w-lg mx-auto overflow-hidden shadow-2xl">
                 <img
-                  src="https://www.fashiongonerogue.com/wp-content/uploads/2025/02/Bottega-Veneta-Summer-2025-Campaign01-768x960.jpg"
+                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=1000&fit=crop&crop=center"
                   alt="Featured collection showcase"
                   className="object-cover w-full h-full"
                 />
