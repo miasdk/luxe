@@ -447,50 +447,48 @@ const HomePage = () => {
 
       {!user && (
         <motion.section 
-          className="bg-white overflow-hidden"
+          className="py-16 bg-white"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="grid md:grid-cols-2 items-center min-h-[500px]">
-            {/* Content Column */}
-            <div className="bg-white px-8 md:px-12 lg:px-16 py-16 md:py-20">
-              <div className="max-w-lg">
-                <div className="space-y-6">
-                  <div className="space-y-4">
-                    <span className="text-xs font-medium text-gray-600 tracking-wide marketplace-label">GET STARTED</span>
-                    <h2 className="text-3xl md:text-4xl font-light text-gray-900 tracking-tight">Join Our Marketplace</h2>
-                    <p className="text-lg text-gray-600 leading-relaxed marketplace-body">
-                      Start buying and selling today. It's quick, easy, and free to get started.
-                    </p>
-                  </div>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <Link
-                      to="/login"
-                      className="inline-flex items-center justify-center px-6 py-3 text-sm bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white hover:from-gray-800 hover:via-gray-700 hover:to-gray-900 transition-all duration-300 font-medium shadow-md rounded-lg hover:shadow-lg"
-                    >
-                      Sign In
-                    </Link>
-                    <Link
-                      to="/register"
-                      className="inline-flex items-center justify-center px-6 py-3 text-sm bg-white border-2 border-gray-900 text-gray-900 hover:bg-gradient-to-r hover:from-gray-900 hover:via-gray-800 hover:to-black hover:text-white transition-all duration-300 font-medium rounded-lg hover:shadow-md"
-                    >
-                      Create Account
-                    </Link>
-                  </div>
+          <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Content Column */}
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <span className="text-xs font-medium text-gray-600 tracking-wide marketplace-label">GET STARTED</span>
+                  <h2 className="text-3xl md:text-4xl font-light text-gray-900 tracking-tight">Join Our Marketplace</h2>
+                  <p className="text-lg text-gray-600 leading-relaxed marketplace-body">
+                    Start buying and selling today. It's quick, easy, and free to get started.
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    to="/login"
+                    className="inline-flex items-center justify-center px-6 py-3 text-sm bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white hover:from-gray-800 hover:via-gray-700 hover:to-gray-900 transition-all duration-300 font-medium shadow-md rounded-lg hover:shadow-lg"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="inline-flex items-center justify-center px-6 py-3 text-sm bg-white border-2 border-gray-900 text-gray-900 hover:bg-gradient-to-r hover:from-gray-900 hover:via-gray-800 hover:to-black hover:text-white transition-all duration-300 font-medium rounded-lg hover:shadow-md"
+                  >
+                    Create Account
+                  </Link>
                 </div>
               </div>
-            </div>
 
-            {/* Image Column */}
-            <div className="relative h-[400px] md:h-[500px] bg-gray-50">
-              <img
-                src={editorial1}
-                alt="Fashion marketplace editorial"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              {/* Image Column */}
+              <div className="relative h-[400px] md:h-[500px] bg-gray-50 rounded-sm overflow-hidden">
+                <img
+                  src={editorial1}
+                  alt="Fashion marketplace editorial"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
             </div>
           </div>
         </motion.section>
