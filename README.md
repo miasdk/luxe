@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # eCart - Full-Stack E-Commerce Marketplace
 
 <div align="center">
