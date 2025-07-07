@@ -1,5 +1,5 @@
 
-# eCart - Full-Stack E-Commerce Marketplace
+# Luxe - Full-Stack E-Commerce Marketplace
 
 <div align="center">
 
@@ -560,17 +560,10 @@ const getFeaturedProduct = async () => {
 **Algorithm Design Principles**
 - **Multi-Factor Scoring** - Combines quality, popularity, engagement, and recency metrics
 - **Logarithmic Scaling** - Prevents outliers from dominating (likes use log₁₀ scaling)
-- **Business Logic Integration** - Incorporates domain knowledge (core brands, popular categories)
 - **Dynamic Variation** - Small randomization prevents algorithm staleness
 - **Performance Optimized** - Single database query with in-memory processing
 - **Scalable Architecture** - Easily extensible for additional scoring factors
 
-**Real-World Applications**
-This algorithm pattern is commonly used in:
-- E-commerce product recommendations (Amazon, eBay)
-- Social media content ranking (Instagram, Facebook)
-- Search result optimization (Google, Bing)
-- News feed algorithms (Twitter, LinkedIn)
 
 ### Database Optimizations
 PostgreSQL performance enhancements:
@@ -774,6 +767,6 @@ This project demonstrates implementation of core e-commerce features using React
 
 <div align="center">
 
-Built with dedication for e-commerce innovation by Mia Elena Tapia
+Built with dedication by Mia Elena Tapia
 
 </div>
