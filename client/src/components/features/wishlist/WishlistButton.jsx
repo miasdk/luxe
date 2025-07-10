@@ -1,7 +1,7 @@
 import React from 'react';
 import { Heart } from 'lucide-react';
-import { useWishlist } from '../context/WishlistContext';
-import { useAuthContext } from '../context/AuthContext';
+import { useWishlist } from '../../../context/WishlistContext';
+import { useAuthContext } from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const WishlistButton = ({ 

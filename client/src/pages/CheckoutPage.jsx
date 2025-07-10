@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
-import PaymentForm from '../components/PaymentForm';
+import PaymentForm from '../components/features/checkout/PaymentForm';
 import { ArrowLeft, ShoppingBag, Check, Lock, Truck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

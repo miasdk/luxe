@@ -16,7 +16,7 @@ import { colorData } from "../data/colors";
 import { conditionData } from "../data/conditions";
 import { sizeData } from "../data/sizes";
 import { useAuthContext } from "../context/AuthContext";
-import BrandSelector from "../components/BrandSelector";
+import BrandSelector from "../components/features/catalog/BrandSelector";
 
 export default function CreateListing() {
   const navigate = useNavigate();

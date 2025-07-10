@@ -1,9 +1,16 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import ProductController from '../ProductController.js';
-import ProductService from '../../services/ProductService.js';
 
 // Mock the ProductService
-vi.mock('../../services/ProductService.js');
+const mockProductService = {
+  getAllProducts: vi.fn(),
+  getProductById: vi.fn(),
+  addProduct: vi.fn()
+};
+
+vi.mock('../../services/ProductService.js', () => ({
+  default: mockProductService
+}));
 
 describe('ProductController', () => {
   let mockReq;
@@ -19,6 +26,9 @@ describe('ProductController', () => {
       status: vi.fn().mockReturnThis(),
       json: vi.fn()
     };
+    
+    // Reset all mocks before each test
+    vi.clearAllMocks();
   });
 
   describe('getAllProducts', () => {
@@ -28,18 +38,18 @@ describe('ProductController', () => {
         { id: 2, title: 'Product 2' }
       ];
 
-      ProductService.getAllProducts.mockResolvedValue(mockProducts);
+      mockProductService.getAllProducts.mockResolvedValue(mockProducts);
 
       await ProductController.getAllProducts(mockReq, mockRes);
 
-      expect(ProductService.getAllProducts).toHaveBeenCalled();
+      expect(mockProductService.getAllProducts).toHaveBeenCalled();
       expect(mockRes.status).toHaveBeenCalledWith(200);
       expect(mockRes.json).toHaveBeenCalledWith(mockProducts);
     });
 
     it('should handle errors when fetching products', async () => {
       const error = new Error('Database error');
-      ProductService.getAllProducts.mockRejectedValue(error);
+      mockProductService.getAllProducts.mockRejectedValue(error);
 
       await ProductController.getAllProducts(mockReq, mockRes);
 
@@ -55,18 +65,18 @@ describe('ProductController', () => {
       const mockProduct = { id: 1, title: 'Product 1' };
       mockReq.params.id = '1';
 
-      ProductService.getProductById.mockResolvedValue(mockProduct);
+      mockProductService.getProductById.mockResolvedValue(mockProduct);
 
       await ProductController.getProductById(mockReq, mockRes);
 
-      expect(ProductService.getProductById).toHaveBeenCalledWith('1');
+      expect(mockProductService.getProductById).toHaveBeenCalledWith('1');
       expect(mockRes.status).toHaveBeenCalledWith(200);
       expect(mockRes.json).toHaveBeenCalledWith(mockProduct);
     });
 
     it('should handle product not found', async () => {
       mockReq.params.id = '999';
-      ProductService.getProductById.mockResolvedValue(null);
+      mockProductService.getProductById.mockResolvedValue(null);
 
       await ProductController.getProductById(mockReq, mockRes);
 
@@ -87,11 +97,11 @@ describe('ProductController', () => {
       mockReq.body = newProduct;
 
       const mockAddedProduct = { id: 1, ...newProduct };
-      ProductService.addProduct.mockResolvedValue(mockAddedProduct);
+      mockProductService.addProduct.mockResolvedValue(mockAddedProduct);
 
       await ProductController.addProduct(mockReq, mockRes);
 
-      expect(ProductService.addProduct).toHaveBeenCalledWith(newProduct);
+      expect(mockProductService.addProduct).toHaveBeenCalledWith(newProduct);
       expect(mockRes.status).toHaveBeenCalledWith(201);
       expect(mockRes.json).toHaveBeenCalledWith(mockAddedProduct);
     });

@@ -158,7 +158,73 @@ VS Code           → Development environment
 
 ## Database & Architecture
 
-The application uses a normalized PostgreSQL schema with foreign key relationships between Users, Products, Orders, Categories, Brands, and Cart tables.
+The application uses a normalized PostgreSQL schema with foreign key relationships between Users, Products, Orders, Categories, Brands, and Cart tables. The architecture is designed for **scalability and maintainability** with dynamic data-driven components.
+
+### 🚀 Scalability Features
+
+**Dynamic Category Management:**
+- **15 categories** automatically populated from database
+- **Zero code changes** required to add new categories
+- **CategoryFilterBar** dynamically displays all categories
+- **FilterSideBar** automatically updates with new categories
+- **URL routing** works with any category name
+
+**Database-Driven Architecture:**
+- **No hardcoded data** - everything fetched from database
+- **Context-based state management** - filters persist in URL
+- **Component reusability** - works with any number of categories/products
+- **API-first design** - clean REST endpoints for all operations
+
+### 📊 Database Architecture
+
+**Dynamic Data Management:**
+The application uses a database-driven architecture where all content is fetched dynamically:
+
+```bash
+# Categories are managed through the API
+GET /api/categories/          # Returns all categories
+POST /api/categories/         # Add new category
+PUT /api/categories/:id       # Update category
+DELETE /api/categories/:id    # Remove category
+
+# Products are filtered by category
+GET /api/products/filter?category=Dresses
+GET /api/products/filter?brand=Nike
+```
+
+**Architecture Benefits:**
+- ✅ **No hardcoded data** - everything fetched from database
+- ✅ **Zero code changes** required for content updates
+- ✅ **Business users** can manage content through API
+- ✅ **Scalable design** - works with any number of categories/products
+
+### 🏗️ Architectural Excellence
+
+**Separation of Concerns:**
+- **Frontend**: React components that fetch data via APIs
+- **Backend**: RESTful APIs that serve data from database
+- **Database**: PostgreSQL with proper relationships
+- **No hardcoded data** - everything is fetched dynamically
+
+**Component Reusability:**
+- `FilterSideBar` - works with any number of categories
+- `CategoryFilterBar` - automatically adapts to new categories
+- `ProductGrid` - displays any products
+- `ProductCard` - renders any product structure
+
+**Scalable State Management:**
+- **ProductContext** handles all filtering logic
+- **Centralized state** for categories, brands, filters
+- **URL synchronization** - filters persist in browser URL
+- **Automatic updates** when data changes
+
+**API-First Design:**
+```javascript
+// Dynamic endpoints that work with any data
+GET /api/categories/          // Returns all categories
+GET /api/products/filter      // Works with any category
+GET /api/products/category/{category}  // Dynamic category filtering
+```
 
 ### Entity Relationship Diagram (ERD)
 

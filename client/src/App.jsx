@@ -4,7 +4,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { CartProvider } from "./context/CartContext";
 import { ProductProvider } from "./context/ProductContext";
 import { WishlistProvider } from "./context/WishlistContext"; 
-import Layout from "./components/Layout";
+import Layout from "./components/common/layout/Layout";
 import HomePage from "./pages/HomePage"; 
 import ProductPage from "./pages/ProductPage"; 
 import ProductDetailPage from "./pages/ProductDetailPage";
@@ -22,7 +22,7 @@ import SearchResultsPage from "./pages/SearchResultsPage";
 import NotFound from "./pages/404NotFound";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/common/layout/ProtectedRoute";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 

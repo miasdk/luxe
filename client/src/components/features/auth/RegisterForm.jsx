@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registerUser } from '../services/authService';
+import { registerUser } from '../../../services/authService';
+import FormInput from '../../common/forms/FormInput';
 
 export default function RegisterForm() {
     const [email, setEmail] = useState('');
@@ -27,7 +28,7 @@ export default function RegisterForm() {
 
     return ( 
         <form onSubmit={handleSubmit} className="space-y-4">
-            <input
+            <FormInput
                 type="text"
                 placeholder="Display Name"
                 value={displayName}
@@ -35,7 +36,7 @@ export default function RegisterForm() {
                 required
                 className="w-full p-2 border rounded-lg"
             />
-            <input
+            <FormInput
                 type="email"
                 placeholder="Email"
                 value={email}
@@ -43,7 +44,7 @@ export default function RegisterForm() {
                 required
                 className="w-full p-2 border rounded-lg"
             />
-            <input
+            <FormInput
                 type="password"
                 placeholder="Password"
                 value={password}

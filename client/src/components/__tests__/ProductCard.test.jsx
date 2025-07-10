@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { CartProvider } from '../../context/CartContext';
 import { WishlistProvider } from '../../context/WishlistContext';
-import ProductCard from '../ProductCard';
+import ProductCard from '../features/catalog/ProductCard';
 
 // Mock the useAuthContext hook
 vi.mock('../../context/AuthContext', () => ({

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuthContext } from '../context/AuthContext';
-import { API_BASE_URL } from '../config/constants';
+import { useAuthContext } from '../../../context/AuthContext';
+import { API_BASE_URL } from '../../../config/constants';
 import { 
     Plus, 
     Edit3, 
@@ -12,6 +12,7 @@ import {
     AlertCircle,
     Package
 } from 'lucide-react';
+import PriceDisplay from '../../common/ui/PriceDisplay';
 
 export default function MyListings() {
     const { user } = useAuthContext();
@@ -171,9 +172,7 @@ export default function MyListings() {
                                         {listing.brand_name} • {listing.category_name}
                                     </p>
                                     <div className="flex items-center gap-4 mt-2">
-                                        <span className="text-lg font-semibold text-gray-900">
-                                            ${listing.price}
-                                        </span>
+                                        <PriceDisplay price={listing.price} />
                                         <div className="flex items-center gap-1 text-sm text-gray-500">
                                             <Heart size={14} />
                                             <span>{listing.num_likes || 0}</span>

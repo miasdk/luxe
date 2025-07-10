@@ -17,11 +17,11 @@ import {
 } from "lucide-react"
 import productsService from "../services/productService"
 import { useCart } from "../context/CartContext"
-import ProductCarousel from "../components/ProductCarousel"
-import WishlistButton from '../components/WishlistButton';
-import Breadcrumb from '../components/Breadcrumb';
-import CartModal from '../components/CartModal';
-import PriceDisplay from '../components/PriceDisplay';
+import ProductCarousel from "../components/features/catalog/ProductCarousel"
+import WishlistButton from '../components/features/wishlist/WishlistButton';
+import Breadcrumb from '../components/common/ui/Breadcrumb';
+import CartModal from '../components/features/cart/CartModal';
+import PriceDisplay from '../components/common/ui/PriceDisplay';
 
 
 export default function ProductDetailPage() {

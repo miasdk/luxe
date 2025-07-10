@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { AlertCircle } from 'lucide-react';
 import searchService from '../services/searchService';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../components/features/catalog/ProductCard';
 
 const SearchResultsPage = () => {
     const [searchParams] = useSearchParams();

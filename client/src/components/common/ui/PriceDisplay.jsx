@@ -1,5 +1,5 @@
 import React from 'react';
-import { calculateDiscountPercentage, formatPrice, hasDiscount } from '../utilities/priceUtils';
+import { calculateDiscountPercentage, formatPrice, hasDiscount } from '../../../utilities/priceUtils';
 
 const PriceDisplay = ({ 
   price, 

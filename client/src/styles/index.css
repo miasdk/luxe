@@ -91,3 +91,13 @@ body {
 .product-carousel {
   /* Add any product-specific overrides here */
 }
+
+/* Category filter bar scrollbar hiding */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

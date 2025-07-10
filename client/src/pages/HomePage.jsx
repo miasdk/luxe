@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { useAuthContext } from "../context/AuthContext"
-import ProductCarousel from "../components/ProductCarousel"
-import CategoryCarousel from "../components/CategoryCarousel"
-import WishlistButton from "../components/WishlistButton"
+import ProductCarousel from "../components/features/catalog/ProductCarousel"
+import CategoryCarousel from "../components/features/catalog/CategoryCarousel"
+import WishlistButton from "../components/features/wishlist/WishlistButton"
 import { Truck, RotateCcw, ArrowRight, Heart, Shield, Star, Zap, TrendingUp } from "lucide-react"
 import brandService from "../services/brandService"
 import categoryService from "../services/categoryService"
@@ -106,7 +106,7 @@ const HomePage = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <div className="container mx-auto px-4 xl:px-8 max-w-6xl">
-          <div className="grid md:grid-cols-5 gap-12 xl:gap-16 items-center pt-8 md:pt-6 pb-12 md:pb-16">
+          <div className="grid md:grid-cols-5 gap-12 xl:gap-16 items-center pt-8 md:pt-6 pb-8 md:pb-10">
             {/* Content Side */}
             <div className="md:col-span-2 space-y-8">
               <div className="space-y-6">
@@ -160,7 +160,7 @@ const HomePage = () => {
 
       {/* Shop by Category  */}
       <motion.section 
-        className="pt-12 pb-16 bg-white"
+        className="pt-8 pb-8 bg-white"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -179,7 +179,7 @@ const HomePage = () => {
       </motion.section>
 
       <motion.section 
-        className="py-12 bg-white"
+        className="pt-6 pb-8 bg-white"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -214,7 +214,7 @@ const HomePage = () => {
 
       {/* Trending Now */}
       <motion.section 
-        className="py-12 bg-white"
+        className="pt-6 pb-2 bg-white"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -240,7 +240,7 @@ const HomePage = () => {
 
        {/* Affordable Find */}
        <motion.section 
-         className="py-12"
+         className="pt-2 pb-8"
          initial={{ opacity: 0, y: 30 }}
          whileInView={{ opacity: 1, y: 0 }}
          viewport={{ once: true, margin: "-100px" }}
@@ -266,7 +266,7 @@ const HomePage = () => {
 
       {/* Featured Product Section */}
       <motion.section 
-        className="relative py-16 bg-gradient-to-br from-gray-50 to-white overflow-hidden"
+        className="relative py-12 bg-gradient-to-br from-gray-50 to-white overflow-hidden"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}

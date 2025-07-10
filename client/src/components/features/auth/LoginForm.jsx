@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { loginUser } from '../services/authService';
-import { useAuthContext } from '../context/AuthContext'; 
+import { loginUser } from '../../../services/authService';
+import { useAuthContext } from '../../../context/AuthContext'; 
 import { Link } from 'react-router-dom';
+import FormInput from '../../common/forms/FormInput';
 
 export default function LoginForm({ onSuccess }) {
     const [email, setEmail] = useState('');

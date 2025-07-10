@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import { API_BASE_URL } from "../config/constants";
+import { API_BASE_URL } from '../../../config/constants';
+import FormInput from '../../common/forms/FormInput';
 
 const PaymentForm = ({ userId, orderItems, shippingInfo, onPaymentSuccess }) => {
     const stripe = useStripe();

@@ -1,5 +1,6 @@
-import { useCart } from "../context/CartContext"; 
-import formatCurrency from "../utilities/formatCurrency";
+import { useCart } from '../../../context/CartContext';
+import formatCurrency from '../../../utilities/formatCurrency';
+import PriceDisplay from '../../common/ui/PriceDisplay';
 
 const CartItem = ({ product }) => {
     const { removeFromCart, addToCart } = useCart(); 

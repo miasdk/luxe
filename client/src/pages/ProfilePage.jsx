@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
-import MyListings from '../components/MyListings';
+import MyListings from '../components/features/orders/MyListings';
 import { 
     User, 
     Calendar, 

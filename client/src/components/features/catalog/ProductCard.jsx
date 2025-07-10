@@ -1,8 +1,8 @@
 import React from "react";
-import { useCart } from "../context/CartContext";
+import { useCart } from '../../../context/CartContext';
 import { Link } from "react-router-dom";
-import WishlistButton from "./WishlistButton";
-import PriceDisplay from "./PriceDisplay";
+import WishlistButton from '../wishlist/WishlistButton';
+import PriceDisplay from '../../common/ui/PriceDisplay';
 
 const ProductCard = ({ product }) => {
   const { addToCart, removeFromCart, cart } = useCart(); 

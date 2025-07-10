@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
+import SearchBar from './SearchBar';
 
 export default function TopSearchBar() {
     return (

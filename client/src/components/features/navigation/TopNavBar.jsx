@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
-import { auth } from '../firebase/client';
+import { auth } from '../../../firebase/client';
 import { signOut } from 'firebase/auth';
 import { FaRegUserCircle, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../../context/CartContext';
 import { Heart, ShoppingCart } from 'lucide-react';
-import { useWishlist } from '../context/WishlistContext';
-import CartModal from './CartModal';
+import { useWishlist } from '../../../context/WishlistContext';
+import CartModal from '../cart/CartModal';
 
 export default function TopNavBar({ user, loading }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);

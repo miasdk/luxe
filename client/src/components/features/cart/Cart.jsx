@@ -1,5 +1,5 @@
-import { useShoppingCart } from "../context/CartContext";
-import CartItem from "./CartItem";
+import { useShoppingCart } from '../../../context/CartContext';
+import CartItem from './CartItem';
 
 const Cart = () => {
     const { cart, isOpen, toggleCart, clearCart } = useShoppingCart();

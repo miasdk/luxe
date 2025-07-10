@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { useAuthContext } from "../context/AuthContext";
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "../components/features/auth/RegisterForm";
 import { FaGoogle } from 'react-icons/fa';
 import { useState } from 'react';
 

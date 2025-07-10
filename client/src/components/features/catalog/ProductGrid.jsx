@@ -1,9 +1,9 @@
 // ProductGrid.jsx 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ProductCard from "./ProductCard";
-import { useProductContext } from "../context/ProductContext";
-import { useWishlist } from "../context/WishlistContext";
+import ProductCard from './ProductCard';
+import { useProductContext } from '../../../context/ProductContext';
+import { useWishlist } from '../../../context/WishlistContext';
 import { Heart, ShoppingBag, AlertCircle, Package } from 'lucide-react';
 
 const ProductGrid = ({ viewMode }) => {
@@ -161,7 +161,7 @@ const ProductGrid = ({ viewMode }) => {
                           onClick={() => handleWishlistToggle(productId)} 
                           className={`p-2 rounded-lg transition-colors ${
                             inWishlist 
-                              ? 'text-red-500 bg-red-50 hover:bg-red-100' 
+                              ? 'text-red-500 hover:bg-red-50' 
                               : 'text-gray-400 hover:text-red-500 hover:bg-gray-50'
                           }`}
                           title={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
@@ -171,7 +171,7 @@ const ProductGrid = ({ viewMode }) => {
                         
                         <Link 
                           to={`/products/${productId}`}
-                          className="flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors text-sm font-medium"
+                          className="flex items-center gap-2 border border-gray-500 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-800 hover:text-white transition-colors text-sm font-medium"
                         >
                           <ShoppingBag size={14} />
                           View Details

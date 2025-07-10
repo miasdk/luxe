@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-import FilterSideBar from '../components/FilterSideBar';
-import FilterTopBar from '../components/FilterTopBar';
-import ActiveFilters from '../components/ActiveFilters';
-import ProductGrid from '../components/ProductGrid';
-import Breadcrumb from '../components/Breadcrumb';
+import FilterSideBar from '../components/features/catalog/FilterSideBar';
+import FilterTopBar from '../components/features/catalog/FilterTopBar';
+import ActiveFilters from '../components/features/catalog/ActiveFilters';
+import ProductGrid from '../components/features/catalog/ProductGrid';
+import Breadcrumb from '../components/common/ui/Breadcrumb';
 import { useProductContext } from '../context/ProductContext';
 import { Grid3X3, List, TrendingUp, Clock, Shield } from 'lucide-react';
 
@@ -84,7 +84,7 @@ const ProductPage = () => {
 
   return (
     <div className="bg-gradient-to-br from-gray-50/50 to-white min-h-screen">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
         <div className="mb-8">
           <Breadcrumb items={breadcrumbItems} />
           
@@ -106,7 +106,7 @@ const ProductPage = () => {
                   onClick={() => setViewMode('grid')} 
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all ${
                     viewMode === 'grid' 
-                      ? 'bg-gray-900 text-white shadow-sm' 
+                      ? 'bg-gray-900/80 text-white shadow-sm' 
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                   }`}
                 >
@@ -117,7 +117,7 @@ const ProductPage = () => {
                   onClick={() => setViewMode('list')} 
                   className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-all ${
                     viewMode === 'list' 
-                      ? 'bg-gray-900 text-white shadow-sm' 
+                      ? 'bg-gray-900/80 text-white shadow-sm' 
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                   }`}
                 >
@@ -152,8 +152,8 @@ const ProductPage = () => {
                   containerClassName="flex items-center space-x-1"
                   pageClassName="group"
                   pageLinkClassName="px-4 py-2.5 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-all font-medium text-sm text-gray-700 hover:border-gray-300"
-                  activeClassName="bg-gray-900 text-white border-gray-900 shadow-sm"
-                  activeLinkClassName="text-white hover:bg-gray-900"
+                  activeClassName="bg-gray-900/80 text-white border-gray-900/80 shadow-sm"
+                  activeLinkClassName="text-white hover:bg-gray-900/80"
                   previousClassName="group"
                   previousLinkClassName="px-4 py-2.5 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer transition-all font-medium text-sm text-gray-700 hover:border-gray-300"
                   nextClassName="group"

@@ -1,7 +1,8 @@
 
 import React from 'react';
-import { useProductContext } from '../context/ProductContext';
+import { useProductContext } from '../../../context/ProductContext';
 import { X, RotateCcw, Grid3X3, List, Filter } from 'lucide-react';
+import FormInput from '../../common/forms/FormInput';
 
 const ActiveFilters = ({ viewMode, setViewMode }) => {
   const {

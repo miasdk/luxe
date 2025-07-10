@@ -4,8 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { useState, useEffect, useRef } from "react"
 import { Navigation, Pagination, Autoplay } from "swiper/modules"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import categoryService from "../services/categoryService"
-import CategoryCard from "./CategoryCard"
+import categoryService from '../../../services/categoryService';
+import CategoryCard from './CategoryCard';
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"

@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from "react";
-import { useProductContext } from "../context/ProductContext";
+import { useProductContext } from '../../../context/ProductContext';
 import { ChevronDown, ChevronUp, Filter, X } from "lucide-react";
+import FormInput from '../../common/forms/FormInput';
 
 const FilterSideBar = () => {
   const {
@@ -113,7 +114,7 @@ const FilterSideBar = () => {
                 <button
                   className={`w-full text-left py-3 px-4 rounded-lg text-sm transition-all font-medium ${
                     selectedCategory === ''
-                      ? 'bg-gray-900 text-white shadow-sm'
+                      ? 'bg-gray-900/80 text-white shadow-sm'
                       : 'text-gray-700 hover:bg-gray-50 border border-gray-200'
                   }`}
                   onClick={() => updateCategory('')}
@@ -127,7 +128,7 @@ const FilterSideBar = () => {
                       key={category.category_name}
                       className={`w-full flex items-center justify-between py-3 px-4 rounded-lg text-sm transition-all ${
                         selectedCategory === category.category_name
-                          ? 'bg-gray-900 text-white shadow-sm'
+                          ? 'bg-gray-900/80 text-white shadow-sm'
                           : 'text-gray-700 hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
                       }`}
                       onClick={() => updateCategory(category.category_name)}
@@ -168,7 +169,7 @@ const FilterSideBar = () => {
                   <button
                     className={`w-full text-left py-3 px-4 rounded-lg text-sm transition-all font-medium ${
                       selectedBrand === '' || !selectedBrand
-                        ? 'bg-gray-900 text-white shadow-sm'
+                        ? 'bg-gray-900/80 text-white shadow-sm'
                         : 'text-gray-700 hover:bg-gray-50 border border-gray-200'
                     }`}
                     onClick={() => updateBrand('')}
@@ -182,7 +183,7 @@ const FilterSideBar = () => {
                         key={brand.brand_name}
                         className={`w-full flex items-center justify-between py-3 px-4 rounded-lg text-sm transition-all ${
                           selectedBrand === brand.brand_name
-                            ? 'bg-gray-900 text-white shadow-sm'
+                            ? 'bg-gray-900/80 text-white shadow-sm'
                             : 'text-gray-700 hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
                         }`}
                         onClick={() => updateBrand(brand.brand_name)}

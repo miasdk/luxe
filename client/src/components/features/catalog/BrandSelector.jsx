@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown, Plus, Check } from 'lucide-react';
-import brandService from '../services/brandService';
+import brandService from '../../../services/brandService';
+import FormInput from '../../common/forms/FormInput';
 
 const BrandSelector = ({ value, onChange, disabled = false }) => {
   const [brands, setBrands] = useState([]);
