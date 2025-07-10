@@ -2,15 +2,16 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import ProductController from '../ProductController.js';
 
 // Mock the ProductService
-const mockProductService = {
-  getAllProducts: vi.fn(),
-  getProductById: vi.fn(),
-  addProduct: vi.fn()
-};
-
-vi.mock('../../services/ProductService.js', () => ({
-  default: mockProductService
-}));
+vi.mock('../../services/ProductService.js', () => {
+  const mockProductService = {
+    getAllProducts: vi.fn(),
+    getProductById: vi.fn(),
+    addProduct: vi.fn()
+  };
+  return {
+    default: mockProductService
+  };
+});
 
 describe('ProductController', () => {
   let mockReq;
@@ -38,18 +39,21 @@ describe('ProductController', () => {
         { id: 2, title: 'Product 2' }
       ];
 
-      mockProductService.getAllProducts.mockResolvedValue(mockProducts);
+      // Import the mocked service
+      const ProductService = await import('../../services/ProductService.js');
+      ProductService.default.getAllProducts.mockResolvedValue(mockProducts);
 
       await ProductController.getAllProducts(mockReq, mockRes);
 
-      expect(mockProductService.getAllProducts).toHaveBeenCalled();
+      expect(ProductService.default.getAllProducts).toHaveBeenCalled();
       expect(mockRes.status).toHaveBeenCalledWith(200);
       expect(mockRes.json).toHaveBeenCalledWith(mockProducts);
     });
 
     it('should handle errors when fetching products', async () => {
       const error = new Error('Database error');
-      mockProductService.getAllProducts.mockRejectedValue(error);
+      const ProductService = await import('../../services/ProductService.js');
+      ProductService.default.getAllProducts.mockRejectedValue(error);
 
       await ProductController.getAllProducts(mockReq, mockRes);
 
@@ -65,18 +69,20 @@ describe('ProductController', () => {
       const mockProduct = { id: 1, title: 'Product 1' };
       mockReq.params.id = '1';
 
-      mockProductService.getProductById.mockResolvedValue(mockProduct);
+      const ProductService = await import('../../services/ProductService.js');
+      ProductService.default.getProductById.mockResolvedValue(mockProduct);
 
       await ProductController.getProductById(mockReq, mockRes);
 
-      expect(mockProductService.getProductById).toHaveBeenCalledWith('1');
+      expect(ProductService.default.getProductById).toHaveBeenCalledWith('1');
       expect(mockRes.status).toHaveBeenCalledWith(200);
       expect(mockRes.json).toHaveBeenCalledWith(mockProduct);
     });
 
     it('should handle product not found', async () => {
       mockReq.params.id = '999';
-      mockProductService.getProductById.mockResolvedValue(null);
+      const ProductService = await import('../../services/ProductService.js');
+      ProductService.default.getProductById.mockResolvedValue(null);
 
       await ProductController.getProductById(mockReq, mockRes);
 
@@ -97,11 +103,12 @@ describe('ProductController', () => {
       mockReq.body = newProduct;
 
       const mockAddedProduct = { id: 1, ...newProduct };
-      mockProductService.addProduct.mockResolvedValue(mockAddedProduct);
+      const ProductService = await import('../../services/ProductService.js');
+      ProductService.default.addProduct.mockResolvedValue(mockAddedProduct);
 
       await ProductController.addProduct(mockReq, mockRes);
 
-      expect(mockProductService.addProduct).toHaveBeenCalledWith(newProduct);
+      expect(ProductService.default.addProduct).toHaveBeenCalledWith(newProduct);
       expect(mockRes.status).toHaveBeenCalledWith(201);
       expect(mockRes.json).toHaveBeenCalledWith(mockAddedProduct);
     });
