@@ -160,21 +160,6 @@ VS Code           → Development environment
 
 The application uses a normalized PostgreSQL schema with foreign key relationships between Users, Products, Orders, Categories, Brands, and Cart tables. The architecture is designed for **scalability and maintainability** with dynamic data-driven components.
 
-### 🚀 Scalability Features
-
-**Dynamic Category Management:**
-- **15 categories** automatically populated from database
-- **Zero code changes** required to add new categories
-- **CategoryFilterBar** dynamically displays all categories
-- **FilterSideBar** automatically updates with new categories
-- **URL routing** works with any category name
-
-**Database-Driven Architecture:**
-- **No hardcoded data** - everything fetched from database
-- **Context-based state management** - filters persist in URL
-- **Component reusability** - works with any number of categories/products
-- **API-first design** - clean REST endpoints for all operations
-
 ### 📊 Database Architecture
 
 **Dynamic Data Management:**
