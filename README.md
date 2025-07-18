@@ -29,6 +29,7 @@
 ## Table of Contents
 
 - [Application Screenshots](#application-screenshots)
+- [Design & User Experience](#design--user-experience)
 - [Key Features](#key-features)  
 - [Technology Stack](#technology-stack)
 - [Architecture & Database](#architecture--database)
@@ -59,9 +60,14 @@
 ![Mobile View](./screenshots/mobile-view.png)
 *Tailwind CSS responsive breakpoints across all devices*
 
+### Design Process & Wireframes
+![Wireframes](./screenshots/wireframes.png)
+*Initial wireframe concepts and user flow design*
+
 </div>
 
 > 📸 **Screenshots needed:** Take screenshots of your deployed app at [ecartdemo.vercel.app](https://ecartdemo.vercel.app) and save them in a `screenshots/` folder
+> 📐 **Wireframes needed:** Add your wireframe/design process images to show full-stack design skills
 
 ---
 
