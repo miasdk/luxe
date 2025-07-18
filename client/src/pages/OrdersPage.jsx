@@ -40,6 +40,31 @@ const OrdersPage = () => {
                         setLoading(false);
                         return;
                     }
+                    
+                    // Process the data we already have
+                    const groupedOrders = data.reduce((acc, item) => {
+                        if (!acc[item.order_id]) {
+                            acc[item.order_id] = {
+                                id: item.order_id,
+                                date: new Date(item.created_at),
+                                status: item.status,
+                                totalPrice: parseFloat(item.total_price),
+                                items: []
+                            };
+                        }
+                        
+                        acc[item.order_id].items.push({
+                            product_title: item.product_title,
+                            quantity: item.quantity,
+                            unitPrice: parseFloat(item.unit_price)
+                        });
+                        
+                        return acc;
+                    }, {});
+                    
+                    setOrders(Object.values(groupedOrders));
+                    setLoading(false);
+                    return;
                 } else if (response.status === 404) {
                     // User has no orders yet - this is normal
                     setOrders([]);
@@ -48,31 +73,6 @@ const OrdersPage = () => {
                 } else {
                     throw new Error('Failed to fetch orders');
                 }
-                
-                const data = await response.json();
-                
-                const groupedOrders = data.reduce((acc, item) => {
-                    if (!acc[item.order_id]) {
-                        acc[item.order_id] = {
-                            id: item.order_id,
-                            date: new Date(item.created_at),
-                            status: item.status,
-                            totalPrice: parseFloat(item.total_price),
-                            items: []
-                        };
-                    }
-                    
-                    acc[item.order_id].items.push({
-                        product_title: item.product_title,
-                        quantity: item.quantity,
-                        unitPrice: parseFloat(item.unit_price)
-                    });
-                    
-                    return acc;
-                }, {});
-                
-                setOrders(Object.values(groupedOrders));
-                setLoading(false);
             } catch (err) {
                 console.error('Error fetching orders:', err);
                 // Handle network errors more gracefully
