@@ -46,7 +46,7 @@
 
 ### Homepage & Hero Section
 ![Homepage Hero](./screenshots/homepage1.png)
-*Dynamic hero section with "Buy & Sell" call-to-action and modern marketplace branding*
+*Dynamic hero section with "Buy & Sell" call-to-action and marketplace branding*
 
 ### Category Collections & Brand Spotlight
 ![Category Collections](./screenshots/homepage2.png)
