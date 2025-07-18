@@ -44,30 +44,74 @@
 
 <div align="center">
 
-### Homepage & Product Discovery
-![Homepage Screenshot](./screenshots/homepage.png)
-*Featured product algorithm with dynamic content and responsive design*
+### Homepage & Hero Section
+![Homepage Hero](./screenshots/homepage1.png)
+*Dynamic hero section with "Buy & Sell" call-to-action and modern marketplace branding*
 
-### Shopping Cart & Checkout Flow  
+### Category Collections & Brand Spotlight
+![Category Collections](./screenshots/homepage2.png)
+*Curated category collections (Accessories, Activewear, Denim, Dresses) with trusted brand partnerships*
+
+### Trending Products & Social Proof
+![Trending Products](./screenshots/homepage3.png)
+*"Most Popular This Week" and "Lowest Prices" sections driven by engagement metrics*
+
+### Intelligent Product Recommendations
+![Product of the Day](./screenshots/homepage4.png)
+*AI-powered "Product of the Day" spotlight using custom recommendation algorithm*
+
+### New Arrivals & Newsletter Integration
+![New Arrivals](./screenshots/homepage5.png)
+*Fresh inventory showcase with email capture for marketing automation*
+
+### Advanced Product Catalog
+![Product Catalog](./screenshots/catalog.png)
+*Sophisticated filtering system with category sidebar, grid/list views, and sorting options*
+
+### Search & Discovery
+![Search Results](./screenshots/search.png)
+*Real-time search suggestions with product recommendations and category filtering*
+
+### Shopping Cart & Persistence
 ![Shopping Cart](./screenshots/shopping-cart.png)
-*Persistent cart with Stripe payment integration*
+*Persistent cart with real-time updates, quantity controls, and subtotal calculations*
 
-### Product Catalog & Search
-![Product Catalog](./screenshots/product-catalog.png)
-*Advanced filtering with PostgreSQL full-text search*
+### Complete Checkout Flow
+![Checkout Process](./screenshots/checkout-page.png)
+*Streamlined checkout with shipping information, Stripe payment integration, and order summary*
 
-### Mobile Responsive Design
-![Mobile View](./screenshots/mobile-view.png)
-*Tailwind CSS responsive breakpoints across all devices*
+### Seller Dashboard & Listing Creation
+![Create Listing](./screenshots/create-listing.png)
+*Multi-step listing creation with product details, categorization, and image upload*
 
-### Design Process & Wireframes
-![Wireframes](./screenshots/wireframes.png)
-*Initial wireframe concepts and user flow design*
+### Order Management System
+![Order History](./screenshots/orders-page.png)
+*Complete order tracking with payment status, order details, and purchase history*
+
+### User Profile & Seller Tools
+![Profile Page](./screenshots/profile-page.png)
+*User dashboard with listing management, seller statistics, and account settings*
+
+### Wishlist & Favorites
+![Wishlist](./screenshots/wishlist.png)
+*Save favorite items with quick add-to-cart functionality and inventory tracking*
+
+### Mobile-First Responsive Design
+![Mobile Experience](./screenshots/mobile.png)
+*Optimized mobile interface with touch-friendly navigation and compressed layouts*
+
+### Design Process & Initial Concepts
+![Wireframe Sketches](./screenshots/wireframe-sketch.png)
+*Hand-drawn initial wireframes and user flow concepts*
+
+### Digital Wireframes & User Experience Planning
+![Digital Wireframes](./screenshots/wireframe-1.png)
+*Professional wireframes showcasing information architecture and navigation design*
 
 </div>
 
-> 📸 **Screenshots needed:** Take screenshots of your deployed app at [ecartdemo.vercel.app](https://ecartdemo.vercel.app) and save them in a `screenshots/` folder
-> 📐 **Wireframes needed:** Add your wireframe/design process images to show full-stack design skills
+> ✅ **Screenshots completed:** All app screenshots captured from [ecartdemo.vercel.app](https://ecartdemo.vercel.app) and organized in `screenshots/` folder
+> ✅ **Wireframes included:** Complete design process from initial sketches to digital wireframes showcasing full-stack UX planning
 
 ---
 
