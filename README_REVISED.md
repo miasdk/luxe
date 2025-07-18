@@ -26,12 +26,40 @@
 
 ## Table of Contents
 
-- [Key Features](#key-features)
+- [Application Screenshots](#application-screenshots)
+- [Key Features](#key-features)  
 - [Technology Stack](#technology-stack)
 - [Architecture & Database](#architecture--database)
 - [Technical Highlights](#technical-highlights)
+- [Testing & Quality Assurance](#testing--quality-assurance)
 - [Local Development](#local-development)
 - [Contact](#contact)
+
+---
+
+## Application Screenshots
+
+<div align="center">
+
+### Homepage & Product Discovery
+![Homepage Screenshot](./screenshots/homepage.png)
+*Featured product algorithm with dynamic content and responsive design*
+
+### Shopping Cart & Checkout Flow  
+![Shopping Cart](./screenshots/shopping-cart.png)
+*Persistent cart with Stripe payment integration*
+
+### Product Catalog & Search
+![Product Catalog](./screenshots/product-catalog.png)
+*Advanced filtering with PostgreSQL full-text search*
+
+### Mobile Responsive Design
+![Mobile View](./screenshots/mobile-view.png)
+*Tailwind CSS responsive breakpoints across all devices*
+
+</div>
+
+> 📸 **Screenshots needed:** Take screenshots of your deployed app at [ecartdemo.vercel.app](https://ecartdemo.vercel.app) and save them in a `screenshots/` folder
 
 ---
 
@@ -62,7 +90,8 @@
 - Responsive design (mobile-first)
 
 **Developer Experience**
-- Comprehensive Swagger API docs (45+ endpoints)
+- Comprehensive test suite (24+ test cases)
+- Swagger API docs (45+ endpoints)
 - Automated deployment pipeline
 - Health monitoring & error tracking
 
@@ -93,6 +122,10 @@
 ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
 ![Railway](https://img.shields.io/badge/Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white)
+
+### Testing & Quality
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
+![Testing Library](https://img.shields.io/badge/Testing_Library-E33332?style=for-the-badge&logo=testing-library&logoColor=white)
 
 </div>
 
@@ -216,6 +249,60 @@ const featuredScore =
 - `POST /api/orders` - Order creation with Stripe integration
 - `GET /api/search` - Full-text product search
 - `PUT /api/products/:id` - Product management (authenticated)
+
+---
+
+## Testing & Quality Assurance
+
+### Test Coverage
+
+**Comprehensive Testing Suite:**
+- **24+ test cases** covering critical functionality
+- **API Integration Tests** - All major endpoints (products, cart, orders)
+- **Component Tests** - React components with user interactions  
+- **Service Layer Tests** - Database operations and business logic
+- **Security Testing** - SQL injection prevention and input validation
+
+```bash
+# Run all tests
+npm run test              # Root: runs both client and server tests
+cd client && npm test     # Frontend component tests
+cd server && npm test     # Backend API and service tests
+
+# Test coverage reports
+npm run test:coverage     # Generate coverage reports
+```
+
+**Test Architecture:**
+- **Unit Tests** - Individual functions and components
+- **Integration Tests** - API endpoints with real request/response
+- **Component Tests** - React components with user interactions
+- **Error Handling** - Edge cases and validation scenarios
+
+### Stripe Payment Testing
+
+**Test Environment Setup:**
+```bash
+# Use Stripe test keys in .env
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_SECRET_KEY=sk_test_...
+```
+
+**Test Card Numbers:**
+
+| Scenario | Card Number | Result |
+|----------|------------|---------|
+| **Successful Payment** | `4242 4242 4242 4242` | Payment succeeds |
+| **Payment Declined** | `4000 0000 0000 0002` | Generic decline |
+| **Insufficient Funds** | `4000 0000 0000 9995` | Insufficient funds |
+| **Authentication Required** | `4000 0027 6000 3184` | Requires 3D Secure |
+
+**Testing Workflow:**
+1. Add products to cart
+2. Proceed to checkout
+3. Use test card numbers above
+4. Verify order creation in database
+5. Check Stripe dashboard for payment records
 
 ---
 
