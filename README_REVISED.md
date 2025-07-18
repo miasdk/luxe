@@ -1,4 +1,4 @@
-# eCart - Full-Stack E-Commerce Platform
+# Luxe - Full-Stack E-Commerce Platform
 
 <div align="center">
 
