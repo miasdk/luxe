@@ -72,7 +72,7 @@
 ![Search Results](./screenshots/search.png)
 *Real-time search suggestions with product recommendations and category filtering*
 
-### Shopping Cart & Persistence
+### Shopping Cart 
 ![Shopping Cart](./screenshots/shopping-cart.png)
 *Persistent cart with real-time updates, quantity controls, and subtotal calculations*
 
