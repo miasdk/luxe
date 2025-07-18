@@ -10,6 +10,12 @@
 
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success) ![Uptime](https://img.shields.io/badge/Uptime-99.8%25-success) ![Response](https://img.shields.io/badge/API_Response-180ms-success)
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-brightgreen)](https://ecartdemo.vercel.app)
+[![API Docs](https://img.shields.io/badge/API_Docs-Swagger-blue)](https://ecart-mxsk.onrender.com/api-docs)
+[![Backend](https://img.shields.io/badge/Backend-Render-purple)](https://ecart-mxsk.onrender.com)
+
+[View Live Demo](https://ecartdemo.vercel.app) • [API Documentation](https://ecart-mxsk.onrender.com/api-docs) • [Report Issues](https://github.com/miasdk/eCart/issues)
+
 </div>
 
 ---
