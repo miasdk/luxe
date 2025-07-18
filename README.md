@@ -20,7 +20,7 @@
 
 | Service | URL | Status |
 |---------|-----|--------|
-| **Frontend** | [ecartdemo.vercel.app](https://ecartdemo.vercel.app) | ![Live](https://img.shields.io/badge/Live-success) |
+| **Frontend** | [luxedemo.vercel.app](https://ecartdemo.vercel.app) | ![Live](https://img.shields.io/badge/Live-success) |
 | **API** | [ecart-mxsk.onrender.com](https://ecart-mxsk.onrender.com) | ![Live](https://img.shields.io/badge/Live-success) |
 | **Documentation** | [API Docs](https://ecart-mxsk.onrender.com/api-docs) | ![Live](https://img.shields.io/badge/Live-success) |
 
