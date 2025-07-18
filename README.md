@@ -6,7 +6,7 @@
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-brightgreen?style=for-the-badge)](https://ecartdemo.vercel.app)
 [![API Docs](https://img.shields.io/badge/API_Docs-Swagger-blue?style=for-the-badge)](https://ecart-mxsk.onrender.com/api-docs)
-[![Portfolio](https://img.shields.io/badge/Portfolio-View_More-purple?style=for-the-badge)](https://github.com/miasdk)
+[![Portfolio](https://img.shields.io/badge/Portfolio-View_More-purple?style=for-the-badge)](https://miaelena.vercel.app/)
 
 ![Status](https://img.shields.io/badge/Status-Production_Ready-success) ![Uptime](https://img.shields.io/badge/Uptime-99.8%25-success) ![Response](https://img.shields.io/badge/API_Response-180ms-success)
 
@@ -129,8 +129,8 @@
 
 </div>
 
-> ✅ **Screenshots completed:** All app screenshots captured from [ecartdemo.vercel.app](https://ecartdemo.vercel.app) and organized in `screenshots/` folder
-> ✅ **Wireframes included:** Complete design process from initial sketches to digital wireframes showcasing full-stack UX planning
+> **Screenshots completed:** All app screenshots captured from [luxedemo.vercel.app](https://luxedemo.vercel.app) and organized in `screenshots/` folder
+> **Wireframes included:** Complete design process from initial sketches to digital wireframes showcasing full-stack UX planning
 
 ---
 
