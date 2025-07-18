@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**A modern luxury marketplace built with React, Node.js, and PostgreSQL featuring real-time payments, Firebase authentication, and comprehensive API documentation**
+**A modern clothing marketplace built with React, Node.js, and PostgreSQL featuring real-time payments, Firebase authentication, and comprehensive API documentation**
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-brightgreen?style=for-the-badge)](https://ecartdemo.vercel.app)
 [![API Docs](https://img.shields.io/badge/API_Docs-Swagger-blue?style=for-the-badge)](https://ecart-mxsk.onrender.com/api-docs)
