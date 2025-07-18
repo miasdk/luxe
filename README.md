@@ -29,7 +29,7 @@
 ## Table of Contents
 
 - [Application Screenshots](#application-screenshots)
-- [Design & User Experience](#design--user-experience)
+- [Wireframes](#wireframes)
 - [Key Features](#key-features)  
 - [Technology Stack](#technology-stack)
 - [Architecture & Database](#architecture--database)
@@ -194,6 +194,9 @@
 ![Railway](https://img.shields.io/badge/Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-008CDD?style=for-the-badge&logo=stripe&logoColor=white)
 
+### Design & Wireframing
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+
 ### Testing & Quality
 ![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
 ![Testing Library](https://img.shields.io/badge/Testing_Library-E33332?style=for-the-badge&logo=testing-library&logoColor=white)
@@ -315,11 +318,27 @@ const featuredScore =
 - **Models** → Database operations
 - **Middleware** → Authentication & authorization
 
-**Key Endpoints:**
-- `GET /api/products/filter` - Advanced product filtering
-- `POST /api/orders` - Order creation with Stripe integration
-- `GET /api/search` - Full-text product search
-- `PUT /api/products/:id` - Product management (authenticated)
+### Key API Endpoints
+
+| Method | Endpoint | Description | Auth Required | Features |
+|--------|----------|-------------|---------------|----------|
+| `GET` | `/api/products` | Fetch all products with pagination | ❌ | Sorting, pagination |
+| `GET` | `/api/products/filter` | Advanced product filtering | ❌ | Category, brand, price, condition filters |
+| `GET` | `/api/products/featured` | Get featured products using algorithm | ❌ | Weighted scoring system |
+| `POST` | `/api/products` | Create new product listing | ✅ | Image upload, validation |
+| `PUT` | `/api/products/:id` | Update existing product | ✅ | Owner verification |
+| `DELETE` | `/api/products/:id` | Delete product listing | ✅ | Owner verification |
+| `GET` | `/api/search` | Full-text product search | ❌ | PostgreSQL GIN indexes |
+| `POST` | `/api/cart` | Add item to shopping cart | ✅ | Quantity management |
+| `GET` | `/api/cart/:userId` | Get user's cart items | ✅ | Persistent cart storage |
+| `DELETE` | `/api/cart/:userId/:productId` | Remove item from cart | ✅ | Real-time updates |
+| `POST` | `/api/orders` | Create order with Stripe payment | ✅ | Payment processing integration |
+| `GET` | `/api/orders/:userId` | Get user order history | ✅ | Order tracking |
+| `POST` | `/api/wishlist` | Add/remove wishlist items | ✅ | Favorites management |
+| `GET` | `/api/categories` | Get all product categories | ❌ | Category hierarchy |
+| `GET` | `/api/brands` | Get all available brands | ❌ | Brand filtering |
+
+> 📋 **Complete API Documentation:** [Interactive Swagger Docs](https://ecart-mxsk.onrender.com/api-docs) with 45+ endpoints
 
 ---
 
