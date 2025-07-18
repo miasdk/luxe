@@ -100,13 +100,32 @@
 ![Mobile Experience](./screenshots/mobile.png)
 *Optimized mobile interface with touch-friendly navigation and compressed layouts*
 
-### Design Process & Initial Concepts
+### Wireframes
+
+#### Initial Concept Sketches
 ![Wireframe Sketches](./screenshots/wireframe-sketch.png)
 *Hand-drawn initial wireframes and user flow concepts*
 
-### Digital Wireframes & User Experience Planning
-![Digital Wireframes](./screenshots/wireframe-1.png)
-*Professional wireframes showcasing information architecture and navigation design*
+#### Homepage Design Iterations
+![Homepage Wireframe](./screenshots/wireframe-1.png)
+*Homepage layout with hero section, recently viewed items, and promotional banners*
+
+![Homepage V2](./screenshots/wireframe-2.png)
+*Alternative homepage wireframe focusing on personalized product recommendations*
+
+#### Product Catalog & Listing Pages
+![Product Catalog](./screenshots/wireframe-3.png)
+*Product listing page with filtering system, category navigation, and grid layout*
+
+![Create Listing](./screenshots/wireframe-4.png)
+*Seller interface for creating new product listings with image upload and form fields*
+
+#### Product Detail & Management
+![Product Detail](./screenshots/wireframe-5.png)
+*Individual product page with image gallery, description, and purchase options*
+
+![Edit Listing](./screenshots/wireframe-6.png)
+*Product editing interface for sellers to update listings and manage inventory*
 
 </div>
 
