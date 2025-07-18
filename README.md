@@ -50,11 +50,11 @@
 
 ### Category Collections & Brand Spotlight
 ![Category Collections](./screenshots/homepage2.png)
-*Curated category collections (Accessories, Activewear, Denim, Dresses) with trusted brand partnerships*
+*Curated category collections (Accessories, Activewear, Denim, Dresses)*
 
 ### Trending Products & Social Proof
 ![Trending Products](./screenshots/homepage3.png)
-*"Most Popular This Week" and "Lowest Prices" sections driven by engagement metrics*
+*"Most Popular This Week" and "Lowest Prices" sections*
 
 ### Intelligent Product Recommendations
 ![Product of the Day](./screenshots/homepage4.png)
